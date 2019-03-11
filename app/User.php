@@ -4,10 +4,13 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Spatie\Permission\Traits\HasRoles;
+use Spatie\Permission\Models\Permission;
 
 class User extends Authenticatable
 {
     use Notifiable;
+    use HasRoles;
 
     /**
      * The attributes that are mass assignable.
@@ -27,4 +30,16 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function hasPermissionForRoute($route)
+    {
+        $routeName = $route->getName();
+        $permission = Permission::where('name', $routeName)->count();
+        
+        if ($permission) {
+            return  $this->hasPermissionTo($routeName);
+        }
+
+        return true;
+    }
 }
