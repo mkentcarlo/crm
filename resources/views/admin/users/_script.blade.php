@@ -39,10 +39,10 @@
 		        method: "GET",
 		        dataType:'html',    
 		        success: function(data){
-		        	if (result.hasOwnProperty('permitted') && !result.permitted) {
+		        	if (data.hasOwnProperty('permitted') && !data.permitted) {
                         swal({
                             type: 'error',
-                            title: result.msg,
+                            title: data.msg,
                             animation: true,
                             showConfirmButton: true,
                         });
