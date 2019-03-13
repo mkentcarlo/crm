@@ -120,8 +120,17 @@
                         type: "delete",
                         dataType: "JSON",
                         success: function(data) {
-                            swal("Deleted!",data.msg, data.type); 
-                            $productsTable.ajax.reload( null, false );
+                            if (data.hasOwnProperty('permitted') && !data.permitted) {
+                                swal({
+                                    type: 'error',
+                                    title: data.msg,
+                                    animation: true,
+                                    showConfirmButton: true,
+                                });
+                            } else {
+                                swal("Deleted!",data.msg, data.type); 
+                                $productsTable.ajax.reload( null, false );
+                            }    
                         } 
                     }); 
                 });
@@ -185,7 +194,7 @@
               readURL(this);
             });
 
-            document.querySelector('#file-input').addEventListener("change", previewImages);
+            $('#file-input').change(function(){}, previewImages);
         });
     </script>
 @endpush

@@ -7,26 +7,35 @@
         });
 
         $(function () {
-            $groupsTable = $('#groups-table').DataTable( {
+            $customersTable = $('#customers-table').DataTable( {
                 serverSide: true,
                 processing: true,
-                ajax: "{{ route('get.groups') }}",
+                ajax: "{{ route('get.customers') }}",
                 dom: 'lBfrtip',
                 buttons: true,
                 columns: [
+                    {data: "id", name: "id"}, 
                     {data: "name", name: "name"}, 
+                    {data: "email", name: "email"}, 
+                    {data: "contact", name: "contact"}, 
+                    {data: "group_name", name: "group_name"}, 
                     {data: "created_at", name: "created_at"},
                     {data: "action", name: "action"}
 
                 ]
             } );
 
-            $('#create_group').submit(function (e) {
+            $('#filterForm').on('submit', function (e) {
+                e.preventDefault();
+                 $customersTable.columns(1).search($('#name').val()).draw();
+            });
+
+            $('#create_customer').submit(function (e) {
                 e.preventDefault();
 
                 $.ajax({
                     type:       'POST',
-                    url:        "{{ route('store.group') }}",
+                    url:        "{{ route('store.customer') }}",
                     data:       $(this).serialize(),
                     dataType:   'json',
                     beforeSend: function () {
@@ -52,7 +61,7 @@
                             if (result.success) {
                                 successMsg(result.msg);
                                 $('#createModal').modal('hide');
-                                $groupsTable.ajax.reload( null, false );
+                                $customersTable.ajax.reload( null, false );
                             } else {
                                 errorMsg(result.msg);
                             }  
@@ -78,7 +87,7 @@
                 });
 
                 var id = $(this).attr('id');
-                $.getJSON("{{ url('groups') }}/edit/" + id, function (result) {
+                $.getJSON("{{ url('customers') }}/edit/" + id, function (result) {
                     if (result.hasOwnProperty('permitted') && !result.permitted) {
                         swal({
                             type: 'error',
@@ -88,8 +97,16 @@
                         });
                     } else {
                         $('#id').val(result.id);
-                        $('#name').val(result.name);
-                        $('#sub_group').val(result.sub_group);
+                        $('#firstname').val(result.firstname);
+                        $('#lastname').val(result.lastname);
+                        $('#email').val(result.email);
+                        $('#contact').val(result.contact);
+                        $('#group_id').val(result.group.id);
+                        $('#street_address').val(result.street_address);
+                        $('#city').val(result.city);
+                        $('#state').val(result.state);
+                        $('#postal_code').val(result.postal_code);
+                        $('#country').val(result.country);
                         $('#updateModal').modal('show');
                         swal.close();
                     }
@@ -97,12 +114,12 @@
 
             });  
 
-           $('#update_group').submit(function (e) {
+            $('#update_customer').submit(function (e) {
                 e.preventDefault();
         
                 $.ajax({
                     type:       'POST',
-                    url:        "{{ url('groups/edit') }}/" + $('#id').val(),
+                    url:        "{{ url('customers/edit') }}/" + $('#id').val(),
                     data:       $(this).serialize(),
                     dataType:   'json',
                     beforeSend: function () {
@@ -120,7 +137,7 @@
                         if (result.success) {
                             successMsg(result.msg);
                             $('#updateModal').modal('hide');
-                            $groupsTable.ajax.reload( null, false );
+                            $customersTable.ajax.reload( null, false );
                         } else {
                             errorMsg(result.msg);
                         }  
@@ -136,7 +153,7 @@
                 $del_btn = $(this);
                 swal({   
                     title: "Are you sure?",   
-                    text: "You are about to delete this group!",   
+                    text: "You are about to delete this customers!",   
                     type: "warning",   
                     showCancelButton: true,   
                     confirmButtonColor: "#f8b32d",   
@@ -157,13 +174,12 @@
                                 });
                             } else {
                                 swal("Deleted!",data.msg, data.type); 
-                                $groupsTable.ajax.reload( null, false );
+                                $customersTable.ajax.reload( null, false );
                             }    
                         } 
                     }); 
                 });
             });
-        }); 
-          
+        });    
     </script>
 @endpush

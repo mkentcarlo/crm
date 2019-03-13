@@ -39,8 +39,16 @@
 		        method: "GET",
 		        dataType:'html',    
 		        success: function(data){
-		            $($target + ' .modal-body').html(data);
-		            
+		        	if (result.hasOwnProperty('permitted') && !result.permitted) {
+                        swal({
+                            type: 'error',
+                            title: result.msg,
+                            animation: true,
+                            showConfirmButton: true,
+                        });
+                    } else {
+		            	$($target + ' .modal-body').html(data);
+		            }
 		        }
 		    })
 		});
@@ -87,9 +95,18 @@
 		            url: $del_btn.attr('href'),
 		            method: "GET",
 		            success: function(data){
-		                data  = JSON.parse(data);
-		                swal("Deleted!",data.msg, data.type); 
-		                $userstable.ajax.reload( null, false );
+		            	if (data.hasOwnProperty('permitted') && !data.permitted) {
+                            swal({
+                                type: 'error',
+                                title: data.msg,
+                                animation: true,
+                                showConfirmButton: true,
+                            });
+                        } else {
+			                data  = JSON.parse(data);
+			                swal("Deleted!",data.msg, data.type); 
+			                $userstable.ajax.reload( null, false );
+			            }    
 		            }
 		        });
 		        

@@ -24,7 +24,7 @@
 
                 $.ajax({
                     type:       'POST',
-                    url:        "{{ route('store.brand') }}",
+                    url:        "{{ route('create.brand') }}",
                     data:       $(this).serialize(),
                     dataType:   'json',
                     beforeSend: function () {
@@ -39,13 +39,22 @@
                         });
                     },
                     success:    function (result) {
-                        if (result.success) {
-                            successMsg(result.msg);
-                            $('#createModal').modal('hide');
-                            $brandsTable.ajax.reload( null, false );
+                        if (result.hasOwnProperty('permitted') && !result.permitted) {
+                            swal({
+                                type: 'error',
+                                title: result.msg,
+                                animation: true,
+                                showConfirmButton: true,
+                            });
                         } else {
-                            errorMsg(result.msg);
-                        }  
+                            if (result.success) {
+                                successMsg(result.msg);
+                                $('#createModal').modal('hide');
+                                $brandsTable.ajax.reload( null, false );
+                            } else {
+                                errorMsg(result.msg);
+                            }  
+                        }    
                     },
                     error:      function (errors) {
                         errorMsg(errors.responseJSON.errors);
@@ -137,8 +146,17 @@
                         type: "delete",
                         dataType: "JSON",
                         success: function(data) {
-                            swal("Deleted!",data.msg, data.type); 
-                            $brandsTable.ajax.reload( null, false );
+                            if (data.hasOwnProperty('permitted') && !data.permitted) {
+                                swal({
+                                    type: 'error',
+                                    title: data.msg,
+                                    animation: true,
+                                    showConfirmButton: true,
+                                });
+                            } else {
+                                swal("Deleted!",data.msg, data.type); 
+                                $brandsTable.ajax.reload( null, false );
+                            }    
                         } 
                     }); 
                 });

@@ -15,4 +15,9 @@ class CustomerGroup extends Model
         'name',
         'sub_group'
     ];
+
+    public function customer() 
+    {
+    	return $this->belongsTo('App\Customer', 'id');
+    }
 }

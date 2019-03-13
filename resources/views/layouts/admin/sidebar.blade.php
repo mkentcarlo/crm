@@ -11,10 +11,10 @@
             <a href="javascript:void(0);" data-toggle="collapse" data-target="#ecom_dr"><div class="pull-left"><i class="icon-user mr-20"></i><span class="right-nav-text">Users</span></div><div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div><div class="clearfix"></div></a>
             <ul id="ecom_dr" class="collapse collapse-level-1">
                 <li>
-                    <a href="{{ route('users') }}" class="">List</a>
+                    <a href="{{ route('view.user') }}" class="">List</a>
                 </li>
                 <li>
-                    <a href="roles.php" class="">Roles</a>
+                    <a href="{{ route('view.role') }}" class="">Roles</a>
                 </li>
             </ul>
         </li>
@@ -22,10 +22,10 @@
             <a href="javascript:void(0);" data-toggle="collapse" data-target="#cust_dr"  class=""><div class="pull-left"><i class="fa fa-users mr-20"></i><span class="right-nav-text">Customers</span></div><div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div><div class="clearfix"></div></a>
             <ul id="cust_dr" class="collapse collapse-level-1">
                 <li>
-                    <a href="customers.php" class="">List</a>
+                    <a href="{{ route('view.customer') }}" class="">List</a>
                 </li>
                 <li>
-                    <a href="customer-groups.php">Groups</a>
+                    <a href="{{ route('view.group') }}">Groups</a>
                 </li>
             </ul>
         </li>
@@ -36,16 +36,16 @@
             <a href="javascript:void(0);" data-toggle="collapse" data-target="#app_dr"><div class="pull-left"><i class="zmdi zmdi-time mr-20"></i><span class="right-nav-text">Watches </span></div><div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div><div class="clearfix"></div></a>
             <ul id="app_dr" class="collapse collapse-level-1">
                 <li>
-                    <a href="{{ route('products') }}" class="">List</a>
+                    <a href="{{ route('view.product') }}" class="">List</a>
                 </li>
                 <li>
                     <a href="{{ route('create.product') }}">Add Watch</a>
                 </li>
                 <li>
-                    <a href="{{ route('brands') }}" class="">brands</a>
+                    <a href="{{ route('view.brand') }}" class="">brands</a>
                 </li>
                 <li>
-                    <a href="{{ route('categories') }}" class="">categories</a>
+                    <a href="{{ route('view.category') }}" class="">categories</a>
                 </li>
             </ul>
         </li>

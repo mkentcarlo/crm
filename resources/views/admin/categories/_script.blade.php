@@ -39,13 +39,22 @@
                         });
                     },
                     success:    function (result) {
-                        if (result.success) {
-                            successMsg(result.msg);
-                            $('#createModal').modal('hide');
-                            $categoriesTable.ajax.reload( null, false );
+                        if (result.hasOwnProperty('permitted') && !result.permitted) {
+                            swal({
+                                type: 'error',
+                                title: result.msg,
+                                animation: true,
+                                showConfirmButton: true,
+                            });
                         } else {
-                            errorMsg(result.msg);
-                        }  
+                            if (result.success) {
+                                successMsg(result.msg);
+                                $('#createModal').modal('hide');
+                                $categoriesTable.ajax.reload( null, false );
+                            } else {
+                                errorMsg(result.msg);
+                            }  
+                        }    
                     },
                     error:      function (errors) {
                         errorMsg(errors.responseJSON.errors);
@@ -68,10 +77,19 @@
 
                 var id = $(this).attr('id');
                 $.getJSON("{{ url('categories') }}/edit/" + id, function (result) {
-                    $('#id').val(result.id);
-                    $('#name').val(result.name);
-                    $('#updateModal').modal('show');
-                    swal.close();
+                    if (result.hasOwnProperty('permitted') && !result.permitted) {
+                        swal({
+                            type: 'error',
+                            title: result.msg,
+                            animation: true,
+                            showConfirmButton: true,
+                        });
+                    } else {
+                        $('#id').val(result.id);
+                        $('#name').val(result.name);
+                        $('#updateModal').modal('show');
+                        swal.close();
+                    }    
                 });
 
             });  
@@ -127,8 +145,17 @@
                         type: "delete",
                         dataType: "JSON",
                         success: function(data) {
-                            swal("Deleted!",data.msg, data.type); 
-                            $categoriesTable.ajax.reload( null, false );
+                            if (data.hasOwnProperty('permitted') && !data.permitted) {
+                                swal({
+                                    type: 'error',
+                                    title: data.msg,
+                                    animation: true,
+                                    showConfirmButton: true,
+                                });
+                            } else {
+                                swal("Deleted!",data.msg, data.type); 
+                                $categoriesTable.ajax.reload( null, false );
+                            }    
                         } 
                     }); 
                 });

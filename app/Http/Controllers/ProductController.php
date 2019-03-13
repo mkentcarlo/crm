@@ -37,24 +37,10 @@ class ProductController extends Controller
      */
     public function index()
     {   
-        // $permission = Permission::create(['name' => 'edit.brand']);
-
         $categories = $this->wooService->getCategories();
         $brands = $this->wooService->getBrands();
 
         return view('admin.products.index', compact('categories', 'brands'));
-        
-        // $permission = Permission::find(2);
-        // $permission->update(['name' => 'view.product']);
-        // $user = Auth::user();
-
-        // $user->revokePermissionTo('edit.product');
-        
-        //print_r($user->can('edit products'));
-        //$user->assignRole(1);
-        //$role = Role::create(['name' => 'admin']);
-        //$role = Role::find(1);
-        //$role->givePermissionTo();
     }      
 
     /**

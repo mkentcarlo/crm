@@ -21,8 +21,6 @@ class ProductService
 	public function getProducts() 
 	{
 		$products = $this->wooService->getProducts();
-		// print_r($products);
-		//return $products;
         $data = [];
 	    foreach ($products as $product) {
 	    	$img_file = @unserialize($product->images);

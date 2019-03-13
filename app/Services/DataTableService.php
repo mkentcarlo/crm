@@ -71,13 +71,60 @@ class DataTableService  {
         $roles = app()->make('App\Services\RolePermissionService')->getRoles();
 
         return DataTables::of($roles)
+         ->addColumn('permissions', function($role) {
+            $content = "";
+            $permissions = $role->permissions()->get();
+            
+            $manage = ['users','customers', 'products', 'brands', 'categories', 'invoices', 'reports'];
+            $allPermission = [];
+
+            foreach ($permissions as $permission) {
+                $name = explode('.', $permission->name);
+                $key = end($name) .'s';
+                if (in_array($key, $manage)) {
+                    $allPermission[$key][] = $name[0];
+                }
+            }
+
+            foreach($allPermission as $key => $value)
+            {
+                if ($value) {
+                    $permission = $key;
+                }
+                $permission = $key.' | '.implode(' | ', $value);
+                $content .= '<span class="label label-gold">'.ucwords($permission).'</span> ';
+            }
+
+            return $content;
+        })
          ->addColumn('created_at', function($role) {
             return date('M d Y h:i a', strtotime($role->created_at));
         })
         ->addColumn('action', function($role) {
             return '<a href="#" class="text-inverse pr-10 form-load edit" title="Edit" id="'.$role->id.'"><i class="zmdi zmdi-edit txt-warning"></i></a><a href="'.url('roles/delete/'.$role->id).'" class="text-inverse delete" title="Delete"><i class="zmdi zmdi-delete txt-danger"></i></a>';
         })
-        ->rawColumns(['action'])
+        ->rawColumns(['permissions', 'action'])
+        ->make(true);
+    }
+
+    public function renderCustomersDataTable() 
+    {
+        $customers = app()->make('App\Services\CustomerService')->getCustomers();
+
+        return DataTables::of($customers)
+        ->addColumn('name', function($customer) {
+            return $customer->lastname .' '. $customer->firstname;
+        })
+        ->addColumn('group_name', function($customer) {
+            return $customer->group['name'];
+        })
+        ->addColumn('created_at', function($customer) {
+            return date('M d Y h:i a', strtotime($customer->created_at));
+        })
+        ->addColumn('action', function($customer) {
+            return '<a href="#" class="text-inverse pr-10 form-load edit" title="Edit" id="'.$customer->id.'"><i class="zmdi zmdi-edit txt-warning"></i></a><a href="'.url('customers/delete/'.$customer->id).'" class="text-inverse delete" title="Delete"><i class="zmdi zmdi-delete txt-danger"></i></a>';
+        })
+        ->rawColumns(['name','group_name','action'])
         ->make(true);
     }
 }	
