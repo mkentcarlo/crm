@@ -13,11 +13,11 @@
 				<div class="modal-body">
 				<div class="tab-struct custom-tab-2">
 					<ul role="tablist" class="nav nav-tabs" id="myTabs_15">
-						<li class="active" role="presentation"><a aria-expanded="true" data-toggle="tab" role="tab" id="home_tab_15" href="#home_15"> <i class="zmdi zmdi-account mr-10"></i>Basic Information</a></li>
-						<li role="presentation" class=""><a data-toggle="tab" id="profile_tab_15" role="tab" href="#profile_15" aria-expanded="false"><i class="zmdi zmdi-account-box mr-10"></i> Address</a></li>
+						<li class="active" role="presentation"><a aria-expanded="true" data-toggle="tab" role="tab" id="update_home_tab_15" href="#update_home_15"> <i class="zmdi zmdi-account mr-10"></i>Basic Information</a></li>
+						<li role="presentation" class=""><a data-toggle="tab" id="update_profile_tab_15" role="tab" href="#update_profile_15" aria-expanded="false"><i class="zmdi zmdi-account-box mr-10"></i> Address</a></li>
 					</ul>
-					<div class="tab-content" id="myTabContent_15">
-						<div id="home_15" class="tab-pane fade active in" role="tabpanel">
+					<div class="tab-content" id="update_myTabContent_15">
+						<div id="update_home_15" class="tab-pane fade active in" role="tabpanel">
 							<div class="form-group row">
 								<div class="col-md-6">
 									<label class="control-label mb-10" for="exampleInputuname_1">First Name</label>
@@ -62,7 +62,7 @@
 								</div>
 							</div>
 						</div>
-						<div id="profile_15" class="tab-pane fade" role="tabpanel">
+						<div id="update_profile_15" class="tab-pane fade" role="tabpanel">
 							<div class="row">
 								<div class="col-md-12 ">
 									<div class="form-group">
