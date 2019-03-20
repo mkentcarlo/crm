@@ -65,19 +65,21 @@ Route::group(
 		Route::get('/groups/edit/{id}', 'CustomerGroupController@edit')->name('edit.group');
 		Route::put('/groups/edit/{id}', 'CustomerGroupController@update')->name('update.group');
 		Route::delete('/groups/delete/{id}', 'CustomerGroupController@destroy')->name('delete.group');
-
-		Route::get('/roles', 'RolePermissionController@index')->name('view.role');
-		Route::get('/roles/ajaxRequest', 'RolePermissionController@ajaxRequest')->name('get.roles');
-		Route::post('/roles/store', 'RolePermissionController@store')->name('store.role');
-		Route::get('/roles/edit/{id}', 'RolePermissionController@edit')->name('edit.role');
-		Route::put('/roles/edit/{id}', 'RolePermissionController@update')->name('update.role');
-		Route::delete('/roles/delete/{id}', 'RolePermissionController@destroy')->name('delete.role');
-
+		
 		Route::get('/customers', 'CustomerController@index')->name('view.customer');
 		Route::get('/customers/ajaxRequest', 'CustomerController@ajaxRequest')->name('get.customers');
 		Route::post('/customers/store', 'CustomerController@store')->name('store.customer');
 		Route::get('/customers/edit/{id}', 'CustomerController@edit')->name('edit.customer');
 		Route::put('/customers/edit/{id}', 'CustomerController@update')->name('update.customer');
 		Route::delete('/customers/delete/{id}', 'CustomerController@destroy')->name('delete.customer');
+
+		Route::group(['middleware' => ['role:admin']], function () {
+	    	Route::get('/roles', 'RolePermissionController@index')->name('view.role');
+			Route::get('/roles/ajaxRequest', 'RolePermissionController@ajaxRequest')->name('get.roles');
+			Route::post('/roles/store', 'RolePermissionController@store')->name('store.role');
+			Route::get('/roles/edit/{id}', 'RolePermissionController@edit')->name('edit.role');
+			Route::put('/roles/edit/{id}', 'RolePermissionController@update')->name('update.role');
+			Route::delete('/roles/delete/{id}', 'RolePermissionController@destroy')->name('delete.role');
+	    });	
     }
 );	

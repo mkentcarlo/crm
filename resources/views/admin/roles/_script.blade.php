@@ -88,7 +88,14 @@
                             }
                         }
                         $('#id').val(result.info.id);
-                        $('#name').val(result.info.name);
+                        if (result.info.name == 'admin') {
+                            $('#name').val('Administrator');
+                            $('#name').prop('disabled', true);
+                        } else {
+                            $('#name').val(result.info.name);
+                            $('#name').prop('disabled', false);
+                        }
+                        
                         $('#updateModal').modal('show');
                         swal.close();
                     }

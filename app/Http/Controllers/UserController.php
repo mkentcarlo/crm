@@ -67,7 +67,7 @@ class UserController extends Controller
         {
             $user = new User;
             $user->username = $request->input('username');
-            $user->password = $user->username;
+            $user->password = bcrypt($user->username);
             $user->email = $request->input('email');
             $user->firstname = $request->input('firstname');
             $user->lastname = $request->input('lastname');
@@ -134,7 +134,6 @@ class UserController extends Controller
         {
             $user = User::findOrFail($id);
             $user->username = $request->input('username');
-            $user->password = $user->username;
             $user->email = $request->input('email');
             $user->firstname = $request->input('firstname');
             $user->lastname = $request->input('lastname');

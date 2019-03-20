@@ -71,6 +71,9 @@ class DataTableService  {
         $roles = app()->make('App\Services\RolePermissionService')->getRoles();
 
         return DataTables::of($roles)
+          ->addColumn('name', function($role) {
+            return ($role->name == 'admin') ? 'Administrator' : $role->name;
+         })    
          ->addColumn('permissions', function($role) {
             $content = "";
             $permissions = $role->permissions()->get();

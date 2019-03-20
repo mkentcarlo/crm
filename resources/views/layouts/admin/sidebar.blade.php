@@ -7,17 +7,21 @@
         <li>
             <a href="dashboard.php" class=""><div class="pull-left"><i class="zmdi zmdi-landscape mr-20"></i><span class="right-nav-text">Dashboard</span></div><div class="clearfix"></div></a>
         </li>
+        @can('view.user')
         <li>
             <a href="javascript:void(0);" data-toggle="collapse" data-target="#ecom_dr"><div class="pull-left"><i class="icon-user mr-20"></i><span class="right-nav-text">Users</span></div><div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div><div class="clearfix"></div></a>
             <ul id="ecom_dr" class="collapse collapse-level-1">
                 <li>
                     <a href="{{ route('view.user') }}" class="">List</a>
                 </li>
+                @role('admin')
                 <li>
                     <a href="{{ route('view.role') }}" class="">Roles</a>
                 </li>
+                @endrole
             </ul>
         </li>
+        @endcan
         <li>
             <a href="javascript:void(0);" data-toggle="collapse" data-target="#cust_dr"  class=""><div class="pull-left"><i class="fa fa-users mr-20"></i><span class="right-nav-text">Customers</span></div><div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div><div class="clearfix"></div></a>
             <ul id="cust_dr" class="collapse collapse-level-1">
