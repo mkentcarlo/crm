@@ -116,7 +116,7 @@ class DataTableService  {
             return $customer->lastname .' '. $customer->firstname;
         })
         ->addColumn('group_name', function($customer) {
-            return $customer->group['name'];
+            return $customer->group->name;
         })
         ->addColumn('created_at', function($customer) {
             return date('M d Y h:i a', strtotime($customer->created_at));

@@ -60,14 +60,11 @@
 											<a href="#">All <span class="label label-warning ml-10 bg-gold">12</span></a>
 										</li>
 										<li>
-											<a href="#">Administrator <span class="label label-warning ml-10 bg-gold">12</span></a>
-										</li>
+										@foreach($roles as $role)
 										<li>
-											<a href="#">Editor <span class="label label-warning ml-10 bg-gold">20</span></a>
+											<a href="#" id="{{ $role->name }}" class="user-role">{{ $role->name }}<span class="label label-warning ml-10 bg-gold">{{ $role->users_count }}</span></a>
 										</li>
-										<li>
-											<a href="#">Constributor <span class="label label-warning ml-10 bg-gold">2</span></a>
-										</li>
+										@endforeach
 									</ul>
 									
 									<a class="txt-gold create-label pl-15 pb-5 export-users-csv" href="javascript:void(0)" ><i class="fa fa-download"></i> Download CSV</a>

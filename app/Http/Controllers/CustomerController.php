@@ -91,6 +91,8 @@ class CustomerController extends Controller
         $customer = Customer::find($id);
 
         if ($customer->update($request->all())) {
+            $customer->group->update(['id' => $request->group_id]);
+
             return response()->json(
                 [
                     'success' => true,

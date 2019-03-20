@@ -120,11 +120,11 @@
         <input type="text" class="form-control" id="exampleInputuname_1" placeholder="Username">
     </div> -->
     <div class="input-group">
-    <select name="" id="" class="form-control">
-        <option>Administrator</option>
-        <option>Editor</option>
-        <option>Sales Person</option>
-    </select>
+        <select name="role" class="form-control">
+            @foreach($roles as $role)
+                <option value="{{ $role->id }}">{{ $role->name }}</option>
+            @endforeach
+        </select>
     <div class="input-group-addon"><i class="icon-user"></i></div>
     </div>
     <span class="help-block"> Select your role </span>

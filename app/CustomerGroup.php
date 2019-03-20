@@ -16,8 +16,8 @@ class CustomerGroup extends Model
         'sub_group'
     ];
 
-    public function customer() 
+    public function customers() 
     {
-    	return $this->belongsTo('App\Customer', 'id');
+    	return $this->hasMany('App\Customer', 'group_id');
     }
 }

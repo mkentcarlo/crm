@@ -96,48 +96,11 @@
     <div class="col-md-6">
     <label class="control-label mb-10" for="position">Role</label>
     <div class="input-group">
-    <select name="" id="" class="form-control">
-        <option>Administrator</option>
-        <option>Editor</option>
-        <option>Sales Person</option>
-    </select>
-    <div class="input-group-addon"><i class="icon-user"></i></div>
-    </div>
-    <span class="help-block"> Select your role </span>
-    </div>
-</div>
-<div class="form-group row{{ $errors->has('position') ? ' has-error' : '' }}">
-    <label class="control-label mb-10" for="position">Position</label>
-    <div class="input-group">
-    <input type="text" class="form-control" id="position" name="position" value="{{ $user->position or old('position') }}">
-    <div class="input-group-addon"><i class="icon-user"></i></div>
-    @if ($errors->has('position'))
-        <span class="help-block">
-            <strong>{{ $errors->first('position') }}</strong>
-        </span>
-    @endif
-</div>
-</div>
-<div class="form-group row">
-    <div class="col-md-6">
-    <label class="control-label mb-10" for="position">Role</label>
-    <div class="input-group">
-    <select name="status" class="form-control">
-        <option value="1" {{$user->status == 1 ? 'selected' : ''}}>Active</option>
-        <option value="0" {{$user->status == 0 ? 'selected' : ''}}>Inactive</option>
-    </select>
-    <div class="input-group-addon"><i class="icon-user"></i></div>
-    </div>
-    <span class="help-block"> Select your role </span>
-    </div>
-    <div class="col-md-6">
-    <label class="control-label mb-10" for="position">Role</label>
-    <div class="input-group">
-    <select name="" id="" class="form-control">
-        <option>Administrator</option>
-        <option>Editor</option>
-        <option>Sales Person</option>
-    </select>
+        <select name="role" class="form-control">
+            @foreach($roles as $role)
+                <option value="{{ $role->id }}" {{ ($user->roles[0]->id == $role->id) ? 'selected="selected"' : '' }}>{{ $role->name }}</option>
+            @endforeach
+        </select>
     <div class="input-group-addon"><i class="icon-user"></i></div>
     </div>
     <span class="help-block"> Select your role </span>

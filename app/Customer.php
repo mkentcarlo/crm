@@ -26,6 +26,6 @@ class Customer extends Model
 
     public function group() 
     {
-    	return $this->hasOne('App\CustomerGroup', 'id');
+    	return $this->belongsTo('App\CustomerGroup', 'group_id');
     }
 }

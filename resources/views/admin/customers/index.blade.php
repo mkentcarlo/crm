@@ -35,12 +35,11 @@
 										<li class="active">
 											<a href="#">All <span class="label label-warning ml-10 bg-gold">25</span></a>
 										</li>
+										@foreach($groups as $group)
 										<li>
-											<a href="#">Retailer <span class="label label-warning ml-10 bg-gold">10</span></a>
+											<a href="#" id="{{ $group->name }}" class="customer-group">{{ $group->name }}<span class="label label-warning ml-10 bg-gold">{{ count($group->customers) }}</span></a>
 										</li>
-										<li>
-											<a href="#">Wholesaler <span class="label label-warning ml-10 bg-gold">15</span></a>
-										</li>
+										@endforeach
 									</ul>
 									
 									<a class="txt-gold create-label pl-15 pb-5" href="javascript:void(0)" data-toggle="modal" data-target="#myModal_1"><i class="fa fa-download"></i> Download CSV</a>

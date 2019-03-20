@@ -39,7 +39,7 @@ class RolePermissionController extends Controller
         $role = Role::create(['name' => $request->name]);
         if ($role) {
             if ($request->permission) {
-                foreach($request->permission as $name)
+                foreach($request->permission as $permission)
                 {
                     $role->givePermissionTo($permission);
                 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Validator;
 use App\User;
+use Spatie\Permission\Models\Role;
 use DataTables;
 use Illuminate\Http\Request;
 
@@ -17,7 +18,7 @@ class UserController extends Controller
      */
     public function __construct()
     {
-        //$this->middleware('auth');
+
     }
     
     /**
@@ -27,8 +28,10 @@ class UserController extends Controller
      */
     public function index()
     {
+        $roles = Role::withCount('users')->get();
         $users = User::where('id', '!=', auth()->id())->get();
-        return view('admin.users.index', ['users' => $users]);
+        
+        return view('admin.users.index', compact('roles', 'users'));
     }
 
     /**
@@ -38,7 +41,9 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('admin.users.create-user-form');
+        $roles = Role::all();
+
+        return view('admin.users.create-user-form', compact('roles'));
     }
 
     /**
@@ -69,6 +74,7 @@ class UserController extends Controller
             $user->name = $user->firstname." ".$user->lastname;
             $user->contact = $request->input('contact');
             $user->position = $request->input('position');
+            $user->assignRole($request->input('role')); 
             $user->save();
             return redirect('users/create')->with('msg', "Successfully added user.");
         }
@@ -98,7 +104,10 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        return view('admin.users.edit-user-form', ['user' => User::findOrFail($id)]);
+        $roles = Role::all();
+        $user = User::findOrFail($id);
+
+        return view('admin.users.edit-user-form', compact('roles', 'user'));
     }
 
     /**
@@ -132,7 +141,7 @@ class UserController extends Controller
             $user->name = $user->firstname." ".$user->lastname;
             $user->contact = $request->input('contact');
             $user->position = $request->input('position');
-            $user->status = $request->input('status');
+            $user->roles()->sync($request->input('role'));   
             $user->save();
             return redirect('users/edit/'.$id)->with('msg', "Successfully updated user.")->withInput();
         }

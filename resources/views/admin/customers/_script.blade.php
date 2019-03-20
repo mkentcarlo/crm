@@ -30,6 +30,11 @@
                  $customersTable.columns(1).search($('#name').val()).draw();
             });
 
+            $('.customer-group').on('click', function(e) {
+                e.preventDefault();
+                $customersTable.columns(4).search($(this).attr('id')).draw();
+            });
+
             $('#create_customer').submit(function (e) {
                 e.preventDefault();
 
