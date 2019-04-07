@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use DataTables;
+use Illuminate\Http\Request;
 
 class DataTableService  {
 
@@ -128,6 +129,36 @@ class DataTableService  {
             return '<a href="#" class="text-inverse pr-10 form-load edit" title="Edit" id="'.$customer->id.'"><i class="zmdi zmdi-edit txt-warning"></i></a><a href="'.url('customers/delete/'.$customer->id).'" class="text-inverse delete" title="Delete"><i class="zmdi zmdi-delete txt-danger"></i></a>';
         })
         ->rawColumns(['name','group_name','action'])
+        ->make(true);
+    }
+
+    public function renderInvoicesDataTable(Request $request) 
+    {
+        $invoices = app()->make('App\Services\InvoiceService')->getInvoices($request);
+ 
+        return DataTables::of($invoices)
+         ->addColumn('status', function($invoice) {
+            if($invoice->status == 1) {
+                return '<span class="label label-warning">pending</span>';
+            } else if($invoice->status == 2) {
+                return '<span class="label label-danger">unpaid</span>';
+            } else if($invoice->status == 3) { 
+                return '<span class="label label-success">paid</span>';
+            };    
+        })
+         ->addColumn('total_amount', function($invoice) {
+            return ($invoice->total_amount) ? '$'.number_format($invoice->total_amount, 2) : '0.00';
+        })
+         ->addColumn('created_at', function($invoice) {
+            return date('Y/m/d', strtotime($invoice->created_at));
+        })
+          ->addColumn('due_date', function($invoice) {
+            return date('Y/m/d', strtotime($invoice->due_date));
+        })
+        ->addColumn('action', function($invoice) {
+            return '<a href="#" class="text-inverse pr-10 form-load edit" title="Edit" id="'.$invoice->id.'"><i class="zmdi zmdi-edit txt-warning"></i></a><a href="'.url('invoices/delete/'.$invoice->id).'" class="text-inverse delete" title="Delete"><i class="zmdi zmdi-delete txt-danger"></i></a>';
+        })
+        ->rawColumns(['status', 'total_amount', 'created_at', 'due_date', 'action'])
         ->make(true);
     }
 }	

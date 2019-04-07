@@ -63,6 +63,13 @@ class CustomerController extends Controller
         );
     }
 
+    public function show($customerId)
+    {
+        $customer = Customer::where('id', $customerId)->first();
+
+        return response()->json($customer);
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -91,8 +98,6 @@ class CustomerController extends Controller
         $customer = Customer::find($id);
 
         if ($customer->update($request->all())) {
-            $customer->group->update(['id' => $request->group_id]);
-
             return response()->json(
                 [
                     'success' => true,

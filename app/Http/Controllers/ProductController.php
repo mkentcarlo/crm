@@ -95,7 +95,11 @@ class ProductController extends Controller
 
     public function show($productId)
     {
-        echo $productId;
+        $product = $this->wooService->process()->get('products/'. $productId)->product;
+        $product->category_id = $this->wooService->getProductCategories($productId)[0];
+        $product->brand_id = $this->wooService->getProductBrands($productId)[0];
+
+        return response()->json($product);
     } 
 
     public function destroy($productId)

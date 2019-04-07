@@ -72,7 +72,15 @@ Route::group(
 		Route::get('/customers/edit/{id}', 'CustomerController@edit')->name('edit.customer');
 		Route::put('/customers/edit/{id}', 'CustomerController@update')->name('update.customer');
 		Route::delete('/customers/delete/{id}', 'CustomerController@destroy')->name('delete.customer');
+		Route::get('/customers/{id}', 'CustomerController@show');
 
+		Route::get('/invoice', 'InvoiceController@index')->name('view.invoice');
+		Route::get('/invoice/ajaxRequest', 'InvoiceController@ajaxRequest')->name('get.invoices');
+		Route::get('/invoice/create', 'InvoiceController@create')->name('create.invoice');
+		Route::post('/invoice/store', 'InvoiceController@store')->name('store.invoice');
+		Route::get('/invoice/edit/{id}', 'InvoiceController@edit')->name('edit.invoice');
+		Route::post('/invoice/edit/{id}', 'InvoiceController@update')->name('update.invoice');
+		
 		Route::group(['middleware' => ['role:admin']], function () {
 	    	Route::get('/roles', 'RolePermissionController@index')->name('view.role');
 			Route::get('/roles/ajaxRequest', 'RolePermissionController@ajaxRequest')->name('get.roles');
