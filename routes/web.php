@@ -84,8 +84,8 @@ Route::group(
 		Route::get('/reports', 'ReportController@index')->name('view.report');
 		Route::get('/reports/ajaxRequest', 'ReportController@ajaxRequest')->name('get.reports');
 		
-		Route::get('/dashboard', 'DashboardController@index')->name('view.dashboard');
-		Route::get('/dashboard/ajaxRequest', 'DashboardController@ajaxRequest')->name('get.transactions');
+		Route::get('/dashboard', 'HomeController@index')->name('view.dashboard');
+		Route::get('/dashboard/ajaxRequest', 'HomeController@ajaxRequest')->name('get.transactions');
 
 		Route::group(['middleware' => ['role:admin']], function () {
 	    	Route::get('/roles', 'RolePermissionController@index')->name('view.role');
