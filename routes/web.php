@@ -80,6 +80,9 @@ Route::group(
 		Route::post('/invoice/store', 'InvoiceController@store')->name('store.invoice');
 		Route::get('/invoice/edit/{id}', 'InvoiceController@edit')->name('edit.invoice');
 		Route::post('/invoice/edit/{id}', 'InvoiceController@update')->name('update.invoice');
+
+		Route::get('/reports', 'ReportController@index')->name('view.report');
+		Route::get('/reports/ajaxRequest', 'ReportController@ajaxRequest')->name('get.reports');
 		
 		Route::group(['middleware' => ['role:admin']], function () {
 	    	Route::get('/roles', 'RolePermissionController@index')->name('view.role');

@@ -65,7 +65,7 @@
             </ul>
         </li>
         <li>
-            <a href="reports.php" class=""><div class="pull-left"><i class="fa fa-bar-chart-o mr-20" aria-hidden="true"></i><span class="right-nav-text">Reports </span></div><div class="clearfix"></div></a>
+            <a href="{{ route('view.report') }}" class=""><div class="pull-left"><i class="fa fa-bar-chart-o mr-20" aria-hidden="true"></i><span class="right-nav-text">Reports </span></div><div class="clearfix"></div></a>
         </li>
     </ul>
 </div>

@@ -161,4 +161,34 @@ class DataTableService  {
         ->rawColumns(['status', 'total_amount', 'created_at', 'due_date', 'action'])
         ->make(true);
     }
+
+    public function renderReportsDataTable(Request $request) 
+    {
+        $invoices = app()->make('App\Services\InvoiceService')->getReports($request);
+ 
+        return DataTables::of($invoices)
+         ->addColumn('status', function($invoice) {
+            if($invoice->status == 1) {
+                return '<span class="label label-warning">pending</span>';
+            } else if($invoice->status == 2) {
+                return '<span class="label label-danger">unpaid</span>';
+            } else if($invoice->status == 3) { 
+                return '<span class="label label-success">paid</span>';
+            };    
+        })
+         ->addColumn('total_amount', function($invoice) {
+            return ($invoice->total_amount) ? '$'.number_format($invoice->total_amount, 2) : '0.00';
+        })
+         ->addColumn('created_at', function($invoice) {
+            return date('Y/m/d', strtotime($invoice->created_at));
+        })
+          ->addColumn('due_date', function($invoice) {
+            return date('Y/m/d', strtotime($invoice->due_date));
+        })
+        ->addColumn('action', function($invoice) {
+            return '<a href="#" class="text-inverse pr-10 form-load view" title="View" id="'.$invoice->id.'"><i class="fa fa-file-text-o txt-default"></i></a>';
+        })
+        ->rawColumns(['status', 'total_amount', 'created_at', 'due_date', 'action'])
+        ->make(true);
+    }
 }	

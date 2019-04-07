@@ -14,4 +14,13 @@ class InvoiceService
 			}
 		});
 	}
+
+	public function getReports($request) 
+	{
+		return Invoice::where(function($query) use ($request) {
+			if ($request->invoice_type) {
+				$query->where('invoice_type', $request->invoice_type);
+			}
+		});
+	}
 }	
