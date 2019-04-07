@@ -83,7 +83,7 @@
 									@foreach($invoice->invoice_detail as $detail)
 									<tr id="{{ $detail->product_id }}">
 										<td><input type="hidden" name="in_detail_id[]" value="{{ $detail->id }}"><img src="{{ $detail->featured_src }}" width="80"></td><td>{{ $detail->product_name }}</td>
-										<td>{{ $detail->brand_name }}</td><td>{{ $detail->category_name }}</td><td>{{ $detail->price }}</td><td class="quantity"><input type="hidden" name="in_quantity[]" value="{{ $detail->quantity }}"><span>{{ $detail->quantity }}</span></td><td class="subtotal"><input type="hidden" name="in_sub_total_amount[]" value="{{ $detail->total_amount }}">$<span>{{ $detail->total_amount }}</span></td><td><a href="javascript:void(0)" class="delete" data-toggle="tooltip" data-original-title="Delete" ino="{{ $detail->id }}"><i class="zmdi zmdi-delete txt-warning"></i></a></td>
+										<td>{{ $detail->brand_name }}</td><td>{{ $detail->category_name }}</td><td>{{ $detail->price }}</td><td class="quantity"><input type="hidden" name="in_quantity[]" value="{{ $detail->quantity }}"><span>{{ $detail->quantity }}</span></td><td class="subtotal"><input type="hidden" name="in_sub_total_amount[]" value="{{ $detail->total_amount }}">$<span>{{ $detail->total_amount }}</span></td><td><a href="javascript:void(0)" class="delete-product-invoice" data-toggle="tooltip" data-original-title="Delete" ino="{{ $detail->id }}"><i class="zmdi zmdi-delete txt-warning"></i></a></td>
 									</tr>
 									@endforeach
 								@endif

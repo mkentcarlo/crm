@@ -137,7 +137,7 @@
             
             var ids = [];
 
-            $(document).on('click','.delete', function(e){
+            $(document).on('click','.delete-product-invoice', function(e){
                 e.preventDefault();
                 $(this).parent().parent().detach();
                 
@@ -193,6 +193,39 @@
                     $('#' + val).show();
                     $(this).addClass('checked');
                 }
+            });
+
+            $(document).on('click', 'a.delete', function(e){
+                e.preventDefault();
+                $del_btn = $(this);
+                swal({   
+                    title: "Are you sure?",   
+                    text: "You are about to delete this invoice!",   
+                    type: "warning",   
+                    showCancelButton: true,   
+                    confirmButtonColor: "#f8b32d",   
+                    confirmButtonText: "Yes, delete it!",   
+                    closeOnConfirm: false 
+                }, function(){   
+                    $.ajax({
+                        url: $del_btn.attr('href'),
+                        type: "delete",
+                        dataType: "JSON",
+                        success: function(data) {
+                            if (data.hasOwnProperty('permitted') && !data.permitted) {
+                                swal({
+                                    type: 'error',
+                                    title: data.msg,
+                                    animation: true,
+                                    showConfirmButton: true,
+                                });
+                            } else {
+                                swal("Deleted!",data.msg, data.type); 
+                                $invoiceTable.ajax.reload( null, false );
+                            }    
+                        } 
+                    }); 
+                });
             });
         });    
     </script>

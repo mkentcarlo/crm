@@ -57,10 +57,10 @@
             <a href="javascript:void(0);" data-toggle="collapse" data-target="#invoicemgt" class=""><div class="pull-left"><i class="fa fa-file-text-o mr-20" aria-hidden="true"></i><span class="right-nav-text">Invoice Management </span></div><div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div><div class="clearfix"></div></a>
             <ul id="invoicemgt" class="collapse collapse-level-1">
                 <li>
-                    <a href="invoice-management.php">List</a>
+                    <a href="{{ route('view.invoice') }}">List</a>
                 </li>
                 <li>
-                    <a href="add-invoice.php">Add Invoice</a>
+                    <a href="{{ route('create.invoice') }}">Add Invoice</a>
                 </li>
             </ul>
         </li>

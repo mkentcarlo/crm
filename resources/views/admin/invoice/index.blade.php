@@ -50,7 +50,7 @@
 							</div>
 						
 							<div class="col-md-6 pt-40">
-								<button class="btn btn-gold pull-right">Add New Invoice</button>
+								<a href="{{ route('create.invoice') }}" class="btn btn-gold pull-right">Add New Invoice</a>
 							</div>
 						</div>
 						<div class="table-wrap">
