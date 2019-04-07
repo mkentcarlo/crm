@@ -23,4 +23,14 @@ class InvoiceService
 			}
 		});
 	}
+
+	public function getTransactions() 
+	{
+		return Invoice::get();
+	}
+
+	public function getInvoiceByInvoiceTypes($types) 
+	{
+		return Invoice::whereIn('invoice_type', $types)->get();
+	}
 }	

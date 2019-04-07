@@ -37,8 +37,6 @@ class BrandController extends Controller
      */
     public function index()
     {   
-        // print_r($this->wooService->createBrand('name','name','yith_product_brand'));
-        // die();
         return view('admin.brands.index');
     }  
 
