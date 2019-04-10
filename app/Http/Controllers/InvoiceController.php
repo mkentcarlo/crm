@@ -39,16 +39,6 @@ class InvoiceController extends Controller
     }  
 
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    // public function index()
-    // {   
-    //     return view('frontend.contact');
-    // }
-
-    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
@@ -276,6 +266,11 @@ class InvoiceController extends Controller
     public function edit($invoiceId, Request $request)
     {
         $invoice = Invoice::where('id', $invoiceId)->first();
+
+        if ($invoice === null) {
+            return redirect('/invoice');
+        }
+
         $invoiceType = ($request->invoice_type) ? $request->invoice_type : $invoice->invoice_type;
         $invoice->additional_fields = json_decode($invoice->additional_fields);
         $customers = $this->customerService->getCustomers();

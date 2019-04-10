@@ -186,7 +186,7 @@ class DataTableService  {
             return date('Y/m/d', strtotime($invoice->due_date));
         })
         ->addColumn('action', function($invoice) {
-            return '<a href="#" class="text-inverse pr-10 form-load view" title="View" id="'.$invoice->id.'"><i class="fa fa-file-text-o txt-default"></i></a>';
+            return '<a href="'.route('view.pdf', $invoice->id).'" class="text-inverse pr-10 form-load view" title="View" id="'.$invoice->id.'"><i class="fa fa-file-text-o txt-default"></i></a>';
         })
         ->rawColumns(['status', 'total_amount', 'created_at', 'due_date', 'action'])
         ->make(true);

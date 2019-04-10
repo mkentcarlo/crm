@@ -86,6 +86,7 @@ Route::group(
 		
 		Route::get('/dashboard', 'HomeController@index')->name('view.dashboard');
 		Route::get('/dashboard/ajaxRequest', 'HomeController@ajaxRequest')->name('get.transactions');
+		Route::get('reports/view-pdf/{id}','ReportController@viewPdf')->name('view.pdf');
 
 		Route::group(['middleware' => ['role:admin']], function () {
 	    	Route::get('/roles', 'RolePermissionController@index')->name('view.role');
