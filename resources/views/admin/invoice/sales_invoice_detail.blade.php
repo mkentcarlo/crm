@@ -36,10 +36,10 @@
 							<div class="col-md-2"></div>
 							<div class="col-md-6">
 								<label class="control-label mb-10">Customer: <strong>{{ $invoice->customer->lastname .' '. $invoice->customer->firstname }}</strong></label>
-								<p>795 Folsom Ave, Suite 600</p>
-								<p>San Francisco, CA 94107</p>
-								<p>P:(133) 456-7890</p>
-								<p>jsmith@email.com</p>
+								<p>{{ $invoice->customer->street_address . ' ' . $invoice->customer->city }}</p>
+								<p>{{ $invoice->customer->country .', '.$invoice->customer->state. ' '. $invoice->customer->postal_code }}</p>
+								<p>P: {{ $invoice->customer->contact }}</p>
+								<p>{{ $invoice->customer->email }}</p>
 							</div>
 							<div class="clearfix">
 								<table class="table display product-overview mb-30 dataTable" role="grid">
