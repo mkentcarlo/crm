@@ -1,6 +1,6 @@
 <!-- Modal -->
 <div aria-hidden="true" role="dialog" tabindex="-1" id="updateModal" class="modal fade">
-	<div class="modal-dialog">
+	<div class="modal-dialog modal-lg">
 		<div class="modal-content">
 			<form method="POST" id="update_customer">
 				{{ method_field('PUT') }}

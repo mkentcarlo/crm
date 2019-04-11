@@ -73,6 +73,7 @@ Route::group(
 		Route::put('/customers/edit/{id}', 'CustomerController@update')->name('update.customer');
 		Route::delete('/customers/delete/{id}', 'CustomerController@destroy')->name('delete.customer');
 		Route::get('/customers/{id}', 'CustomerController@show');
+		Route::get('/customers/transactions/{id}', 'CustomerController@getTransactions')->name('get.transactions');
 
 		Route::get('/invoice', 'InvoiceController@index')->name('view.invoice');
 		Route::get('/invoice/ajaxRequest', 'InvoiceController@ajaxRequest')->name('get.invoices');

@@ -147,4 +147,9 @@ class CustomerController extends Controller
             ]
         );
     }  
+
+    public function getTransactions($id) 
+    {
+        return app()->make('App\Services\DataTableService')->renderTransactionsDataTableByCustomerId($id);
+    }
 }

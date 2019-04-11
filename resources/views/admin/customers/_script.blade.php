@@ -25,24 +25,6 @@
                 ]
             } );
 
-            $transactionTable = $('#transaction-table').DataTable( {
-                serverSide: true,
-                processing: true,
-                ajax: {
-                    url: "{{ route('get.reports') }}"
-                },
-                dom: 'lBfrtip',
-                buttons: true,
-                columns: [
-                    {data: "id", name: "id"}, 
-                    {data: "invoice_type", name: "invoice_type"}, 
-                    {data: "total_amount", name: "total_amount"}, 
-                    {data: "status", name: "status"}, 
-                    {data: "created_at", name: "created_at"}, 
-                    {data: "action", name: "action"}
-                ]
-            } );
-
             $('#filterForm').on('submit', function (e) {
                 e.preventDefault();
                  $customersTable.columns(1).search($('#name').val()).draw();
@@ -170,6 +152,23 @@
                         $('#postal_code').text(result.postal_code);
                         $('#country').text(result.country);
                         $('#viewCustomer').modal('show');
+                        $transactionTable = $('#transaction-table').DataTable( {
+                            serverSide: true,
+                            processing: true,
+                            ajax: {
+                                url: "/customers/transactions/" + id
+                            },
+                            dom: 'lBfrtip',
+                            buttons: true,
+                            columns: [
+                                {data: "id", name: "id"}, 
+                                {data: "invoice_type", name: "invoice_type"}, 
+                                {data: "total_amount", name: "total_amount"}, 
+                                {data: "status", name: "status"}, 
+                                {data: "created_at", name: "created_at"}, 
+                                {data: "action", name: "action"}
+                            ]
+                        } );
                         swal.close();
                     }
                 });

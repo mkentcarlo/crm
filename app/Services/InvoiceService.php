@@ -15,6 +15,7 @@ class InvoiceService
 		});
 	}
 
+
 	public function getReports($request) 
 	{
 		return Invoice::where(function($query) use ($request) {
@@ -27,6 +28,11 @@ class InvoiceService
 	public function getTransactions() 
 	{
 		return Invoice::get();
+	}
+
+	public function getTransactionsByCustomerId($id) 
+	{
+		return Invoice::where('customer_id', $id)->get();
 	}
 
 	public function getInvoiceByInvoiceTypes($types) 

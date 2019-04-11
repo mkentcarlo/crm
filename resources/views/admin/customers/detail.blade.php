@@ -1,5 +1,5 @@
 <div aria-hidden="true" role="dialog" tabindex="-1" id="viewCustomer" class="modal fade">
-	<div class="modal-dialog">
+	<div class="modal-dialog modal-lg">
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
@@ -14,39 +14,36 @@
 				</ul>
 				<div class="tab-content" id="myTabContent_15">
 					<div id="personalinfo" class="tab-pane fade active in" role="tabpanel">
-					<form>
-					<div class="form-group row">
-						<div class="col-md-6">
-							<label class="control-label mb-10" for="exampleInputuname_1">First Name</label>
-							<p class="form-control-static" id="firstname">Jens</p>
+						<div class="form-group row">
+							<div class="col-md-6">
+								<label class="control-label mb-10" for="exampleInputuname_1">First Name</label>
+								<p class="form-control-static" id="firstname">Jens</p>
+							</div>
+							<div class="col-md-6">
+								<label class="control-label mb-10" for="exampleInputuname_1">Last Name</label>
+								<p class="form-control-static" id="lastname">Brincker</p>
+							</div>
 						</div>
-						<div class="col-md-6">
-							<label class="control-label mb-10" for="exampleInputuname_1">Last Name</label>
-							<p class="form-control-static" id="lastname">Brincker</p>
+						<div class="form-group">
+							<label class="control-label mb-10" for="exampleInputuname_1">Email Address</label>
+							<p class="form-control-static" id="email">jens@example.com</p>
 						</div>
-					</div>
-					<div class="form-group">
-						<label class="control-label mb-10" for="exampleInputuname_1">Email Address</label>
-						<p class="form-control-static" id="email">jens@example.com</p>
-					</div>
-					<div class="form-group">
-						<label class="control-label mb-10" for="exampleInputuname_1">Contact Number</label>
-						<p class="form-control-static" id="contact">+0 123 456 789</p>
-					</div>
-					<div class="form-group row">
-						<div class="col-md-12">
-						<label class="control-label mb-10" for="exampleInputuname_1">Group</label>
-						<p class="form-control-static" id="group">Retailer</p>
+						<div class="form-group">
+							<label class="control-label mb-10" for="exampleInputuname_1">Contact Number</label>
+							<p class="form-control-static" id="contact">+0 123 456 789</p>
 						</div>
-					</div>
-
-				</form>
+						<div class="form-group row">
+							<div class="col-md-12">
+							<label class="control-label mb-10" for="exampleInputuname_1">Group</label>
+							<p class="form-control-static" id="group">Retailer</p>
+							</div>
+						</div>
 					</div>
 					<div id="transactionhistory" class="tab-pane fade" role="tabpanel">
 						<div class="row">
 							<div class="col-md-12 ">
 								<div id="datable_1_wrapper" class="dataTables_wrapper">
-									<table id="transaction-table" class="table  display table-hover mb-30 dataTable no-footer" role="grid">
+									<table id="transaction-table" class="table  display table-hover mb-30 dataTable" role="grid" style="width: 100%;">
 										<thead>
 											<tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="datable_1" rowspan="1" colspan="1" aria-label="#Invoice: activate to sort column descending" style="width: 117px;" aria-sort="ascending">#Invoice</th><th class="sorting" tabindex="0" aria-controls="datable_1" rowspan="1" colspan="1" aria-label="Type: activate to sort column ascending" style="width: 326px;">Type</th><th class="sorting" tabindex="0" aria-controls="datable_1" rowspan="1" colspan="1" aria-label="Amount: activate to sort column ascending" style="width: 124px;">Amount</th><th class="sorting" tabindex="0" aria-controls="datable_1" rowspan="1" colspan="1" aria-label="Status: activate to sort column ascending" style="width: 114px;">Status</th><th class="sorting" tabindex="0" aria-controls="datable_1" rowspan="1" colspan="1" aria-label="issue date: activate to sort column ascending" style="width: 154px;">issue date</th><th class="sorting" tabindex="0" aria-controls="datable_1" rowspan="1" colspan="1" aria-label="View: activate to sort column ascending" style="width: 75px;">View</th></tr>
 										</thead>
