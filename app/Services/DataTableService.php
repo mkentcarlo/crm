@@ -126,7 +126,7 @@ class DataTableService  {
             return date('M d Y h:i a', strtotime($customer->created_at));
         })
         ->addColumn('action', function($customer) {
-            return '<a href="#" class="text-inverse pr-10 form-load edit" title="Edit" id="'.$customer->id.'"><i class="zmdi zmdi-edit txt-warning"></i></a><a href="'.url('customers/delete/'.$customer->id).'" class="text-inverse delete" title="Delete"><i class="zmdi zmdi-delete txt-danger"></i></a>';
+            return '<a href="#" class="text-inverse pr-10 form-load edit" title="Edit" id="'.$customer->id.'"><i class="zmdi zmdi-edit txt-warning"></i></a><a href="#" class="text-inverse view" title="View" id="'.$customer->id.'"><i class="zmdi zmdi-eye txt-warning pr-10"></i></a><a href="'.url('customers/delete/'.$customer->id).'" class="text-inverse delete" title="Delete"><i class="zmdi zmdi-delete txt-danger"></i></a>';
         })
         ->rawColumns(['name','group_name','action'])
         ->make(true);
@@ -170,6 +170,9 @@ class DataTableService  {
         $invoices = app()->make('App\Services\InvoiceService')->getReports($request);
  
         return DataTables::of($invoices)
+         ->addColumn('invoice_type', function($invoice) {
+            return str_replace('_', ' ', strtoupper($invoice->invoice_type));
+        })
          ->addColumn('status', function($invoice) {
             if($invoice->status == 1) {
                 return '<span class="label label-warning">pending</span>';
@@ -200,6 +203,9 @@ class DataTableService  {
         $invoices = app()->make('App\Services\InvoiceService')->getTransactions();
  
         return DataTables::of($invoices)
+         ->addColumn('invoice_type', function($invoice) {
+            return str_replace('_', ' ', strtoupper($invoice->invoice_type));
+        })
          ->addColumn('status', function($invoice) {
             if($invoice->status == 1) {
                 return '<span class="label label-warning">pending</span>';

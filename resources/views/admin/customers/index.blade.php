@@ -87,5 +87,6 @@
 	@include('admin.customers._script')
 	@include('admin.customers.edit')
 	@include('admin.customers.create')
+	@include('admin.customers.detail')
 @endsection	
 	

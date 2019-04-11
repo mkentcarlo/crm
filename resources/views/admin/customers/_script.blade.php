@@ -25,6 +25,24 @@
                 ]
             } );
 
+            $transactionTable = $('#transaction-table').DataTable( {
+                serverSide: true,
+                processing: true,
+                ajax: {
+                    url: "{{ route('get.reports') }}"
+                },
+                dom: 'lBfrtip',
+                buttons: true,
+                columns: [
+                    {data: "id", name: "id"}, 
+                    {data: "invoice_type", name: "invoice_type"}, 
+                    {data: "total_amount", name: "total_amount"}, 
+                    {data: "status", name: "status"}, 
+                    {data: "created_at", name: "created_at"}, 
+                    {data: "action", name: "action"}
+                ]
+            } );
+
             $('#filterForm').on('submit', function (e) {
                 e.preventDefault();
                  $customersTable.columns(1).search($('#name').val()).draw();
@@ -101,7 +119,6 @@
                             showConfirmButton: true,
                         });
                     } else {
-                        $('#id').val(result.id);
                         $('#firstname').val(result.firstname);
                         $('#lastname').val(result.lastname);
                         $('#email').val(result.email);
@@ -117,6 +134,45 @@
                     }
                 });
 
+            });  
+
+            $('body').on('click', '.view', function (e) {
+                e.preventDefault();
+
+                swal({
+                    title: 'Loading...',
+                    imageUrl: "{{ asset('img/loader.gif') }}",
+                    imageWidth: 400,
+                    imageHeight: 200,
+                    imageAlt: 'Custom image',
+                    animation: true,
+                    showConfirmButton: false,
+                });
+
+                var id = $(this).attr('id');
+                $.getJSON("{{ url('customers') }}/" + id, function (result) {
+                    if (result.hasOwnProperty('permitted') && !result.permitted) {
+                        swal({
+                            type: 'error',
+                            title: result.msg,
+                            animation: true,
+                            showConfirmButton: true,
+                        });
+                    } else {
+                        $('#firstname').text(result.firstname);
+                        $('#lastname').text(result.lastname);
+                        $('#email').text(result.email);
+                        $('#contact').text(result.contact);
+                        $('#group').text(result.group.name);
+                        $('#street_address').text(result.street_address);
+                        $('#city').text(result.city);
+                        $('#state').text(result.state);
+                        $('#postal_code').text(result.postal_code);
+                        $('#country').text(result.country);
+                        $('#viewCustomer').modal('show');
+                        swal.close();
+                    }
+                });
             });  
 
             $('#update_customer').submit(function (e) {

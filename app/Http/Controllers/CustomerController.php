@@ -66,6 +66,7 @@ class CustomerController extends Controller
     public function show($customerId)
     {
         $customer = Customer::where('id', $customerId)->first();
+        $customer->group = $customer->group;
 
         return response()->json($customer);
     }
@@ -145,5 +146,5 @@ class CustomerController extends Controller
                 'type' => 'error'
             ]
         );
-    }
+    }  
 }
