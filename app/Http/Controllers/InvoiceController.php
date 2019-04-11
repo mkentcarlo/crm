@@ -238,7 +238,6 @@ class InvoiceController extends Controller
             unset($data['invoice_type']);
             unset($data['customer_id']);
             unset($data['total_amount']);
-            unset($data['status']);
             unset($data['product_id']);
             unset($data['_token']);
 
@@ -513,7 +512,6 @@ class InvoiceController extends Controller
             unset($data['invoice_type']);
             unset($data['customer_id']);
             unset($data['total_amount']);
-            unset($data['status']);
             unset($data['product_id']);
             unset($data['_token']);
 
@@ -538,4 +536,27 @@ class InvoiceController extends Controller
             );
         }
     } 
+
+    public function show($invoiceId)
+    {
+        $invoice = Invoice::where('id', $invoiceId)->first();
+
+        if ($invoice === null) {
+            return redirect('/invoice');
+        }
+
+        $invoice->additional_fields = json_decode($invoice->additional_fields);
+
+        if ($invoice->invoice_type == 'sales') {
+            return view('admin.invoice.sales_invoice_detail', compact('invoice'));
+        } else if ($invoice->invoice_type == 'consign_in' || $invoice->invoice_type == 'consign_out') {
+            return view('admin.invoice.consignment_invoice_detail', compact('invoice'));
+        } else if ($invoice->invoice_type == 'repair') {
+            return view('admin.invoice.repair_invoice_detail', compact('invoice'));
+        } else if ($invoice->invoice_type == 'purchase') {
+            return view('admin.invoice.purchase_invoice_detail', compact('invoice'));
+        } else {
+            return redirect('/invoice');
+        }
+    }    
 }

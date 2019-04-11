@@ -17,7 +17,7 @@ class Invoice extends Model
         'customer_id',
         'additional_fields',
         'total_amount',
-        'invoice_no'
+        'status'
     ];
 
     public function invoice_detail() 

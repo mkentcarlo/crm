@@ -15,7 +15,11 @@
 					</div>
 					<div class="form-group">
 						<label class="control-label mb-10">Status:</label>
-						<input type="text" name="status" class="form-control" value="{{ $invoice->status }}">
+						<select class="form-control" name="status" id="status">
+							<option value="1" {{ $invoice->status  == 1 ? 'selected="selected"' : '' }}>Pending</option>
+							<option value="2" {{ $invoice->status  == 2 ? 'selected="selected"' : '' }}>Unpaid</option>
+							<option value="3" {{ $invoice->status  == 3 ? 'selected="selected"' : '' }}>Paid</option>
+						</select>
 					</div>
 				</div>
 				<div class="col-md-2"></div>
