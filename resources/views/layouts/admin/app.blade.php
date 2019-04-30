@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <!-- <title>{{ config('app.name') }}</title> -->
+    <title>Luxe Montre CRM</title>
     
     <meta name="csrf-token" content="{{ csrf_token() }}">
     
@@ -147,9 +148,12 @@
      
     <!-- Bootstrap Switch JavaScript -->
     <script src="{{ asset('vendors/bower_components/bootstrap-switch/dist/js/bootstrap-switch.min.js') }}"></script>
+
+    <!-- Moment JavaScript -->
+	<script type="text/javascript" src="{{ asset('vendors/bower_components/moment/min/moment-with-locales.min.js') }}"></script>
     
     <!-- Bootstrap Datetimepicker JavaScript -->
-    <!-- <script type="text/javascript" src="{{ asset('vendors/bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js') }}"></script> -->
+    <script type="text/javascript" src="{{ asset('vendors/bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js') }}"></script>
     
     <!-- Form Advance Init JavaScript -->
     <script src="{{ asset('dist/js/form-advance-data.js') }}"></script>

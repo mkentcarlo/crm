@@ -314,7 +314,12 @@
 					<div class="col-md-6">
 						<div class="form-group">
 							<label class="control-label mb-10">Date of Acceptance:</label>
-							<input type="text" name="date_of_acceptance" class="form-control">
+							<div class="input-group date datepicker">
+								<input type="text" class="form-control" name="date_of_acceptance">
+								<span class="input-group-addon">
+									<span class="fa fa-calendar"></span>
+								</span>
+							</div>
 						</div>	
 					</div>
 				</div>

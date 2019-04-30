@@ -314,7 +314,12 @@
 					<div class="col-md-6">
 						<div class="form-group">
 							<label class="control-label mb-10">Date of Acceptance:</label>
-							<input type="text" name="date_of_acceptance" class="form-control" value="{{ $invoice->additional_fields->date_of_acceptance ?? null }}">
+							<div class="input-group date datepicker">
+								<input type="text" class="form-control" name="date_of_acceptance" value="{{ $invoice->additional_fields->date_of_acceptance ?? null }}">
+								<span class="input-group-addon">
+									<span class="fa fa-calendar"></span>
+								</span>
+							</div>
 						</div>	
 					</div>
 				</div>

@@ -26,20 +26,32 @@
                 
                 reader.addEventListener("load", function() {
                     var innerDiv = document.createElement('div');  
+                    var img_container = document.createElement('div');  
+                    var file_container = document.createElement('div');  
+                    var btn_container = document.createElement('div');  
+                    btn_container.className = "file-name text-center";
+                    img_container.className = "image";
+                    file_container.className = "file";
+                    file_container.appendChild(img_container);
+                    file_container.appendChild(btn_container);
+                    innerDiv.className = "col-lg-3 col-md-4 col-sm-6 col-xs-12  file-box";
                     var aInnerDiv = document.createElement('a'); 
-                    var linkText = document.createTextNode("Delete image");
-                    aInnerDiv.appendChild(linkText);
+                    var icon = document.createElement("i");
+                    icon.className = "fa fa-trash";
+                    aInnerDiv.appendChild(icon);
                     aInnerDiv.title = "Delete image";
                     aInnerDiv.href = "javascript:;";
-                    aInnerDiv.className = 'delete-gallery-img';
+                    aInnerDiv.className = 'delete-gallery-img btn btn-danger btn-sm';
                     var image = new Image();
                     image.height = 100;
                     image.title  = file.name;
                     image.src    = this.result;
-                 
+                    img_container.style = "background-image:url('"+ this.result +"')";
+                    // img_container.appendChild(image);
                     preview.appendChild(innerDiv);
-                    innerDiv.appendChild(image);
+                    innerDiv.appendChild(file_container);
                     innerDiv.appendChild(aInnerDiv);
+                    btn_container.appendChild(aInnerDiv);
                 });
                 
                 reader.readAsDataURL(file);

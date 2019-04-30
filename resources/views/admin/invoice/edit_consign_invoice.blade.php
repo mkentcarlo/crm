@@ -116,7 +116,14 @@
 							</tr>
 							<tr>
 								<td>Return Date:</td>
-								<td><input type="text" class="form-control" name="return_date" value="{{ $invoice->additional_fields->return_date ?? null }}"></td>
+								<td>
+								<div class="input-group date datepicker">
+									<input type="text" class="form-control" value="{{ $invoice->additional_fields->return_date ?? null }}" name="return_date">
+									<span class="input-group-addon">
+										<span class="fa fa-calendar"></span>
+									</span>
+								</div>
+								</td>
 							</tr>
 							<tr>
 								<td>Included:</td>

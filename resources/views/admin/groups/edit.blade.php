@@ -15,7 +15,7 @@
 						<input type="text" class="form-control" name="name" id="name">
 					</div>
 					<div class="form-group">
-						<label class="control-label mb-10">Sub Group</label>
+						<label class="control-label mb-10">Parent Group</label>
 						<select name="sub_group" id="sub_group" class="form-control">
 							@foreach($groups as $group)
 								<option value="{{ $group->id }}">{{ $group->name }}</option>

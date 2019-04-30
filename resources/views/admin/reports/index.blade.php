@@ -32,6 +32,49 @@
 				</div>
 				<div class="panel-wrapper collapse in">
 					<div class="panel-body">
+					<div class="row">
+						<div class="col-md-2 pt-15">
+							<label for="">Select Year</label>
+							<select class="selectpicker" data-style="form-control btn-default btn-outline" tabindex="-98">
+								<option>All</option>	
+								<option value="">2018</option>
+								<option value="">2017</option>
+								<option value="">2016</option>
+							</select>
+						</div>
+						<div class="col-md-2 pt-15">
+							<label for="">Select Month</label>
+							<select class="selectpicker" data-style="form-control btn-default btn-outline" tabindex="-98">
+								<option>All</option>	
+								<option value="">January</option>
+								<option value="">February</option>
+								<option value="">March</option>
+							</select>
+						</div>
+						<div class="col-md-2 pt-15">
+							<label for="">Select Week</label>
+							<select class="selectpicker" data-style="form-control btn-default btn-outline" tabindex="-98">
+								<option>All</option>	
+								<option>First Week</option>	
+								<option>Second Week</option>	
+								<option>Third Week</option>	
+								<option>Fourth Week</option>	
+							</select>
+						</div>
+						<div class="col-md-3 pt-15">
+							<label for="">Current</label>
+							<div class="btn-group btn-group-justified">
+								<a class="btn btn-default btn-gold" role="button">Week</a> <a class="btn btn-default btn-outline" role="button">Month</a> <a class="btn btn-default btn-outline" role="button">Year</a>
+							</div>
+						</div>
+						<div class="col-md-1 pt-15">
+						</div>
+						<div class="col-md-2 pt-35">
+							<div class="btn-group">
+								<a class="btn btn-default btn-outline" role="button"><i class="fa fa-download"></i></a> <a class="btn btn-default btn-outline" role="button"><i class="fa fa-print"></i></a>
+							</div>
+						</div>
+					</div>
 						<div class="table-wrap">
 							<div class="table-responsive">
 								<div id="datable_1_wrapper" class="dataTables_wrapper">

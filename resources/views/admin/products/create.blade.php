@@ -136,13 +136,14 @@
 								<h6 class="txt-dark capitalize-font"><i class="zmdi zmdi-collection-image mr-10"></i>upload image</h6>
 								<hr class="light-grey-hr">
 								<div class="row">
-									<div class="col-lg-4">
+									<div class="col-lg-4 text-center">
 										<div class="img-upload-wrap">
-											<img class="img-responsive" src="../img/watch-image.PNG" alt="upload_img"> 
+											<!-- <img class="img-responsive" src="../img/watch-image.PNG" alt="upload_img">  -->
+											<img id="blah" style="margin: 0px auto;" class="img-responsive" src="../img/img-placeholder.png" alt="your image" />
 										</div>
-										<div class="fileupload btn btn-info btn-anim btn-gold mt-10 ml-50"><i class="fa fa-upload"></i><span class="btn-text">Upload cover image</span>
+										<div class="fileupload btn btn-info btn-anim btn-gold mt-10" style="display: inline-block;margin: 15px 0px !important;" ><i class="fa fa-upload"></i><span class="btn-text">Upload cover image</span>
 											<input type="file" class="upload" name="cover_image" id="imgInp">
-  											<img id="blah" src="#" alt="your image" />
+  											
 										</div>
 									</div>
 									<div class="col-lg-8">
