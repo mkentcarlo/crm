@@ -14,7 +14,7 @@ class CustomService
 	    $file_name = $key . time() . '.'. $file_extension; //generating unique file name;
 
 	    if ($file_data != "") { // storing image in storage/app/public Folder
-	       Storage::disk('public')->put($file_name, base64_decode($file_data));
+	       Storage::disk('public')->put('product-images/'.$file_name, base64_decode($file_data));
 	    }		   
 
 	    return $file_name;

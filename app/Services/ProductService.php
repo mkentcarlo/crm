@@ -24,7 +24,7 @@ class ProductService
         $data = [];
 	    foreach ($products as $product) {
 	    	$img_file = @unserialize($product->images);
-	    	$img_dir  = $product->siteurl .'/wp-content/uploads';
+	    	$img_dir  = $product->siteurl .'wp-content/uploads';
             $img_path = $this->wooService->get_image_path($img_dir, 'thumbnail', $img_file);
 	        $tmp['id'] = $product->ID;
 	        $tmp['name'] = $product->post_title;
@@ -45,7 +45,7 @@ class ProductService
 		$productImage = [];
 		if ($formData['cover_image'] != '') {
             $productImages[] = [
-				'src' => 'https://upload.wikimedia.org/wikipedia/en/a/af/Son_Goku_YoungAdult.PNG',//$formData['cover_image'],
+				'src' => $formData['cover_image'],
 				'position' => 0
 			];
         } 
@@ -56,7 +56,7 @@ class ProductService
             $index = $key + 1;
             $filename = app()->make('App\Services\CustomService')->createImageFromBase64($value, $key);
             $productImages[] = [
-                'src' => 'https://upload.wikimedia.org/wikipedia/en/a/af/Son_Goku_YoungAdult.PNG',//asset('uploads') .'/'. $filename,
+                'src' => asset('storage/product-images').'/'. $filename,
                 'position' => $index
             ];
         }    
@@ -107,7 +107,7 @@ class ProductService
             if($product->images[$key]['position'] == 0) {
                 if ($formData['cover_image'] != '') {
                     $product->images[] = [
-    					'src' => 'https://upload.wikimedia.org/wikipedia/en/a/af/Son_Goku_YoungAdult.PNG',//$formData['cover_image'],
+    					'src' => $formData['cover_image'],
     					'position' => 0
     				];
                 } 
@@ -126,7 +126,7 @@ class ProductService
             $index = $key + 1;
             $filename = app()->make('App\Services\CustomService')->createImageFromBase64($value, $key);
             $product->images[] = [
-                'src' => 'https://upload.wikimedia.org/wikipedia/en/a/af/Son_Goku_YoungAdult.PNG',//asset('uploads') .'/'. $filename,
+                'src' => asset('storage/product-images').'/'. $filename,
                 'position' => $lastImage['position'] + $index
             ];
         }    

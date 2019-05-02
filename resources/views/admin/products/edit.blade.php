@@ -139,11 +139,11 @@
 								<div class="row">
 									<div class="col-lg-4">
 										<div class="img-upload-wrap">
-											<img class="img-responsive" src="../img/watch-image.PNG" alt="upload_img"> 
+											<img id="blah" src="/img/watch-image.PNG" alt="your image" />
 										</div>
 										<div class="fileupload btn btn-info btn-anim btn-gold mt-10 ml-50"><i class="fa fa-upload"></i><span class="btn-text">Upload cover image</span>
 											<input type="file" class="upload" name="cover_image" id="imgInp">
-  											<img id="blah" src="#" alt="your image" />
+  											
 										</div>
 									</div>
 									<div class="col-lg-8">
@@ -158,11 +158,9 @@
 												<div class="panel-body">
 											        <input id="file-input" type="file" multiple>
 													<div id="preview">
+
 														@for($x = 1;$x < sizeof($product->images); $x++)
-														<div>
-															<img src="{{ $product->images[$x]->src }}" ino="{{ $product->images[$x]->id }}">
-															<a href="javascript:;" class="delete-gallery-img" title="Delete image">Delete image</a>
-														</div>
+														<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12  file-box"><div class="file"><div class="image"><img height="100" src="{{ $product->images[$x]->src }}" ino="{{ $product->images[$x]->id }}"></div><div class="file-name text-center"><a title="Delete image" href="javascript:;" class="delete-gallery-img btn btn-danger btn-sm"><i class="fa fa-trash"></i></a></div></div></div>
 														@endfor
 													</div>
 			                                    </div>

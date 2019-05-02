@@ -89,11 +89,11 @@
                         }
                         $('#id').val(result.info.id);
                         if (result.info.name == 'admin') {
-                            $('#name').val('Administrator');
-                            $('#name').prop('disabled', true);
+                            $('#name').val('admin');
+                            $('#name').prop('readonly', true);
                         } else {
                             $('#name').val(result.info.name);
-                            $('#name').prop('disabled', false);
+                            $('#name').prop('readonly', false);
                         }
                         
                         $('#updateModal').modal('show');

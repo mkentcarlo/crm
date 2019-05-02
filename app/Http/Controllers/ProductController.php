@@ -61,7 +61,7 @@ class ProductController extends Controller
         $coverImage = '';
         if ($request->hasFile('cover_image')) {
             // upload image
-            $coverImage = app()->make('App\Services\CustomService')->getUploadedImg($request->file('cover_image'));
+            $coverImage = app()->make('App\Services\ImageService')->getUploadedProductImg($request->file('cover_image'));
         }
         $formData = $request->all();
         $formData['cover_image'] = $coverImage;
@@ -85,7 +85,7 @@ class ProductController extends Controller
         $coverImage = '';
         if ($request->hasFile('cover_image')) {
             // upload image
-            $coverImage = app()->make('App\Services\CustomService')->getUploadedImg($request->file('cover_image'));
+            $coverImage = app()->make('App\Services\ImageService')->getUploadedProductImg($request->file('cover_image'));
         }
         $formData = $request->all();
         $formData['cover_image'] = $coverImage;

@@ -23,7 +23,7 @@
                 } // else...
                 
                 var reader = new FileReader();
-                
+
                 reader.addEventListener("load", function() {
                     var innerDiv = document.createElement('div');  
                     var img_container = document.createElement('div');  
@@ -46,8 +46,8 @@
                     image.height = 100;
                     image.title  = file.name;
                     image.src    = this.result;
-                    img_container.style = "background-image:url('"+ this.result +"')";
-                    // img_container.appendChild(image);
+                    //img_container.style = "background-image:url('"+ this.result +"')";
+                    img_container.appendChild(image);
                     preview.appendChild(innerDiv);
                     innerDiv.appendChild(file_container);
                     innerDiv.appendChild(aInnerDiv);
