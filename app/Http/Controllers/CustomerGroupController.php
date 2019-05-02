@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Services\GroupService;
 use App\CustomerGroup;
 use Illuminate\Http\Request;
+use App\Http\Requests\GroupFormRequest;
 
 class CustomerGroupController extends Controller
 {
@@ -42,7 +43,7 @@ class CustomerGroupController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function store(Request $request)
+    public function store(GroupFormRequest $request)
     {
         $group = new CustomerGroup($request->all());
         if ($group->save()) {
@@ -84,7 +85,7 @@ class CustomerGroupController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function update(Request $request, $id)
+    public function update(GroupFormRequest $request, $id)
     {
         $group = CustomerGroup::find($id);
 
@@ -136,5 +137,10 @@ class CustomerGroupController extends Controller
                 'type' => 'error'
             ]
         );
+    }
+
+    public function getGroups()
+    {
+        return $this->groupService->getGroups();
     }
 }

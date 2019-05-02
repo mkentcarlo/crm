@@ -5,7 +5,7 @@
             <i class="zmdi zmdi-more"></i>
         </li>
         <li>
-            <a href="dashboard.php" class=""><div class="pull-left"><i class="zmdi zmdi-landscape mr-20"></i><span class="right-nav-text">Dashboard</span></div><div class="clearfix"></div></a>
+            <a href="{{ url('/dashboard') }}" class=""><div class="pull-left"><i class="zmdi zmdi-landscape mr-20"></i><span class="right-nav-text">Dashboard</span></div><div class="clearfix"></div></a>
         </li>
         @can('view.user')
         <li>
@@ -14,7 +14,7 @@
                 <li>
                     <a href="{{ route('view.user') }}" class="">List</a>
                 </li>
-                @role('admin')
+                @role('super admin')
                 <li>
                     <a href="{{ route('view.role') }}" class="">Roles</a>
                 </li>
@@ -33,9 +33,9 @@
                 </li>
             </ul>
         </li>
-        <li>
+        <!-- <li>
             <a href="queries.php" class=""><div class="pull-left"><i class="fa fa-envelope-square mr-20" aria-hidden="true"></i><span class="right-nav-text">Enquiries </span></div><div class="clearfix"></div></a>
-        </li>
+        </li> -->
         <li>
             <a href="javascript:void(0);" data-toggle="collapse" data-target="#app_dr"><div class="pull-left"><i class="zmdi zmdi-time mr-20"></i><span class="right-nav-text">Watches </span></div><div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div><div class="clearfix"></div></a>
             <ul id="app_dr" class="collapse collapse-level-1">

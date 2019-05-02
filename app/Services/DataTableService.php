@@ -101,13 +101,16 @@ class DataTableService  {
 
             return $content;
         })
+           ->addColumn('name', function($role) {
+            return ucwords($role->name);
+        })
          ->addColumn('created_at', function($role) {
             return date('M d Y h:i a', strtotime($role->created_at));
         })
         ->addColumn('action', function($role) {
             return '<a href="#" class="text-inverse pr-10 form-load edit" title="Edit" id="'.$role->id.'"><i class="zmdi zmdi-edit txt-warning"></i></a><a href="'.url('roles/delete/'.$role->id).'" class="text-inverse delete" title="Delete"><i class="zmdi zmdi-delete txt-danger"></i></a>';
         })
-        ->rawColumns(['permissions', 'action'])
+        ->rawColumns(['name', 'permissions', 'action'])
         ->make(true);
     }
 

@@ -22,7 +22,7 @@ function errorMsg(msg) {
 
     if (msg !== null && typeof msg === 'object') {
         for (let x in msg) {
-            output += msg[x][0] + "<br><br>";
+            output += msg[x][0] + "\r\n";
         }
     } else {
         output = msg;
@@ -30,8 +30,7 @@ function errorMsg(msg) {
 
     return swal({
         type:  'error',
-        title: 'Oops...',
-        html:  output,
+        title: output,
     });
 };
 

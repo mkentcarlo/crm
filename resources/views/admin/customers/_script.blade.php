@@ -32,7 +32,11 @@
 
             $('.customer-group').on('click', function(e) {
                 e.preventDefault();
+                if ($(this).attr('id') == 'all') {
+                $customersTable.columns(4).search('').draw();
+            } else {
                 $customersTable.columns(4).search($(this).attr('id')).draw();
+            }
             });
 
             $('#create_customer').submit(function (e) {
@@ -101,6 +105,7 @@
                             showConfirmButton: true,
                         });
                     } else {
+                        $('#id').val(result.id);
                         $('#firstname').val(result.firstname);
                         $('#lastname').val(result.lastname);
                         $('#email').val(result.email);
@@ -110,7 +115,7 @@
                         $('#city').val(result.city);
                         $('#state').val(result.state);
                         $('#postal_code').val(result.postal_code);
-                        $('#country').val(result.country);
+                        $('#e-country').val(result.country);
                         $('#updateModal').modal('show');
                         swal.close();
                     }
@@ -141,6 +146,7 @@
                             showConfirmButton: true,
                         });
                     } else {
+                        $('#id').val(result.id);
                         $('#firstname').text(result.firstname);
                         $('#lastname').text(result.lastname);
                         $('#email').text(result.email);
@@ -176,7 +182,7 @@
 
             $('#update_customer').submit(function (e) {
                 e.preventDefault();
-        
+                //alert($('#id').val());
                 $.ajax({
                     type:       'POST',
                     url:        "{{ url('customers/edit') }}/" + $('#id').val(),
@@ -197,7 +203,7 @@
                         if (result.success) {
                             successMsg(result.msg);
                             $('#updateModal').modal('hide');
-                            $customersTable.ajax.reload( null, false );
+                            $groupsTable.ajax.reload( null, false );
                         } else {
                             errorMsg(result.msg);
                         }  

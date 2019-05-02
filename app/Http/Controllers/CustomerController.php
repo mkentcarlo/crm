@@ -32,8 +32,9 @@ class CustomerController extends Controller
     public function index()
     {
         $groups = $this->groupService->getGroups();
-
-        return view('admin.customers.index', compact('groups'));
+        $customers = Customer::all();
+        
+        return view('admin.customers.index', compact('groups', 'customers'));
     }
 
     /**

@@ -33,6 +33,10 @@ Route::group(
 		Route::get('/users/delete/{id}', 'UserController@delete')->name('delete.user');
 		Route::post('/users/update', 'UserController@update');
 		Route::get('/users/getusers', 'UserController@getUsers')->name('get.users');
+		Route::get('/users/profile/{id}', 'UserController@profile')->name('edit.user.profile');
+		Route::put('/users/profile/{id}', 'UserController@updateProfile')->name('update.user.profile');
+		Route::get('/users/change-password/{id}', 'UserController@changePassword');
+		Route::put('/users/change-password/{id}', 'UserController@updatePassword');
 
 		Route::get('/logout', 'Auth\LoginController@logout')->name('logout' );
 
@@ -90,7 +94,9 @@ Route::group(
 		Route::get('/dashboard/ajaxRequest', 'HomeController@ajaxRequest')->name('get.transactions');
 		Route::get('reports/view-pdf/{id}','ReportController@viewPdf')->name('view.pdf');
 
-		Route::group(['middleware' => ['role:admin']], function () {
+		Route::get('/groups/all', 'CustomerGroupController@getGroups');
+
+		Route::group(['middleware' => ['role:super admin']], function () {
 	    	Route::get('/roles', 'RolePermissionController@index')->name('view.role');
 			Route::get('/roles/ajaxRequest', 'RolePermissionController@ajaxRequest')->name('get.roles');
 			Route::post('/roles/store', 'RolePermissionController@store')->name('store.role');

@@ -6,6 +6,7 @@ use App\Services\RolePermissionService;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
+use App\Http\Requests\RoleFormRequest;
 
 class RolePermissionController extends Controller
 {
@@ -31,17 +32,17 @@ class RolePermissionController extends Controller
      */
     public function index()
     {
-        return view('admin.roles.index');
+        return view('admin.roles.index', compact('roles'));
     }
 
-    public function store(Request $request)
+    public function store(RoleFormRequest $request)
     {
-        $role = Role::create(['name' => $request->name]);
+        $role = Role::create(['name' => strtolower($request->name)]);
         if ($role) {
             if ($request->permission) {
-                foreach($request->permission as $permission)
+                foreach($request->permission as $name)
                 {
-                    $role->givePermissionTo($permission);
+                    $role->givePermissionTo($name);
                 }
             }
 
@@ -74,11 +75,11 @@ class RolePermissionController extends Controller
         return response()->json($data);
     }
 
-    public function update(Request $request, $id)
+    public function update(RoleFormRequest $request, $id)
     {
         $role = Role::findOrFail($id);
         
-        if ($role->update(['name' => $request->name])) {
+        if ($role->update(['name' => strtolower($request->name)])) {
             $permissions = $role->permissions()->get();
 
             foreach ($permissions as $key => $value) {

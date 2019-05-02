@@ -33,7 +33,7 @@
 									</div>
 									<ul class="inbox-nav mb-30">
 										<li class="active">
-											<a href="#">All <span class="label label-warning ml-10 bg-gold">25</span></a>
+											<a href="#" id="all" class="customer-group">All <span class="label label-warning ml-10 bg-gold">{{ count($customers) }}</span></a>
 										</li>
 										@foreach($groups as $group)
 										<li>

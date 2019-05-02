@@ -57,7 +57,7 @@
 									</div>
 									<ul class="inbox-nav mb-30">
 										<li class="active">
-											<a href="#">All <span class="label label-warning ml-10 bg-gold">12</span></a>
+											<a href="#" id="all" class="user-role">All <span class="label label-warning ml-10 bg-gold">{{ count($users) }}</span></a>
 										</li>
 										<li>
 										@foreach($roles as $role)
@@ -126,7 +126,7 @@
 														<th>Email</th>
 														<th>Name</th>
 														<th>Phone</th>
-														<!-- <th>Role</th> -->
+														<th>Role</th>
 														<th>Status</th>
 														<th>Joining date</th>
 														<th>Action</th>

@@ -122,7 +122,7 @@
     <div class="input-group">
         <select name="role" class="form-control">
             @foreach($roles as $role)
-                <option value="{{ $role->id }}">{{ ($role->name == 'admin') ? 'Administrator' : $role->name }}</option>
+                <option value="{{ $role->id }}">{{ ($role->name == 'admin') ? 'Administrator' : ucwords($role->name) }}</option>
             @endforeach
         </select>
     <div class="input-group-addon"><i class="icon-user"></i></div>

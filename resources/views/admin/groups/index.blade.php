@@ -27,7 +27,7 @@
 						<h6 class="panel-title txt-dark">Roles List</h6>
 					</div> -->
 					<div class="pull-left">
-						<button class="btn bg-gold" data-toggle="modal" data-target="#createModal">Add New Group</button>
+						<button class="btn bg-gold" data-toggle="modal" id="add-group">Add New Group</button>
 					</div>
 					<div class="clearfix"></div>
 				</div>

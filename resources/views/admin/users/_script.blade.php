@@ -18,6 +18,7 @@
 		                { data: 'email', name: 'email'	},
 		                { data: 'name', name: 'name'	},
 		                { data: 'contact', name: 'contact'	},
+		                { data: 'role', name: 'role'	},
 		                { data: 'status', name: 'status'	},
 		                { data: 'created_at', name: 'created_at'	},
 		                { data: 'action', name: 'action'	}
@@ -25,6 +26,15 @@
 		} );
 
 		// end load users
+
+		$('.user-role').on('click', function(e) {
+            e.preventDefault();
+            if ($(this).attr('id') == 'all') {
+            	$userstable.columns(5).search('').draw();
+            } else {
+            	$userstable.columns(5).search($(this).attr('id')).draw();
+            }
+        });
 
 		// start user form
 

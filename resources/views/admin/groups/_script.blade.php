@@ -64,6 +64,39 @@
                 });
             });
 
+            // $('body').on('click', '.edit', function (e) {
+            //     e.preventDefault();
+
+            //     swal({
+            //         title: 'Loading...',
+            //         imageUrl: "{{ asset('img/loader.gif') }}",
+            //         imageWidth: 400,
+            //         imageHeight: 200,
+            //         imageAlt: 'Custom image',
+            //         animation: true,
+            //         showConfirmButton: false,
+            //     });
+
+            //     var id = $(this).attr('id');
+            //     $.getJSON("{{ url('groups') }}/edit/" + id, function (result) {
+            //         if (result.hasOwnProperty('permitted') && !result.permitted) {
+            //             swal({
+            //                 type: 'error',
+            //                 title: result.msg,
+            //                 animation: true,
+            //                 showConfirmButton: true,
+            //             });
+            //         } else {
+            //             $('#id').val(result.id);
+            //             $('#name').val(result.name);
+            //             $('#sub_group').val(result.sub_group);
+            //             $('#updateModal').modal('show');
+            //             swal.close();
+            //         }
+            //     });
+
+            // });  
+
             $('body').on('click', '.edit', function (e) {
                 e.preventDefault();
 
@@ -76,7 +109,7 @@
                     animation: true,
                     showConfirmButton: false,
                 });
-
+                $('#sub_group2').html('');
                 var id = $(this).attr('id');
                 $.getJSON("{{ url('groups') }}/edit/" + id, function (result) {
                     if (result.hasOwnProperty('permitted') && !result.permitted) {
@@ -89,10 +122,19 @@
                     } else {
                         $('#id').val(result.id);
                         $('#name').val(result.name);
-                        $('#sub_group').val(result.sub_group);
-                        $('#updateModal').modal('show');
-                        swal.close();
-                    }
+                        var subgroup = result.sub_group;
+                        $.getJSON("{{ url('groups/all') }}", function (result) {
+                            $.each(result, function (i, item) {
+                                $('#sub_group2').append($('<option>', { 
+                                    value: item.id,
+                                    text : item.name 
+                                }));
+                            });
+                            $('#sub_group2').val(subgroup);
+                            $('#updateModal').modal('show');
+                            swal.close();
+                        }); 
+                    }    
                 });
 
             });  
@@ -163,6 +205,31 @@
                     }); 
                 });
             });
+
+           $('#add-group').on('click', function(e){
+                e.preventDefault();
+
+                swal({
+                    title: 'Loading...',
+                    imageUrl: "{{ asset('img/loader.gif') }}",
+                    imageWidth: 400,
+                    imageHeight: 200,
+                    imageAlt: 'Custom image',
+                    animation: true,
+                    showConfirmButton: false,
+                });
+                $('#sub_group').html('');
+                $.getJSON("{{ url('groups/all') }}", function (result) {
+                        $.each(result, function (i, item) {
+                            $('#sub_group').append($('<option>', { 
+                                value: item.id,
+                                text : item.name 
+                            }));
+                        });
+                        $('#createModal').modal('show');
+                        swal.close();  
+                });
+           });
         }); 
           
     </script>

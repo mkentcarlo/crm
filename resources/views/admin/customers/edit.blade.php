@@ -98,7 +98,7 @@
 								<div class="col-md-6">
 									<div class="form-group">
 										<label class="control-label mb-10">Country</label>
-										<select class="form-control" name="country" id="country">
+										<select class="form-control" name="country" id="e-country">
 											<option>--Select your Country--</option>
 											<option value="India">India</option>
 											<option value="Sri Lanka">Sri Lanka</option>
