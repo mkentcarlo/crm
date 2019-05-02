@@ -110,14 +110,25 @@
 										<input type="text" name="cash_amount" class="form-control">
 									</div>
 									<div id="credit_card" class="mt-15" hidden>
-										<label>Credit Card</label> <button type="button" class="add-more-card">Add more</button>
-										<div id="credit_card_holder">
-											<div class="card-holder ml-15 mt-15">
-												<label>Card Name</label><input type="text" name="card_name[]" class="form-control">
-												<label>Card Number</label><input type="text" name="card_number[]" class="form-control">
-												<label>Amount</label><input type="text" name="card_amount[]" class="form-control">
-											</div>
-										</div>
+										<!-- <label>Credit Card</label> <button type="button" class="add-more-card">Add more</button> -->
+										<table class="table table-bordered">
+											<thead>
+												<tr>
+													<th>Card Name</th>
+													<th>Card Number</th>
+													<th>Amount</th>
+													<th><button type="button" class="add-more-card btn btn-default btn-xs"><i class="fa fa-plus"></i></button></th>
+												</tr>
+											</thead>
+											<tbody id="credit_card_holder">
+												<tr>
+													<td><input type="text" name="card_name[]" class="form-control"></td>
+													<td><input type="text" name="card_number[]" class="form-control"></td>
+													<td><input type="text" name="card_amount[]" class="form-control"></td>
+													<td><button type="button" class="remove-card btn btn-danger btn-xs"><i class="fa fa-times"></i></button></td>
+												</tr>
+											</tbody>
+										</table>
 									</div>
 								</td>
 							</tr>

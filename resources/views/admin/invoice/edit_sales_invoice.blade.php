@@ -120,24 +120,35 @@
 									</div>
 									<div id="credit_card" class="mt-15" {{ ($invoice->additional_fields->payment_method) ? (in_array('credit_card', $invoice->additional_fields->payment_method) ? '': 'hidden') : 'hidden' }}>
 										<label>Credit Card</label> <button type="button" class="add-more-card">Add more</button>
-										<div id="credit_card_holder">
-											@if(!empty($invoice->additional_fields->card_info))
-												@foreach($invoice->additional_fields->card_info as $cardInfo)
-												<div class="card-holder ml-15 mt-15">
-													<button type="button" class="remove-card">remove</button>
-													<label>Card Name</label><input type="text" name="card_name[]" class="form-control" value="{{ $cardInfo->card_name }}">
-													<label>Card Number</label><input type="text" name="card_number[]" class="form-control" value="{{ $cardInfo->card_number }}">
-													<label>Amount</label><input type="text" name="card_amount[]" class="form-control" value="{{ $cardInfo->card_amount }}">
-												</div>
-												@endforeach
-											@else
-											<div class="card-holder ml-15 mt-15">
-												<label>Card Name</label><input type="text" name="card_name[]" class="form-control">
-												<label>Card Number</label><input type="text" name="card_number[]" class="form-control">
-												<label>Amount</label><input type="text" name="card_amount[]" class="form-control">
-											</div>
-											@endif
-										</div>
+										<table class="table table-bordered">
+											<thead>
+												<tr>
+													<th>Card Name</th>
+													<th>Card Number</th>
+													<th>Amount</th>
+													<th><button type="button" class="add-more-card btn btn-default btn-xs"><i class="fa fa-plus"></i></button></th>
+												</tr>
+											</thead>
+											<tbody id="credit_card_holder">
+												@if(!empty($invoice->additional_fields->card_info))
+													@foreach($invoice->additional_fields->card_info as $cardInfo)
+													<tr>
+														<td><input type="text" name="card_name[]" class="form-control" value="{{ $cardInfo->card_name }}"></td>
+														<td><input type="text" name="card_number[]" class="form-control" value="{{ $cardInfo->card_number }}"></td>
+														<td><input type="text" name="card_amount[]" class="form-control" value="{{ $cardInfo->card_amount }}"></td>
+														<td><button type="button" class="remove-card btn btn-danger btn-xs"><i class="fa fa-times"></i></button></td>
+													</tr>
+													@endforeach
+												@else
+												<tr>
+													<td><input type="text" name="card_name[]" class="form-control"></td>
+													<td><input type="text" name="card_number[]" class="form-control"></td>
+													<td><input type="text" name="card_amount[]" class="form-control"></td>
+													<td></td>
+												</tr>
+												@endif
+											</tbody>
+										</table>
 									</div>
 								</td>
 							</tr>

@@ -127,13 +127,14 @@
             $('.add-more-card').on('click', function(e){
                 e.preventDefault();
 
-                $('#credit_card_holder').append('<div class="card-holder ml-15 mt-15"><button type="button" class="remove-card">remove</button><label>Card Name</label><input type="text" name="card_name[]" class="form-control"><label>Card Number</label><input type="text" name="card_number[]" class="form-control"><label>Amount</label><input type="text" name="card_amount[]" class="form-control"></div>');
+                $('#credit_card_holder').append('<tr> <td><input type="text" name="card_name[]" class="form-control"></td> <td><input type="text" name="card_number[]" class="form-control"></td> <td><input type="text" name="card_amount[]" class="form-control"></td> <td><button type="button" class="remove-card btn btn-danger btn-xs"><i class="fa fa-times"></i></button></td> </tr>');
+                // $('#credit_card_holder').append('<div class="card-holder ml-15 mt-15"><button type="button" class="remove-card">remove</button><label>Card Name</label><input type="text" name="card_name[]" class="form-control"><label>Card Number</label><input type="text" name="card_number[]" class="form-control"><label>Amount</label><input type="text" name="card_amount[]" class="form-control"></div>');
 
             });
 
             $(document).on('click', '.remove-card', function(e){
                 e.preventDefault();
-                $(this).parent().detach();
+                $(this).parent().parent().detach();
             });
 
             $('#discount').on('keypress', function() {
