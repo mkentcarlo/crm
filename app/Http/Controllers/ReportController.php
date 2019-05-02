@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Invoice;
 use PDF;
+use \Carbon\Carbon;
 
 class ReportController extends Controller
 {
@@ -28,14 +29,41 @@ class ReportController extends Controller
      */
     public function index()
     {   
-        return view('admin.reports.index');
+        $current = \Request::get('current') ?  \Request::get('current') : '';
+        $year = \Request::get('year') ?  \Request::get('year') : '';
+        $month = \Request::get('month') ?  \Request::get('month') : '';
+        $week = \Request::get('week') ?  \Request::get('week') : '';
+
+        if ($current == 'year') {
+            $year = Carbon::now()->format('Y');
+            $month = \Request::get('month') ?  \Request::get('month') : '';
+            $week = \Request::get('week') ?  \Request::get('week') : '';
+        }
+
+        if($current == 'month') {
+            $year = \Request::get('year') ?  \Request::get('year') : Carbon::now()->format('Y');
+            $month = Carbon::now()->format('m');
+            $week = \Request::get('week') ?  \Request::get('week') : '';
+        }
+
+        if($current == 'week') {
+            $year = \Request::get('year') ? \Request::get('year') : Carbon::now()->format('Y');
+            $month = \Request::get('month') ?  \Request::get('month') : Carbon::now()->format('m');
+            $week = Carbon::now()->weekOfMonth;
+        }
+
+        if($current == '' && $year == '' && ($month || $week)) {
+            return redirect('/reports');
+        }
+
+        return view('admin.reports.index', compact('week','month','year','current'));
     }  
 
     public function viewPdf($id)
     {
         $invoice = Invoice::where('id', $id)->first();
-
-        if ($invoice === null) {
+   
+        if ($invoice == null) {
             return redirect('/reports');
         }
 

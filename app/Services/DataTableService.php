@@ -137,6 +137,7 @@ class DataTableService  {
 
     public function renderInvoicesDataTable(Request $request) 
     {
+        
         $invoices = app()->make('App\Services\InvoiceService')->getInvoices($request);
  
         return DataTables::of($invoices)
