@@ -23,7 +23,9 @@ class InvoiceService
 			if ($request->current != '') {
 				//$query->where('invoice_type', $request->invoice_type);
 				if($request->current == 'week') {
-					$dates = $this->getDates('', '', '', 'week');
+					$year = $request->year ? $request->year : Carbon::now()->format('Y');
+					$month = $request->month ? $request->month : Carbon::now()->format('m');
+					$dates = $this->getDates($year, $month, '', 'week');
 					$query->whereBetween('created_at', [$dates[0], end($dates)]);
 				} 
 				if($request->current == 'month') {
@@ -51,6 +53,22 @@ class InvoiceService
 					}
 					
 				}
+			} else {
+				$year = $request->year ? $request->year : '';
+				$month = $request->month ? $request->month : '';
+				$week = $request->week ? $request->week : '';
+				if ($week != '' && $month != '' && $year != '') {
+					$dates = $this->getDates($year, $month, $week, '');
+					$query->whereBetween('created_at', [$dates[0], end($dates)]);
+				} else {
+					if ($month != '') {
+						$query->whereMonth('created_at', $month);
+					}
+
+					if ($year != '') {
+						$query->whereYear('created_at', $year);
+					}
+				}
 			}
 		});
 	}
@@ -73,8 +91,8 @@ class InvoiceService
 	public function getDates($year, $month, $week, $current='') 
     {
         if ($current == 'week') {
-            $year = Carbon::now()->format('Y');
-            $month = Carbon::now()->format('m');
+            $year = ($year) ? $year : Carbon::now()->format('Y');
+            $month = ($month) ? $month : Carbon::now()->format('m');
             $week = Carbon::now()->weekOfMonth;
         }
 
