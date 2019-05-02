@@ -7476,3 +7476,6 @@ ul.inbox-nav li a:hover, ul.inbox-nav li.active a, ul.inbox-nav li a:focus {
   width: 100% !important;
   height: auto !important;
 }
+#preview .file img {
+  width: 100% !important;
+}
