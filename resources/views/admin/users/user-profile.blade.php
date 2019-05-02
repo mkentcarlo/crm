@@ -93,7 +93,7 @@
 															</div>
 															</div>
 														</div>
-														<button class="btn btn-gold">Save</button> <button class="btn btn-default">Cancel</button>
+														<button class="btn btn-gold">Save</button> <a href="{{ url('/dashboard') }}" class="btn btn-default">Cancel</a>
 													</form>
 											</div>
 									</div>
