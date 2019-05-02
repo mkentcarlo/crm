@@ -7470,3 +7470,9 @@ ul.inbox-nav li a:hover, ul.inbox-nav li.active a, ul.inbox-nav li a:focus {
 
 .dataTables_filter, .dataTables_info,.dt-buttons
 { display: none; }
+
+.img-upload-wrap img {
+  max-width: 300px;
+  width: 100% !important;
+  height: auto !important;
+}
