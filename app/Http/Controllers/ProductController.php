@@ -9,6 +9,7 @@ use App\Services\WooCommerceService;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use Auth;
+use DB;
 
 class ProductController extends Controller
 {
@@ -71,9 +72,22 @@ class ProductController extends Controller
 
     public function edit($productId)
     {
+       
         $categories = $this->wooService->getCategories();
         $brands = $this->wooService->getBrands();
         $product = $this->wooService->process()->get('products/'. $productId)->product;
+        if ($product) {
+            $acf = DB::select("SELECT * FROM wpla_postmeta where post_id =".$productId);
+            $arr = ['model_reference', 'condition', 'gnder', 'case_material', 'bezel', 'case_back', 'case_diameter', 'movement', 'watch_features', 'dial_colour', 'crystal', 'braceletstrap', 'clasp_type', 'included', 'complication', 'new', 'limited_edition'];
+            foreach ($acf as $row) {
+                if (in_array($row->meta_key,  $arr)) {
+                    $key = $row->meta_key;
+                    $product->$key = $row->meta_value;
+                }
+            }
+            
+        }
+
         $product->categories = $this->wooService->getProductCategories($productId);
         $product->brands = $this->wooService->getProductBrands($productId);
 

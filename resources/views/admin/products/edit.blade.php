@@ -139,7 +139,7 @@
 								<div class="row">
 									<div class="col-lg-4">
 										<div class="img-upload-wrap">
-											<img id="blah" src="/img/watch-image.PNG" alt="your image" />
+											<img id="blah" src="/img/watch-image.PNG" alt="your image" height="100" />
 										</div>
 										<div class="fileupload btn btn-info btn-anim btn-gold mt-10 ml-50"><i class="fa fa-upload"></i><span class="btn-text">Upload cover image</span>
 											<input type="file" class="upload" name="cover_image" id="imgInp">
@@ -175,84 +175,84 @@
 								<div class="row">
 									<div class="col-sm-6">
 										<div class="form-group">
-											<input type="text" class="form-control" placeholder="CONDITION">
+											<input type="text" class="form-control" placeholder="CONDITION" name="condition" value="{{ $product->condition ?? null }}">
 										</div>
 									</div>
 									<div class="col-sm-6">
 										<div class="form-group">
-											<input type="text" class="form-control" placeholder="GENDER">
-										</div>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-sm-6">
-										<div class="form-group">
-											<input type="text" class="form-control" placeholder="CASE MATERIAL">
-										</div>
-									</div>
-									<div class="col-sm-6">
-										<div class="form-group">
-											<input type="text" class="form-control" placeholder="BEZEL">
+											<input type="text" class="form-control" placeholder="GENDER" name="gender" value="{{ $product->gnder ?? null }}">
 										</div>
 									</div>
 								</div>
 								<div class="row">
 									<div class="col-sm-6">
 										<div class="form-group">
-											<input type="text" class="form-control" placeholder="CASE BACK">
+											<input type="text" class="form-control" placeholder="CASE MATERIAL" name="case_material" value="{{ $product->case_material ?? null }}">
 										</div>
 									</div>
 									<div class="col-sm-6">
 										<div class="form-group">
-											<input type="text" class="form-control" placeholder="CASE DIAMETER">
-										</div>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-sm-6">
-										<div class="form-group">
-											<input type="text" class="form-control" placeholder="MOVEMENT">
-										</div>
-									</div>
-									<div class="col-sm-6">
-										<div class="form-group">
-											<input type="text" class="form-control" placeholder="WATCH FEATURES">
+											<input type="text" class="form-control" placeholder="BEZEL" name="bezel" value="{{ $product->bezel ?? null }}">
 										</div>
 									</div>
 								</div>
 								<div class="row">
 									<div class="col-sm-6">
 										<div class="form-group">
-											<input type="text" class="form-control" placeholder="DIAL COLOUR">
+											<input type="text" class="form-control" placeholder="CASE BACK" name="case_back" value="{{ $product->case_back ?? null }}">
 										</div>
 									</div>
 									<div class="col-sm-6">
 										<div class="form-group">
-											<input type="text" class="form-control" placeholder="CRYSTAL">
-										</div>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-sm-6">
-										<div class="form-group">
-											<input type="text" class="form-control" placeholder="BRACELET/STRAP">
-										</div>
-									</div>
-									<div class="col-sm-6">
-										<div class="form-group">
-											<input type="text" class="form-control" placeholder="CLASP TYPE">
+											<input type="text" class="form-control" placeholder="CASE DIAMETER" name="case_diameter" value="{{ $product->case_diameter ?? null }}">
 										</div>
 									</div>
 								</div>
 								<div class="row">
 									<div class="col-sm-6">
 										<div class="form-group">
-											<input type="text" class="form-control" placeholder="INCLUDED">
+											<input type="text" class="form-control" placeholder="MOVEMENT" name="movement" value="{{ $product->movement ?? null }}">
 										</div>
 									</div>
 									<div class="col-sm-6">
 										<div class="form-group">
-											<input type="text" class="form-control" placeholder="Yes">
+											<input type="text" class="form-control" placeholder="WATCH FEATURES" name="watch_features" value="{{ $product->watch_features ?? null }}">
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-sm-6">
+										<div class="form-group">
+											<input type="text" class="form-control" placeholder="DIAL COLOUR" name="dial_colour" value="{{ $product->dial_colour ?? null }}">
+										</div>
+									</div>
+									<div class="col-sm-6">
+										<div class="form-group">
+											<input type="text" class="form-control" placeholder="CRYSTAL" name="crystal" value="{{ $product->crystal ?? null }}">
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-sm-6">
+										<div class="form-group">
+											<input type="text" class="form-control" placeholder="BRACELET/STRAP" name="braceletstrap" value="{{ $product->braceletstrap ?? null }}">
+										</div>
+									</div>
+									<div class="col-sm-6">
+										<div class="form-group">
+											<input type="text" class="form-control" placeholder="CLASP TYPE" name="clasp_type" value="{{ $product->clasp_type ?? null }}">
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-sm-6">
+										<div class="form-group">
+											<input type="text" class="form-control" placeholder="INCLUDED" name="included" value="{{ $product->included ?? null }}">
+										</div>
+									</div>
+									<div class="col-sm-6">
+										<div class="form-group">
+											<input type="text" class="form-control" placeholder="New">
 										</div>
 									</div>
 								</div>

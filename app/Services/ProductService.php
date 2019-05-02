@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Services\WoocommerceService;
+use DB;
 
 class ProductService  
 {
@@ -42,7 +43,7 @@ class ProductService
 	
 	public function create($formData) 
 	{
-		$productImage = [];
+		$productImages = [];
 		if ($formData['cover_image'] != '') {
             $productImages[] = [
 				'src' => $formData['cover_image'],
@@ -96,6 +97,13 @@ class ProductService
 		
 		if (empty($product)) {
 			return null;
+		}
+		$arr = ['model_reference', 'condition', 'gnder', 'case_material', 'bezel', 'case_back', 'case_diameter', 'movement', 'watch_features', 'dial_colour', 'crystal', 'braceletstrap', 'clasp_type', 'included', 'complication', 'new', 'limited_edition'];
+
+		foreach ($formData as $key => $value) {
+			if(in_array($key, $arr)) {
+				DB::update("UPDATE wpla_postmeta set meta_value = '$value' where meta_key='$key' AND post_id = '$productId'");
+			}
 		}
 
 		$img_ids = json_decode($formData['img_ids']);
