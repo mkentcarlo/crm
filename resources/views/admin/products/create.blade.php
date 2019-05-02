@@ -138,7 +138,7 @@
 								<div class="row">
 									<div class="col-lg-4 text-center">
 										<div class="img-upload-wrap">
-											<img id="blah" src="/img/watch-image.PNG" alt="your image"/>
+											<img id="blah" src="{{ asset('img/img-placeholder.png') }}" alt="your image"/>
 										</div>
 										<div class="fileupload btn btn-info btn-anim btn-gold mt-10" style="display: inline-block;margin: 15px 0px !important;" ><i class="fa fa-upload"></i><span class="btn-text">Upload cover image</span>
 											<input type="file" class="upload" name="cover_image" id="imgInp">
@@ -155,7 +155,8 @@
 											</div>
 											<div class="panel-wrapper">
 												<div class="panel-body">
-											        <input id="file-input" type="file" multiple>
+											        <input id="file-input" class="form-control" type="file" multiple>
+															<br>
 													<div id="preview">
 													</div>
 			                                    </div>

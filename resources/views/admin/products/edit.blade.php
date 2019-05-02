@@ -137,12 +137,12 @@
 								<h6 class="txt-dark capitalize-font"><i class="zmdi zmdi-collection-image mr-10"></i>upload image</h6>
 								<hr class="light-grey-hr">
 								<div class="row">
-									<div class="col-lg-4">
+									<div class="col-lg-4 text-center">
 										<div class="img-upload-wrap">
-											<img id="blah" src="/img/watch-image.PNG" alt="your image" height="100" />
+											<img id="blah" src="{{ asset('img/img-placeholder.png') }}" alt="your image" height="100" />
 										</div>
-										<div class="fileupload btn btn-info btn-anim btn-gold mt-10 ml-50"><i class="fa fa-upload"></i><span class="btn-text">Upload cover image</span>
-											<input type="file" class="upload" name="cover_image" id="imgInp">
+										<div class="fileupload btn btn-info btn-anim btn-gold mt-10"><i class="fa fa-upload"></i><span class="btn-text">Upload cover image</span>
+											<input type="file" class="upload form-control" name="cover_image" id="imgInp">
   											
 										</div>
 									</div>
@@ -156,7 +156,8 @@
 											</div>
 											<div class="panel-wrapper">
 												<div class="panel-body">
-											        <input id="file-input" type="file" multiple>
+											        <input id="file-input" class="form-control" type="file" multiple>
+															<br>
 													<div id="preview">
 
 														@for($x = 1;$x < sizeof($product->images); $x++)
