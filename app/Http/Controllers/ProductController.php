@@ -87,7 +87,7 @@ class ProductController extends Controller
             }
             
         }
-
+        
         $product->categories = $this->wooService->getProductCategories($productId);
         $product->brands = $this->wooService->getProductBrands($productId);
 
