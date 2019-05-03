@@ -167,88 +167,132 @@
 								<div class="seprator-block"></div>
 								<h6 class="txt-dark capitalize-font"><i class="zmdi zmdi-calendar-note mr-10"></i>general info</h6>
 								<hr class="light-grey-hr">
-								
 								<div class="row">
 									<div class="col-sm-6">
 										<div class="form-group">
-											<input type="text" class="form-control" placeholder="CONDITION">
+											<input type="text" class="form-control" placeholder="COST PRICE" name="cost_price">
 										</div>
 									</div>
 									<div class="col-sm-6">
 										<div class="form-group">
-											<input type="text" class="form-control" placeholder="GENDER">
+											<input type="text" class="form-control" placeholder="ASKING PRICE" name="asking_price">
 										</div>
 									</div>
 								</div>
 								<div class="row">
 									<div class="col-sm-6">
 										<div class="form-group">
-											<input type="text" class="form-control" placeholder="CASE MATERIAL">
+											<input type="text" class="form-control" placeholder="SELLING PRICE" name="selling_price">
 										</div>
 									</div>
 									<div class="col-sm-6">
 										<div class="form-group">
-											<input type="text" class="form-control" placeholder="BEZEL">
-										</div>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-sm-6">
-										<div class="form-group">
-											<input type="text" class="form-control" placeholder="CASE BACK">
-										</div>
-									</div>
-									<div class="col-sm-6">
-										<div class="form-group">
-											<input type="text" class="form-control" placeholder="CASE DIAMETER">
+											<input type="text" class="form-control" placeholder="MODEL REFERENCE" name="model_reference">
 										</div>
 									</div>
 								</div>
 								<div class="row">
 									<div class="col-sm-6">
 										<div class="form-group">
-											<input type="text" class="form-control" placeholder="MOVEMENT">
+											<input type="text" class="form-control" placeholder="CONDITION" name="condition">
 										</div>
 									</div>
 									<div class="col-sm-6">
 										<div class="form-group">
-											<input type="text" class="form-control" placeholder="WATCH FEATURES">
-										</div>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-sm-6">
-										<div class="form-group">
-											<input type="text" class="form-control" placeholder="DIAL COLOUR">
-										</div>
-									</div>
-									<div class="col-sm-6">
-										<div class="form-group">
-											<input type="text" class="form-control" placeholder="CRYSTAL">
+											<input type="text" class="form-control" placeholder="GENDER" name="gnder">
 										</div>
 									</div>
 								</div>
 								<div class="row">
 									<div class="col-sm-6">
 										<div class="form-group">
-											<input type="text" class="form-control" placeholder="BRACELET/STRAP">
+											<input type="text" class="form-control" placeholder="CASE MATERIAL" name="case_material">
 										</div>
 									</div>
 									<div class="col-sm-6">
 										<div class="form-group">
-											<input type="text" class="form-control" placeholder="CLASP TYPE">
+											<input type="text" class="form-control" placeholder="BEZEL" name="bezel">
 										</div>
 									</div>
 								</div>
 								<div class="row">
 									<div class="col-sm-6">
 										<div class="form-group">
-											<input type="text" class="form-control" placeholder="INCLUDED">
+											<input type="text" class="form-control" placeholder="CASE BACK" name="case_back">
 										</div>
 									</div>
 									<div class="col-sm-6">
 										<div class="form-group">
-											<input type="text" class="form-control" placeholder="Yes">
+											<input type="text" class="form-control" placeholder="CASE DIAMETER" name="case_diameter">
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-sm-6">
+										<div class="form-group">
+											<input type="text" class="form-control" placeholder="MOVEMENT" name="movement">
+										</div>
+									</div>
+									<div class="col-sm-6">
+										<div class="form-group">
+											<input type="text" class="form-control" placeholder="WATCH FEATURES" name="watch_features">
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-sm-6">
+										<div class="form-group">
+											<input type="text" class="form-control" placeholder="DIAL COLOUR" name="dial_colour">
+										</div>
+									</div>
+									<div class="col-sm-6">
+										<div class="form-group">
+											<input type="text" class="form-control" placeholder="CRYSTAL" name="crystal">
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-sm-6">
+										<div class="form-group">
+											<input type="text" class="form-control" placeholder="BRACELET/STRAP" name="braceletstrap">
+										</div>
+									</div>
+									<div class="col-sm-6">
+										<div class="form-group">
+											<input type="text" class="form-control" placeholder="CLASP TYPE" name="clasp_type">
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-sm-6">
+										<div class="form-group">
+											<input type="text" class="form-control" placeholder="INCLUDED" name="included">
+										</div>
+									</div>
+									<div class="col-sm-6">
+										<label>Complication</label>
+										<div class="form-group">
+											<select name="complication" class="form-control">
+												@for($x=1;$x<=10;$x++)
+												<option value="{{ $x }}">{{ $x }}</option>
+												@endfor
+											</select>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-sm-6">
+										<label>New</label>
+										<div class="form-group">
+											YES <input type="radio" class="form-control" name="new" value="Yes">
+											NO <input type="radio" class="form-control" name="new" value="No">
+										</div>
+									</div>
+									<div class="col-sm-6">
+										<label>Limited Edition</label>
+										<div class="form-group">
+											YES <input type="radio" class="form-control" name="limited_edition" value="Yes">
+											NO <input type="radio" class="form-control" name="limited_edition" value="No">
 										</div>
 									</div>
 								</div>

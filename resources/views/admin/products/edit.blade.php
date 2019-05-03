@@ -173,7 +173,30 @@
 								<div class="seprator-block"></div>
 								<h6 class="txt-dark capitalize-font"><i class="zmdi zmdi-calendar-note mr-10"></i>general info</h6>
 								<hr class="light-grey-hr">
-								
+								<div class="row">
+									<div class="col-sm-6">
+										<div class="form-group">
+											<input type="text" class="form-control" placeholder="COST PRICE" name="cost_price" value="{{ $product->cost_price ?? null }}">
+										</div>
+									</div>
+									<div class="col-sm-6">
+										<div class="form-group">
+											<input type="text" class="form-control" placeholder="ASKING PRICE" name="asking_price" value="{{ $product->asking_price ?? null }}">
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-sm-6">
+										<div class="form-group">
+											<input type="text" class="form-control" placeholder="SELLING PRICE" name="selling_price" value="{{ $product->selling_price ?? null }}">
+										</div>
+									</div>
+									<div class="col-sm-6">
+										<div class="form-group">
+											<input type="text" class="form-control" placeholder="MODEL REFERENCE" name="model_reference" value="{{ $product->model_reference ?? null }}">
+										</div>
+									</div>
+								</div>
 								<div class="row">
 									<div class="col-sm-6">
 										<div class="form-group">
@@ -253,8 +276,30 @@
 										</div>
 									</div>
 									<div class="col-sm-6">
+										<label>Complication</label>
 										<div class="form-group">
-											<input type="text" class="form-control" placeholder="New">
+											<select name="complication" class="form-control">
+												@for($x=1;$x<=10;$x++)
+												<option value="{{ $x }}" {{ isset($product->complication) && $product->complication == $x ? 'selected="selected"' : '' }}>{{ $x }}</option>
+												@endfor
+											</select>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-sm-6">
+										<label>New</label>
+
+										<div class="form-group">
+											YES <input type="radio" class="form-control" name="new" value="Yes" {{ isset($product->new) && $product->new == 'Yes' ? 'checked="checked"' : '' }}>
+											NO <input type="radio" class="form-control" name="new" value="No" {{ isset($product->new) && $product->new == 'No' ? 'checked="checked"' : '' }}>
+										</div>
+									</div>
+									<div class="col-sm-6">
+										<label>Limited Edition</label>
+										<div class="form-group">
+											YES <input type="radio" class="form-control" name="limited_edition" value="Yes" {{ isset($product->limited_edition) && $product->limited_edition == 'Yes' ? 'checked="checked"' : '' }}>
+											NO <input type="radio" class="form-control" name="limited_edition" value="No" {{ isset($product->limited_edition) && $product->limited_edition == 'No' ? 'checked="checked"' : '' }}>
 										</div>
 									</div>
 								</div>
