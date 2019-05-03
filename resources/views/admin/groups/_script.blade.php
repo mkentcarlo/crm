@@ -224,7 +224,7 @@
                             $('#sub_group').append($('<option>', { 
                                 value: item.id,
                                 text : item.name 
-                            }));
+                            })); 
                         });
                         $('#createModal').modal('show');
                         swal.close();  

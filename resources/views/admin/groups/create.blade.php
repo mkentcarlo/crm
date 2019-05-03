@@ -9,7 +9,7 @@
 				</div>
 				<div class="modal-body">
 					<div class="form-group">
-						<label class="control-label mb-10">Name of Group</label>
+						<label class="control-label mb-10">Name of Group</label> 
 						<input type="text" class="form-control" name="name">
 					</div>
 					<div class="form-group">
