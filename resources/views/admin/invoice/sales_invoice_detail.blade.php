@@ -110,7 +110,7 @@
 										</tr>
 										<tr>
 											<td>Overall Total:</td>
-											<td><h5 class="txt-gold">$90,000.00</h5></td>
+											<td><h5 class="txt-gold">${{ number_format($invoice->total_amount, 2) }}</h5></td>
 										</tr>
 									</tbody></table>
 								</div>
