@@ -110,7 +110,6 @@
 										<input type="text" name="cash_amount" class="form-control">
 									</div>
 									<div id="credit_card" class="mt-15" hidden>
-										<!-- <label>Credit Card</label> <button type="button" class="add-more-card">Add more</button> -->
 										<table class="table table-bordered">
 											<thead>
 												<tr>
