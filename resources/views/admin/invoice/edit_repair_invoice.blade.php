@@ -6,11 +6,7 @@
 					<div class="form-group">
 						<label class="control-label mb-10">Invoice Type:</label>
 						<select class="form-control" name="invoice_type" id="invoice_type">
-							<option value="sales" {{ $invoiceType  == 'sales' ? 'selected="selected"' : '' }}>Sales</option>
-							<option value="consign_in" {{ $invoiceType  == 'consign_in' ? 'selected="selected"' : '' }}>Consign IN</option>
-							<option value="consign_out" {{ $invoiceType  == 'consign_out' ? 'selected="selected"' : '' }}>Consign OUT</option>
-							<option value="purchase" {{ $invoiceType  == 'purchase' ? 'selected="selected"' : '' }}>Purchase</option>
-							<option value="repair" {{ $invoiceType  == 'repair' ? 'selected="selected"' : '' }}>Repair</option>
+							<option value="{{ $invoiceType }}">{{ str_replace('_',' ', strtoupper($invoiceType))}}</option>
 						</select>
 					</div>
 					<div class="form-group">
@@ -42,7 +38,7 @@
 						<label class="control-label mb-10">Select Watch:</label>
 						<select class="form-control select2" name="product_id" id="product_id">
 							@foreach($products as $product)
-							<option value="{{ $product['id'] }}">{{ $product['name'] }}</option>
+							<option value="{{ $product['id'] }}" {{ $invoice->invoice_detail[0]->product_id == $product['id'] ? 'selected="selected"' : '' }}>{{ $product['name'] }}</option>
 							@endforeach
 						</select>
 					</div>
@@ -50,6 +46,11 @@
 				<div class="col-md-2"></div>
 				<div class="col-md-6 mb-30">
 					<p hidden id="category_name"></p>
+					<input type="hidden" name="product_name" id="p_product_name">
+					<input type="hidden" name="brand_name" id="p_brand_name">
+					<input type="hidden" name="category_name" id="p_category_name">
+					<input type="hidden" name="featured_src" id="p_product_image">
+					<input type="hidden" name="price" id="p_product_price">
 					<div class="row">
 						<div class="col-md-4 bg-dark" id="product_image">
 							<img style="width: 100%" src="https://www.luxemontre.sg/wp-content/uploads/2019/01/Rolex-Yacht-Master-II-in-18K-White-Gold-M116689-Standing-2-500x493.png" alt="">

@@ -255,11 +255,22 @@ class InvoiceController extends Controller
                 [
                     'invoice_id' => $invoice->id,
                     'product_id' => $request->product_id,
+                    'product_name' => $request->product_name,
+                    'featured_src' => $request->featured_src,
+                    'price' => $request->price,
+                    'brand_name' => $request->brand_name,
+                    'category_name' => $request->category_name,
                     'quantity' => 1,
-                    'total_amount' => 0
+                    'total_amount' => $request->price,
                 ]
             );
         }
+
+        if($invoice) {
+            return redirect('/invoice')->with('success', 'Invoice Successfully Created.');
+        }
+
+        return Redirect::back()->withErrors(['msg', 'There something error found.']);
     }
 
     public function edit($invoiceId, Request $request)
@@ -270,7 +281,7 @@ class InvoiceController extends Controller
             return redirect('/invoice');
         }
 
-        $invoiceType = ($request->invoice_type) ? $request->invoice_type : $invoice->invoice_type;
+        $invoiceType = $invoice->invoice_type;
         $invoice->additional_fields = json_decode($invoice->additional_fields);
         $customers = $this->customerService->getCustomers();
         $products = $this->productService->getProducts();
@@ -530,11 +541,22 @@ class InvoiceController extends Controller
                 [
                     'invoice_id' => $invoice->id,
                     'product_id' => $request->product_id,
+                    'product_name' => $request->product_name,
+                    'featured_src' => $request->featured_src,
+                    'price' => $request->price,
+                    'brand_name' => $request->brand_name,
+                    'category_name' => $request->category_name,
                     'quantity' => 1,
-                    'total_amount' => 0
+                    'total_amount' => $request->price,
                 ]
             );
         }
+
+        if($invoice) {
+            return redirect('/invoice')->with('success', 'Invoice Successfully Updated.');
+        }
+
+        return Redirect::back()->withErrors(['msg', 'There something error found.']);
     } 
 
     public function show($invoiceId)

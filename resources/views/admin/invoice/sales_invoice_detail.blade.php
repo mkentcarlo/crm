@@ -67,14 +67,14 @@
 											<th>Total Amount:</th>
 											<td>$ {{ ($invoice->total_amount) ? number_format($invoice->total_amount, 2) : '0.00' }} </td>
 										</tr>
-										<tr>
+										<!-- <tr>
 											<td>Discount:</td>
 											<td>${{ $invoice->additional_fields->discount ? number_format($invoice->additional_fields->discount, 2) : '0.00' }}</td>
 										</tr>
 										<tr>
 											<td>Tax:</td>
 											<td>${{ $invoice->additional_fields->tax ? number_format($invoice->additional_fields->tax, 2) : '0.00' }}</td>
-										</tr>
+										</tr> -->
 										<tr>
 											<td>Payment Method:</td>
 											<td>

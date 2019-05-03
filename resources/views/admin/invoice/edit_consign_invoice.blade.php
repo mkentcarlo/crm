@@ -6,11 +6,7 @@
 					<div class="form-group">
 						<label class="control-label mb-10">Invoice Type:</label>
 						<select class="form-control" name="invoice_type" id="invoice_type">
-							<option value="sales" {{ $invoiceType  == 'sales' ? 'selected="selected"' : '' }}>Sales</option>
-							<option value="consign_in" {{ $invoiceType  == 'consign_in' ? 'selected="selected"' : '' }}>Consign IN</option>
-							<option value="consign_out" {{ $invoiceType  == 'consign_out' ? 'selected="selected"' : '' }}>Consign OUT</option>
-							<option value="purchase" {{ $invoiceType  == 'purchase' ? 'selected="selected"' : '' }}>Purchase</option>
-							<option value="repair" {{ $invoiceType  == 'repair' ? 'selected="selected"' : '' }}>Repair</option>
+							<option value="{{ $invoiceType }}">{{ str_replace('_',' ', strtoupper($invoiceType))}}</option>
 						</select>
 					</div>
 					<div class="form-group">

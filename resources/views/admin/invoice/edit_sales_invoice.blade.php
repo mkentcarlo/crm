@@ -6,11 +6,7 @@
 					<div class="form-group">
 						<label class="control-label mb-10">Invoice Type:</label>
 						<select class="form-control" name="invoice_type" id="invoice_type">
-							<option value="sales" {{ ($invoice->invoice_type == 'sales') ? 'selected="selected"' : ($invoiceType  == 'sales' ? 'selected="selected"' : '') }}>Sales</option>
-							<option value="consign_in" {{ ($invoice->invoice_type == 'consign_in') ? 'selected="selected"' : ($invoiceType  == 'consign_in' ? 'selected="selected"' : '') }}>Consign IN</option>
-							<option value="consign_out" {{ ($invoice->invoice_type == 'consign_out') ? 'selected="selected"' : ($invoiceType  == 'consign_out' ? 'selected="selected"' : '') }}>Consign OUT</option>
-							<option value="purchase" {{ ($invoice->invoice_type == 'purchase') ? 'selected="selected"' : ($invoiceType  == 'purchase' ? 'selected="selected"' : '') }}>Purchase</option>
-							<option value="repair" {{ ($invoice->invoice_type == 'repair') ? 'selected="selected"' : ($invoiceType  == 'repair' ? 'selected="selected"' : '') }}>Repair</option>
+							<option value="{{ $invoiceType }}">{{ str_replace('_',' ', strtoupper($invoiceType))}}</option>
 						</select>
 					</div>
 					<div class="form-group">
@@ -101,14 +97,14 @@
 								<th>Total Amount:</th>
 								<td>$<span id="subtotal">0.00</span></td>
 							</tr>
-							<tr>
+							<!-- <tr>
 								<td>Discount:</td>
 								<td><input type="text" class="form-control" name="discount" id="discount" value="{{ $invoice->additional_fields->discount ?? null }}"></td>
 							</tr>
 							<tr>
 								<td>Tax:</td>
 								<td><input type="text" class="form-control" name="tax" id="tax" value="{{ $invoice->additional_fields->tax ?? null }}"></td>
-							</tr>
+							</tr> -->
 							<tr>
 								<td>Payment Method:</td>
 								<td>

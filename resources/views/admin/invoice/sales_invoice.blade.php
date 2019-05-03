@@ -92,14 +92,14 @@
 								<th>Total Amount:</th>
 								<td>$<span id="subtotal">0.00</span></td>
 							</tr>
-							<tr>
+							<!-- <tr>
 								<td>Discount:</td>
 								<td><input type="text" class="form-control" name="discount" id="discount"></td>
 							</tr>
 							<tr>
 								<td>Tax:</td>
 								<td><input type="text" class="form-control" name="tax" id="tax"></td>
-							</tr>
+							</tr> -->
 							<tr>
 								<td>Payment Method:</td>
 								<td>

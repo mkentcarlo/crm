@@ -51,6 +51,11 @@
 				<div class="col-md-6 mb-30">
 					<p hidden id="category_name"></p>
 					<div class="row">
+						<input type="hidden" name="product_name" id="p_product_name">
+						<input type="hidden" name="brand_name" id="p_brand_name">
+						<input type="hidden" name="category_name" id="p_category_name">
+						<input type="hidden" name="featured_src" id="p_product_image">
+						<input type="hidden" name="price" id="p_product_price">
 						<div class="col-md-4 bg-dark" id="product_image">
 							<img style="width: 100%" src="https://www.luxemontre.sg/wp-content/uploads/2019/01/Rolex-Yacht-Master-II-in-18K-White-Gold-M116689-Standing-2-500x493.png" alt="">
 						</div>

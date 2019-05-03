@@ -32,6 +32,22 @@
 				</div>
 				<div class="panel-wrapper collapse in">
 					<div class="panel-body">
+						@if (\Session::has('success'))
+						    <div class="alert alert-success">
+						        <ul>
+						            <li>{!! \Session::get('success') !!}<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+								  <span aria-hidden="true">&times;</span>
+								</button></li>
+						        </ul>
+						    </div>
+						@endif
+						@if($errors->any())
+						    <ul style="margin-bottom: 30px;">
+						    @foreach ($errors->all() as $error)
+						        <li>{{ $error }}</li>
+						    @endforeach
+						    </ul>
+						@endif
 						<div class="row">
 							<div class="col-md-3 pt-15">
 								<label for="">Enter Invoice #:</label>
@@ -70,5 +86,5 @@
 		</div>
 	</div>
 	<!-- /Row -->
-	@include('admin.invoice._script')
+	@include('admin.invoice._index_script')
 @endsection	
