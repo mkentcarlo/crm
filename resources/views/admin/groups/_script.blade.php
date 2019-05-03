@@ -109,7 +109,7 @@
                     animation: true,
                     showConfirmButton: false,
                 });
-                $('#sub_group2').html('');
+                $('#sub_group2').html('<option value="0">No Parent Group</option>');
                 var id = $(this).attr('id');
                 $.getJSON("{{ url('groups') }}/edit/" + id, function (result) {
                     if (result.hasOwnProperty('permitted') && !result.permitted) {
@@ -218,13 +218,13 @@
                     animation: true,
                     showConfirmButton: false,
                 });
-                $('#sub_group').html('');
+                $('#sub_group').html('<option value="0">No Parent Group</option>');
                 $.getJSON("{{ url('groups/all') }}", function (result) {
                         $.each(result, function (i, item) {
                             $('#sub_group').append($('<option>', { 
                                 value: item.id,
                                 text : item.name 
-                            }));
+                            })); 
                         });
                         $('#createModal').modal('show');
                         swal.close();  
