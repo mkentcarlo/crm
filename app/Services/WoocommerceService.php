@@ -75,7 +75,7 @@ class WoocommerceService
 
 	public function updateProductBrand($productId, $currentBrandId, $brandId)
 	{
-		return DB::select("UPDATE wpla_term_relationships SET term_taxonomy_id='$brandId' WHERE object_id = '$productId' AND term_taxonomy_id= '$currentBrandId'");
+		return DB::update("UPDATE wpla_term_relationships SET term_taxonomy_id='$brandId' WHERE object_id = '$productId' AND term_taxonomy_id= '$currentBrandId'");
 	}
 
 	public function createProductBrand($productId, $brandId)
