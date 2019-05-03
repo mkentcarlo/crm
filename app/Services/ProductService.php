@@ -46,7 +46,7 @@ class ProductService
 		$productImages = [];
 		if ($formData['cover_image'] != '') {
             $productImages[] = [
-				'src' => $formData['cover_image'],
+				'src' => asset('storage/product-images').'/'. $formData['cover_image'],
 				'position' => 0
 			];
         } 
@@ -77,6 +77,14 @@ class ProductService
     	
 		$this->wooService->createProductBrand($created->product->id, $productData['brand_id']);
     	
+    	$arr = ['model_reference', 'condition', 'gnder', 'case_material', 'bezel', 'case_back', 'case_diameter', 'movement', 'watch_features', 'dial_colour', 'crystal', 'braceletstrap', 'clasp_type', 'included', 'complication', 'new', 'limited_edition'];
+
+		foreach ($formData as $key => $value) {
+			if(in_array($key, $arr)) {
+				DB::insert("INSERT INTO wpla_postmeta (post_id, meta_key, meta_value) values (?, ?, ?)", [$created->product->id, $key, $value]);
+			}
+		}
+
     	if ($created) {
     		return response()->json([
     			'success' => true,

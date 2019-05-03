@@ -26,6 +26,7 @@
 							<form action="{{ route('update.product', $product->id) }}" enctype="multipart/form-data" method="POST" id="productForm">
 								<input type="hidden" name="_method" value="put">
 								{{ csrf_field() }}
+
 								<h6 class="txt-dark capitalize-font"><i class="zmdi zmdi-info-outline mr-10"></i>about product</h6>
 								<hr class="light-grey-hr">
 								<div class="row">
@@ -139,7 +140,7 @@
 								<div class="row">
 									<div class="col-lg-4 text-center">
 										<div class="img-upload-wrap">
-											<img id="blah" src="{{ asset('img/img-placeholder.png') }}" alt="your image" height="100" />
+											<img id="blah" src="{{ ($product->featured_src) ? $product->featured_src : asset('img/img-placeholder.png') }}" alt="your image" height="100" />
 										</div>
 										<div class="fileupload btn btn-info btn-anim btn-gold mt-10"><i class="fa fa-upload"></i><span class="btn-text">Upload cover image</span>
 											<input type="file" class="upload form-control" name="cover_image" id="imgInp">

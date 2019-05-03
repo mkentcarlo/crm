@@ -60,7 +60,8 @@
                 var week = ($('#select-week').val() == '') ? '' : '&week=' +$('#select-week').val();
                 if (current == 'month' || current == '') {
                     month = ($(this).val() == '') ? '' : '?month=' + $(this).val();
-                    location.href = '/reports' + month + year + week;
+                    var url = (month == '') ? '?year=' + $('#select-year').val() + week : '?month=' + $(this).val() + year + week;
+                    location.href = '/reports' + url;
                 } else {
                     if (current == 'year') {
                         location.href = '/reports?current=year'+ month + week;
@@ -80,7 +81,9 @@
                 var month = ($('#select-month').val() == '') ? '' : '&month=' +$('#select-month').val();
                 if (current == 'week' || current == '') {
                     week = ($(this).val() == '') ? '' : '?week=' + $(this).val();
-                    location.href = '/reports' + week + year + month;
+
+                    var url = (week == '') ? '?year=' + $('#select-year').val() + month : '?week=' + $(this).val() + year + month;
+                    location.href = '/reports' + url;
                 } else {
                     if (current == 'year') {
                         location.href = '/reports?current=year'+ month + week;
@@ -101,6 +104,9 @@
                 if (current == 'year' || current == '') {
                     year = ($(this).val() == '') ? '' : '?year=' + $(this).val();
                     location.href = '/reports' + year + week + month;
+
+                    var url = (year == '') ? '?month=' + $('#select-month').val() + week : '?year=' + $(this).val() + month + week;
+                    location.href = '/reports' + url;
                 } else {
                     if (current == 'week') {
                         location.href = '/reports?current=week'+ month + year;
