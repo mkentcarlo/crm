@@ -46,7 +46,7 @@ class ProductService
 		$productImages = [];
 		if ($formData['cover_image'] != '') {
             $productImages[] = [
-				'src' => $formData['cover_image'],
+				'src' => asset('storage/product-images').'/'. $formData['cover_image'],
 				'position' => 0
 			];
         } 
