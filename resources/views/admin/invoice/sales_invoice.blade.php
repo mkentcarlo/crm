@@ -25,7 +25,7 @@
 				<div class="col-md-2"></div>
 				<div class="col-md-6">
 					<label class="control-label mb-10">Select Customer:</label>
-						<select class="form-control" name="customer_id" id="customer_id">
+						<select class="form-control select2" name="customer_id" id="customer_id">
 						@foreach($customers as $customer)
 						<option value="{{ $customer->id }}">{{ $customer->lastname .' '. $customer->firstname }}</option>
 						@endforeach
@@ -40,7 +40,7 @@
 				<div class="col-md-4">
 					<div class="form-group">
 						<label class="control-label mb-10">Select Watch:</label>
-						<select class="form-control" id="product_id">
+						<select class="form-control select2" id="product_id">
 							@foreach($products as $product)
 							<option value="{{ $product['id'] }}">{{ $product['name'] }}</option>
 							@endforeach
@@ -134,7 +134,7 @@
 							</tr>
 							<tr>
 								<td>Overall Total:</td>
-								<td><h5 class="txt-gold"><input type="text" name="total_amount" class="total_amount">$<span class="total_amount">0.00</span></h5></td>
+								<td><h5 class="txt-gold"><input type="hidden" name="total_amount" class="total_amount">$<span class="total_amount">0.00</span></h5></td>
 							</tr>
 							<tr>
 								<td>Remarks:</td>

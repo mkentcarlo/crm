@@ -82,3 +82,6 @@ $('.datepicker').datetimepicker({
 if($(this).data("DateTimePicker").date() === null)
     $(this).data("DateTimePicker").date(moment());
 });
+
+//select2
+$(".select2").select2();

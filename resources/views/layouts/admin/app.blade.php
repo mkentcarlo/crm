@@ -176,8 +176,6 @@
     <!-- Init JavaScript -->
     <script src="{{ asset('dist/js/init.js') }}"></script>
     <script src="{{ asset('dist/js/dashboard3-data.js') }}"></script>
-    <!-- Select2 JavaScript -->
-    <script src="{{ asset('vendors/bower_components/select2/dist/js/select2.full.min.js') }}"></script>
 
 
     <!-- For export buttons -->
