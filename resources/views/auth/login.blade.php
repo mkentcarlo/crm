@@ -3,7 +3,6 @@
 @section('content')
 <div class="mb-30">
     <img style="max-width: 100%" src="https://www.luxemontre.sg/wp-content/uploads/2018/12/LM.png" alt="">
-    <h4 class="text-center">Luxe Montre CRM</h4>
     <h6 class="text-center nonecase-font txt-grey">Enter your details below</h6>
 </div>	
 <div class="form-wrap">
