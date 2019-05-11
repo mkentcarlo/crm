@@ -13,7 +13,8 @@ class CustomerGroup extends Model
      */
     protected $fillable = [
         'name',
-        'sub_group'
+        'sub_group',
+        'list_id'
     ];
 
     public function customers() 

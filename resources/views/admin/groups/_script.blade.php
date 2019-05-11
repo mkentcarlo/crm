@@ -198,7 +198,9 @@
                                     showConfirmButton: true,
                                 });
                             } else {
-                                swal("Deleted!",data.msg, data.type); 
+                                var message = 'This group is being used by some contacts. Cannot delete it!';
+                                var info = (message == data.msg) ? 'Note!' : 'Deleted!';
+                                swal(info,data.msg, data.type); 
                                 $groupsTable.ajax.reload( null, false );
                             }    
                         } 

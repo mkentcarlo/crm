@@ -5,11 +5,14 @@ namespace App\Http\Controllers;
 use App\Services\GroupService;
 use App\Customer;
 use Illuminate\Http\Request;
+use FaimMedia;
+use App\CustomerGroup;
 
 class CustomerController extends Controller
 {
     protected $customerService;
     protected $groupService;
+    protected $mailchimp;
      /**
      * Create a new controller instance.
      *
@@ -17,7 +20,9 @@ class CustomerController extends Controller
      */
     public function __construct(GroupService $groupService)
     {
+        $apiKey = 'e86f5f6c67f5ab38a5ddf1f633e3d9fb-us20';
         $this->groupService = $groupService;
+        $this->mailchimp = new FaimMedia\MailChimp($apiKey);
     }
     
     public function ajaxRequest() {
@@ -46,15 +51,35 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-        $customer = new Customer($request->all());
-        if ($customer->save()) {
+        $groupId = CustomerGroup::find($request->group_id)->first()->list_id;
+        $list = $this->mailchimp->lists()->getById($groupId);
+        $member = $list->members()->add([
+            'email_address' => $request->email,
+            'merge_fields'  => [
+                'FNAME' => $request->firstname,
+                'LNAME' => $request->lastname,
+                'PHONE' => $request->contact
+            ],
+        ]);
+        if ($member) {
+            $customer = new Customer($request->all());
+            if ($customer->save()) {
+                return response()->json(
+                    [
+                        'success' => true,
+                        'msg' => 'Success'
+                    ]
+                );
+            }
+        } else {
             return response()->json(
                 [
-                    'success' => true,
-                    'msg' => 'Success'
+                    'success' => false,
+                    'msg' => 'Failed'
                 ]
             );
         }
+        
 
         return response()->json(
             [
@@ -98,7 +123,34 @@ class CustomerController extends Controller
     public function update(Request $request, $id)
     {
         $customer = Customer::find($id);
-
+        $groupId = CustomerGroup::find($request->group_id)->first()->list_id;
+        $list = $this->mailchimp->lists()->getById($groupId);
+        $member = $list->members()->getByEmail($customer->email);
+        if ($member) {
+            $member->set([
+                'email_address' => $request->email,
+                'merge_fields'  => [
+                    'FNAME' => $request->firstname,
+                    'LNAME' => $request->lastname,
+                    'PHONE' => $request->contact
+                ],
+            ]);
+            $member->save();
+        } else {
+            $groupId = CustomerGroup::find($customer->group_id)->first()->list_id;
+            $list = $this->mailchimp->lists()->getById($groupId);
+            $member = $list->members()->getByEmail($customer->email);
+            $member->delete();
+            $list->members()->add([
+                'email_address' => $request->email,
+                'merge_fields'  => [
+                    'FNAME' => $request->firstname,
+                    'LNAME' => $request->lastname,
+                    'PHONE' => $request->contact
+                ],
+            ]);
+        }
+        
         if ($customer->update($request->all())) {
             return response()->json(
                 [
@@ -126,7 +178,11 @@ class CustomerController extends Controller
     public function destroy($id)
     {
         $customer      = Customer::find($id);
-  
+        $groupId = CustomerGroup::find($customer->group_id)->first()->list_id;
+        $list = $this->mailchimp->lists()->getById($groupId);
+        $member = $list->members()->getByEmail($customer->email);
+        $member->delete();
+        
         if ($customer->delete()) {
             
             return response()->json(
