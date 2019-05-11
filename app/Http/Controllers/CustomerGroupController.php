@@ -149,10 +149,6 @@ class CustomerGroupController extends Controller
         $group      = CustomerGroup::find($id);
         $list = $this->mailchimp->lists()->getById($group->list_id);
         $members = $list->members()->getAll();
-        //print_r($members);
-        // $member = $list->members()->getByEmail('rosalesjhonnel123@gmail.com');
-        // print_r($member);
-        // die();
         if(count($members) > 0) {
             return response()->json(
                 [
