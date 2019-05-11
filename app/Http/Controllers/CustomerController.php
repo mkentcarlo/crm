@@ -53,12 +53,19 @@ class CustomerController extends Controller
     {
         $groupId = CustomerGroup::find($request->group_id)->first()->list_id;
         $list = $this->mailchimp->lists()->getById($groupId);
+        $street = $request->street_address ?? null;
+        $city = $request->city ?? null;
+        $state = $request->state ?? null;
+        $country = $request->country?? null;
+        $code = $request->postal_code ?? null;
+        $address = $street .' '. $city  .' '. $state .' '. $country .', '.$code;
         $member = $list->members()->add([
             'email_address' => $request->email,
             'merge_fields'  => [
                 'FNAME' => $request->firstname,
                 'LNAME' => $request->lastname,
-                'PHONE' => $request->contact
+                'PHONE' => $request->contact,
+                'ADDRESS' => $address
             ],
         ]);
         if ($member) {
@@ -126,13 +133,20 @@ class CustomerController extends Controller
         $groupId = CustomerGroup::find($request->group_id)->first()->list_id;
         $list = $this->mailchimp->lists()->getById($groupId);
         $member = $list->members()->getByEmail($customer->email);
+        $street = $request->street_address ?? null;
+        $city = $request->city ?? null;
+        $state = $request->state ?? null;
+        $country = $request->country?? null;
+        $code = $request->postal_code ?? null;
+        $address = $street .' '. $city  .' '. $state .' '. $country .', '.$code;
         if ($member) {
             $member->set([
                 'email_address' => $request->email,
                 'merge_fields'  => [
                     'FNAME' => $request->firstname,
                     'LNAME' => $request->lastname,
-                    'PHONE' => $request->contact
+                    'PHONE' => $request->contact,
+                    'ADDRESS' => $address
                 ],
             ]);
             $member->save();
@@ -146,7 +160,8 @@ class CustomerController extends Controller
                 'merge_fields'  => [
                     'FNAME' => $request->firstname,
                     'LNAME' => $request->lastname,
-                    'PHONE' => $request->contact
+                    'PHONE' => $request->contact,
+                    'ADDRESS' => $address
                 ],
             ]);
         }
@@ -182,7 +197,7 @@ class CustomerController extends Controller
         $list = $this->mailchimp->lists()->getById($groupId);
         $member = $list->members()->getByEmail($customer->email);
         $member->delete();
-        
+
         if ($customer->delete()) {
             
             return response()->json(
