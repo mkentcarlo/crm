@@ -6,10 +6,12 @@ use App\Services\GroupService;
 use App\CustomerGroup;
 use Illuminate\Http\Request;
 use App\Http\Requests\GroupFormRequest;
+use FaimMedia;
 
 class CustomerGroupController extends Controller
 {
     protected $groupService;
+    protected $mailchimp;
      /**
      * Create a new controller instance.
      *
@@ -17,7 +19,9 @@ class CustomerGroupController extends Controller
      */
     public function __construct(GroupService $groupService)
     {
+        $apiKey = 'e86f5f6c67f5ab38a5ddf1f633e3d9fb-us20';
         $this->groupService = $groupService;
+        $this->mailchimp = new FaimMedia\MailChimp($apiKey);
     }
     
     public function ajaxRequest() {
@@ -46,6 +50,28 @@ class CustomerGroupController extends Controller
     public function store(GroupFormRequest $request)
     {
         $group = new CustomerGroup($request->all());
+        $list = $this->mailchimp->lists()->create([
+            'name'     => $request->name,
+            'contact'  => [
+                'company'  => 'FaimMedia.nl',
+                'address1' => 'PO Box 1540',
+                'city'     => 'NIJMEGEN',
+                'state'    => 'GL',
+                'zip'      => '6501 BM',
+                'country'  => 'NL',
+            ],
+            'permission_reminder' => 'You signed up for updates on our website',
+            'campaign_defaults'   => [
+                'from_name'    => 'FaimMedia.nl',
+                'from_email'   => 'r_jhonnel@yahoo.com',
+                'subject'      => 'Newsletter',
+                'language'     => 'NL',
+            ],
+            'email_type_option' => false,
+        ]);
+
+        $group->list_id = $list->id;
+
         if ($group->save()) {
             return response()->json(
                 [
@@ -88,6 +114,11 @@ class CustomerGroupController extends Controller
     public function update(GroupFormRequest $request, $id)
     {
         $group = CustomerGroup::find($id);
+        $list = $this->mailchimp->lists()->getById($group->list_id);
+        $list->set([
+            'name' => $request->name
+        ]);
+        $list->save();
 
         if ($group->update($request->all())) {
             return response()->json(
@@ -116,18 +147,32 @@ class CustomerGroupController extends Controller
     public function destroy($id)
     {
         $group      = CustomerGroup::find($id);
-  
-        if ($group->delete()) {
-            
+        $list = $this->mailchimp->lists()->getById($group->list_id);
+        $members = $list->members()->getAll();
+        if(count($members) > 0) {
             return response()->json(
                 [
                     'success' => true,
-                    'title' => 'Deleted',
-                    'msg' => 'Group has been deleted!',
+                    'title' => 'Info!',
+                    'msg' => 'This group is being used by some contacts. Cannot delete it!',
                     'type' => 'success'
                 ]
             );
+        } else {
+            $list->delete();
+            if ($group->delete()) {
+                
+                return response()->json(
+                    [
+                        'success' => true,
+                        'title' => 'Deleted',
+                        'msg' => 'Group has been deleted!',
+                        'type' => 'success'
+                    ]
+                );
+            }
         }
+        
 
         return response()->json(
             [

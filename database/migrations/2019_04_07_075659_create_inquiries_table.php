@@ -17,8 +17,9 @@ class CreateInquiriesTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('email');
-            $table->text('description');
+            $table->text('product_name');
             $table->longText('inquiry');
+            $table->string('status')->nullable()->default('unread');
             $table->timestamps();
         });
     }

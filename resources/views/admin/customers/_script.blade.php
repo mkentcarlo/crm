@@ -203,7 +203,7 @@
                         if (result.success) {
                             successMsg(result.msg);
                             $('#updateModal').modal('hide');
-                            $groupsTable.ajax.reload( null, false );
+                            $customersTable.ajax.reload( null, false );
                         } else {
                             errorMsg(result.msg);
                         }  

@@ -4,8 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class CustomerGroup extends Model
+class Inquiry extends Model
 {
+    protected $table = 'inquiries';
     /**
      * The attributes that are mass assignable.
      *
@@ -13,12 +14,9 @@ class CustomerGroup extends Model
      */
     protected $fillable = [
         'name',
-        'sub_group',
-        'list_id'
+        'email',
+        'product_name',
+        'inquiry',
+        'status'
     ];
-
-    public function customers() 
-    {
-    	return $this->hasMany('App\Customer', 'group_id');
-    }
 }
