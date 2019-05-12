@@ -96,6 +96,12 @@ Route::group(
 
 		Route::get('/groups/all', 'CustomerGroupController@getGroups');
 
+		Route::get('/inquiries', 'InquiryController@index');
+		Route::get('/inquiries/{id}', 'InquiryController@show');
+		Route::get('/inquiries/action/marks', 'InquiryController@marks');
+		Route::get('/inquiries/action/delete/{id}', 'InquiryController@deleteInquiry');
+		Route::get('/inquiries/action/status/{id}', 'InquiryController@inquiryStatus');
+
 		Route::group(['middleware' => ['role:super admin']], function () {
 	    	Route::get('/roles', 'RolePermissionController@index')->name('view.role');
 			Route::get('/roles/ajaxRequest', 'RolePermissionController@ajaxRequest')->name('get.roles');
