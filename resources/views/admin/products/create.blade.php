@@ -68,23 +68,32 @@
 								</div>
 								<!--/row-->
 								<div class="row">
-									<div class="col-md-3">
+									<div class="col-md-2">
 										<div class="form-group">
-											<label class="control-label mb-10">Price</label>
+											<label class="control-label mb-10">Asking Price</label>
 											<div class="input-group">
 												<div class="input-group-addon"><i class="ti-money"></i></div>
 												<input type="text" class="form-control" id="price" name="price">
 											</div>
 										</div>
 									</div>
-									<div class="col-md-3">
+									<div class="col-md-2">
 										<div class="form-group">
-											<label class="control-label mb-10">Regular Price</label>
+											<label class="control-label mb-10">Selling Price</label>
 											<div class="input-group">
 												<div class="input-group-addon"><i class="ti-money"></i></div>
-												<input type="text" class="form-control" id="regular_price" name="regular_price">
+												<input type="text" class="form-control" id="price" name="price">
 											</div>
 										</div>
+									</div>
+									<div class="col-md-2">
+										<div class="form-group">
+											<label class="control-label mb-10">Buying Price</label>
+											<div class="input-group">
+												<div class="input-group-addon"><i class="ti-money"></i></div>
+												<input type="text" class="form-control" id="sale_price" name="sale_price">
+											</div>
+										</div>	
 									</div>
 									<!--/span-->
 									<div class="col-md-6">
@@ -116,16 +125,25 @@
 								</div>
 								<!--/row-->
 								<div class="row">
-									<div class="col-md-3">
+									<div class="col-md-2">
 										<div class="form-group">
-											<label class="control-label mb-10">Sale Price</label>
+											<label class="control-label mb-10">Regular Price</label>
+											<div class="input-group">
+												<div class="input-group-addon"><i class="ti-money"></i></div>
+												<input type="text" class="form-control" id="regular_price" name="regular_price">
+											</div>
+										</div>
+									</div>
+									<div class="col-md-2">
+										<div class="form-group">
+											<label class="control-label mb-10">Discounted Price</label>
 											<div class="input-group">
 												<div class="input-group-addon"><i class="ti-money"></i></div>
 												<input type="text" class="form-control" id="sale_price" name="sale_price">
 											</div>
 										</div>	
 									</div>
-									<div class="col-md-3">
+									<div class="col-md-2">
 										<div class="form-group">
 											<label class="control-label mb-10">Quantity</label>
 											<input type="text" class="form-control" id="stock_quantity" name="stock_quantity">
