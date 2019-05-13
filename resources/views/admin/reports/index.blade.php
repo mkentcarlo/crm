@@ -4,13 +4,13 @@
 	<!-- Title -->	
 	<div class="row heading-bg">
 		<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-			<h5 class="txt-dark">Reports</h5>
+			<h5 class="txt-dark">{{ str_replace('_',' ', strtoupper($invoiceType)) }} Report</h5>
 		</div>
 		<!-- Breadcrumb -->
 		<div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
 			<ol class="breadcrumb">
 				<li><a href="index.html">Dashboard</a></li>
-				<li><a href="#"><span>Reports</span></a></li>
+				<li><a href="#"><span>{{ str_replace('_',' ', strtoupper($invoiceType)) }} Report</span></a></li>
 			</ol>
 		</div>
 		<!-- /Breadcrumb -->
@@ -26,7 +26,7 @@
 						<h6 class="panel-title txt-dark">Roles List</h6>
 					</div> -->
 					<div class="pull-left">
-						Report List
+						{{ str_replace('_',' ', strtoupper($invoiceType)) }} Report
 					</div>
 					<div class="clearfix"></div>
 				</div>
