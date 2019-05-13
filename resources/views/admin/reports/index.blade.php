@@ -88,7 +88,21 @@
 							</div>
 						</div>
 					</div>
-						<div class="table-wrap">
+					<div class="row summary-report mt-25 mb-25">
+						<div class="col-md-12">
+							<p>
+								<strong>Summary report for: {{$date}}</strong>
+							</p>
+							<p>
+								The {{$invoiceType}} for {{$date}} is:
+							</p>
+							<p>Total Amount: {{number_format($total->sum('total_amount'), 2)}}</p>
+							<p>Cash: {{$cash_total}}</p>
+							<p>Credit Card: {{$card_total}}</p>
+							<p><button class="btn btn-gold">View Invoices</button></p>
+						</div>
+					</div>
+						<div class="table-wrap" hidden>
 							<div class="table-responsive">
 								<div id="datable_1_wrapper" class="dataTables_wrapper">
 									<table class="table display product-overview mb-30 dataTable" id="report-table" role="grid">

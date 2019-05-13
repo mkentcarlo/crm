@@ -112,5 +112,24 @@ class InvoiceService
         }
 
         return $weeks[$week];
-    }
+	}
+	
+	public function getInvoiceAmountsByPaymentMode($invoices, $field)
+	{
+		$total = 0;
+		foreach($invoices as $invoice) {
+			$additional_fields = json_decode($invoice->additional_fields);
+			if($field == 'card_amount' && isset($additional_fields->card_info)){
+				foreach($additional_fields->card_info as $c_info){
+					$total += isset($c_info->card_amount) ? $c_info->card_amount : 0;
+				}
+			}		
+			else{
+				if(isset($additional_fields->$field)){
+					$total += $additional_fields->$field;
+				}
+			}
+		}
+		return $total;
+	}
 }	
