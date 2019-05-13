@@ -50,7 +50,7 @@ class WoocommerceService
 
 	public function getCategories()
 	{
-		return DB::select("SELECT wpla_terms.* FROM wpla_terms LEFT JOIN wpla_term_taxonomy ON(wpla_terms.term_id = wpla_term_taxonomy.term_id) LEFT JOIN wpla_posts ON(wpla_posts.ID = wpla_terms.term_id) WHERE wpla_term_taxonomy.taxonomy = 'product_cat'");
+		return DB::select("SELECT wpla_terms.* FROM wpla_terms LEFT JOIN wpla_term_taxonomy ON(wpla_terms.term_id = wpla_term_taxonomy.term_id) LEFT JOIN wpla_posts ON(wpla_posts.ID = wpla_terms.term_id) WHERE wpla_term_taxonomy.taxonomy = 'product_cat' ORDER BY wpla_terms.name ASC");
 	}
 
 	public function getBrands()
