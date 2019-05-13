@@ -96,7 +96,7 @@
                     <a href="{{ url('/reports?invoice_type=repair') }}">Repair</a>
                 </li>
                 <li>
-                    <a href="{{ url('/reports?invoice_type=others') }}">Others</a>
+                    <a href="{{ url('/reports?invoice_type=others') }}">In vs Out</a>
                 </li>
             </ul>
         </li>

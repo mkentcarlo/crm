@@ -25,7 +25,7 @@
 									@foreach($invoice->additional_fields->in_out_data as $data)
 									<tr>
 										<td><input type="text" class="form-control" name="description[]" value="{{ $data->description ?? null }}"></td>
-										<td><input type="text" class="form-control amount" name="amount[]" value="{{ $data->description ?? 0 }}"></td>
+										<td><input type="text" class="form-control amount" name="amount[]" value="{{ $data->amount ?? 0 }}"></td>
 										<td><select class="form-control" name="payment_mode[]"><option value="cash" {{ $data->payment_mode == 'cash' ? 'selected="selected"' : '' }}>Cash</option><option value="cheque" {{ $data->payment_mode == 'cheque' ? 'selected="selected"' : '' }}>Cheque</option></select></td>
 										<td class="text-center"><a href="javascript;" class="text-inverse delete pr-10" title="Delete"><i class="zmdi zmdi-delete txt-danger"></i></a><a href="#" class="text-inverse pr-10 form-load add-row" title="Add row" id="1"><i class="zmdi zmdi-plus txt-warning"></i></a></td>
 									</tr>
@@ -41,10 +41,10 @@
 							</tbody>
 							<tfoot>
 								<tr>
-									<input type="hidden" name="total" class="overall-total" value="{{ $invoice->total}}">
+									<input type="hidden" name="total" class="overall-total" value="{{ $invoice->total_amount}}">
 									<th></th>
 									<th class="text-right">TOTAL</th>
-									<th class="overall-total">0.00</th>
+									<th class="overall-total">{{ number_format($invoice->total_amount, 2)}}</th>
 									<th></th>
 								</tr>
 							</tfoot>

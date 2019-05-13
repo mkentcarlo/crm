@@ -43,14 +43,14 @@
                 var week = ($('#select-week').val() == '') ? '' : '&week=' +$('#select-week').val();
                 if (selected == 'year') {
                    
-                    location.href = '/reports?current=year'+ month + week;
+                    location.href = '/reports?invoice_type='+type+'&current=year';
                 } 
                 else if(selected == 'month'){
-                    location.href = '/reports?current=month' + year + week;
+                    location.href = '/reports?invoice_type='+type+'&current=month';
                 } 
 
                 else if(selected == 'week'){
-                    location.href = '/reports?current=week' + year + month;
+                    location.href = '/reports?invoice_type='+type+'&current=week';
                 }
             });
 
@@ -58,18 +58,17 @@
                 var current = $('#current').val();
                 var month = ($(this).val() == '') ? '' : '&month=' + $(this).val();
                 var year = ($('#select-year').val() == '') ? '' : '&year=' +$('#select-year').val();
-                var week = ($('#select-week').val() == '') ? '' : '&week=' +$('#select-week').val();
                 if (current == 'month' || current == '') {
-                    month = ($(this).val() == '') ? '' : '?month=' + $(this).val();
-                    var url = (month == '') ? '?year=' + $('#select-year').val() + week : '?month=' + $(this).val() + year + week;
-                    location.href = '/reports' + url;
+                    month = ($(this).val() == '') ? '' : '&month=' + $(this).val();
+                    var url = (month == '') ? '&year=' + $('#select-year').val() + week : '&month=' + $(this).val() + year + week;
+                    location.href = '/reports?invoice_type='+type + url;
                 } else {
                     if (current == 'year') {
-                        location.href = '/reports?current=year'+ month + week;
+                        location.href = '/reports?invoice_type='+type+'&current=year'+ month + week;
                     } 
 
                     else if(current == 'week'){
-                        location.href = '/reports?current=week' + year + month;
+                        location.href = '/reports?invoice_type='+type+'&current=week' + year + month;
                     }
                 }
             });
@@ -87,7 +86,7 @@
                     location.href = '/reports' + url;
                 } else {
                     if (current == 'year') {
-                        location.href = '/reports?current=year'+ month + week;
+                        location.href = '/reports?invoice_type='+type+'&current=year'+ month + week;
                     } 
 
                     else if(current == 'month'){
@@ -103,21 +102,24 @@
                 var week = ($('#select-week').val() == '') ? '' : '&week=' +$('#select-week').val();
                 var month = ($('#select-month').val() == '') ? '' : '&month=' +$('#select-month').val();
                 if (current == 'year' || current == '') {
-                    year = ($(this).val() == '') ? '' : '?year=' + $(this).val();
-                    location.href = '/reports' + year + week + month;
+                    year = ($(this).val() == '') ? '' : '&year=' + $(this).val();
+                    location.href = '/reports?invoice_type='+type+'' + year + week + month;
 
-                    var url = (year == '') ? '?month=' + $('#select-month').val() + week : '?year=' + $(this).val() + month + week;
-                    location.href = '/reports' + url;
+                    var url = (year == '') ? '&month=' + $('#select-month').val() + week : '&year=' + $(this).val() + month + week;
+                    location.href = '/reports?invoice_type='+type + url;
                 } else {
                     if (current == 'week') {
-                        location.href = '/reports?current=week'+ month + year;
+                        location.href = '/reports?invoice_type='+type+'&current=week'+ month + year;
                     } 
 
                     else if(current == 'month'){
-                        location.href = '/reports?current=month' + week + year;
+                        location.href = '/reports?invoice_type='+type+'&current=month' + week + year;
                     }
                 }
             });
+            $('.view-invoices').click(function(){
+                $('.reports-table').slideToggle();
+            })
         });    
     </script>
 @endpush

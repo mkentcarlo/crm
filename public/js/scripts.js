@@ -68,6 +68,24 @@ function deleteMessage(title, text) {
     });
 }
 
+function removeParam(key, sourceURL) {
+    var rtn = sourceURL.split("?")[0],
+        param,
+        params_arr = [],
+        queryString = (sourceURL.indexOf("?") !== -1) ? sourceURL.split("?")[1] : "";
+    if (queryString !== "") {
+        params_arr = queryString.split("&");
+        for (var i = params_arr.length - 1; i >= 0; i -= 1) {
+            param = params_arr[i].split("=")[0];
+            if (param === key) {
+                params_arr.splice(i, 1);
+            }
+        }
+        rtn = rtn + "?" + params_arr.join("&");
+    }
+    return rtn;
+}
+
 
 //date picker
 $('.datepicker').datetimepicker({
@@ -87,6 +105,8 @@ $('.daterange-datepicker').daterangepicker({
     buttonClasses: ['btn', 'btn-sm'],
           applyClass: 'btn-info',
           cancelClass: 'btn-default'
+  }, function(start, end, label){
+      window.location = removeParam("start" ,removeParam("end", window.location.href)) + "&start=" + start.format('YYYY-MM-DD') + "&end=" + end.format('YYYY-MM-DD');
   });
 
 //select2

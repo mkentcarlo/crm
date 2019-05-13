@@ -17,7 +17,7 @@ class InvoiceService
 	}
 
 
-	public function getReports($request) 
+	public function getReports($request, $invoice_type = '') 
 	{
 		return Invoice::where(function($query) use ($request) {
 			if ($request->current != '') {
@@ -57,6 +57,8 @@ class InvoiceService
 				$year = $request->year ? $request->year : '';
 				$month = $request->month ? $request->month : '';
 				$week = $request->week ? $request->week : '';
+				$start = $request->start ? $request->start : '';
+				$end = $request->end ? $request->end : '';
 				if ($week != '' && $month != '' && $year != '') {
 					$dates = $this->getDates($year, $month, $week, '');
 					$query->whereBetween('created_at', [$dates[0], end($dates)]);
@@ -68,9 +70,13 @@ class InvoiceService
 					if ($year != '') {
 						$query->whereYear('created_at', $year);
 					}
+
+				}
+				if($start != '' && $end != ''){
+					$query->whereBetween('created_at', [$start, $end]);
 				}
 			}
-		})->where('invoice_type', $request->invoice_type);
+		})->where('invoice_type', $invoice_type ? $invoice_type  : $request->invoice_type);
 	}
 
 	public function getTransactions() 
@@ -116,8 +122,8 @@ class InvoiceService
 	
 	public function getInvoiceAmountsByPaymentMode($invoices, $field)
 	{
-		$total = 0;
-		foreach($invoices as $invoice) {
+		$total = 0;		
+		foreach($invoices->get() as $invoice) {
 			$additional_fields = json_decode($invoice->additional_fields);
 			if($field == 'card_amount' && isset($additional_fields->card_info)){
 				foreach($additional_fields->card_info as $c_info){
@@ -131,5 +137,10 @@ class InvoiceService
 			}
 		}
 		return $total;
+	}
+
+	public function calculateProfitorLoss()
+	{
+
 	}
 }	

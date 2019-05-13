@@ -4,13 +4,13 @@
 	<!-- Title -->	
 	<div class="row heading-bg">
 		<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-			<h5 class="txt-dark">{{ str_replace('_',' ', strtoupper($invoiceType)) }} Report</h5>
+			<h5 class="txt-dark">{{ $invoiceType=='others' ? 'In vs Out' : str_replace('_',' ', ucfirst($invoiceType)) }} Report</h5>
 		</div>
 		<!-- Breadcrumb -->
 		<div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
 			<ol class="breadcrumb">
 				<li><a href="index.html">Dashboard</a></li>
-				<li><a href="#"><span>{{ str_replace('_',' ', strtoupper($invoiceType)) }} Report</span></a></li>
+				<li><a href="#"><span>{{ $invoiceType=='others' ? 'In vs Out' : str_replace('_',' ', ucfirst($invoiceType)) }} Report</span></a></li>
 			</ol>
 		</div>
 		<!-- /Breadcrumb -->
@@ -26,7 +26,7 @@
 						<h6 class="panel-title txt-dark">Roles List</h6>
 					</div> -->
 					<div class="pull-left">
-						{{ str_replace('_',' ', strtoupper($invoiceType)) }} Report
+						{{ $invoiceType=='others' ? 'In vs Out' : str_replace('_',' ', ucfirst($invoiceType)) }} Report
 					</div>
 					<div class="clearfix"></div>
 				</div>
@@ -38,7 +38,7 @@
 							<label for="">Select Year</label>
 							<select class="form-control" data-style="form-control btn-default btn-outline" tabindex="-98" id="select-year">
 								<option value="">All</option>	
-								@for($x=2018;$x<=2030;$x++)
+								@for($x=2019;$x<=2019;$x++)
 								<option value="{{$x}}" {{ ($x == $year) ? 'selected="selected"' : ''}}>{{$x}}</option>	
 								@endfor
 							</select>
@@ -91,26 +91,48 @@
 					<div class="row summary-report mt-25 mb-25">
 						<div class="col-md-12">
 							<p>
-								<strong>Summary report for: {{$date}}</strong>
+								<strong>Summary report for: {{$date_string}}</strong>
 							</p>
-							<p>
-								The {{$invoiceType}} for {{$date}} is:
-							</p>
-							<p>Total Amount: {{number_format($total->sum('total_amount'), 2)}}</p>
-							<p>Cash: {{$cash_total}}</p>
-							<p>Credit Card: {{$card_total}}</p>
-							<p><button class="btn btn-gold">View Invoices</button></p>
+							<br>
+							
+							@if ($invoiceType != 'others')
+								<p>
+									The {{$invoiceType}} for {{$date_string}} is: {{number_format($total->sum('total_amount'), 2)}}
+								</p>
+								<br>
+								<p>Total Amount: {{number_format($total->sum('total_amount'), 2)}}</p>
+								<br>
+								<p>Cash: {{number_format($cash_total, 2)}}</p>
+								<p>Credit Card: {{number_format($card_total,2)}}</p>
+								<p>Pay Now: {{number_format($paynow_total, 2)}}</p>
+								<p>Bank Transfer: {{number_format($bank_transfer_total, 2)}}</p>
+								<p>Net: {{number_format($net_total, 2)}}</p>
+								<p>Installment: {{number_format($installment_total,2)}}</p>
+								<p>Others: {{number_format($others_total, 2)}}</p>
+								<br>
+								<p><button class="btn btn-gold view-invoices">View Invoices</button></p>
+							@else
+									<br>
+								<p>The {{strtolower($profit_or_loss)}} for {{$date_string}} is: {{number_format($total_overall,2)}}</p>
+								<br>
+								<h4>SUMMARY</h4>
+								<br>
+								<p>Sales: {{number_format($sales->sum('total_amount'), 2)}}</p>
+								<p>Purchases: {{number_format($purchases->sum('total_amount'), 2)}}</p>
+								<p>Others: {{number_format($others->sum('total_amount'), 2)}}</p>
+								<hr>
+								<h5>{{$profit_or_loss}}: <strong>{{number_format($total_overall, 2)}}</strong></h5>
+							@endif
+							
 						</div>
 					</div>
-						<div class="table-wrap" hidden>
-							<div class="table-responsive">
-								<div id="datable_1_wrapper" class="dataTables_wrapper">
-									<table class="table display product-overview mb-30 dataTable" id="report-table" role="grid">
+						<div class="table-wrap">
+							<div class="table-responsive reports-table" hidden>
+									<table class="table display mb-30" id="report-table" role="grid" style="width: 100% !important">
 										<thead>
 											<tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="datable_1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Photo: activate to sort column descending">#Invoice</th><th class="sorting_asc" tabindex="0" aria-controls="datable_1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Photo: activate to sort column descending">Description</th><th class="sorting_asc" tabindex="0" aria-controls="datable_1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Photo: activate to sort column descending">Amount</th><th class="sorting_asc" tabindex="0" aria-controls="datable_1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Photo: activate to sort column descending">Status</th><th class="sorting_asc" tabindex="0" aria-controls="datable_1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Photo: activate to sort column descending">Issue Date</th><th class="sorting_asc" tabindex="0" aria-controls="datable_1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Photo: activate to sort column descending">Due Date</th><th class="sorting" tabindex="0" aria-controls="datable_1" rowspan="1" colspan="1" aria-label="Actions: activate to sort column ascending">Actions</th></tr>
 										</thead>
 									</table>
-								</div>	
 							</div>
 						</div>	
 					</div>	
