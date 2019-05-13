@@ -155,4 +155,39 @@ class ProductController extends Controller
 
         return view('admin.products.detail', compact('product', 'categories', 'brands'));
     } 
+
+    public function updateSellingPrice(Request $request)
+    {
+        $price = $request->price;
+        $productId = $request->id;
+
+        $exist = DB::select("SELECT meta_key FROM wpla_postmeta WHERE meta_key='selling_price' AND post_id = '$productId'");
+
+        if (!$exist) {
+            $insert = DB::insert("INSERT INTO wpla_postmeta (meta_key, meta_value,post_id) values (?, ?, ?)", ['selling_price', $price, $productId]);
+
+            return response()->json(
+                [
+                    'success' => true,
+                    'msg' => 'Success'
+                ]
+            );
+        } else {
+            $update = DB::update("UPDATE wpla_postmeta set meta_value = '$price' where meta_key='selling_price' AND post_id = '$productId'");
+
+            return response()->json(
+                [
+                    'success' => true,
+                    'msg' => 'Success'
+                ]
+            );
+        }
+
+        return response()->json(
+            [
+                'success' => false,
+                'msg' => 'Failed'
+            ]
+        );
+    }
 }

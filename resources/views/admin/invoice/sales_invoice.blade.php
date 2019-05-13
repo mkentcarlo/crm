@@ -44,7 +44,7 @@
 					<div class="form-group row">
 						<div class="col-md-6">
 							<label class="control-label mb-10">Quantity:</label>
-							<input type="text" class="form-control" id="quantity" value="1">
+							<input type="text" class="form-control" id="quantity" value="1" readonly="readonly">
 						</div>
 						<div class="col-md-6 mt-30">
 							<a href="#" class="btn btn-gold btn-block" id="add_quantity">Add</a>
