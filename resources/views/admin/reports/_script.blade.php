@@ -7,7 +7,7 @@
         });
 
         $(function () {
-
+            var type = "{{ $invoiceType }}";
             $reportTable = $('#report-table').DataTable( {
                 serverSide: true,
                 processing: true,
@@ -19,6 +19,7 @@
                         d.year = $('body').find('#select-year').val();
                         d.month = $('body').find('#select-month').val();
                         d.week = $('body').find('#select-week').val();
+                        d.invoice_type = type;
                     },
                 },
                 dom: 'lBfrtip',

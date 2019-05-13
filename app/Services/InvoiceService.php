@@ -70,7 +70,7 @@ class InvoiceService
 					}
 				}
 			}
-		});
+		})->where('invoice_type', $request->invoice_type);
 	}
 
 	public function getTransactions() 

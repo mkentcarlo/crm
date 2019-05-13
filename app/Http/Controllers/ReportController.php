@@ -27,8 +27,15 @@ class ReportController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {   
+        $type = ['sales', 'consign_in', 'consign_out', 'purchase', 'repair', 'others'];
+        
+        if ($request->invoice_type == null || !in_array($request->invoice_type, $type)) {
+            return redirect('/dashboard');
+        }
+        $invoiceType = $request->invoice_type;
+
         $current = \Request::get('current') ?  \Request::get('current') : '';
         $year = \Request::get('year') ?  \Request::get('year') : '';
         $month = \Request::get('month') ?  \Request::get('month') : '';
@@ -53,10 +60,10 @@ class ReportController extends Controller
         }
 
         if($current == '' && $year == '' && ($month || $week)) {
-            return redirect('/reports');
+            return redirect('/reports?invoice_type='.$invoiceType);
         }
 
-        return view('admin.reports.index', compact('week','month','year','current'));
+        return view('admin.reports.index', compact('week','month','year','current', 'invoiceType'));
     }  
 
     public function viewPdf($id)

@@ -33,9 +33,9 @@
                 </li>
             </ul>
         </li>
-        <!-- <li>
-            <a href="queries.php" class=""><div class="pull-left"><i class="fa fa-envelope-square mr-20" aria-hidden="true"></i><span class="right-nav-text">Enquiries </span></div><div class="clearfix"></div></a>
-        </li> -->
+        <li>
+            <a href="{{ url('/inquiries') }}" class=""><div class="pull-left"><i class="fa fa-envelope-square mr-20" aria-hidden="true"></i><span class="right-nav-text">Enquiries </span></div><div class="clearfix"></div></a>
+        </li>
         <li>
             <a href="javascript:void(0);" data-toggle="collapse" data-target="#app_dr"><div class="pull-left"><i class="zmdi zmdi-time mr-20"></i><span class="right-nav-text">Watches </span></div><div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div><div class="clearfix"></div></a>
             <ul id="app_dr" class="collapse collapse-level-1">
@@ -77,7 +77,28 @@
             </ul>
         </li>
         <li>
-            <a href="{{ route('view.report') }}" class=""><div class="pull-left"><i class="fa fa-bar-chart-o mr-20" aria-hidden="true"></i><span class="right-nav-text">Reports </span></div><div class="clearfix"></div></a>
+            <!-- <a href="{{ route('view.report') }}" class=""><div class="pull-left"><i class="fa fa-bar-chart-o mr-20" aria-hidden="true"></i><span class="right-nav-text">Reports </span></div><div class="clearfix"></div></a> -->
+             <a href="javascript:void(0);" data-toggle="collapse" data-target="#reportmgt" class=""><div class="pull-left"><i class="fa fa-bar-chart-o mr-20" aria-hidden="true"></i><span class="right-nav-text">Report Management </span></div><div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div><div class="clearfix"></div></a>
+            <ul id="reportmgt" class="collapse collapse-level-1">
+                <li>
+                    <a href="{{ url('/reports?invoice_type=sales') }}">Sales</a>
+                </li>
+                <li>
+                    <a href="{{ url('/reports?invoice_type=consign_in') }}">Consign In</a>
+                </li>
+                <li>
+                    <a href="{{ url('/reports?invoice_type=consign_out') }}">Consign Out</a>
+                </li>
+                <li>
+                    <a href="{{ url('/reports?invoice_type=purchase') }}">Purchase</a>
+                </li>
+                <li>
+                    <a href="{{ url('/reports?invoice_type=repair') }}">Repair</a>
+                </li>
+                <li>
+                    <a href="{{ url('/reports?invoice_type=others') }}">Others</a>
+                </li>
+            </ul>
         </li>
     </ul>
 </div>
