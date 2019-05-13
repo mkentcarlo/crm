@@ -82,9 +82,38 @@ class InvoiceController extends Controller
                     $data['cash_amount'] = $request->cash_amount;
                 }
 
+                if (in_array('bank_transfer', $request->payment_method)) {
+                    $data['bank_transfer_amount'] = $request->bank_transfer_amount;
+                }
+
+                if (in_array('pay_now', $request->payment_method)) {
+                    $data['pay_now_name'] = $request->pay_now_name;
+                    $data['pay_now_amount'] = $request->pay_now_amount;
+                }
+
+                if (in_array('net', $request->payment_method)) {
+                    $data['net_amount'] = $request->net_amount;
+                }
+
+                if (in_array('net', $request->payment_method)) {
+                    $data['net_amount'] = $request->net_amount;
+                }
+
+                if (in_array('others', $request->payment_method)) {
+                    $data['others_specify'] = $request->others_specify;
+                    $data['others_amount'] = $request->others_amount;
+                }
+
+                if (in_array('installment', $request->payment_method)) {
+                    $data['installment_amount'] = $request->installment_amount;
+                    $data['installment_duration'] = $request->installment_duration;
+                }
+
                 if (in_array('credit_card', $request->payment_method)) {
                     $cardData = [];
-                    foreach($request->card_name as $key => $value) {
+                    foreach($request->card_type as $key => $value) {
+                        $tmp['card_type'] = $request->card_type[$key];
+                        $tmp['bank_name'] = $request->bank_name[$key];
                         $tmp['card_name'] = $request->card_name[$key];
                         $tmp['card_number'] = $request->card_number[$key];
                         $tmp['card_amount'] = $request->card_amount[$key];
@@ -281,7 +310,7 @@ class InvoiceController extends Controller
         }
 
         if($invoice) {
-            return redirect('/invoice')->with('success', 'Invoice Successfully Created.');
+            return redirect('/invoice?invoice_type='.$request->invoice_type)->with('success', 'Invoice Successfully Created.');
         }
 
         return Redirect::back()->withErrors(['msg', 'There something error found.']);
@@ -326,9 +355,38 @@ class InvoiceController extends Controller
                     $data['cash_amount'] = $request->cash_amount;
                 }
 
+                if (in_array('bank_transfer', $request->payment_method)) {
+                    $data['bank_transfer_amount'] = $request->bank_transfer_amount;
+                }
+
+                if (in_array('pay_now', $request->payment_method)) {
+                    $data['pay_now_name'] = $request->pay_now_name;
+                    $data['pay_now_amount'] = $request->pay_now_amount;
+                }
+
+                if (in_array('net', $request->payment_method)) {
+                    $data['net_amount'] = $request->net_amount;
+                }
+
+                if (in_array('net', $request->payment_method)) {
+                    $data['net_amount'] = $request->net_amount;
+                }
+
+                if (in_array('others', $request->payment_method)) {
+                    $data['others_specify'] = $request->others_specify;
+                    $data['others_amount'] = $request->others_amount;
+                }
+
+                if (in_array('installment', $request->payment_method)) {
+                    $data['installment_amount'] = $request->installment_amount;
+                    $data['installment_duration'] = $request->installment_duration;
+                }
+
                 if (in_array('credit_card', $request->payment_method)) {
                     $cardData = [];
-                    foreach($request->card_name as $key => $value) {
+                    foreach($request->card_type as $key => $value) {
+                        $tmp['card_type'] = $request->card_type[$key];
+                        $tmp['bank_name'] = $request->bank_name[$key];
                         $tmp['card_name'] = $request->card_name[$key];
                         $tmp['card_number'] = $request->card_number[$key];
                         $tmp['card_amount'] = $request->card_amount[$key];
@@ -574,7 +632,7 @@ class InvoiceController extends Controller
         }
 
         if($invoice) {
-            return redirect('/invoice')->with('success', 'Invoice Successfully Updated.');
+            return redirect('/invoice?invoice_type='.$request->invoice_type)->with('success', 'Invoice Successfully Updated.');
         }
 
         return Redirect::back()->withErrors(['msg', 'There something error found.']);

@@ -119,7 +119,7 @@
 										<div class="col-md-6">
 										
 											<label>Name</label>
-											<input type="text" name="pay_now_amount" class="form-control">
+											<input type="text" name="pay_now_name" class="form-control">
 										</div>
 										<div class="col-md-6">
 											<label>Amount</label>
@@ -171,10 +171,10 @@
 										</div>
 										<div class="col-md-12 form-group">
 											<label>Duration</label> <br>
-											<input type="radio" name="installment_duration" class=""> 6 months 
-											<input type="radio" name="installment_duration" class=""> 12 months 
-											<input type="radio" name="installment_duration" class=""> 24 months
-											<input type="radio" name="installment_duration" class=""> 36 months
+											<input type="radio" name="installment_duration" value="6 months"> 6 months 
+											<input type="radio" name="installment_duration" value="12 months"> 12 months 
+											<input type="radio" name="installment_duration" value="24 months"> 24 months
+											<input type="radio" name="installment_duration" value="36 months"> 36 months
 										</div>
 									</div>
 									<div id="credit_card" class="mt-15" hidden>
@@ -195,11 +195,11 @@
 												<tr>
 													<td>
 													<select type="text" name="card_type[]" class="form-control">
-														<option>amex</option>
-														<option>visa</option>
-														<option>master</option>
-														<option>jcb</option>
-														<option>china unionpay</option>
+														<option value="amex">amex</option>
+														<option value="visa">visa</option>
+														<option value="master">master</option>
+														<option value="jcb">jcb</option>
+														<option value="china unionpay">china unionpay</option>
 													</select>
 													</td>
 													<td><input type="text" name="bank_name[]" class="form-control"></td>
