@@ -63,7 +63,14 @@ class ReportController extends Controller
             return redirect('/reports?invoice_type='.$invoiceType);
         }
 
-        return view('admin.reports.index', compact('week','month','year','current', 'invoiceType'));
+        $total = app()->make('App\Services\InvoiceService')->getInvoiceByInvoiceTypes(['sales']);
+        
+        $date = ""; // range or year month
+
+        $cash_total = app()->make('App\Services\InvoiceService')->getInvoiceAmountsByPaymentMode($total, 'cash_amount');
+        $card_total = app()->make('App\Services\InvoiceService')->getInvoiceAmountsByPaymentMode($total, 'card_amount');
+
+        return view('admin.reports.index', compact('week','month','year','current', 'invoiceType', 'total', 'date', 'cash_total', 'card_total'));
     }  
 
     public function viewPdf($id)
