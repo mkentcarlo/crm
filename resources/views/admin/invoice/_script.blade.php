@@ -250,5 +250,5 @@
                 });
             });
         });    
-    </script>
+    </script>   
 @endpush
