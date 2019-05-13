@@ -26,9 +26,9 @@
 						@endforeach
 						</select>
 					<p class="mt-20" id="street_address">795 Folsom Ave, Suite 600</p>
-					<p>San Francisco, CA 94107</p>
-					<p>P:(133) 456-7890</p>
-					<p>jsmith@email.com</p>
+					<p id="code_state_country">San Francisco, CA 94107</p>
+					<p id="phone">P:(133) 456-7890</p>
+					<p id="email">jsmith@email.com</p>
 				</div>
 				<div class="clearfix"></div>
 				<hr class="light-grey-hr mt-30">

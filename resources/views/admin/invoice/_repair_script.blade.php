@@ -23,7 +23,15 @@
                     });
                 },
                 success:    function (result) {
-                    $('#street_address').text(result.street_address);
+                     var street_address = (result.street_address != null) ? result.street_address : '';
+                        var city = (result.city != null) ? ' ,' + result.city : '';
+                        var country = (result.country != null) ? result.country : '';
+                        var state = (result.state != null) ? ' ,'+result.state : '';
+                        var postal_code = (result.postal_code != null) ? ' '+result.postal_code : '';
+                        $('#street_address').text(street_address + city);
+                        $('#code_state_country').text(country + state + postal_code);
+                    $('#phone').text('P:' + result.contact);
+                    $('#email').text(result.email);
                     swal.close();
                 }   
             });     
@@ -44,7 +52,15 @@
                         });
                     },
                     success:    function (result) {
-                        $('#street_address').text(result.street_address);
+                      var street_address = (result.street_address != null) ? result.street_address : '';
+                        var city = (result.city != null) ? ' ,' + result.city : '';
+                        var country = (result.country != null) ? result.country : '';
+                        var state = (result.state != null) ? ' ,'+result.state : '';
+                        var postal_code = (result.postal_code != null) ? ' '+result.postal_code : '';
+                        $('#street_address').text(street_address + city);
+                        $('#code_state_country').text(country + state + postal_code);
+                    $('#phone').text('P:' + result.contact);
+                    $('#email').text(result.email);
                         swal.close();
                     }   
                 });     
