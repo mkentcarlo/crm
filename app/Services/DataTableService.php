@@ -20,8 +20,8 @@ class DataTableService  {
             return $product['brands'];
        })
         ->addColumn('action', function($product) {
-        $product = InvoiceDetail::where('product_id', $product['id'])->first();
-        if ($product) {
+        $exist = InvoiceDetail::where('product_id', $product['id'])->first();
+        if ($exist) {
             $action = '<a href="'.url('products/detail/'.$product['id']).'" class="text-inverse view" title="View"><i class="zmdi zmdi-eye txt-warning pr-10"></i></a> Sold';
         } else {
             $action = '<a href="'.url('products/edit/'.$product['id']).'" class="text-inverse pr-10 form-load" title="Edit"><i class="zmdi zmdi-edit txt-warning"></i></a><a href="'.url('products/detail/'.$product['id']).'" class="text-inverse view" title="View"><i class="zmdi zmdi-eye txt-warning pr-10"></i></a><a href="'.url('products/delete/'.$product['id']).'" class="text-inverse delete" title="Delete"><i class="zmdi zmdi-delete txt-danger"></i></a>';
