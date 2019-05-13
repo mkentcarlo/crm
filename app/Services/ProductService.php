@@ -29,6 +29,7 @@ class ProductService
             $img_path = $this->wooService->get_image_path($img_dir, 'thumbnail', $img_file);
 	        $tmp['id'] = $product->ID;
 	        $tmp['name'] = $product->post_title;
+	        $tmp['short_description'] = $product->post_excerpt;
 	        $tmp['img_path'] = $img_path;
 	        $tmp['categories'] = implode('', array_column($this->wooService->getProductCategories($product->ID), 'name'));
 	        $tmp['brands'] = implode('', array_column($this->wooService->getProductBrands($product->ID), 'name'));

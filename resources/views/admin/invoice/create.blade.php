@@ -19,7 +19,7 @@
 	<!-- /Title -->
 	<div class="row">
 		<div class="col-sm-12">
-			<form method="POST" action="{{ route('store.invoice') }}">
+			<form method="POST" action="{{ route('store.invoice') }}" id="invoice-form">
 				{{ csrf_field() }}
 				@if($invoiceType == 'sales')
 					@include('admin.invoice.sales_invoice')

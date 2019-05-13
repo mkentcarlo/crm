@@ -167,6 +167,57 @@
                     $(this).addClass('checked');
                 }
             });
+
+            $('#invoice-form').submit(function(e) { 
+                if(isNaN($('.total_amount').val()) || $('.total_amount').val() < 1) {
+                    alert('total amount must have valid value, need to update product price');
+                    e.preventDefault();
+                } else {
+                    $(this).submit();
+                }
+            });
+
+            $('.customer-dropdown').select2({matcher: function(params, data){
+                // Always return the object if there is nothing to compare
+                if ($.trim(params.term) === '') {
+                    return data;
+                }
+
+                // Check if the data occurs
+                if ($(data.element).data('email').toString().indexOf(params.term) > -1) {
+                    return data;
+                }
+
+                if ($(data.element).data('contact').toString().indexOf(params.term) > -1) {
+                    return data;
+                }
+
+                // If it doesn't contain the term, don't return anything
+                return null;
+            } });
+
+            $('.product-dropdown').select2({matcher: function(params, data){
+                // Always return the object if there is nothing to compare
+                if ($.trim(params.term) === '') {
+                    return data;
+                }
+
+                // Check if the data occurs
+                if ($(data.element).data('title').toString().indexOf(params.term) > -1) {
+                    return data;
+                }
+
+                if ($(data.element).data('brand').toString().indexOf(params.term) > -1) {
+                    return data;
+                }
+
+                if ($(data.element).data('desc').toString().indexOf(params.term) > -1) {
+                    return data;
+                }
+
+                // If it doesn't contain the term, don't return anything
+                return null;
+            } });
         });    
     </script>
 @endpush

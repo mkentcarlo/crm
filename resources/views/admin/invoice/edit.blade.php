@@ -19,7 +19,7 @@
 	<!-- /Title -->
 	<div class="row">
 		<div class="col-sm-12">
-			<form method="POST" action="{{ route('update.invoice', $invoice->id) }}">
+			<form method="POST" action="{{ route('update.invoice', $invoice->id) }}" id="invoice-form">
 				{{ csrf_field() }}
 				@if($invoiceType == 'sales')
 					@include('admin.invoice.edit_sales_invoice')
