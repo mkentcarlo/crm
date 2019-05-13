@@ -33,9 +33,17 @@ class InvoiceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {   
-        return view('admin.invoice.index');
+        $type = ['sales', 'consign_in', 'consign_out', 'purchase', 'repair', 'others'];
+        
+        if ($request->invoice_type == null || !in_array($request->invoice_type, $type)) {
+            return redirect('/dashboard');
+        }
+
+        $invoice = $request->invoice_type;
+
+        return view('admin.invoice.index', compact('invoice'));
     }  
 
     /**
@@ -45,10 +53,15 @@ class InvoiceController extends Controller
      */
     public function create(Request $request)
     {
-        $invoiceType = ($request->invoice_type) ? $request->invoice_type : 'sales';
+        $type = ['sales', 'consign_in', 'consign_out', 'purchase', 'repair', 'others'];
+        
+        if ($request->invoice_type == null || !in_array($request->invoice_type, $type)) {
+            return redirect('/dashboard');
+        }
+
+        $invoiceType = $request->invoice_type;
         $customers = $this->customerService->getCustomers();
         $products = $this->productService->getProducts();
-        // print_r($products);
         
         return view('admin.invoice.create', compact('customers', 'products', 'invoiceType'));
     } 
@@ -276,10 +289,17 @@ class InvoiceController extends Controller
 
     public function edit($invoiceId, Request $request)
     {
-        $invoice = Invoice::where('id', $invoiceId)->first();
+        
+        $type = ['sales', 'consign_in', 'consign_out', 'purchase', 'repair', 'others'];
+        
+        if ($request->invoice_type == null || !in_array($request->invoice_type, $type)) {
+            return redirect('/dashboard');
+        }
+
+        $invoice = Invoice::where('id', $invoiceId)->where('invoice_type', $request->invoice_type)->first();
 
         if ($invoice === null) {
-            return redirect('/invoice');
+            return redirect('/dashboard');
         }
 
         $invoiceType = $invoice->invoice_type;

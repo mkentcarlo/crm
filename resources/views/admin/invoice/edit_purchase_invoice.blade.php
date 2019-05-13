@@ -5,9 +5,8 @@
 				<div class="col-md-4">
 					<div class="form-group">
 						<label class="control-label mb-10">Invoice Type:</label>
-						<select class="form-control" name="invoice_type" id="invoice_type">
-							<option value="{{ $invoiceType }}">{{ str_replace('_',' ', strtoupper($invoiceType))}}</option>
-						</select>
+						<input type="hidden" name="invoice_type" value="{{ $invoiceType }}">
+						{{ str_replace('_',' ', strtoupper($invoiceType))}}
 					</div>
 					<div class="form-group">
 						<label class="control-label mb-10">Status:</label>

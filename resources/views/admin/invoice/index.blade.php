@@ -4,13 +4,13 @@
 	<!-- Title -->	
 	<div class="row heading-bg">
 		<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-			<h5 class="txt-dark">Invoices</h5>
+			<h5 class="txt-dark">{{ str_replace('_',' ', strtoupper($invoice)) }} Invoice</h5>
 		</div>
 		<!-- Breadcrumb -->
 		<div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
 			<ol class="breadcrumb">
 				<li><a href="index.html">Dashboard</a></li>
-				<li><a href="#"><span>Invoices</span></a></li>
+				<li><a href="#"><span>{{ str_replace('_',' ', strtoupper($invoice)) }} Invoice</span></a></li>
 			</ol>
 		</div>
 		<!-- /Breadcrumb -->
@@ -26,7 +26,7 @@
 						<h6 class="panel-title txt-dark">Roles List</h6>
 					</div> -->
 					<div class="pull-left">
-						Invoice List
+						{{ str_replace('_',' ', strtoupper($invoice)) }} Invoice 
 					</div>
 					<div class="clearfix"></div>
 				</div>
@@ -53,20 +53,9 @@
 								<label for="">Enter Invoice #:</label>
 								<input type="text" class="form-control" id="invoice_id">
 							</div>
-							<div class="col-md-3 pt-15">
-								<label for="">Invoice Type:</label>
-								<select class="selectpicker" data-style="form-control btn-default btn-outline" tabindex="-98" id="select-invoice">
-									<option value="">All</option>	
-									<option value="consign_in">Consign IN</option>	
-									<option value="consign_out">Consign OUT</option>	
-									<option value="repair">Repairs</option>
-									<option value="sale">Sale</option>
-									<option value="purchase">Purchase</option>
-								</select>
-							</div>
 						
-							<div class="col-md-6 pt-40">
-								<a href="{{ route('create.invoice') }}" class="btn btn-gold pull-right">Add New Invoice</a>
+							<div class="col-md-9 pt-40">
+								<a href="{{ url('/invoice/create?invoice_type='. $invoice) }}" class="btn btn-gold pull-right">Add New Invoice</a>
 							</div>
 						</div>
 						<div class="table-wrap">

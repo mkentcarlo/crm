@@ -7,7 +7,7 @@
         });
 
         $(function () {
-
+            var type = "{{ $invoice }}";
             $invoiceTable = $('#invoice-table').DataTable( {
                 serverSide: true,
                 processing: true,
@@ -15,7 +15,7 @@
                     url: "{{ route('get.invoices') }}",
                     type:  'get',
                     data:  function (d) {
-                        d.invoice_type = $('body').find('#select-invoice').val();
+                        d.invoice_type = type; 
                     },
                     error: function (xhr, err) {
                         if (err === 'parsererror') {
