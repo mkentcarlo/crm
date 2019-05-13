@@ -41,6 +41,10 @@
     <!-- Bootstrap Datetimepicker CSS -->
     <link href="{{ asset('vendors/bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css') }}" rel="stylesheet" type="text/css"/>    
 
+    
+     <!-- Bootstrap Date range picker CSS -->
+     <link href="{{ asset('vendors/bower_components/bootstrap-daterangepicker/daterangepicker.css') }}" rel="stylesheet" type="text/css"/>    
+
     <!-- Bootstrap Dropzone CSS -->
     <link href="{{ asset('vendors/bower_components/dropzone/dist/dropzone.css') }}" rel="stylesheet" type="text/css"/>
     
@@ -155,6 +159,9 @@
     <!-- Bootstrap Datetimepicker JavaScript -->
     <script type="text/javascript" src="{{ asset('vendors/bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js') }}"></script>
     
+    <!-- Bootstrap Daterangepicker JavaScript -->
+	<script src="{{ asset('vendors/bower_components/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
+
     <!-- Form Advance Init JavaScript -->
     <script src="{{ asset('dist/js/form-advance-data.js') }}"></script>
     

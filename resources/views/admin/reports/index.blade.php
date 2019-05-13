@@ -62,15 +62,17 @@
 							</select>
 						</div>
 						<div class="col-md-2 pt-15">
-							<label for="">Select Week</label>
-							<select class="form-control" data-style="form-control btn-default btn-outline" tabindex="-98" id="select-week">
+							<label for="">Custom date range</label>
+							<input type="text" class="form-control daterange-datepicker" />
+
+							<!-- <select class="form-control" data-style="form-control btn-default btn-outline" tabindex="-98" id="select-week">
 								<option value="">All</option>	
 								<option value="1" {{ (1 == $week) ? 'selected="selected"' : ''}}>First Week</option>	
-								<optio value="2" {{ (2 == $week) ? 'selected="selected"' : ''}}>Second Week</option>	
+								<option value="2" {{ (2 == $week) ? 'selected="selected"' : ''}}>Second Week</option>	
 								<option value="3" {{ (3 == $week) ? 'selected="selected"' : ''}}>Third Week</option>	
 								<option value="4" {{ (4 == $week) ? 'selected="selected"' : ''}}>Fourth Week</option>	
 								<option value="5" {{ (5 == $week) ? 'selected="selected"' : ''}}>Fifth Week</option>	
-							</select>
+							</select> -->
 						</div>
 						<div class="col-md-3 pt-15">
 							<label for="">Current</label>

@@ -83,5 +83,11 @@ if($(this).data("DateTimePicker").date() === null)
     $(this).data("DateTimePicker").date(moment());
 });
 
+$('.daterange-datepicker').daterangepicker({
+    buttonClasses: ['btn', 'btn-sm'],
+          applyClass: 'btn-info',
+          cancelClass: 'btn-default'
+  });
+
 //select2
 $(".select2").select2();
