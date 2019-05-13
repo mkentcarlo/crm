@@ -78,7 +78,7 @@ class ProductController extends Controller
         $product = $this->wooService->process()->get('products/'. $productId)->product;
         if ($product) {
             $acf = DB::select("SELECT * FROM wpla_postmeta where post_id =".$productId);
-            $arr = ['model_reference', 'condition', 'gnder', 'case_material', 'bezel', 'case_back', 'case_diameter', 'movement', 'watch_features', 'dial_colour', 'crystal', 'braceletstrap', 'clasp_type', 'included', 'complication', 'new', 'limited_edition', 'complication', 'cost_price', 'asking_price', 'selling_price', 'model_reference'];
+            $arr = ['model_reference', 'condition', 'gnder', 'case_material', 'bezel', 'case_back', 'case_diameter', 'movement', 'watch_features', 'dial_colour', 'crystal', 'braceletstrap', 'clasp_type', 'included', 'complication', 'new', 'limited_edition', 'complication', 'cost_price', 'asking_price', 'selling_price', 'buying_price', 'model_reference'];
             foreach ($acf as $row) {
                 if (in_array($row->meta_key,  $arr)) {
                     $key = $row->meta_key;
@@ -131,4 +131,28 @@ class ProductController extends Controller
     {
         return $this->productService->delete($productId);
     }  
+
+    public function detail($productId)
+    {
+       
+        $categories = $this->wooService->getCategories();
+        $brands = $this->wooService->getBrands();
+        $product = $this->wooService->process()->get('products/'. $productId)->product;
+        if ($product) {
+            $acf = DB::select("SELECT * FROM wpla_postmeta where post_id =".$productId);
+            $arr = ['model_reference', 'condition', 'gnder', 'case_material', 'bezel', 'case_back', 'case_diameter', 'movement', 'watch_features', 'dial_colour', 'crystal', 'braceletstrap', 'clasp_type', 'included', 'complication', 'new', 'limited_edition', 'complication', 'cost_price', 'asking_price', 'selling_price', 'buying_price', 'model_reference'];
+            foreach ($acf as $row) {
+                if (in_array($row->meta_key,  $arr)) {
+                    $key = $row->meta_key;
+                    $product->$key = $row->meta_value;
+                }
+            }
+            
+        }
+        
+        $product->categories = $this->wooService->getProductCategories($productId);
+        $product->brands = $this->wooService->getProductBrands($productId);
+
+        return view('admin.products.detail', compact('product', 'categories', 'brands'));
+    } 
 }

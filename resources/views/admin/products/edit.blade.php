@@ -70,23 +70,32 @@
 								</div>
 								<!--/row-->
 								<div class="row">
-									<div class="col-md-3">
+									<div class="col-md-2">
 										<div class="form-group">
-											<label class="control-label mb-10">Price</label>
+											<label class="control-label mb-10">Asking Price</label>
 											<div class="input-group">
 												<div class="input-group-addon"><i class="ti-money"></i></div>
-												<input type="text" class="form-control" id="price" name="price" value="{{ old('price', $product->price) }}">
+												<input type="text" class="form-control" id="asking_price" name="asking_price" value="{{ old('asking_price', $product->asking_price ?? null) }}">
 											</div>
 										</div>
 									</div>
-									<div class="col-md-3">
+									<div class="col-md-2">
 										<div class="form-group">
-											<label class="control-label mb-10">Regular Price</label>
+											<label class="control-label mb-10">Selling Price</label>
 											<div class="input-group">
 												<div class="input-group-addon"><i class="ti-money"></i></div>
-												<input type="text" class="form-control" id="regular_price" name="regular_price" value="{{ old('regular_price', $product->regular_price) }}">
+												<input type="text" class="form-control" id="selling_price" name="selling_price" value="{{ old('selling_price', $product->selling_price ?? null) }}" readonly="readonly">
 											</div>
 										</div>
+									</div>
+									<div class="col-md-2">
+										<div class="form-group">
+											<label class="control-label mb-10">Buying Price</label>
+											<div class="input-group">
+												<div class="input-group-addon"><i class="ti-money"></i></div>
+												<input type="text" class="form-control" id="buying_price" name="buying_price" value="{{ old('buying_price', $product->buying_price ?? null) }}" readonly="readonly">
+											</div>
+										</div>	
 									</div>
 									<!--/span-->
 									<div class="col-md-6">
@@ -118,21 +127,25 @@
 								</div>
 								<!--/row-->
 								<div class="row">
-									<div class="col-md-3">
+									<div class="col-md-2">
 										<div class="form-group">
-											<label class="control-label mb-10">Sale Price</label>
+											<label class="control-label mb-10">Regular Price</label>
+											<div class="input-group">
+												<div class="input-group-addon"><i class="ti-money"></i></div>
+												<input type="text" class="form-control" id="regular_price" name="regular_price" value="{{ old('regular_price', $product->regular_price) }}">
+											</div>
+										</div>
+									</div>
+									<div class="col-md-2">
+										<div class="form-group">
+											<label class="control-label mb-10">Discounted Price</label>
 											<div class="input-group">
 												<div class="input-group-addon"><i class="ti-money"></i></div>
 												<input type="text" class="form-control" id="sale_price" name="sale_price" value="{{ old('sale_price', $product->sale_price) }}">
 											</div>
-										</div>
+										</div>	
 									</div>
-									<div class="col-md-3">
-										<div class="form-group">
-											<label class="control-label mb-10">Quantity</label>
-											<input type="text" class="form-control" id="stock_quantity" name="stock_quantity" value="{{ old('stock_quantity', $product->stock_quantity) }}">
-										</div>
-									</div>
+									<input type="hidden" class="form-control" id="stock_quantity" name="stock_quantity" value="{{ old('stock_quantity', $product->stock_quantity) }}">
 								</div>
 								<div class="seprator-block"></div>
 								<h6 class="txt-dark capitalize-font"><i class="zmdi zmdi-collection-image mr-10"></i>upload image</h6>
@@ -173,25 +186,9 @@
 								<div class="seprator-block"></div>
 								<h6 class="txt-dark capitalize-font"><i class="zmdi zmdi-calendar-note mr-10"></i>general info</h6>
 								<hr class="light-grey-hr">
+								<input type="hidden" class="form-control" placeholder="COST PRICE" name="cost_price" value="{ $product->cost_price ?? null }}">
 								<div class="row">
-									<div class="col-sm-6">
-										<div class="form-group">
-											<input type="text" class="form-control" placeholder="COST PRICE" name="cost_price" value="{{ $product->cost_price ?? null }}">
-										</div>
-									</div>
-									<div class="col-sm-6">
-										<div class="form-group">
-											<input type="text" class="form-control" placeholder="ASKING PRICE" name="asking_price" value="{{ $product->asking_price ?? null }}">
-										</div>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-sm-6">
-										<div class="form-group">
-											<input type="text" class="form-control" placeholder="SELLING PRICE" name="selling_price" value="{{ $product->selling_price ?? null }}">
-										</div>
-									</div>
-									<div class="col-sm-6">
+									<div class="col-sm-12">
 										<div class="form-group">
 											<input type="text" class="form-control" placeholder="MODEL REFERENCE" name="model_reference" value="{{ $product->model_reference ?? null }}">
 										</div>
@@ -205,7 +202,7 @@
 									</div>
 									<div class="col-sm-6">
 										<div class="form-group">
-											<input type="text" class="form-control" placeholder="GENDER" name="gender" value="{{ $product->gnder ?? null }}">
+											<input type="text" class="form-control" placeholder="GENDER" name="gnder" value="{{ $product->gnder ?? null }}">
 										</div>
 									</div>
 								</div>
