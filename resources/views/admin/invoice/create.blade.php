@@ -33,6 +33,8 @@
 				@elseif($invoiceType == 'repair')
 					@include('admin.invoice.repair_invoice')
 					@include('admin.invoice._repair_script')
+				@elseif($invoiceType == 'others')
+					@include('admin.invoice.others_invoice')
 				@else 
 					@include('admin.invoice.sales_invoice')
 					@include('admin.invoice._script')	

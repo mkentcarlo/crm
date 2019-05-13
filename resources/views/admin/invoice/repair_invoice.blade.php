@@ -11,6 +11,7 @@
 							<option value="consign_out" {{ $invoiceType  == 'consign_out' ? 'selected="selected"' : '' }}>Consign OUT</option>
 							<option value="purchase" {{ $invoiceType  == 'purchase' ? 'selected="selected"' : '' }}>Purchase</option>
 							<option value="repair" {{ $invoiceType  == 'repair' ? 'selected="selected"' : '' }}>Repair</option>
+							<option value="others" {{ $invoiceType  == 'others' ? 'selected="selected"' : '' }}>Others</option>
 						</select>
 					</div>
 					<div class="form-group">
