@@ -48,6 +48,7 @@ class InvoiceController extends Controller
         $invoiceType = ($request->invoice_type) ? $request->invoice_type : 'sales';
         $customers = $this->customerService->getCustomers();
         $products = $this->productService->getProducts();
+        // print_r($products);
         
         return view('admin.invoice.create', compact('customers', 'products', 'invoiceType'));
     } 
