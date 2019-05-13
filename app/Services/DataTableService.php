@@ -157,6 +157,8 @@ class DataTableService  {
                 return '<span class="label label-danger">unpaid</span>';
             } else if($invoice->status == 3) { 
                 return '<span class="label label-success">paid</span>';
+            } else if($invoice->status == 0) { 
+                return 'N/A';
             };    
         })
          ->addColumn('total_amount', function($invoice) {

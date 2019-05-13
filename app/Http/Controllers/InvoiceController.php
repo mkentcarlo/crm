@@ -307,6 +307,27 @@ class InvoiceController extends Controller
                     'total_amount' => $request->price,
                 ]
             );
+        } else  if ($invoiceType == 'others') {
+
+            $inoutData = [];
+            foreach($request->payment_mode as $key => $value) {
+                $tmp['description'] = $request->description[$key];
+                $tmp['amount'] = $request->amount[$key];
+                $tmp['payment_mode'] = $request->payment_mode[$key];
+                $inoutData[] = $tmp;
+            }
+            $data['in_out_data'] = $inoutData;
+            $data['in_out'] = $request->in_out;
+
+            $invoice = Invoice::create(
+                [
+                    'invoice_type' => $invoiceType,
+                    'customer_id' => 0,
+                    'total_amount' => $request->total,
+                    'status' => 0,
+                    'additional_fields' => json_encode($data)
+                ]
+            );
         }
 
         if($invoice) {
@@ -627,6 +648,27 @@ class InvoiceController extends Controller
                     'category_name' => $request->category_name,
                     'quantity' => 1,
                     'total_amount' => $request->price,
+                ]
+            );
+        } else  if ($invoiceType == 'others') {
+
+            $inoutData = [];
+            foreach($request->payment_mode as $key => $value) {
+                $tmp['description'] = $request->description[$key];
+                $tmp['amount'] = $request->amount[$key];
+                $tmp['payment_mode'] = $request->payment_mode[$key];
+                $inoutData[] = $tmp;
+            }
+            $data['in_out_data'] = $inoutData;
+            $data['in_out'] = $request->in_out;
+
+            $invoice = Invoice::create(
+                [
+                    'invoice_type' => $invoiceType,
+                    'customer_id' => 0,
+                    'total_amount' => $request->total,
+                    'status' => 0,
+                    'additional_fields' => json_encode($data)
                 ]
             );
         }

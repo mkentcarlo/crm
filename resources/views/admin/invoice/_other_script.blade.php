@@ -24,7 +24,8 @@
                 $('.amount').each(function(){
                     total += parseFloat($(this).val());
                 });
-                $('.overall-total').html(total);
+                $('.overall-total').text(total);
+                $('.overall-total').val(total);
             }
 
         });    
