@@ -148,19 +148,19 @@
                        var currentQty = $('.product-overview tbody').find('tr#'+product_id+' td:eq(5)').text();
                        var totalQty = parseInt(currentQty)+ parseInt(quantity);
                        var productPrice = $('.product-overview tbody').find('tr#'+product_id+' td:eq(4)').text();
-                       var currentSubTotal = $('.product-overview tbody').find('tr#'+product_id+' td:eq(6) span').text();
+                       var currentSubTotal = $('.product-overview tbody').find('tr#'+product_id+' td:eq(6) input').val();
                        var subTotal = parseInt(productPrice) * parseInt(totalQty);
                        $('.product-overview tbody').find('tr#'+product_id+' td:eq(5) span').text(totalQty);
                        $('.product-overview tbody').find('tr#'+product_id+' td:eq(5) input').val(totalQty);
-                       $('.product-overview tbody').find('tr#'+product_id+' td:eq(6) input').val(subTotal.toFixed(2));
                        $('.product-overview tbody').find('tr#'+product_id+' td:eq(6) span').text(subTotal.toFixed(2));
+                       $('.product-overview tbody').find('tr#'+product_id+' td:eq(6) input').val(subTotal.toFixed(2));
                     } else {
-                        $('.product-overview tbody').append("<tr id="+product_id+"><td><input type='hidden' name='product_id[]' value="+product_id+"><input type='hidden' name='featured_src[]' value="+img_src+"><img src='"+img_src+"' width='80'></td><td><input type='hidden' name='product_name[]' value="+product_name+">"+product_name+"</td><td><input type='hidden' name='brand_name[]' value="+brand_name+">"+brand_name+"</td><td><input type='hidden' name='category_name[]' value="+category_name+">"+category_name+"</td><td><input type='hidden' name='product_price[]' value="+product_price+">"+product_price+"</td><td class='quantity'><input type='hidden' name='quantity[]' value="+quantity+">"+quantity+"</td><td class='subtotal'><input type='hidden' name='sub_total_amount[]' value="+sub_total.toFixed(2)+">$<span>"+sub_total.toFixed(2)+"</span></td><td><a href='javascript:void(0)' class='delete' title=' data-toggle='tooltip' data-original-title='Delete'><i class='zmdi zmdi-delete txt-warning'></i></a></td></tr>");
+                        $('.product-overview tbody').append("<tr id="+product_id+"><td><input type='hidden' name='product_id[]' value="+product_id+"><input type='hidden' name='featured_src[]' value="+img_src+"><img src='"+img_src+"' width='80'></td><td><input type='hidden' name='product_name[]' value="+product_name+">"+product_name+"</td><td><input type='hidden' name='brand_name[]' value="+brand_name+">"+brand_name+"</td><td><input type='hidden' name='category_name[]' value="+category_name+">"+category_name+"</td><td><input type='text' name='product_price[]' class='in-product-price' value="+product_price+"></td><td class='quantity'><input type='hidden' name='quantity[]' value="+quantity+">"+quantity+"</td><td class='subtotal'><input type='hidden' name='sub_total_amount[]' value="+sub_total.toFixed(2)+">$<span>"+sub_total.toFixed(2)+"</span></td><td><a href='javascript:void(0)' class='delete-product-invoice' title=' data-toggle='tooltip' data-original-title='Delete'><i class='zmdi zmdi-delete txt-warning'></i></a></td></tr>");
                     }
 
                     var total = 0;
                     $('.product-overview tbody tr').each(function() {
-                        total += parseInt($(this).find('td:eq(6) span').text());
+                        total += parseInt($(this).find('td:eq(6) input').val());
                     });
                     $('#subtotal').text(total.toFixed(2));
                     $('.total_amount').val(total.toFixed(2));
@@ -309,6 +309,37 @@
                 } else {
                     $(this).submit();
                 }
+            });
+
+            $('body').on('keyup', '.in-product-price', function(e){
+                //e.preventDefault();
+                if(isNaN($(this).val()) || $(this).val() < 1) {
+                    alert('price must be a number and greater than 0.');
+                } else {
+
+                    swal({
+                    title: 'Loading...',
+                    imageUrl: "{{ asset('img/loader.gif') }}",
+                    imageWidth: 400,
+                    imageHeight: 200,
+                    imageAlt: 'Custom image',
+                    animation: true,
+                    showConfirmButton: false,
+                });
+                   $(this).parent().next().next().find('input').val($(this).val());
+                    $(this).parent().next().next().find('span').text($(this).val());
+                var id = $(this).closest('tr').attr('id');
+                    $.getJSON("{{ url('products') }}/modify/updateSellingPrice?id=" + id + '&price=' + $(this).val(), function (result) {
+                        var total = 0;
+                        $('.product-overview tbody tr').each(function() {
+                            total += parseInt($(this).find('td:eq(6) input').val());
+                        });
+                        $('#subtotal').text(total.toFixed(2));
+                        $('.total_amount').val(total.toFixed(2));
+                        $('.total_amount').text(total.toFixed(2));  
+                        swal.close();
+                    });
+                }    
             });
         });    
     </script>   

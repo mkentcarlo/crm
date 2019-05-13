@@ -49,6 +49,7 @@ Route::group(
 		Route::get('/products/{id}', 'ProductController@show')->name('show.product');
 		Route::get('/products/detail/{id}', 'ProductController@detail');
 		Route::delete('/products/delete/{id}', 'ProductController@destroy')->name('delete.product');
+		Route::get('/products/modify/updateSellingPrice', 'ProductController@updateSellingPrice');
 
 		Route::get('/categories', 'CategoryController@index')->name('view.category');
 		Route::get('/categories/ajaxRequest', 'CategoryController@ajaxRequest')->name('get.categories');

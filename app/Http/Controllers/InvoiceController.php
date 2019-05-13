@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Services\CustomerService;
 use App\Services\ProductService;
+use App\Services\WoocommerceService;
 use App\Invoice;
 use App\InvoiceDetail;
 
@@ -12,16 +13,18 @@ class InvoiceController extends Controller
 {
     protected $customerService;
     protected $productService;
+    public $wooService;
 
      /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct(CustomerService $customerService, ProductService $productService)
+    public function __construct(CustomerService $customerService, ProductService $productService, WoocommerceService $wooService)
     {   
         $this->customerService = $customerService;
         $this->productService = $productService;
+        $this->wooService = $wooService;
     }
 
     public function ajaxRequest(Request $request) {
@@ -152,6 +155,12 @@ class InvoiceController extends Controller
                     $tmpProd['quantity'] = $request->quantity[$key];
                     $tmpProd['total_amount'] = $request->sub_total_amount[$key];
                     $productData[] = $tmpProd;
+                    $prodData['in_stock'] = false;
+                    $prodData['stock_quantity'] = 0;
+                    $data = [
+                        'product' => $prodData
+                    ];  
+                    $this->wooService->process()->put('products/'. $request->product_id[$key], $data);
                 }   
                 $insertProducts = InvoiceDetail::insert($productData);
             }
@@ -208,6 +217,12 @@ class InvoiceController extends Controller
                     $tmpProd['quantity'] = $request->quantity[$key];
                     $tmpProd['total_amount'] = $request->sub_total_amount[$key];
                     $productData[] = $tmpProd;
+                    $prodData['in_stock'] = false;
+                    $prodData['stock_quantity'] = 0;
+                    $data = [
+                        'product' => $prodData
+                    ];  
+                    $this->wooService->process()->put('products/'. $request->product_id[$key], $data);
                 }   
                 $insertProducts = InvoiceDetail::insert($productData);
             }
@@ -271,6 +286,12 @@ class InvoiceController extends Controller
                     $tmpProd['quantity'] = $request->quantity[$key];
                     $tmpProd['total_amount'] = $request->sub_total_amount[$key];
                     $productData[] = $tmpProd;
+                    $prodData['in_stock'] = false;
+                    $prodData['stock_quantity'] = 0;
+                    $data = [
+                        'product' => $prodData
+                    ];  
+                    $this->wooService->process()->put('products/'. $request->product_id[$key], $data);
                 }   
                 $insertProducts = InvoiceDetail::insert($productData);
             }
@@ -307,6 +328,12 @@ class InvoiceController extends Controller
                     'total_amount' => $request->price,
                 ]
             );
+            $productData['in_stock'] = false;
+            $productData['stock_quantity'] = 0;
+            $data = [
+                'product' => $productData
+            ];  
+            $this->wooService->process()->put('products/'. $request->product_id, $data);
         } else  if ($invoiceType == 'others') {
 
             $inoutData = [];
@@ -447,6 +474,12 @@ class InvoiceController extends Controller
                     $tmpProd['quantity'] = $request->quantity[$key];
                     $tmpProd['total_amount'] = $request->sub_total_amount[$key];
                     $productData[] = $tmpProd;
+                    $prodData['in_stock'] = false;
+                    $prodData['stock_quantity'] = 0;
+                    $data = [
+                        'product' => $prodData
+                    ];  
+                    $this->wooService->process()->put('products/'. $request->product_id[$key], $data);
                 } 
 
                 $insertProducts = InvoiceDetail::insert($productData);
@@ -454,7 +487,7 @@ class InvoiceController extends Controller
             if(!empty($request->in_detail_id)) {
                 foreach($request->in_detail_id as $key => $value) {
                     $invoiceDetail = InvoiceDetail::find($value);
-                    $invoiceDetail->update(['quantity' => $request->in_quantity[$key], 'total_amount' => $request->in_sub_total_amount[$key]]);
+                    $invoiceDetail->update(['quantity' => $request->in_quantity[$key], 'price' => $request->in_product_price[$key], 'total_amount' => $request->in_sub_total_amount[$key]]);
                 } 
 
             }
@@ -518,6 +551,12 @@ class InvoiceController extends Controller
                     $tmpProd['quantity'] = $request->quantity[$key];
                     $tmpProd['total_amount'] = $request->sub_total_amount[$key];
                     $productData[] = $tmpProd;
+                    $prodData['in_stock'] = false;
+                    $prodData['stock_quantity'] = 0;
+                    $data = [
+                        'product' => $prodData
+                    ];  
+                    $this->wooService->process()->put('products/'. $request->product_id[$key], $data);
                 } 
 
                 $insertProducts = InvoiceDetail::insert($productData);
@@ -525,7 +564,7 @@ class InvoiceController extends Controller
             if(!empty($request->in_detail_id)) {
                 foreach($request->in_detail_id as $key => $value) {
                     $invoiceDetail = InvoiceDetail::find($value);
-                    $invoiceDetail->update(['quantity' => $request->in_quantity[$key], 'total_amount' => $request->in_sub_total_amount[$key]]);
+                    $invoiceDetail->update(['quantity' => $request->in_quantity[$key], 'price' => $request->in_product_price[$key], 'total_amount' => $request->in_sub_total_amount[$key]]);
                 } 
 
             }
@@ -597,6 +636,12 @@ class InvoiceController extends Controller
                     $tmpProd['quantity'] = $request->quantity[$key];
                     $tmpProd['total_amount'] = $request->sub_total_amount[$key];
                     $productData[] = $tmpProd;
+                    $prodData['in_stock'] = false;
+                    $prodData['stock_quantity'] = 0;
+                    $data = [
+                        'product' => $prodData
+                    ];  
+                    $this->wooService->process()->put('products/'. $request->product_id[$key], $data);
                 } 
 
                 $insertProducts = InvoiceDetail::insert($productData);
@@ -605,7 +650,7 @@ class InvoiceController extends Controller
             if(!empty($request->in_detail_id)) {
                 foreach($request->in_detail_id as $key => $value) {
                     $invoiceDetail = InvoiceDetail::find($value);
-                    $invoiceDetail->update(['quantity' => $request->in_quantity[$key], 'total_amount' => $request->in_sub_total_amount[$key]]);
+                    $invoiceDetail->update(['quantity' => $request->in_quantity[$key], 'price' => $request->in_product_price[$key], 'total_amount' => $request->in_sub_total_amount[$key]]);
                 } 
 
             } 
@@ -650,6 +695,12 @@ class InvoiceController extends Controller
                     'total_amount' => $request->price,
                 ]
             );
+            $prodData['in_stock'] = false;
+            $prodData['stock_quantity'] = 0;
+            $data = [
+                'product' => $prodData
+            ];  
+            $this->wooService->process()->put('products/'. $request->product_id, $data);
         } else  if ($invoiceType == 'others') {
 
             $inoutData = [];
