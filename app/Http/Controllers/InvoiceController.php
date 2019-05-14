@@ -9,6 +9,7 @@ use App\Services\WoocommerceService;
 use App\Invoice;
 use App\InvoiceDetail;
 use \Carbon\Carbon;
+use PDF;
 
 class InvoiceController extends Controller
 {
@@ -806,23 +807,48 @@ class InvoiceController extends Controller
     public function show($invoiceId)
     {
         $invoice = Invoice::where('id', $invoiceId)->first();
-
-        if ($invoice === null) {
-            return redirect('/invoice');
+   
+        if ($invoice == null) {
+            return redirect('/dashboard');
         }
 
         $invoice->additional_fields = json_decode($invoice->additional_fields);
 
-        if ($invoice->invoice_type == 'sales') {
-            return view('admin.invoice.sales_invoice_detail', compact('invoice'));
-        } else if ($invoice->invoice_type == 'consign_in' || $invoice->invoice_type == 'consign_out') {
-            return view('admin.invoice.consignment_invoice_detail', compact('invoice'));
-        } else if ($invoice->invoice_type == 'repair') {
-            return view('admin.invoice.repair_invoice_detail', compact('invoice'));
-        } else if ($invoice->invoice_type == 'purchase') {
-            return view('admin.invoice.purchase_invoice_detail', compact('invoice'));
+        if($invoice->invoice_type == 'sales') 
+        {
+            $pdf = PDF::loadView('admin.pdf.sales_invoice', compact('invoice'));
+      
+            return $pdf->stream('sales_invoice.pdf');
+        }
+
+        else if($invoice->invoice_type == 'consign_in') 
+        {
+            $pdf = PDF::loadView('admin.pdf.consign_in_invoice', compact('invoice'));
+      
+            return $pdf->stream('consign_in_invoice.pdf');
+        }
+
+        else if($invoice->invoice_type == 'consign_out') 
+        {
+            $pdf = PDF::loadView('admin.pdf.consign_out_invoice',  compact('invoice'));
+      
+            return $pdf->stream('consign_out_invoice.pdf');
+        }
+
+        else if($invoice->invoice_type == 'purchase') 
+        {
+            $pdf = PDF::loadView('admin.pdf.purchase_invoice', compact('invoice'));
+      
+            return $pdf->stream('purchase_invoice.pdf');
+        }
+
+        else if($invoice->invoice_type == 'repair') 
+        {
+            $pdf = PDF::loadView('admin.pdf.repair_invoice', compact('invoice'));
+      
+            return $pdf->stream('repair_invoice.pdf');
         } else {
-            return redirect('/invoice');
+            return redirect('/invoice?invoice_type='.$invoice->invoice_type);
         }
     }    
 }

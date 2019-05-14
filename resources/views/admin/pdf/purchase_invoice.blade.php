@@ -59,29 +59,44 @@
 			<div class="col-md-12 text-right">
 				<h5 style="font-size:18px">PURCHASE INVOICE</h5>
 				<h6 style="font-size:10px; margin-top:-10px">UEN NO: 230215K</h6>
-				<h6 style="margin-top:25px">PI NO.: <span style="color: red; font-size: 20px !important; font-family: Arial !important"><strong>0001</strong></span></h6>
+				<h6 style="margin-top:25px">PI NO.: <span style="color: red; font-size: 20px !important; font-family: Arial !important"><strong>000{{ $invoice->id }}</strong></span></h6>
 			</div>
 		</div>
 		<table style="width: 100%" class="bordered">
+			@php
+				$street_address =  $invoice->customer->street_address ?? null; 
+				$city =  $invoice->customer->city ?? null; 
+				$state =  $invoice->customer->state ?? null; 
+				$country =  $invoice->customer->country ?? null; 
+				$postal_code =  $invoice->customer->postal_code ?? null; 
+			@endphp
 			<thead>
 				<tr class="noborder">
-					<td>Client: </td>
-					<td>Phone: </td>
+					<td>Client: {{ $invoice->customer->firstname .' '.$invoice->customer->lastname }}</td>
+					<td>Phone: {{ $invoice->contact }}</td>
 				</tr>
 				<tr class="noborder">
-					<td>Address: </td>
-					<td>Email: </td>
+					<td>Address: {{ $street_address.' '.$city.' '.$country.' ,'.$state.' '.$postal_code }}</td>
+					<td>Email: {{ $invoice->customer->email }}</td>
 				</tr>
 				<tr class="noborder">
 					
-					<td>NIRC/PASSPORT NO: </td>
-					<td>Date: </td>
+					<td>NIRC/PASSPORT NO: {{ $invoice->additional_fields->passport_no ?? null }}</td>
+					<td>Date: {{ $invoice->created_at }}</td>
 				</tr>
 			</thead>
 			<tbody>
 				<tr class="noborder">
-					<td>Remarks: </td>
-					<td>Payment Mode: </td>
+					<td>Remarks: {{ $invoice->additional_fields->remarks ?? null }}</td>
+					<td>
+						<p>Payment Mode: </p>
+						<div style="margin-top: 15px;">
+							Cash: ${{ isset($invoice->additional_fields->cash_amount) ? number_format($invoice->additional_fields->cash_amount, 2) : '0.00' }}
+						</div>
+						<div style="margin-top: 15px;">
+							Cheque: ${{ isset($invoice->additional_fields->cheque_amount) ? number_format($invoice->additional_fields->cheque_amount, 2) : '0.00' }}
+						</div>
+					</td>
 				</tr>
 			</tbody>
 		</table>
@@ -94,16 +109,17 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<td>&nbsp;</td>
-					<td>&nbsp;</td>
-					<td>&nbsp;</td>
-				</tr>
-				<tr>
-					<td>&nbsp;</td>
-					<td>&nbsp;</td>
-					<td>&nbsp;</td>
-				</tr>
+				@php($total = 0)
+				@if($invoice->invoice_detail)
+					@foreach($invoice->invoice_detail as $detail)
+					<tr>
+						<td>{{ $detail->product_name }}</td>
+						<td>{{ $detail->brand_name }} - {{ $detail->category_name }}</td>
+						<td>{{ $detail->total_amount }}</td>
+					</tr>
+					@php($total += $detail->total_amount)
+					@endforeach
+				@endif
 				<tr>
 					<td>&nbsp;</td>
 					<td>&nbsp;</td>
@@ -111,8 +127,8 @@
 				</tr>
 				<tr>
 					<td class="noborder">&nbsp;</td>
-					<td class="text-right noborder">TOTAL</td>
-					<td>&nbsp;</td>
+					<td class="noborder text-right">TOTAL</td>
+					<td>{{ $total }}</td>
 				</tr>
 			</tbody>
 		</table>

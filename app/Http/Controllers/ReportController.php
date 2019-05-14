@@ -116,44 +116,46 @@ class ReportController extends Controller
         $invoice = Invoice::where('id', $id)->first();
    
         if ($invoice == null) {
-            return redirect('/reports');
+            return redirect('/dashboard');
         }
+
+        $invoice->additional_fields = json_decode($invoice->additional_fields);
 
         if($invoice->invoice_type == 'sales') 
         {
-            $pdf = PDF::loadView('admin.pdf.sales_invoice', $invoice);
+            $pdf = PDF::loadView('admin.pdf.sales_invoice', compact('invoice'));
       
             return $pdf->stream('sales_invoice.pdf');
         }
 
         else if($invoice->invoice_type == 'consign_in') 
         {
-            $pdf = PDF::loadView('admin.pdf.consign_in_invoice',  $invoice);
+            $pdf = PDF::loadView('admin.pdf.consign_in_invoice', compact('invoice'));
       
             return $pdf->stream('consign_in_invoice.pdf');
         }
 
         else if($invoice->invoice_type == 'consign_out') 
         {
-            $pdf = PDF::loadView('admin.pdf.consign_out_invoice',  $invoice);
+            $pdf = PDF::loadView('admin.pdf.consign_out_invoice',  compact('invoice'));
       
             return $pdf->stream('consign_out_invoice.pdf');
         }
 
         else if($invoice->invoice_type == 'purchase') 
         {
-            $pdf = PDF::loadView('admin.pdf.purchase_invoice',  $invoice);
+            $pdf = PDF::loadView('admin.pdf.purchase_invoice', compact('invoice'));
       
             return $pdf->stream('purchase_invoice.pdf');
         }
 
         else if($invoice->invoice_type == 'repair') 
         {
-            $pdf = PDF::loadView('admin.pdf.repair_invoice',  $invoice);
+            $pdf = PDF::loadView('admin.pdf.repair_invoice', compact('invoice'));
       
             return $pdf->stream('repair_invoice.pdf');
         } else {
-            return redirect('/reports');
+            return redirect('/reports?invoice_type='.$invoice->invoice_type);
         }
     }
 }

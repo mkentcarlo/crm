@@ -54,18 +54,25 @@
 			</div>
 		</div>
 		<table style="width: 100%">
+			@php
+				$street_address =  $invoice->customer->street_address ?? null; 
+				$city =  $invoice->customer->city ?? null; 
+				$state =  $invoice->customer->state ?? null; 
+				$country =  $invoice->customer->country ?? null; 
+				$postal_code =  $invoice->customer->postal_code ?? null; 
+			@endphp
 			<thead>
 				<tr class="noborder">
-					<td>Client: </td>
-					<td>Phone: </td>
+					<td>Client: {{ $invoice->customer->firstname .' '.$invoice->customer->lastname }}</td>
+					<td>Phone: {{ $invoice->contact }}</td>
 				</tr>
 				<tr class="noborder">
-					<td>Address: </td>
-					<td>Email: </td>
+					<td>Address: {{ $street_address.' '.$city.' '.$country.' ,'.$state.' '.$postal_code }}</td>
+					<td>Email: {{ $invoice->customer->email }}</td>
 				</tr>
 				<tr class="noborder">
 					
-					<td>Date: </td>
+					<td>Date: {{ $invoice->created_at }}</td>
 				</tr>
 			</thead>
 			<thead>
@@ -75,24 +82,24 @@
 			</thead>
 			<tbody>
 				<tr class="noborder">
-					<td>Brand: </td>
+					<td>Brand: {{ isset($invoice->invoice_detail) ? $invoice->invoice_detail[0]->brand_name : '' }}</td>
 					<td>Strap Type: {{ $invoice->additional_fields->strap_type ?? null }}</td>
 				</tr>
 				<tr class="noborder">
-					<td>Model No: </td>
-					<td>Case Material: </td>
+					<td>Model No: {{ isset($invoice->invoice_detail) ? $invoice->invoice_detail[0]->product_id : '' }}</td>
+					<td>Case Material: {{ $invoice->additional_fields->case_material ?? null }}</td>
 				</tr>
 				<tr class="noborder">
-					<td>Serial No.:  </td>
+					<td>Serial No.:  {{ $invoice->additional_fields->serial_no ?? null }}</td>
 					<td>Within Warranty Period: </td>
 				</tr>
 				<tr class="noborder">
-					<td>Movement: </td>
+					<td>Movement: {{ $invoice->additional_fields->movement ?? null }}</td>
 					<td>Warranty Attached: </td>
 				</tr>
 				<tr class="noborder">
-					<td>Functions: </td>
-					<td>Bracelet Condition/Links: </td>
+					<td>Functions: {{ $invoice->additional_fields->functions ?? null }}</td>
+					<td>Bracelet Condition/Links: {{ $invoice->additional_fields->bracelet_condition ?? null }}</td>
 				</tr>
 			</tbody>
 			<thead>
@@ -102,23 +109,23 @@
 			</thead>
 			<tbody>
 				<tr class="noborder">
-					<td colspan="2">Complete Case: </td>
+					<td colspan="2">Complete Case: {{ $invoice->additional_fields->complete_case ?? null }}</td>
 				</tr>
 				<tr class="noborder">
-					<td>Glass/Sapphire Crystal: </td>
-					<td>Case Back: </td>
+					<td>Glass/Sapphire Crystal: {{ $invoice->additional_fields->sapphire_crystal ?? null }}</td>
+					<td>Case Back: {{ $invoice->additional_fields->case_back ?? null }}</td>
 				</tr>
 				<tr class="noborder">
-					<td>Dial: </td>
-					<td>Hands: </td>
+					<td>Dial: {{ $invoice->additional_fields->dial ?? null }}</td>
+					<td>Hands: {{ $invoice->additional_fields->hands ?? null }}</td>
 				</tr>
 				<tr class="noborder">
-					<td>Bezel: </td>
+					<td>Bezel: {{ $invoice->additional_fields->bezel ?? null }}</td>
 					<td>Crown/Pushers: {{ $invoice->additional_fields->crown ?? null }}</td>
 				</tr>
 				<tr class="noborder">
-					<td>Bracelet/Strap: </td>
-					<td>Clasp/Buckle: </td>
+					<td>Bracelet/Strap: {{ $invoice->additional_fields->strap ?? null }}</td>
+					<td>Clasp/Buckle: {{ $invoice->additional_fields->buckle ?? null }}</td>
 				</tr>
 			</tbody>
 			<thead>
@@ -128,28 +135,28 @@
 			</thead>
 			<tbody>
 				<tr class="noborder">
-					<td>Timing: </td>
-					<td>Complete Service: </td>
+					<td>Timing: {{ $invoice->additional_fields->timing ?? null }}</td>
+					<td>Complete Service: {{ $invoice->additional_fields->complete_service ?? null }}</td>
 				</tr>
 				<tr class="noborder">
-					<td>Power Reserve: </td>
-					<td>Polish/Refurbishing: </td>
+					<td>Power Reserve: {{ $invoice->additional_fields->power_reserve ?? null }}</td>
+					<td>Polish/Refurbishing: {{ $invoice->additional_fields->polish ?? null }}</td>
 				</tr>
 				<tr class="noborder">
-					<td>Keeps Stopping:  </td>
-					<td>Checking/Monitoring: </td>
+					<td>Keeps Stopping:  {{ $invoice->additional_fields->keeps_stopping ?? null }}</td>
+					<td>Checking/Monitoring: {{ $invoice->additional_fields->checking ?? null }}</td>
 				</tr class="noborder">
 				<tr class="noborder">
-					<td>Water Seepage: </td>
-					<td>Battery Change: </td>
+					<td>Water Seepage: {{ $invoice->additional_fields->water_seepage ?? null }}</td>
+					<td>Battery Change: {{ $invoice->additional_fields->battery_change ?? null }}</td>
 				</tr>
 				<tr class="noborder">
-					<td>Parts Broken: </td>
-					<td>Glass/Crystal Change: </td>
+					<td>Parts Broken: {{ $invoice->additional_fields->parts_broken ?? null }}</td>
+					<td>Glass/Crystal Change: {{ $invoice->additional_fields->glass_change ?? null }}</td>
 				</tr class="noborder">
 				<tr class="noborder">
-					<td>Parts Missing: </td>
-					<td>Strap Change: </td>
+					<td>Parts Missing: {{ $invoice->additional_fields->parts_missing ?? null }}</td>
+					<td>Strap Change: {{ $invoice->additional_fields->strap_change ?? null }}</td>
 				</tr>
 			</tbody>
 			<thead>
@@ -159,12 +166,12 @@
 			</thead>
 			<tbody>
 				<tr class="noborder">
-					<td>Service/Repair Cost: </td>
-					<td>Service/Repair Accepted: </td>
+					<td>Service/Repair Cost: {{ $invoice->additional_fields->repair_cost ?? null }}</td>
+					<td>Service/Repair Accepted: $invoice->additional_fields->repair_accepted == 'Yes' ? 'Yes' : 'No' }}</td>
 				</tr>
 				<tr class="noborder">
-					<td>Service/Repair Duration <small>(estimate)</small>: </td>
-					<td>Date of Acceptance: </td>
+					<td>Service/Repair Duration <small>(estimate)</small>: {{ $invoice->additional_fields->repair_duration ?? null }}</td>
+					<td>Date of Acceptance: {{ $invoice->additional_fields->date_of_acceptance ?? null }}</td>
 				</tr>
 			</tbody>
 			
