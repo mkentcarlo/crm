@@ -19,7 +19,7 @@ class CustomerGroupController extends Controller
      */
     public function __construct(GroupService $groupService)
     {
-        $apiKey = 'e86f5f6c67f5ab38a5ddf1f633e3d9fb-us20';
+        $apiKey = env('MAILCHIMP_API_KEY');
         $this->groupService = $groupService;
         $this->mailchimp = new FaimMedia\MailChimp($apiKey);
     }
