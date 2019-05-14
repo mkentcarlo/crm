@@ -231,15 +231,15 @@
                     alert('price must be a number and greater than 0.');
                 } else {
 
-                    swal({
-                    title: 'Loading...',
-                    imageUrl: "{{ asset('img/loader.gif') }}",
-                    imageWidth: 400,
-                    imageHeight: 200,
-                    imageAlt: 'Custom image',
-                    animation: true,
-                    showConfirmButton: false,
-                });
+                //     swal({
+                //     title: 'Loading...',
+                //     imageUrl: "{{ asset('img/loader.gif') }}",
+                //     imageWidth: 400,
+                //     imageHeight: 200,
+                //     imageAlt: 'Custom image',
+                //     animation: true,
+                //     showConfirmButton: false,
+                // });
                    $(this).parent().next().next().find('input').val($(this).val());
                     $(this).parent().next().next().find('span').text($(this).val());
                 var id = $(this).closest('tr').attr('id');
@@ -251,7 +251,7 @@
                         $('#subtotal').text(total.toFixed(2));
                         $('.total_amount').val(total.toFixed(2));
                         $('.total_amount').text(total.toFixed(2));  
-                        swal.close();
+                        //swal.close();
                     });
                 }    
             });
