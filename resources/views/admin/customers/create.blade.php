@@ -96,11 +96,10 @@
 								<div class="col-md-6">
 									<div class="form-group">
 										<label class="control-label mb-10">Country</label>
-										<select class="form-control" name="country">
-											<option>--Select your Country--</option>
-											<option value="India">India</option>
-											<option value="Sri Lanka">Sri Lanka</option>
-											<option value="USA">USA</option>
+										<select name="country" id="country" class="form-control">
+										@foreach($countries as $country)
+											<option value="{{ $country }}" {{ $country == 'Singapore' ? 'selected="selected"' : '' }}>{{ $country }}</option>
+										@endforeach
 										</select>
 									</div>
 								</div>
