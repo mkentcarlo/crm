@@ -120,4 +120,14 @@ class WoocommerceService
 	{
 		return DB::select("SELECT * FROM wpla_posts WHERE ID = '$productId'");
 	}
+
+	public function getProductSellingById($productId)
+	{
+		return DB::select("SELECT meta_value FROM wpla_postmeta WHERE meta_key='selling_price' AND post_id = '$productId'");
+	}
+
+	public function getProductBuyingById($productId)
+	{
+		return DB::select("SELECT meta_value FROM wpla_postmeta WHERE meta_key='buying_price' AND post_id = '$productId'");
+	}
 }	

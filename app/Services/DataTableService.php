@@ -19,6 +19,12 @@ class DataTableService  {
         ->addColumn('brands', function($product) {
             return $product['brands'];
        })
+         ->addColumn('price', function($product) {
+            $price = ($product['price']) ? number_format($product['price'], 2) : '0.00';
+            $selling_price = ($product['selling_price']) ? number_format($product['selling_price'], 2) : '0.00';
+            $buying_price = ($product['buying_price']) ? number_format($product['buying_price'], 2) : '0.00';
+            return '$'.$price ."<br/>".'$'.$selling_price."<br/>".'$'.$buying_price;
+       })
         ->addColumn('action', function($product) {
         $exist = InvoiceDetail::where('product_id', $product['id'])->first();
         if ($exist && ($exist->invoice->invoice_type == 'sales' || $exist->invoice->invoice_type == 'consign_out')) {
@@ -30,7 +36,7 @@ class DataTableService  {
         }
         return $action;
         })
-		->rawColumns(['categories','brands','action'])
+		->rawColumns(['categories','brands','action', 'price'])
         ->make(true);
 	}
 
