@@ -95,7 +95,7 @@
                                 <div class="panel-body sm-data-box-1">
 									<span class="uppercase-font weight-500 font-20 block text-center txt-dark">SUMMARY {{ $invoiceType=='others' ? 'In vs Out' : str_replace('_',' ', ucfirst($invoiceType)) }} REPORT {{($date_string) ? ' FOR '.$date_string : ''}}</span>	
 									<div class="cus-sat-stat weight-500 txt-gold text-center mt-5 mb-10">
-										$<span class="counter-anim">{{number_format($total->sum('total_amount'), 2)}}</span>
+										$<span class="counter-anim">{{number_format($invoiceType != 'others' ? $total->sum('total_amount') : $total_overall , 2)}}</span>
 									</div>
 									@if ($invoiceType != 'others')
 									<hr class="light-grey-hr row mt-10 mb-15">
@@ -166,21 +166,21 @@
 										<div class="col-md-4 text-center">
 											<div class="">
 												<span class="clabels clabels-lg inline-block bg-blue mr-10"></span>
-												<span class="clabels-text font-12 inline-block txt-dark capitalize-font"><span class="block font-20 weight-500 mb-5">$<span class="counter-anim">{{number_format($cash_total, 2)}}</span></span><span class="block txt-grey">Sales</span></span>
+												<span class="clabels-text font-12 inline-block txt-dark capitalize-font"><span class="block font-20 weight-500 mb-5">$<span class="counter-anim">{{number_format($sales->sum('total_amount'), 2)}}</span></span><span class="block txt-grey">Sales</span></span>
 												<div class="clearfix"></div>
 											</div>
 										</div>
 										<div class="col-md-4 text-center">
 											<div class="">
 												<span class="clabels clabels-lg inline-block bg-blue mr-10"></span>
-												<span class="clabels-text font-12 inline-block txt-dark capitalize-font"><span class="block font-20 weight-500 mb-5">$<span class="counter-anim">{{number_format($card_total, 2)}}</span></span><span class="block txt-grey">Purchases</span></span>
+												<span class="clabels-text font-12 inline-block txt-dark capitalize-font"><span class="block font-20 weight-500 mb-5">$<span class="counter-anim">{{number_format($purchases->sum('total_amount'), 2)}}</span></span><span class="block txt-grey">Purchases</span></span>
 												<div class="clearfix"></div>
 											</div>
 										</div>
 										<div class="col-md-4 text-center">
 											<div class="">
 												<span class="clabels clabels-lg inline-block bg-blue mr-10"></span>
-												<span class="clabels-text font-12 inline-block txt-dark capitalize-font"><span class="block font-20 weight-500 mb-5">$<span class="counter-anim">{{number_format($paynow_total, 2)}}</span></span><span class="block txt-grey">Others</span></span>
+												<span class="clabels-text font-12 inline-block txt-dark capitalize-font"><span class="block font-20 weight-500 mb-5">$<span class="counter-anim">{{number_format($others->sum('total_amount'), 2)}}</span></span><span class="block txt-grey">Others</span></span>
 												<div class="clearfix"></div>
 											</div>
 										</div>
@@ -191,7 +191,6 @@
 								</div>
                             </div>
                         </div>
-							
 							
 						</div>
 					</div>
