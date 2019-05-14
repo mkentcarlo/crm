@@ -24,8 +24,8 @@ class InvoiceDetail extends Model
         'total_amount'
     ];
 
-    // public function invoiceDetail() 
-    // {
-    // 	return $this->hasOne('App\CustomerGroup', 'id');
-    // }
+    public function invoice() 
+    {
+    	return $this->belongsTo('App\Invoice', 'invoice_id');
+    }
 }

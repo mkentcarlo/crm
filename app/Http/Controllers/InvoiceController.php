@@ -120,11 +120,13 @@ class InvoiceController extends Controller
         $products = $this->productService->getProducts();
         $productIds = InvoiceDetail::pluck('product_id')->toArray();
 
-        foreach ($products as $key => $value) {
-            if (in_array($value['id'], $productIds)) {
-                unset($products[$key]);
+        if ($invoiceType == 'sales') {
+            foreach ($products as $key => $value) {
+                if (in_array($value['id'], $productIds)) {
+                    unset($products[$key]);
+                }
             }
-        }
+        }      
         
         return view('admin.invoice.create', compact('customers', 'products', 'invoiceType'));
     } 
@@ -446,9 +448,11 @@ class InvoiceController extends Controller
 
         $productIds = InvoiceDetail::pluck('product_id')->toArray();
 
-        foreach ($products as $key => $value) {
-            if (in_array($value['id'], $productIds)) {
-                unset($products[$key]);
+        if ($invoiceType == 'sales') {
+            foreach ($products as $key => $value) {
+                if (in_array($value['id'], $productIds)) {
+                    unset($products[$key]);
+                }
             }
         }
         
