@@ -148,7 +148,7 @@
 				<tr>
 					<td class="noborder">&nbsp;</td>
 					<td class="noborder text-right">TOTAL</td>
-					<td>{{ $total }}</td>
+					<td>{{ number_format($total, 2) }}</td>
 				</tr>
 			</tbody>
 		</table>
