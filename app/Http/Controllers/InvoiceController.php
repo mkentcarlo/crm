@@ -8,6 +8,7 @@ use App\Services\ProductService;
 use App\Services\WoocommerceService;
 use App\Invoice;
 use App\InvoiceDetail;
+use \Carbon\Carbon;
 
 class InvoiceController extends Controller
 {
@@ -46,7 +47,59 @@ class InvoiceController extends Controller
 
         $invoice = $request->invoice_type;
 
-        return view('admin.invoice.index', compact('invoice'));
+        $type = ['sales', 'consign_in', 'consign_out', 'purchase', 'repair', 'others'];
+
+        $date_string = ""; // range or year month
+
+        $current = \Request::get('current') ?  \Request::get('current') : '';
+        $year = \Request::get('year') ?  \Request::get('year') : '';
+        $month = \Request::get('month') ?  \Request::get('month') : '';
+        $week = \Request::get('week') ?  \Request::get('week') : '';
+        $start = \Request::get('date_start') ?  \Request::get('date_start') : '';
+        $end = \Request::get('date_end') ?  \Request::get('date_end') : '';
+
+        if ($current == 'year') {
+            $year = Carbon::now()->format('Y');
+            $month = \Request::get('month') ?  \Request::get('month') : '';
+            $week = \Request::get('week') ?  \Request::get('week') : '';
+            $date_string = $year;
+        }
+
+        if($current == 'month') {
+            $year = \Request::get('year') ?  \Request::get('year') : Carbon::now()->format('Y');
+            $month = Carbon::now()->format('m');
+            $week = \Request::get('week') ?  \Request::get('week') : '';
+            $date_string = $month.' '.$year;
+        }
+
+        if($current == 'week') {
+            $year = \Request::get('year') ? \Request::get('year') : Carbon::now()->format('Y');
+            $month = \Request::get('month') ?  \Request::get('month') : Carbon::now()->format('m');
+            $week = Carbon::now()->weekOfMonth;
+        }
+
+        if($current == '' && $year == '' && ($month || $week)) {
+            return redirect('/invoice?invoice_type='.$invoice);
+        }
+        
+        if(isset($request->end) && isset($request->start)){
+            $date_string = date_format(date_create($request->start),"F d, Y"). ' - '.date_format(date_create($request->end),"F d, Y");
+        }
+        else{
+            if($year){
+                $date_string = $year;
+            }
+            if($month){
+                $date_string =  date('F', mktime(0, 0, 0, $month, 10)). ' '.$date_string;
+            }
+            if($week){
+                $date_string = 'Week '.$week. ' '.$date_string;
+            }
+            
+        }
+
+
+        return view('admin.invoice.index', compact('invoice', 'date_string', 'week','month','year','current', 'start', 'end'));
     }  
 
     /**

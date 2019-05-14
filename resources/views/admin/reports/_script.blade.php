@@ -8,6 +8,8 @@
 
         $(function () {
             var type = "{{ $invoiceType }}";
+            var start = "{{ $start }}";
+            var end = "{{ $end }}";
             $reportTable = $('#report-table').DataTable( {
                 serverSide: true,
                 processing: true,
@@ -19,6 +21,8 @@
                         d.year = $('body').find('#select-year').val();
                         d.month = $('body').find('#select-month').val();
                         d.week = $('body').find('#select-week').val();
+                        d.date_start = start;
+                        d.date_end = end;
                         d.invoice_type = type;
                     },
                 },

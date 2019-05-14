@@ -115,4 +115,9 @@ class WoocommerceService
 	{
 		return DB::select("SELECT * FROM wpla_terms WHERE term_id=". $brandId);
 	}
+
+	public function getProductById($productId)
+	{
+		return DB::select("SELECT * FROM wpla_posts WHERE ID = '$productId'");
+	}
 }	

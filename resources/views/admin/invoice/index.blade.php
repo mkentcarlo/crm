@@ -58,6 +58,63 @@
 								<a href="{{ url('/invoice/create?invoice_type='. $invoice) }}" class="btn btn-gold pull-right">Add New Invoice</a>
 							</div>
 						</div>
+
+						<div class="row">
+						<div class="col-md-2 pt-15">
+							<input type="hidden" id="current" value="{{ \Request::get('current') ? \Request::get('current') : '' }}">
+							<label for="">Select Year</label>
+							<select class="form-control" data-style="form-control btn-default btn-outline" tabindex="-98" id="select-year">
+								<option value="">All</option>	
+								@for($x=2019;$x<=2019;$x++)
+								<option value="{{$x}}" {{ ($x == $year) ? 'selected="selected"' : ''}}>{{$x}}</option>	
+								@endfor
+							</select>
+						</div>
+						<div class="col-md-2 pt-15">
+							<label for="">Select Month</label>
+							<select class="form-control" data-style="form-control btn-default btn-outline" tabindex="-98" id="select-month">
+								<option value="">All</option>	
+								<option value="1" {{ (1 == $month) ? 'selected="selected"' : ''}}>January</option>
+								<option value="2" {{ (2 == $month) ? 'selected="selected"' : ''}}>February</option>
+								<option value="3" {{ (3 == $month) ? 'selected="selected"' : ''}}>March</option>
+								<option value="4" {{ (4 == $month) ? 'selected="selected"' : ''}}>April</option>
+								<option value="5" {{ (5 == $month) ? 'selected="selected"' : ''}}>May</option>
+								<option value="6" {{ (6 == $month) ? 'selected="selected"' : ''}}>June</option>
+								<option value="7" {{ (7 == $month) ? 'selected="selected"' : ''}}>July</option>
+								<option value="8" {{ (8 == $month) ? 'selected="selected"' : ''}}>August</option>
+								<option value="9" {{ (9 == $month) ? 'selected="selected"' : ''}}>September</option>
+								<option value="10" {{ (10 == $month) ? 'selected="selected"' : ''}}>October</option>
+								<option value="11" {{ (11 == $month) ? 'selected="selected"' : ''}}>November</option>
+								<option value="12" {{ (12 == $month) ? 'selected="selected"' : ''}}>December</option>
+							</select>
+						</div>
+						<div class="col-md-2 pt-15">
+							<label for="">Custom date range</label>
+							<input type="text" class="form-control daterange-datepicker" />
+
+							<!-- <select class="form-control" data-style="form-control btn-default btn-outline" tabindex="-98" id="select-week">
+								<option value="">All</option>	
+								<option value="1" {{ (1 == $week) ? 'selected="selected"' : ''}}>First Week</option>	
+								<option value="2" {{ (2 == $week) ? 'selected="selected"' : ''}}>Second Week</option>	
+								<option value="3" {{ (3 == $week) ? 'selected="selected"' : ''}}>Third Week</option>	
+								<option value="4" {{ (4 == $week) ? 'selected="selected"' : ''}}>Fourth Week</option>	
+								<option value="5" {{ (5 == $week) ? 'selected="selected"' : ''}}>Fifth Week</option>	
+							</select> -->
+						</div>
+						<div class="col-md-3 pt-15">
+							<label for="">Current</label>
+							<div class="btn-group btn-group-justified">
+								<a class="btn btn-default {{ $current == 'week' ? 'btn-gold' : 'btn-outline' }} select-current" role="button" id="week">Week</a> <a class="btn btn-default {{ $current == 'month' ? 'btn-gold' : 'btn-outline' }} select-current" role="button" id="month">Month</a> <a class="btn btn-default {{ $current == 'year' ? 'btn-gold' : 'btn-outline' }} select-current" role="button" id="year">Year</a>
+							</div>
+						</div>
+						<div class="col-md-1 pt-15">
+						</div>
+						<div class="col-md-2 pt-35">
+							<div class="btn-group">
+								<a class="btn btn-default btn-outline" role="button"><i class="fa fa-download"></i></a> <a class="btn btn-default btn-outline" role="button"><i class="fa fa-print"></i></a>
+							</div>
+						</div>
+					</div>
 						<div class="table-wrap">
 							<div class="table-responsive">
 								<div id="datable_1_wrapper" class="dataTables_wrapper">

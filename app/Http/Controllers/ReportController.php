@@ -42,6 +42,8 @@ class ReportController extends Controller
         $year = \Request::get('year') ?  \Request::get('year') : '';
         $month = \Request::get('month') ?  \Request::get('month') : '';
         $week = \Request::get('week') ?  \Request::get('week') : '';
+        $start = \Request::get('date_start') ?  \Request::get('date_start') : '';
+        $end = \Request::get('date_end') ?  \Request::get('date_end') : '';
 
         if ($current == 'year') {
             $year = Carbon::now()->format('Y');
@@ -67,7 +69,7 @@ class ReportController extends Controller
             return redirect('/reports?invoice_type='.$invoiceType);
         }
 
-        $total = app()->make('App\Services\InvoiceService')->getReports($request);
+        $total = app()->make('App\Services\InvoiceService')->getInvoices($request);
         
         
 
@@ -79,8 +81,8 @@ class ReportController extends Controller
         $installment_total = app()->make('App\Services\InvoiceService')->getInvoiceAmountsByPaymentMode($total, 'installment_amount');
         $others_total = app()->make('App\Services\InvoiceService')->getInvoiceAmountsByPaymentMode($total, 'others_amount');
         
-        if(isset($request->end) && isset($request->start)){
-            $date_string = date_format(date_create($request->start),"F d, Y"). ' - '.date_format(date_create($request->end),"F d, Y");
+        if(isset($request->date_end) && isset($request->date_start)){
+            $date_string = date_format(date_create($request->date_start),"F d, Y"). ' - '.date_format(date_create($request->date_end),"F d, Y");
         }
         else{
             if($year){
@@ -102,11 +104,11 @@ class ReportController extends Controller
             $others = app()->make('App\Services\InvoiceService')->getReports($request, 'others');
             $total_overall = $sales->sum("total_amount") - $purchases->sum("total_amount") - $others->sum("total_amount");
             $profit_or_loss = $total_overall < 0 ? 'Loss' : 'Profit';
-            return view('admin.reports.index', compact('week','month','year','current', 'invoiceType', 'total', 'date_string', 'cash_total', 'card_total', 'paynow_total', 'bank_transfer_total', 'net_total', 'installment_total', 'others_total', 'purchases', 'sales', 'others', 'total_overall', 'profit_or_loss'));
+            return view('admin.reports.index', compact('week','month','year','current', 'invoiceType', 'total', 'date_string', 'cash_total', 'card_total', 'paynow_total', 'bank_transfer_total', 'net_total', 'installment_total', 'others_total', 'purchases', 'sales', 'others', 'total_overall', 'profit_or_loss', 'start', 'end'));
         }
 
 
-        return view('admin.reports.index', compact('week','month','year','current', 'invoiceType', 'total', 'cash_total', 'card_total', 'paynow_total', 'bank_transfer_total', 'net_total', 'installment_total', 'others_total', 'date_string'));
+        return view('admin.reports.index', compact('week','month','year','current', 'invoiceType', 'total', 'cash_total', 'card_total', 'paynow_total', 'bank_transfer_total', 'net_total', 'installment_total', 'others_total', 'date_string', 'start', 'end'));
     }  
 
     public function viewPdf($id)

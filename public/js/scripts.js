@@ -106,7 +106,7 @@ $('.daterange-datepicker').daterangepicker({
           applyClass: 'btn-info',
           cancelClass: 'btn-default'
   }, function(start, end, label){
-      window.location = removeParam("start" ,removeParam("end", window.location.href)) + "&start=" + start.format('YYYY-MM-DD') + "&end=" + end.format('YYYY-MM-DD');
+      window.location = removeParam("date_start" ,removeParam("date_end", window.location.href)) + "&date_start=" + start.format('YYYY-MM-DD') + "&date_end=" + end.format('YYYY-MM-DD');
   });
 
 //select2

@@ -50,6 +50,7 @@ Route::group(
 		Route::get('/products/detail/{id}', 'ProductController@detail');
 		Route::delete('/products/delete/{id}', 'ProductController@destroy')->name('delete.product');
 		Route::get('/products/modify/updateSellingPrice', 'ProductController@updateSellingPrice');
+		Route::get('/products/clone/product/{id}', 'ProductController@cloneProduct');
 
 		Route::get('/categories', 'CategoryController@index')->name('view.category');
 		Route::get('/categories/ajaxRequest', 'CategoryController@ajaxRequest')->name('get.categories');

@@ -7,13 +7,68 @@ use Carbon\Carbon;
 
 class InvoiceService  
 {
-	public function getInvoices($request) 
+	public function getInvoices($request, $invoice_type = '') 
 	{
 		return Invoice::where(function($query) use ($request) {
-			if ($request->invoice_type) {
-				$query->where('invoice_type', $request->invoice_type);
+			if ($request->current != '') {
+				//$query->where('invoice_type', $request->invoice_type);
+				if($request->current == 'week') {
+					$year = $request->year ? $request->year : Carbon::now()->format('Y');
+					$month = $request->month ? $request->month : Carbon::now()->format('m');
+					$dates = $this->getDates($year, $month, '', 'week');
+					$query->whereBetween('created_at', [$dates[0], end($dates)]);
+				} 
+				if($request->current == 'month') {
+					$year = $request->year ? $request->year : Carbon::now()->format('Y');
+					$month = Carbon::now()->format('m');
+					$week = $request->week ? $request->week : '';
+					if ($week == '') {
+						$query->whereYear('created_at', $year);
+						$query->whereMonth('created_at', $month);
+					} else {
+						$dates = $this->getDates($year, $month, $week, '');
+						$query->whereBetween('created_at', [$dates[0], end($dates)]);
+					}
+					
+				} 
+				if($request->current == 'year') {
+					$year = Carbon::now()->format('Y');
+					$month = $request->month ? $request->month : '';
+					$week = $request->week ? $request->week : '';
+					if ($week == '' && $month == '') {
+						$query->whereYear('created_at', $year);
+					} else {
+						$dates = $this->getDates($year, $month, $week, '');
+						$query->whereBetween('created_at', [$dates[0], end($dates)]);
+					}
+					
+				}
+			} else {
+				$year = $request->year ? $request->year : '';
+				$month = $request->month ? $request->month : '';
+				$week = $request->week ? $request->week : '';
+				$start = $request->date_start ? $request->date_start : '';
+				$end = $request->date_end ? $request->date_end : '';
+				// echo $start;
+				// echo $end;
+				if ($week != '' && $month != '' && $year != '') {
+					$dates = $this->getDates($year, $month, $week, '');
+					$query->whereBetween('created_at', [$dates[0], end($dates)]);
+				} else {
+					if ($month != '') {
+						$query->whereMonth('created_at', $month);
+					}
+
+					if ($year != '') {
+						$query->whereYear('created_at', $year);
+					}
+
+				}
+				if($start != '' && $end != ''){
+					$query->whereBetween('created_at', [$start, $end]);
+				}
 			}
-		});
+		})->where('invoice_type', $request->invoice_type);
 	}
 
 
@@ -57,8 +112,8 @@ class InvoiceService
 				$year = $request->year ? $request->year : '';
 				$month = $request->month ? $request->month : '';
 				$week = $request->week ? $request->week : '';
-				$start = $request->start ? $request->start : '';
-				$end = $request->end ? $request->end : '';
+				$start = $request->date_start ? $request->date_start : '';
+				$end = $request->date_end ? $request->date_end : '';
 				if ($week != '' && $month != '' && $year != '') {
 					$dates = $this->getDates($year, $month, $week, '');
 					$query->whereBetween('created_at', [$dates[0], end($dates)]);

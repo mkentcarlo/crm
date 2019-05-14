@@ -190,4 +190,9 @@ class ProductController extends Controller
             ]
         );
     }
+
+    public function cloneProduct($productId) 
+    {
+        return $this->wooService->getProductById($productId);
+    }
 }

@@ -207,6 +207,17 @@
             });
 
             $('#file-input').change(function(){}, previewImages);
+
+            $('body').on('click', '.clone-product', function(e){
+                e.preventDefault();
+               
+                var id = $(this).attr('ino');
+
+                $.getJSON("{{ url('products') }}/clone/product/" + id, function (result) {
+                    console.log(result); 
+                    //swal.close();
+                });
+            });
         });
     </script>
 @endpush
