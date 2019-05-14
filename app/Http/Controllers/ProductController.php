@@ -114,7 +114,7 @@ class ProductController extends Controller
         $product->brand_id = $this->wooService->getProductBrands($productId)[0];
         if ($product) {
             $acf = DB::select("SELECT * FROM wpla_postmeta where post_id =".$productId);
-            $arr = ['model_reference', 'condition', 'gnder', 'case_material', 'bezel', 'case_back', 'case_diameter', 'movement', 'watch_features', 'dial_colour', 'crystal', 'braceletstrap', 'clasp_type', 'included', 'complication', 'new', 'limited_edition', 'complication', 'cost_price', 'asking_price', 'selling_price', 'model_reference'];
+            $arr = ['model_reference', 'condition', 'gnder', 'case_material', 'bezel', 'case_back', 'case_diameter', 'movement', 'watch_features', 'dial_colour', 'crystal', 'braceletstrap', 'clasp_type', 'included', 'complication', 'new', 'limited_edition', 'complication', 'cost_price', 'asking_price', 'selling_price', 'buying_price', 'model_reference'];
             foreach ($acf as $row) {
                 if (in_array($row->meta_key,  $arr)) {
                     $key = $row->meta_key;
@@ -174,6 +174,41 @@ class ProductController extends Controller
             );
         } else {
             $update = DB::update("UPDATE wpla_postmeta set meta_value = '$price' where meta_key='selling_price' AND post_id = '$productId'");
+
+            return response()->json(
+                [
+                    'success' => true,
+                    'msg' => 'Success'
+                ]
+            );
+        }
+
+        return response()->json(
+            [
+                'success' => false,
+                'msg' => 'Failed'
+            ]
+        );
+    }
+
+    public function updateBuyingPrice(Request $request)
+    {
+        $price = $request->price;
+        $productId = $request->id;
+
+        $exist = DB::select("SELECT meta_key FROM wpla_postmeta WHERE meta_key='buying_price' AND post_id = '$productId'");
+
+        if (!$exist) {
+            $insert = DB::insert("INSERT INTO wpla_postmeta (meta_key, meta_value,post_id) values (?, ?, ?)", ['buying_price', $price, $productId]);
+
+            return response()->json(
+                [
+                    'success' => true,
+                    'msg' => 'Success'
+                ]
+            );
+        } else {
+            $update = DB::update("UPDATE wpla_postmeta set meta_value = '$price' where meta_key='buying_price' AND post_id = '$productId'");
 
             return response()->json(
                 [

@@ -35,10 +35,10 @@
 				<div class="col-md-4">
 					<div class="form-group">
 						<label class="control-label mb-10">Select Watch:</label>
-						<select class="form-control customer-dropdown" name="customer_id" id="customer_id">
-						@foreach($customers as $customer)
-						<option value="{{ $customer->id }}" data-email="{{ $customer->email }}" data-contact="{{ $customer->contact }}">{{ $customer->lastname .' '. $customer->firstname }}</option>
-						@endforeach
+						<select class="form-control select2 product-dropdown" id="product_id">
+							@foreach($products as $product)
+							<option value="{{ $product['id'] }}" data-title="{{ $product['name'] }}" data-desc="{{ $product['short_description'] }}" data-brand="{{ $product['brands'] }}">{{ $product['name'] }}</option>
+							@endforeach
 						</select>
 					</div>
 					<div class="form-group row">

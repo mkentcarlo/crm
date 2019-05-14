@@ -118,6 +118,13 @@ class InvoiceController extends Controller
         $invoiceType = $request->invoice_type;
         $customers = $this->customerService->getCustomers();
         $products = $this->productService->getProducts();
+        $productIds = InvoiceDetail::pluck('product_id')->toArray();
+
+        foreach ($products as $key => $value) {
+            if (in_array($value['id'], $productIds)) {
+                unset($products[$key]);
+            }
+        }
         
         return view('admin.invoice.create', compact('customers', 'products', 'invoiceType'));
     } 
@@ -436,6 +443,14 @@ class InvoiceController extends Controller
         $invoice->additional_fields = json_decode($invoice->additional_fields);
         $customers = $this->customerService->getCustomers();
         $products = $this->productService->getProducts();
+
+        $productIds = InvoiceDetail::pluck('product_id')->toArray();
+
+        foreach ($products as $key => $value) {
+            if (in_array($value['id'], $productIds)) {
+                unset($products[$key]);
+            }
+        }
         
         return view('admin.invoice.edit', compact('customers', 'products', 'invoiceType', 'invoice'));
     } 

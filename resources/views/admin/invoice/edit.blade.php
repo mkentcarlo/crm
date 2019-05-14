@@ -29,7 +29,7 @@
 					@include('admin.invoice._script')
 				@elseif($invoiceType == 'purchase')
 					@include('admin.invoice.edit_purchase_invoice')
-					@include('admin.invoice._script')
+					@include('admin.invoice._edit_purchase_script')
 				@elseif($invoiceType == 'repair')
 					@include('admin.invoice.edit_repair_invoice')
 					@include('admin.invoice._repair_script')
