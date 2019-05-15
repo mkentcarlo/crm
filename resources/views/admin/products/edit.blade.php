@@ -103,19 +103,19 @@
 											<label class="control-label mb-10">Status</label>
 											<div class="radio-list">
 												<div class="radio-inline">
-													<div class="radio radio-info">
+													<div class="radio radio-default">
 														<input type="radio" name="status" id="radio2" value="draft" {{ ($product->status == 'draft') ? 'checked' : old('status', $product->status) == 'draft' || !$product->status ? 'checked' : '' }}>
 														<label for="radio2">Draft</label>
 													</div>
 												</div>
 												<div class="radio-inline pl-0">
-													<div class="radio radio-info">
+													<div class="radio radio-default">
 														<input type="radio" name="status" id="radio1" value="publish" {{ ($product->status == 'publish') ? 'checked' : old('status', $product->status) == 'publish' || !$product->status ? 'checked' : '' }}>
 														<label for="radio1">Published</label>
 													</div>
 												</div>
 												<div class="radio-inline">
-													<div class="radio radio-info">
+													<div class="radio radio-default">
 														<input type="radio" name="status" id="radio2" value="private" {{ ($product->status == 'private') ? 'checked' : old('status', $product->status) == 'private' || !$product->status ? 'checked' : '' }}>
 														<label for="radio2">Private</label>
 													</div>
@@ -190,6 +190,7 @@
 								<div class="row">
 									<div class="col-sm-12">
 										<div class="form-group">
+											<label for="">MODEL REFERENCE</label>
 											<input type="text" class="form-control" placeholder="MODEL REFERENCE" name="model_reference" value="{{ $product->model_reference ?? null }}">
 										</div>
 									</div>
@@ -197,11 +198,13 @@
 								<div class="row">
 									<div class="col-sm-6">
 										<div class="form-group">
+											<label for="">CONDITION</label>
 											<input type="text" class="form-control" placeholder="CONDITION" name="condition" value="{{ $product->condition ?? null }}">
 										</div>
 									</div>
 									<div class="col-sm-6">
 										<div class="form-group">
+											<label for="">GENDER</label>
 											<input type="text" class="form-control" placeholder="GENDER" name="gnder" value="{{ $product->gnder ?? null }}">
 										</div>
 									</div>
@@ -209,11 +212,13 @@
 								<div class="row">
 									<div class="col-sm-6">
 										<div class="form-group">
+											<label for="">CASE MATERIAL</label>
 											<input type="text" class="form-control" placeholder="CASE MATERIAL" name="case_material" value="{{ $product->case_material ?? null }}">
 										</div>
 									</div>
 									<div class="col-sm-6">
 										<div class="form-group">
+											<label for="">BEZEL</label>
 											<input type="text" class="form-control" placeholder="BEZEL" name="bezel" value="{{ $product->bezel ?? null }}">
 										</div>
 									</div>
@@ -221,11 +226,13 @@
 								<div class="row">
 									<div class="col-sm-6">
 										<div class="form-group">
+											<label for="">CASE BACK</label>
 											<input type="text" class="form-control" placeholder="CASE BACK" name="case_back" value="{{ $product->case_back ?? null }}">
 										</div>
 									</div>
 									<div class="col-sm-6">
 										<div class="form-group">
+											<label for="">CASE DIAMETER</label>
 											<input type="text" class="form-control" placeholder="CASE DIAMETER" name="case_diameter" value="{{ $product->case_diameter ?? null }}">
 										</div>
 									</div>
@@ -233,11 +240,13 @@
 								<div class="row">
 									<div class="col-sm-6">
 										<div class="form-group">
+											<label for="">MOVEMENT</label>
 											<input type="text" class="form-control" placeholder="MOVEMENT" name="movement" value="{{ $product->movement ?? null }}">
 										</div>
 									</div>
 									<div class="col-sm-6">
 										<div class="form-group">
+											<label for="">WATCH FEATURES</label>
 											<input type="text" class="form-control" placeholder="WATCH FEATURES" name="watch_features" value="{{ $product->watch_features ?? null }}">
 										</div>
 									</div>
@@ -245,11 +254,13 @@
 								<div class="row">
 									<div class="col-sm-6">
 										<div class="form-group">
+											<label for="">DIAL COLOUR</label>
 											<input type="text" class="form-control" placeholder="DIAL COLOUR" name="dial_colour" value="{{ $product->dial_colour ?? null }}">
 										</div>
 									</div>
 									<div class="col-sm-6">
 										<div class="form-group">
+											<label for="">CRYSTAL</label>
 											<input type="text" class="form-control" placeholder="CRYSTAL" name="crystal" value="{{ $product->crystal ?? null }}">
 										</div>
 									</div>
@@ -257,11 +268,13 @@
 								<div class="row">
 									<div class="col-sm-6">
 										<div class="form-group">
+											<label for="">BRACELET/STRAP</label>
 											<input type="text" class="form-control" placeholder="BRACELET/STRAP" name="braceletstrap" value="{{ $product->braceletstrap ?? null }}">
 										</div>
 									</div>
 									<div class="col-sm-6">
 										<div class="form-group">
+											<label for="">CLASP TYPE</label>
 											<input type="text" class="form-control" placeholder="CLASP TYPE" name="clasp_type" value="{{ $product->clasp_type ?? null }}">
 										</div>
 									</div>
@@ -269,6 +282,7 @@
 								<div class="row">
 									<div class="col-sm-6">
 										<div class="form-group">
+										<label for="">INCLUDED</label>
 											<input type="text" class="form-control" placeholder="INCLUDED" name="included" value="{{ $product->included ?? null }}">
 										</div>
 									</div>
@@ -286,17 +300,33 @@
 								<div class="row">
 									<div class="col-sm-6">
 										<label>New</label>
-
-										<div class="form-group">
-											YES <input type="radio" class="form-control" name="new" value="Yes" {{ isset($product->new) && $product->new == 'Yes' ? 'checked="checked"' : '' }}>
-											NO <input type="radio" class="form-control" name="new" value="No" {{ isset($product->new) && $product->new == 'No' ? 'checked="checked"' : '' }}>
+										<div class="radio radio-default">
+											<input type="radio" name="limited_edition" value="Yes" {{ isset($product->new) && $product->new == 'Yes' ? 'checked="checked"' : '' }}>
+											<label for="limited_editionyes">
+												YES
+											</label>
 										</div>
+										<div class="radio radio-default">
+											<input type="radio" name="limited_edition" value="No" {{ isset($product->new) && $product->new == 'No' ? 'checked="checked"' : '' }}>
+											<label for="limited_editionno">
+												NO
+											</label>
+										</div>
+										
 									</div>
 									<div class="col-sm-6">
 										<label>Limited Edition</label>
-										<div class="form-group">
-											YES <input type="radio" class="form-control" name="limited_edition" value="Yes" {{ isset($product->limited_edition) && $product->limited_edition == 'Yes' ? 'checked="checked"' : '' }}>
-											NO <input type="radio" class="form-control" name="limited_edition" value="No" {{ isset($product->limited_edition) && $product->limited_edition == 'No' ? 'checked="checked"' : '' }}>
+										<div class="radio radio-default">
+											<input type="radio" name="limited_edition" value="Yes" {{ isset($product->limited_edition) && $product->limited_edition == 'Yes' ? 'checked="checked"' : '' }}>
+											<label for="limited_editionyes">
+												YES
+											</label>
+										</div>
+										<div class="radio radio-default">
+											<input type="radio" name="limited_edition" value="No" {{ isset($product->limited_edition) && $product->limited_edition == 'No' ? 'checked="checked"' : '' }}>
+											<label for="limited_editionyes">
+												NO
+											</label>
 										</div>
 									</div>
 								</div>

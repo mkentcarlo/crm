@@ -21,9 +21,10 @@ class DataTableService  {
        })
          ->addColumn('price', function($product) {
             $price = ($product['price']) ? number_format($product['price'], 2) : '0.00';
+            $asking_price = ($product['asking_price']) ? number_format($product['asking_price'], 2) : '0.00';
             $selling_price = ($product['selling_price']) ? number_format($product['selling_price'], 2) : '0.00';
             $buying_price = ($product['buying_price']) ? number_format($product['buying_price'], 2) : '0.00';
-            return '$'.$price ."<br/>".'$'.$selling_price."<br/>".'$'.$buying_price;
+            return 'A: $'.$asking_price ."<br/>".'B: <span class="text-danger">$'.$buying_price."</span><br/>".'S: <span class="text-success">$'.$selling_price."</span>";
        })
         ->addColumn('action', function($product) {
         $exist = InvoiceDetail::where('product_id', $product['id'])->first();

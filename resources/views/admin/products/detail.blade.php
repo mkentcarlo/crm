@@ -33,14 +33,14 @@
 									<div class="col-md-6">
 										<div class="form-group">
 											<label class="control-label mb-10">Product Name</label>
-											<input type="text" id="title" name="title" value="{{ old('title', $product->title) }}" class="form-control">
+											<input type="text" id="title" name="title" value="{{ old('title', $product->title) }}" class="form-control" readonly>
 										</div>
 									</div>
 									<!--/span-->
 									<div class="col-md-6">
 										<div class="form-group">
 											<label class="control-label mb-10">Short Description</label>
-											<input type="text" id="short_description" name="short_description" value="{{ old('short_description', strip_tags($product->short_description)) }}" class="form-control">
+											<input type="text" id="short_description" name="short_description" value="{{ old('short_description', strip_tags($product->short_description)) }}" class="form-control" readonly>
 										</div>
 									</div>
 									<!--/span-->
@@ -48,23 +48,15 @@
 								<!-- Row -->
 								<div class="row">
 									<div class="col-md-6">
-										<label class="control-label mb-10">Select Brand</label>
-										<select class="selectpicker" name="brand_id" data-style="form-control btn-default btn-outline" tabindex="-98">
-											@foreach($brands as $brand)
-												<option value="{{ $brand->term_id }}" {{ $product->brands[0]->term_id == $brand->term_id ? 'selected="selected"' : '' }}>{{ $brand->name }}</option>
-											@endforeach
-										</select>
+										<label class="control-label mb-10">Brand</label> <br>
+										<input type="text" class="form-control" readonly value="{{$product->brands[0]->name}}">
 									</div>
 									<!--/span-->
 									<div class="col-md-6">
-											<div class="form-group">
-												<label class="control-label mb-10">Category</label>
-												<select class="selectpicker" name="category_id" data-style="form-control btn-default btn-outline" tabindex="-98">
-													@foreach($categories as $category)
-														<option value="{{ $category->term_id }}" {{ $product->categories[0]->term_id == $category->term_id ? 'selected="selected"' : '' }}>{{ $category->name }}</option>	
-													@endforeach
-												</select>
-											</div>
+										<div class="form-group">
+											<label class="control-label mb-10">Category</label><br>
+											<input type="text" class="form-control" readonly value="{{$product->categories[0]->name }}">
+										</div>
 									</div>
 									<!--/span-->
 								</div>
@@ -75,7 +67,7 @@
 											<label class="control-label mb-10">Asking Price</label>
 											<div class="input-group">
 												<div class="input-group-addon"><i class="ti-money"></i></div>
-												<input type="text" class="form-control" id="asking_price" name="asking_price" value="{{ old('asking_price', $product->asking_price ?? null) }}">
+												<input type="text" class="form-control" readonly id="asking_price" name="asking_price" value="{{ old('asking_price', $product->asking_price ?? null) }}">
 											</div>
 										</div>
 									</div>
@@ -84,7 +76,7 @@
 											<label class="control-label mb-10">Selling Price</label>
 											<div class="input-group">
 												<div class="input-group-addon"><i class="ti-money"></i></div>
-												<input type="text" class="form-control" id="selling_price" name="selling_price" value="{{ old('selling_price', $product->selling_price ?? null) }}" readonly="readonly">
+												<input type="text" class="form-control" readonly id="selling_price" name="selling_price" value="{{ old('selling_price', $product->selling_price ?? null) }}" readonly="readonly">
 											</div>
 										</div>
 									</div>
@@ -93,34 +85,16 @@
 											<label class="control-label mb-10">Buying Price</label>
 											<div class="input-group">
 												<div class="input-group-addon"><i class="ti-money"></i></div>
-												<input type="text" class="form-control" id="buying_price" name="buying_price" value="{{ old('buying_price', $product->buying_price ?? null) }}" readonly="readonly">
+												<input type="text" class="form-control" readonly id="buying_price" name="buying_price" value="{{ old('buying_price', $product->buying_price ?? null) }}" readonly="readonly">
 											</div>
 										</div>	
 									</div>
 									<!--/span-->
 									<div class="col-md-6">
 										<div class="form-group">
-											<label class="control-label mb-10">Status</label>
-											<div class="radio-list">
-												<div class="radio-inline">
-													<div class="radio radio-info">
-														<input type="radio" name="status" id="radio2" value="draft" {{ ($product->status == 'draft') ? 'checked' : old('status', $product->status) == 'draft' || !$product->status ? 'checked' : '' }}>
-														<label for="radio2">Draft</label>
-													</div>
-												</div>
-												<div class="radio-inline pl-0">
-													<div class="radio radio-info">
-														<input type="radio" name="status" id="radio1" value="publish" {{ ($product->status == 'publish') ? 'checked' : old('status', $product->status) == 'publish' || !$product->status ? 'checked' : '' }}>
-														<label for="radio1">Published</label>
-													</div>
-												</div>
-												<div class="radio-inline">
-													<div class="radio radio-info">
-														<input type="radio" name="status" id="radio2" value="private" {{ ($product->status == 'private') ? 'checked' : old('status', $product->status) == 'private' || !$product->status ? 'checked' : '' }}>
-														<label for="radio2">Private</label>
-													</div>
-												</div>
-											</div>
+											<label class="control-label mb-10">Status</label> <br>
+											<input type="text" class="form-control" readonly value="{{$product->status}}">
+											
 										</div>
 									</div>
 									<!--/span-->
@@ -132,7 +106,7 @@
 											<label class="control-label mb-10">Regular Price</label>
 											<div class="input-group">
 												<div class="input-group-addon"><i class="ti-money"></i></div>
-												<input type="text" class="form-control" id="regular_price" name="regular_price" value="{{ old('regular_price', $product->regular_price) }}">
+												<input type="text" class="form-control" readonly id="regular_price" name="regular_price" value="{{ old('regular_price', $product->regular_price) }}">
 											</div>
 										</div>
 									</div>
@@ -141,11 +115,11 @@
 											<label class="control-label mb-10">Discounted Price</label>
 											<div class="input-group">
 												<div class="input-group-addon"><i class="ti-money"></i></div>
-												<input type="text" class="form-control" id="sale_price" name="sale_price" value="{{ old('sale_price', $product->sale_price) }}">
+												<input type="text" class="form-control" readonly id="sale_price" name="sale_price" value="{{ old('sale_price', $product->sale_price) }}">
 											</div>
 										</div>	
 									</div>
-									<input type="hidden" class="form-control" id="stock_quantity" name="stock_quantity" value="{{ old('stock_quantity', $product->stock_quantity) }}">
+									<input type="hidden" class="form-control" readonly id="stock_quantity" name="stock_quantity" value="{{ old('stock_quantity', $product->stock_quantity) }}">
 								</div>
 								<div class="seprator-block"></div>
 								<h6 class="txt-dark capitalize-font"><i class="zmdi zmdi-collection-image mr-10"></i>upload image</h6>
@@ -154,10 +128,6 @@
 									<div class="col-lg-4 text-center">
 										<div class="img-upload-wrap">
 											<img id="blah" src="{{ ($product->featured_src) ? $product->featured_src : asset('img/img-placeholder.png') }}" alt="your image" height="100" />
-										</div>
-										<div class="fileupload btn btn-info btn-anim btn-gold mt-10"><i class="fa fa-upload"></i><span class="btn-text">Upload cover image</span>
-											<input type="file" class="upload form-control" name="cover_image" id="imgInp">
-  											
 										</div>
 									</div>
 									<div class="col-lg-8">
@@ -170,12 +140,11 @@
 											</div>
 											<div class="panel-wrapper">
 												<div class="panel-body">
-											        <input id="file-input" class="form-control" type="file" multiple>
 															<br>
 													<div id="preview">
 
 														@for($x = 1;$x < sizeof($product->images); $x++)
-														<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12  file-box"><div class="file"><div class="image"><img height="100" src="{{ $product->images[$x]->src }}" ino="{{ $product->images[$x]->id }}"></div><div class="file-name text-center"><a title="Delete image" href="javascript:;" class="delete-gallery-img btn btn-danger btn-sm"><i class="fa fa-trash"></i></a></div></div></div>
+														<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12  file-box"><div class="file"><div class="image"><img height="100" src="{{ $product->images[$x]->src }}" ino="{{ $product->images[$x]->id }}"></div></div></div>
 														@endfor
 													</div>
 			                                    </div>
@@ -186,96 +155,110 @@
 								<div class="seprator-block"></div>
 								<h6 class="txt-dark capitalize-font"><i class="zmdi zmdi-calendar-note mr-10"></i>general info</h6>
 								<hr class="light-grey-hr">
-								<input type="hidden" class="form-control" placeholder="COST PRICE" name="cost_price" value="{ $product->cost_price ?? null }}">
+								<input type="hidden" class="form-control" readonly placeholder="COST PRICE" name="cost_price" value="{ $product->cost_price ?? null }}">
 								<div class="row">
 									<div class="col-sm-12">
 										<div class="form-group">
-											<input type="text" class="form-control" placeholder="MODEL REFERENCE" name="model_reference" value="{{ $product->model_reference ?? null }}">
+										<label for="">MODEL REFERENCE</label>
+											<input type="text" class="form-control" readonly placeholder="MODEL REFERENCE" name="model_reference" value="{{ $product->model_reference ?? null }}">
 										</div>
 									</div>
 								</div>
 								<div class="row">
 									<div class="col-sm-6">
 										<div class="form-group">
-											<input type="text" class="form-control" placeholder="CONDITION" name="condition" value="{{ $product->condition ?? null }}">
+										<label for="">CONDITION</label>
+											<input type="text" class="form-control" readonly placeholder="CONDITION" name="condition" value="{{ $product->condition ?? null }}">
 										</div>
 									</div>
 									<div class="col-sm-6">
 										<div class="form-group">
-											<input type="text" class="form-control" placeholder="GENDER" name="gnder" value="{{ $product->gnder ?? null }}">
-										</div>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-sm-6">
-										<div class="form-group">
-											<input type="text" class="form-control" placeholder="CASE MATERIAL" name="case_material" value="{{ $product->case_material ?? null }}">
-										</div>
-									</div>
-									<div class="col-sm-6">
-										<div class="form-group">
-											<input type="text" class="form-control" placeholder="BEZEL" name="bezel" value="{{ $product->bezel ?? null }}">
+										<label for="">GENDER</label>
+											<input type="text" class="form-control" readonly placeholder="GENDER" name="gnder" value="{{ $product->gnder ?? null }}">
 										</div>
 									</div>
 								</div>
 								<div class="row">
 									<div class="col-sm-6">
 										<div class="form-group">
-											<input type="text" class="form-control" placeholder="CASE BACK" name="case_back" value="{{ $product->case_back ?? null }}">
+											<label for="">CASE MATERIAL</label>
+											<input type="text" class="form-control" readonly placeholder="CASE MATERIAL" name="case_material" value="{{ $product->case_material ?? null }}">
 										</div>
 									</div>
 									<div class="col-sm-6">
 										<div class="form-group">
-											<input type="text" class="form-control" placeholder="CASE DIAMETER" name="case_diameter" value="{{ $product->case_diameter ?? null }}">
-										</div>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-sm-6">
-										<div class="form-group">
-											<input type="text" class="form-control" placeholder="MOVEMENT" name="movement" value="{{ $product->movement ?? null }}">
-										</div>
-									</div>
-									<div class="col-sm-6">
-										<div class="form-group">
-											<input type="text" class="form-control" placeholder="WATCH FEATURES" name="watch_features" value="{{ $product->watch_features ?? null }}">
+											<label for="">BEZEL</label>
+											<input type="text" class="form-control" readonly placeholder="BEZEL" name="bezel" value="{{ $product->bezel ?? null }}">
 										</div>
 									</div>
 								</div>
 								<div class="row">
 									<div class="col-sm-6">
 										<div class="form-group">
-											<input type="text" class="form-control" placeholder="DIAL COLOUR" name="dial_colour" value="{{ $product->dial_colour ?? null }}">
+											<label for="">CASE BACK</label>
+											<input type="text" class="form-control" readonly placeholder="CASE BACK" name="case_back" value="{{ $product->case_back ?? null }}">
 										</div>
 									</div>
 									<div class="col-sm-6">
 										<div class="form-group">
-											<input type="text" class="form-control" placeholder="CRYSTAL" name="crystal" value="{{ $product->crystal ?? null }}">
-										</div>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-sm-6">
-										<div class="form-group">
-											<input type="text" class="form-control" placeholder="BRACELET/STRAP" name="braceletstrap" value="{{ $product->braceletstrap ?? null }}">
-										</div>
-									</div>
-									<div class="col-sm-6">
-										<div class="form-group">
-											<input type="text" class="form-control" placeholder="CLASP TYPE" name="clasp_type" value="{{ $product->clasp_type ?? null }}">
+											<label for="">CASE DIAMETER</label>
+											<input type="text" class="form-control" readonly placeholder="CASE DIAMETER" name="case_diameter" value="{{ $product->case_diameter ?? null }}">
 										</div>
 									</div>
 								</div>
 								<div class="row">
 									<div class="col-sm-6">
 										<div class="form-group">
-											<input type="text" class="form-control" placeholder="INCLUDED" name="included" value="{{ $product->included ?? null }}">
+											<label for="">MOVEMENT</label>
+											<input type="text" class="form-control" readonly placeholder="MOVEMENT" name="movement" value="{{ $product->movement ?? null }}">
+										</div>
+									</div>
+									<div class="col-sm-6">
+										<div class="form-group">
+											<label for="">WATCH FEATURES</label>
+											<input type="text" class="form-control" readonly placeholder="WATCH FEATURES" name="watch_features" value="{{ $product->watch_features ?? null }}">
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-sm-6">
+										<div class="form-group">
+											<label for="">DIAL COLOUR</label>
+											<input type="text" class="form-control" readonly placeholder="DIAL COLOUR" name="dial_colour" value="{{ $product->dial_colour ?? null }}">
+										</div>
+									</div>
+									<div class="col-sm-6">
+										<div class="form-group">
+											<label for="">CRYSTAL</label>
+											<input type="text" class="form-control" readonly placeholder="CRYSTAL" name="crystal" value="{{ $product->crystal ?? null }}">
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-sm-6">
+										<div class="form-group">
+											<label for="">BRACELET/STRAP</label>
+											<input type="text" class="form-control" readonly placeholder="BRACELET/STRAP" name="braceletstrap" value="{{ $product->braceletstrap ?? null }}">
+										</div>
+									</div>
+									<div class="col-sm-6">
+										<div class="form-group">
+											<label for="">CLASP TYPE</label>
+											<input type="text" class="form-control" readonly placeholder="CLASP TYPE" name="clasp_type" value="{{ $product->clasp_type ?? null }}">
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-sm-6">
+										<div class="form-group">
+										<label for="">INCLUDED</label>
+											<input type="text" class="form-control" readonly placeholder="INCLUDED" name="included" value="{{ $product->included ?? null }}">
 										</div>
 									</div>
 									<div class="col-sm-6">
 										<label>Complication</label>
 										<div class="form-group">
-											<select name="complication" class="form-control">
+											<select readonly name="complication" class="form-control" readonly>
 												@for($x=1;$x<=10;$x++)
 												<option value="{{ $x }}" {{ isset($product->complication) && $product->complication == $x ? 'selected="selected"' : '' }}>{{ $x }}</option>
 												@endfor
@@ -284,27 +267,21 @@
 									</div>
 								</div>
 								<div class="row">
-									<div class="col-sm-6">
+								<div class="col-sm-6">
 										<label>New</label>
-
-										<div class="form-group">
-											YES <input type="radio" class="form-control" name="new" value="Yes" {{ isset($product->new) && $product->new == 'Yes' ? 'checked="checked"' : '' }}>
-											NO <input type="radio" class="form-control" name="new" value="No" {{ isset($product->new) && $product->new == 'No' ? 'checked="checked"' : '' }}>
-										</div>
+										<input type="text" readonly class="form-control" value="{{$product->limited_edition }}">
+										
 									</div>
 									<div class="col-sm-6">
 										<label>Limited Edition</label>
-										<div class="form-group">
-											YES <input type="radio" class="form-control" name="limited_edition" value="Yes" {{ isset($product->limited_edition) && $product->limited_edition == 'Yes' ? 'checked="checked"' : '' }}>
-											NO <input type="radio" class="form-control" name="limited_edition" value="No" {{ isset($product->limited_edition) && $product->limited_edition == 'No' ? 'checked="checked"' : '' }}>
-										</div>
+										<input readonly type="text" class="form-control" value="{{$product->limited_edition }}">
 									</div>
 								</div>
-								<div class="form-actions mt-15 mb-15">
+								<!-- <div class="form-actions mt-15 mb-15">
 									<button class="btn btn-gold btn-icon left-icon mr-10 pull-left" type="submit"> <i class="fa fa-check"></i> <span>save</span></button>
 									<button type="button" class="btn btn-default pull-left">Cancel</button>
 									<div class="clearfix"></div>
-								</div>
+								</div> -->
 							</form>
 						</div>
 					</div>

@@ -82,7 +82,7 @@
 											<label class="control-label mb-10">Selling Price</label>
 											<div class="input-group">
 												<div class="input-group-addon"><i class="ti-money"></i></div>
-												<input type="text" class="form-control" id="selling_price" name="selling_price">
+												<input readonly type="text" class="form-control" id="selling_price" name="selling_price">
 											</div>
 										</div>
 									</div>
@@ -91,7 +91,7 @@
 											<label class="control-label mb-10">Buying Price</label>
 											<div class="input-group">
 												<div class="input-group-addon"><i class="ti-money"></i></div>
-												<input type="text" class="form-control" id="buying_price" name="buying_price">
+												<input readonly type="text" class="form-control" id="buying_price" name="buying_price">
 											</div>
 										</div>	
 									</div>
@@ -280,16 +280,32 @@
 								<div class="row">
 									<div class="col-sm-6">
 										<label>New</label>
-										<div class="form-group">
-											YES <input type="radio" class="form-control" name="new" value="Yes">
-											NO <input type="radio" class="form-control" name="new" value="No">
+										<div class="radio radio-default">
+											<input type="radio" name="new" id="radionewyes" value="Yes">
+											<label for="radionewyes">
+												YES
+											</label>
+										</div>
+										<div class="radio radio-default">
+											<input type="radio" name="new" id="radionewno" value="No">
+											<label for="radionewno">
+												NO
+											</label>
 										</div>
 									</div>
 									<div class="col-sm-6">
 										<label>Limited Edition</label>
-										<div class="form-group">
-											YES <input type="radio" class="form-control" name="limited_edition" value="Yes">
-											NO <input type="radio" class="form-control" name="limited_edition" value="No">
+										<div class="radio radio-default">
+											<input type="radio" name="limited_edition" id="limited_editionyes" value="Yes">
+											<label for="limited_editionyes">
+												YES
+											</label>
+										</div>
+										<div class="radio radio-default">
+											<input type="radio" name="limited_edition" id="limited_editionno" value="No">
+											<label for="limited_editionno">
+												NO
+											</label>
 										</div>
 									</div>
 								</div>

@@ -25,7 +25,8 @@ class ProductService
         $data = [];
 	    foreach ($products as $product) {
 	    	$selling = $this->wooService->getProductSellingById($product->ID);
-	    	$buying = $this->wooService->getProductBuyingById($product->ID);
+			$buying = $this->wooService->getProductBuyingById($product->ID);
+			$asking = $this->wooService->getProductBuyingById($product->ID);
 
 	    	$img_file = @unserialize($product->images);
 	    	$img_dir  = $product->siteurl .'wp-content/uploads';
@@ -38,9 +39,10 @@ class ProductService
 	        $tmp['brands'] = implode('', array_column($this->wooService->getProductBrands($product->ID), 'name'));
 	        $tmp['price'] = $product->price;
 	        $tmp['selling_price'] = ($selling) ? $selling[0]->meta_value : '0.00';
-	        $tmp['buying_price'] = ($buying) ? $buying[0]->meta_value : '0.00';
-	        $tmp['status'] = $product->post_status;
-	        $tmp['date_created'] = date('M d Y h:i a', strtotime($product->post_date));
+			$tmp['buying_price'] = ($buying) ? $buying[0]->meta_value : '0.00';
+			$tmp['asking_price'] = ($asking) ? $asking[0]->meta_value : '0.00';
+	        $tmp['status'] = $product->post_status == 'publish' ? 'published' : $product->post_status;
+	        $tmp['date_created'] = date('d/m/Y | h:i a', strtotime($product->post_date));
 	        $data[] = $tmp;
 	    }
 	   
