@@ -850,5 +850,30 @@ class InvoiceController extends Controller
         } else {
             return redirect('/invoice?invoice_type='.$invoice->invoice_type);
         }
+    }  
+
+    public function destroy($invoiceId)
+    {
+        $invoice = Invoice::find($invoiceId);
+        if ($invoice->delete()) {
+            $invoice->invoice_detail()->delete();
+            return response()->json(
+                [
+                    'success' => true,
+                    'title' => 'Deleted',
+                    'msg' => 'Invoice has been deleted!',
+                    'type' => 'success'
+                ]
+            );
+        }
+
+        return response()->json(
+            [
+                'success' => false,
+                'title' => 'Deleted',
+                'msg' => 'Failed to delete invoice!',
+                'type' => 'error'
+            ]
+        );
     }    
 }

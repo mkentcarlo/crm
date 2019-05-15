@@ -180,7 +180,7 @@ class DataTableService  {
             return date('Y/m/d', strtotime($invoice->due_date));
         })
         ->addColumn('action', function($invoice) {
-            return '<a href="'.url('invoice/edit/'.$invoice->id.'?invoice_type='.$invoice->invoice_type).'" class="text-inverse pr-10 form-load edit" title="Edit" id="'.$invoice->id.'"><i class="zmdi zmdi-edit txt-warning"></i></a><a href="'.route('show.invoice', $invoice->id).'" class="text-inverse" title="View" id="'.$invoice->id.'"><i class="zmdi zmdi-eye txt-warning pr-10"></i></a><a href="'.url('invoices/delete/'.$invoice->id).'" class="text-inverse delete" title="Delete"><i class="zmdi zmdi-delete txt-danger"></i></a>';
+            return '<a href="'.url('invoice/edit/'.$invoice->id.'?invoice_type='.$invoice->invoice_type).'" class="text-inverse pr-10 form-load edit" title="Edit" id="'.$invoice->id.'"><i class="zmdi zmdi-edit txt-warning"></i></a><a href="'.route('show.invoice', $invoice->id).'" class="text-inverse" title="View" id="'.$invoice->id.'"><i class="zmdi zmdi-eye txt-warning pr-10"></i></a><a href="'.url('invoice/delete/'.$invoice->id).'" class="text-inverse delete" title="Delete"><i class="zmdi zmdi-delete txt-danger"></i></a>';
         })
         ->rawColumns(['status', 'total_amount', 'created_at', 'due_date', 'action'])
         ->make(true);

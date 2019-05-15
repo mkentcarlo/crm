@@ -90,6 +90,7 @@ Route::group(
 		Route::get('/invoice/edit/{id}', 'InvoiceController@edit')->name('edit.invoice');
 		Route::post('/invoice/edit/{id}', 'InvoiceController@update')->name('update.invoice');
 		Route::get('/invoice/{id}', 'InvoiceController@show')->name('show.invoice');
+		Route::delete('/invoice/delete/{id}', 'InvoiceController@destroy')->name('delete.invoice');
 
 		Route::get('/reports', 'ReportController@index')->name('view.report');
 		Route::get('/reports/ajaxRequest', 'ReportController@ajaxRequest')->name('get.reports');
