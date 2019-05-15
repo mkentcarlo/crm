@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Inquiry;
 
 class HomeController extends Controller
 {
@@ -29,11 +30,11 @@ class HomeController extends Controller
         $brands = app()->make('App\Services\BrandService')->getBrands();
         $watches = app()->make('App\Services\ProductService')->getProducts();
         $customers = app()->make('App\Services\CustomerService')->getCustomers();
-        $sales = app()->make('App\Services\InvoiceService')->getInvoiceByInvoiceTypes(['sale']);
+        $sales = app()->make('App\Services\InvoiceService')->getInvoiceByInvoiceTypes(['sales']);
         $consignments = app()->make('App\Services\InvoiceService')->getInvoiceByInvoiceTypes(['consign_in', 'consign_out']);
         $purchase = app()->make('App\Services\InvoiceService')->getInvoiceByInvoiceTypes(['purchase']);
         $repair = app()->make('App\Services\InvoiceService')->getInvoiceByInvoiceTypes(['repair']);
-
-        return view('admin.dashboard', compact('brands', 'watches', 'customers', 'sales', 'consignments', 'purchase', 'repair'));
+        $inquiries = Inquiry::all();
+        return view('admin.dashboard', compact('brands', 'watches', 'customers', 'sales', 'consignments', 'purchase', 'repair', 'inquiries'));
     }  
 }

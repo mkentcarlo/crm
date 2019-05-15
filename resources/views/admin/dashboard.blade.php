@@ -60,7 +60,7 @@
 						<div class="container-fluid">
 							<div class="row">
 								<div class="col-xs-6 text-center pl-0 pr-0 txt-light data-wrap-left">
-									<span class="block counter"><span class="counter-anim">36</span></span>
+									<span class="block counter"><span class="counter-anim">{{ count($inquiries) }}</span></span>
 									<span class="weight-500 uppercase-font block">All Enquiries</span>
 								</div>
 								<div class="col-xs-6 text-center  pl-0 pr-0 txt-light data-wrap-right">
@@ -83,7 +83,7 @@
 						<div class="container-fluid">
 							<div class="row">
 								<div class="col-xs-6 text-center pl-0 pr-0 txt-light data-wrap-left">
-									<span class="block counter"><span class="counter-anim">{{ count($watches) }}</span></span>
+									<span class="block counter"><span class="counter-anim">{{ count($customers) }}</span></span>
 									<span class="weight-500 uppercase-font block">All Customers</span>
 								</div>
 								<div class="col-xs-6 text-center  pl-0 pr-0 txt-light data-wrap-right">
