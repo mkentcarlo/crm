@@ -3,7 +3,7 @@
     <div class="mobile-only-brand pull-left">
         <div class="nav-header pull-left">
             <div class="logo-wrap" style="padding-top: 7px;">
-                <a href="index.html">
+                <a href="{{url('/')}}">
                     <img style="vertical-align: middle" width="30" class="brand-img" src="https://www.luxemontre.sg/wp-content/uploads/2018/11/mobile-logo-e1544059816890.png" alt="brand"/>
                     <span style="vertical-align: middle; margin-top: 6px;" class="brand-text">Luxe CRM</span>
                 </a>
