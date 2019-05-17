@@ -154,7 +154,14 @@ class ReportController extends Controller
             $pdf = PDF::loadView('admin.pdf.repair_invoice', compact('invoice'));
       
             return $pdf->stream('repair_invoice.pdf');
-        } else {
+        } 
+        else if($invoice->invoice_type == 'others') 
+        {
+            $pdf = PDF::loadView('admin.pdf.others_invoice', compact('invoice'));
+      
+            return $pdf->stream('others_invoice.pdf');
+        } 
+        else {
             return redirect('/reports?invoice_type='.$invoice->invoice_type);
         }
     }
