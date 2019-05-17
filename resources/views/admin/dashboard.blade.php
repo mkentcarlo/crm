@@ -125,7 +125,7 @@
 			</div>
 		</div>
 		</a>
-		<a href="{{url('invoice')}}">
+		<a href="{{url('invoice?invoice_type=sales')}}">
 		<div class="panel panel-default card-view pa-0">
 			<div class="panel-wrapper collapse in">
 				<div class="panel-body pa-0">
@@ -146,7 +146,7 @@
 			</div>
 		</div>
 		</a>
-		<a href="{{url('invoice')}}">
+		<a href="{{url('invoice?invoice_type=consign_in')}}">
 		<div class="panel panel-default card-view pa-0">
 			<div class="panel-wrapper collapse in">
 				<div class="panel-body pa-0">
@@ -155,7 +155,7 @@
 							<div class="row">
 								<div class="col-xs-6 text-center pl-0 pr-0 data-wrap-left">
 									<span class="block counter"><span class="counter-anim">{{ count($consignments) }}</span></span>
-									<span class="weight-500 uppercase-font block">Consignments</span>
+									<span class="weight-500 uppercase-font block">Consignments In</span>
 								</div>
 								<div class="col-xs-6 text-center  pl-0 pr-0 data-wrap-right">
 									<i class="icon-layers data-right-rep-icon"></i>
@@ -167,7 +167,28 @@
 			</div>
 		</div>
 		</a>
-		<a href="{{url('invoice')}}">
+		<a href="{{url('invoice?invoice_type=consign_out')}}">
+		<div class="panel panel-default card-view pa-0">
+			<div class="panel-wrapper collapse in">
+				<div class="panel-body pa-0">
+					<div class="sm-data-box">
+						<div class="container-fluid">
+							<div class="row">
+								<div class="col-xs-6 text-center pl-0 pr-0 data-wrap-left">
+									<span class="block counter"><span class="counter-anim">{{ count($consignments) }}</span></span>
+									<span class="weight-500 uppercase-font block">Consignments Out</span>
+								</div>
+								<div class="col-xs-6 text-center  pl-0 pr-0 data-wrap-right">
+									<i class="icon-layers data-right-rep-icon"></i>
+								</div>
+							</div>	
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		</a>
+		<a href="{{url('invoice?invoice_type=repair')}}">
 		<div class="panel panel-default card-view pa-0">
 			<div class="panel-wrapper collapse in">
 				<div class="panel-body pa-0">
@@ -180,6 +201,27 @@
 								</div>
 								<div class="col-xs-6 text-center  pl-0 pr-0 data-wrap-right">
 									<i class="fa fa-cogs data-right-rep-icon"></i>
+								</div>
+							</div>	
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		</a>
+		<a href="{{url('invoice?invoice_type=others')}}">
+		<div class="panel panel-default card-view pa-0">
+			<div class="panel-wrapper collapse in">
+				<div class="panel-body pa-0">
+					<div class="sm-data-box">
+						<div class="container-fluid">
+							<div class="row">
+								<div class="col-xs-6 text-center pl-0 pr-0 data-wrap-left">
+									<span class="block counter"><span class="counter-anim">{{ count($repair) }}</span></span>
+									<span class="weight-500 uppercase-font block">Others</span>
+								</div>
+								<div class="col-xs-6 text-center  pl-0 pr-0 data-wrap-right">
+									<i class="fa fa-money data-right-rep-icon"></i>
 								</div>
 							</div>	
 						</div>
