@@ -59,30 +59,23 @@
 			<div class="col-md-12 text-right">
 				<h5 style="font-size:18px">CONSIGNMENT INVOICE</h5>
 				<h6 style="font-size:10px; margin-top:-10px">UEN NO: 230215K</h6>
-				<h6 style="margin-top:25px">CI (IN) NO.: <span style="color: red; font-size: 20px !important; font-family: Arial !important"><strong>000{{ $invoice->id }}</strong></span></h6>
+				<h6 style="margin-top:25px">CI (IN) NO.: <span style="color: red; font-size: 20px !important; font-family: Arial !important"><strong>0001</strong></span></h6>
 			</div>
 		</div>
 		<table style="width: 100%" class="bordered">
-			@php
-				$street_address =  $invoice->customer->street_address ?? null; 
-				$city =  $invoice->customer->city ?? null; 
-				$state =  $invoice->customer->state ?? null; 
-				$country =  $invoice->customer->country ?? null; 
-				$postal_code =  $invoice->customer->postal_code ?? null; 
-			@endphp
 			<thead>
 				<tr class="noborder">
-					<td>Consignor: {{ $invoice->customer->firstname .' '.$invoice->customer->lastname }}</td>
-					<td>Phone: {{ $invoice->contact }}</td>
+					<td>Consignor:</td>
+					<td>Phone:</td>
 				</tr>
 				<tr class="noborder">
-					<td>Address: {{ $street_address.' '.$city.' '.$country.' ,'.$state.' '.$postal_code }}</td>
-					<td>Email: {{ $invoice->customer->email }}</td>
+					<td>Address:</td>
+					<td>Email:</td>
 				</tr>
 				<tr class="noborder">
 					
-					<td>NIRC/PASSPORT NO: {{ $invoice->additional_fields->passport_no ?? null }}</td>
-					<td>Date: {{ $invoice->created_at }}</td>
+					<td>NIRC/PASSPORT NO:</td>
+					<td>Date:</td>
 				</tr>
 			</thead>
 			<tbody>
@@ -91,32 +84,28 @@
 					<p>Included:</p> 
 					<div style="margin-top: 15px;">
 						<label>Box:</label>
-						{{ $invoice->additional_fields->box ?? null }}
 					</div>
 					<div style="margin-top: 15px;">
 						<label>Guarantee Card:</label>
-						{{ $invoice->additional_fields->guarantee_card ?? null }}
 					</div>
 					<div style="margin-top: 15px;">
 						<label>Instructions:</label>
-						{{ $invoice->additional_fields->instructions ?? null }}
 					</div>
 					<div style="margin-top: 15px;">
 						<label>Others:</label>
-						{{ $invoice->additional_fields->others ?? null }}
 					</div>
 					</td>
 				</tr>
 				<tr class="noborder">
-					<td colspan="2">Watch Condition: {{ $invoice->additional_fields->watch_condition ?? null }}</td>
+					<td colspan="2">Watch Condition:</td>
 				</tr>
 				<tr class="noborder">
-					<td>Remarks: {{ $invoice->additional_fields->remarks ?? null }}</td>
-					<td>Bracelet Conditions/Links: {{ $invoice->additional_fields->bracelet_condition ?? null }}</td>
+					<td>Remarks:</td>
+					<td>Bracelet Conditions/Links:</td>
 				</tr>
 				<tr class="noborder">
-					<td>Consignment Period: {{ $invoice->additional_fields->consignment_period ?? null }}</td>
-					<td>Return Date: {{ $invoice->additional_fields->return_date ?? null }}</td>
+					<td>Consignment Period:</td>
+					<td>Return Date:</td>
 				</tr>
 			
 		</table>
@@ -129,17 +118,6 @@
 				</tr>
 			</thead>
 			<tbody>
-				@php($total = 0)
-				@if($invoice->invoice_detail)
-					@foreach($invoice->invoice_detail as $detail)
-					<tr>
-						<td>{{ $detail->product_name }}</td>
-						<td>{{ $detail->brand_name }} - {{ $detail->category_name }}</td>
-						<td>{{ $detail->total_amount }}</td>
-					</tr>
-					@php($total += $detail->total_amount)
-					@endforeach
-				@endif
 				<tr>
 					<td>&nbsp;</td>
 					<td>&nbsp;</td>
@@ -148,7 +126,7 @@
 				<tr>
 					<td class="noborder">&nbsp;</td>
 					<td class="noborder text-right">TOTAL</td>
-					<td>{{ number_format($total, 2) }}</td>
+					<td></td>
 				</tr>
 			</tbody>
 		</table>
