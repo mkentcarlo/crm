@@ -101,8 +101,8 @@ Route::group(
 
 		Route::get('/groups/all', 'CustomerGroupController@getGroups');
 
-		Route::get('/inquiries', 'InquiryController@index');
-		Route::get('/inquiries/{id}', 'InquiryController@show');
+		Route::get('/inquiries', 'InquiryController@index')->name('view.inquiries');
+		Route::get('/inquiries/{id}', 'InquiryController@show')->name('view.inquiry');
 		Route::get('/inquiries/action/marks', 'InquiryController@marks');
 		Route::get('/inquiries/action/delete/{id}', 'InquiryController@deleteInquiry');
 		Route::get('/inquiries/action/status/{id}', 'InquiryController@inquiryStatus');
