@@ -35,7 +35,7 @@
 		.underline {
 			display: inline-block;
 			width: 300px;
-			border-bottom: 2px solid #000;
+			border-bottom: 1px solid #000;
 		}
 		tr.noborder td {
 			border: none;
@@ -48,14 +48,18 @@
 			font-size: 13px;
 			font-family: "Trajan";
 		}
+		@page {
+			margin: 2cm;
+			margin-top: 3cm;
+		}
 	</style>
 </head>
 <body>
 	<div style="width: 100%">
 		<div class="row" style="background: #000">
-			<div class="col-md-12 text-center">
+			<!-- <div class="col-md-12 text-center">
 				<img class="logo" src="https://singaporewebdevelopment.com/client/luxemontre/wp-content/uploads/2018/12/LM.png" alt="">
-			</div>
+			</div> -->
 			<div class="col-md-12 text-right">
 				<h5 style="font-size:18px">PURCHASE INVOICE</h5>
 				<h6 style="font-size:10px; margin-top:-10px">UEN NO: 230215K</h6>
@@ -113,17 +117,17 @@
 				@if($invoice->invoice_detail)
 					@foreach($invoice->invoice_detail as $detail)
 					<tr>
-						<td>{{ $detail->product_name }}</td>
-						<td>{{ $detail->brand_name }} - {{ $detail->category_name }}</td>
-						<td>{{ $detail->total_amount }}</td>
+						<td class="noborder">{{ $detail->product_name }}</td>
+						<td class="noborder">{{ $detail->brand_name }} - {{ $detail->category_name }}</td>
+						<td class="noborder">{{ $detail->total_amount }}</td>
 					</tr>
 					@php($total += $detail->total_amount)
 					@endforeach
 				@endif
 				<tr>
-					<td>&nbsp;</td>
-					<td>&nbsp;</td>
-					<td>&nbsp;</td>
+					<td class="noborder">&nbsp;</td>
+					<td class="noborder">&nbsp;</td>
+					<td class="noborder">&nbsp;</td>
 				</tr>
 				<tr>
 					<td class="noborder">&nbsp;</td>
@@ -156,13 +160,13 @@
 				</tr>
 			</tbody>	
 		</table>
-		<div class="row">
+		<!-- <div class="row">
 			<div class="col-md-12 text-center">
 			<p style="font-size:15px;font-weight:bold; margin-top:180px">LUXE MONTRE PTE. LTD <br>
 			<small>www.luxemontre.sg <br>
 			277 Orchard Road, #04 -07, Orchard Gateway, Singapore 238858 <br>
 Tel: +65 6388 5555 | +65 8715 5555 | Email: service@luxemontre.sg</small></p>
 			</div>
-		</div>
+		</div> -->
 </body>
 </html>

@@ -35,7 +35,7 @@
 		.underline {
 			display: inline-block;
 			width: 300px;
-			border-bottom: 2px solid #000;
+			border-top: 1px solid #000;
 		}
 		body * {
 			font-size: 13px;
@@ -48,14 +48,18 @@
 		td.noborder {
 			border: none !important
 		}
+		@page {
+			margin: 2cm;
+			margin-top: 3cm;
+		}
 	</style>
 </head>
 <body>
 	<div style="width: 100%" style="background: red">
 		<div class="row">
-			<div class="col-md-12 text-center">
+			<!-- <div class="col-md-12 text-center">
 				<img class="logo" src="https://singaporewebdevelopment.com/client/luxemontre/wp-content/uploads/2018/12/LM.png" alt="">
-			</div>
+			</div> -->
 			<div class="col-md-12 text-right">
 				<h5 style="font-size:18px">CONSIGNMENT INVOICE</h5>
 				<h6 style="font-size:10px; margin-top:-10px">UEN NO: 230215K</h6>
@@ -86,27 +90,19 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr class="noborder">
-					<td colspan="2">
-					<p>Included:</p> 
-					<div style="margin-top: 15px;">
-						<label>Box:</label>
-						{{ $invoice->additional_fields->box ?? null }}
-					</div>
-					<div style="margin-top: 15px;">
-						<label>Guarantee Card:</label>
-						{{ $invoice->additional_fields->guarantee_card ?? null }}
-					</div>
-					<div style="margin-top: 15px;">
-						<label>Instructions:</label>
-						{{ $invoice->additional_fields->instructions ?? null }}
-					</div>
-					<div style="margin-top: 15px;">
-						<label>Others:</label>
-						{{ $invoice->additional_fields->others ?? null }}
-					</div>
-					</td>
-				</tr>
+			<tr><td colspan="2" class="noborder">Included:</td></tr>
+			@if(@$invoice->additional_fields->box)
+				<tr><td colspan="2" class="noborder">Box: {{ $invoice->additional_fields->box ?? null }}</td></tr>
+			@endif
+			@if(@$invoice->additional_fields->guarantee_card)
+				<tr><td colspan="2" class="noborder">Guarantee Card: {{ $invoice->additional_fields->guarantee_card ?? null }}</td></tr>
+			@endif
+			@if(@$invoice->additional_fields->instructions)
+				<tr><td colspan="2" class="noborder">Instructions: {{ $invoice->additional_fields->instructions ?? null }}</td></tr>
+			@endif
+			@if(@$invoice->additional_fields->others)
+				<tr><td colspan="2" class="noborder">Others: {{ $invoice->additional_fields->others ?? null }}</td></tr>
+			@endif
 				<tr class="noborder">
 					<td colspan="2">Watch Condition: {{ $invoice->additional_fields->watch_condition ?? null }}</td>
 				</tr>
@@ -118,7 +114,7 @@
 					<td>Consignment Period: {{ $invoice->additional_fields->consignment_period ?? null }}</td>
 					<td>Return Date: {{ $invoice->additional_fields->return_date ?? null }}</td>
 				</tr>
-			
+			</tbody>
 		</table>
 		<table style="width: 100%;margin-top: 25px;" class="bordered">
 			<thead>
@@ -133,17 +129,17 @@
 				@if($invoice->invoice_detail)
 					@foreach($invoice->invoice_detail as $detail)
 					<tr>
-						<td>{{ $detail->product_name }}</td>
-						<td>{{ $detail->brand_name }} - {{ $detail->category_name }}</td>
-						<td>{{ $detail->total_amount }}</td>
+						<td class="noborder">{{ $detail->product_name }}</td>
+						<td class="noborder">{{ $detail->brand_name }} - {{ $detail->category_name }}</td>
+						<td class="noborder">{{ $detail->total_amount }}</td>
 					</tr>
 					@php($total += $detail->total_amount)
 					@endforeach
 				@endif
 				<tr>
-					<td>&nbsp;</td>
-					<td>&nbsp;</td>
-					<td>&nbsp;</td>
+					<td class="noborder">&nbsp;</td>
+					<td class="noborder">&nbsp;</td>
+					<td class="noborder">&nbsp;</td>
 				</tr>
 				<tr>
 					<td class="noborder">&nbsp;</td>
@@ -179,13 +175,13 @@
 				</tr>
 			</tbody>	
 		</table>
-		<div class="row">
+		<!-- <div class="row">
 			<div class="col-md-12 text-center">
 			<p style="font-size:15px;font-weight:bold;margin-top:30px">LUXE MONTRE PTE. LTD <br>
 			<small>www.luxemontre.sg <br>
 			277 Orchard Road, #04 -07, Orchard Gateway, Singapore 238858 <br>
 Tel: +65 6388 5555 | +65 8715 5555 | Email: service@luxemontre.sg</small></p>
 			</div>
-		</div>
+		</div> -->
 </body>
 </html>

@@ -39,14 +39,18 @@
 			font-size: 13px;
 			font-family: "Trajan";
 		}
+		@page {
+			margin: 2cm;
+			margin-top: 3cm;
+		}
 	</style>
 </head>
 <body>
 	<div style="width: 100%" style="background: red">
 		<div class="row" style="background: #000">
-			<div class="col-md-12 text-center">
+			<!-- <div class="col-md-12 text-center">
 				<img class="logo" src="https://singaporewebdevelopment.com/client/luxemontre/wp-content/uploads/2018/12/LM.png" alt="">
-			</div>
+			</div> -->
 			<div class="col-md-12 text-right">
 				<h5 style="font-size:18px">SERVICE AND REPAIR SLIP</h5>
 				<h6 style="font-size:10px; margin-top:-10px">UEN NO: 230215K</h6>
@@ -204,13 +208,13 @@
 			</tbody>
 		</table>
 	</div>
-	<div class="row">
+	<!-- <div class="row">
 			<div class="col-md-12 text-center">
 			<p style="font-size:15px;font-weight:bold; margin-top:20px">LUXE MONTRE PTE. LTD <br>
 			<small>www.luxemontre.sg <br>
 			277 Orchard Road, #04 -07, Orchard Gateway, Singapore 238858 <br>
 Tel: +65 6388 5555 | +65 8715 5555 | Email: service@luxemontre.sg</small></p>
 			</div>
-		</div>
+		</div> -->
 </body>
 </html>
