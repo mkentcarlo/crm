@@ -8,6 +8,7 @@
 
 		$userstable = $('#users-table').DataTable( {
 		    serverSide: true,
+			responsive: true,
 		    processing: true,
 		    ajax: "{{ route('get.users') }}",
 		    dom: 'lBfrtip',

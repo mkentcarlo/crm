@@ -119,6 +119,11 @@
 											</div>
 										</div>	
 									</div>
+									<div class="col-md-2">
+									<br>
+									<br>
+										<span style="font-style: italic">( For website display )</span>
+									</div>
 									<input type="hidden" class="form-control" readonly id="stock_quantity" name="stock_quantity" value="{{ old('stock_quantity', $product->stock_quantity) }}">
 								</div>
 								<div class="seprator-block"></div>

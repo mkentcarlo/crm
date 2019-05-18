@@ -145,6 +145,11 @@
 											</div>
 										</div>	
 									</div>
+									<div class="col-md-2">
+									<br>
+									<br>
+										<span style="font-style: italic">( For website display )</span>
+									</div>
 									<input type="hidden" class="form-control" id="stock_quantity" name="stock_quantity" value="{{ old('stock_quantity', $product->stock_quantity) }}">
 								</div>
 								<div class="seprator-block"></div>
@@ -301,13 +306,13 @@
 									<div class="col-sm-6">
 										<label>New</label>
 										<div class="radio radio-default">
-											<input type="radio" name="limited_edition" value="Yes" {{ isset($product->new) && $product->new == 'Yes' ? 'checked="checked"' : '' }}>
+											<input type="radio" name="new" value="Yes" {{ isset($product->new) && $product->new == 'Yes' ? 'checked="checked"' : '' }}>
 											<label for="limited_editionyes">
 												YES
 											</label>
 										</div>
 										<div class="radio radio-default">
-											<input type="radio" name="limited_edition" value="No" {{ isset($product->new) && $product->new == 'No' ? 'checked="checked"' : '' }}>
+											<input type="radio" name="new" value="No" {{ isset($product->new) && $product->new == 'No' ? 'checked="checked"' : '' }}>
 											<label for="limited_editionno">
 												NO
 											</label>

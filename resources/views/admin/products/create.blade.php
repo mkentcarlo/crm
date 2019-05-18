@@ -140,8 +140,13 @@
 											<div class="input-group">
 												<div class="input-group-addon"><i class="ti-money"></i></div>
 												<input type="text" class="form-control" id="sale_price" name="sale_price">
-											</div>
+											</div>	
 										</div>	
+									</div>
+									<div class="col-md-2">
+									<br>
+									<br>
+										<span style="font-style: italic">( For website display )</span>
 									</div>
 									<input type="hidden" class="form-control" id="stock_quantity" name="stock_quantity" value="1">
 								</div>

@@ -10,6 +10,9 @@
     
     <!-- Data table CSS -->
     <link href="{{ asset('vendors/bower_components/datatables/media/css/jquery.dataTables.min.css') }}" rel="stylesheet" type="text/css"/>
+
+
+    <link href="{{ asset('vendors/bower_components/datatables.net-responsive/css/responsive.dataTables.min.css') }}" rel="stylesheet" type="text/css"/>
     
     <!-- Toast CSS -->
     <link href="{{ asset('vendors/bower_components/jquery-toast-plugin/dist/jquery.toast.min.css') }}" rel="stylesheet" type="text/css">
@@ -194,9 +197,7 @@
     
     <script src="{{ asset('vendors/bower_components/datatables.net-buttons/js/buttons.html5.min.js') }}"></script>
     <script src="{{ asset('vendors/bower_components/datatables.net-buttons/js/buttons.print.min.js') }}"></script>
-    <script>
-
-    </script>
+    <script src="{{ asset('vendors/bower_components/datatables.net-responsive/js/dataTables.responsive.min.js') }}"></script>
     @stack('scripts')
     <script src="{{ asset('js/scripts.js') }}"></script>
 </body>

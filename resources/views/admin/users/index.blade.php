@@ -117,8 +117,7 @@
 											<button type="button" class="btn  btn-gold"><i class="fa fa-search"></i></button>
 											</span>
 										</div>
-										<div class="table-responsive mb-30">
-											<table id="users-table" class="table  display table-hover mb-30" data-page-size="10">
+											<table id="users-table" class="table  display nowrap table-hover mb-30" data-page-size="10" style="width: 100%">
 												<thead>
 													<tr>
 														<th>ID</th>
@@ -133,7 +132,6 @@
 													</tr>
 												</thead>
 											</table>
-										</div>
 									</div>
 									</div>
 									</div>

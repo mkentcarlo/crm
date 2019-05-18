@@ -9,6 +9,7 @@
         $(function () {
 
             $reportTable = $('#transaction-table').DataTable( {
+                responsive: true,
                 serverSide: true,
                 processing: true,
                 ajax: {

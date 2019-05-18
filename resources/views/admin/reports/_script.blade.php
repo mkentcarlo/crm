@@ -13,6 +13,7 @@
             $reportTable = $('#report-table').DataTable( {
                 serverSide: true,
                 processing: true,
+                responsive: true,
                 ajax: {
                     url: "{{ route('get.reports') }}",
                     type:  'get',

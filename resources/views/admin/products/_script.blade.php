@@ -76,6 +76,7 @@
             $productsTable = $('#products-table').DataTable( {
                 serverSide: true,
                 processing: true,
+                responsive: true,
                 ajax: "{{ route('get.products') }}",
                 dom: 'lBfrtip',
                 buttons: true,
