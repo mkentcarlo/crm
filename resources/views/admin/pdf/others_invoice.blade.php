@@ -69,7 +69,7 @@
 		<table style="width: 100%" class="bordered">
 			<thead>
 				<tr class="noborder" colspan="2">
-					<td>Invoice Type: {{ $invoice->additional_fields->in_out ?? null }}</td>
+					<td>Invoice Type: {{ isset($invoice->additional_fields->in_out) ? strtoupper($invoice->additional_fields->in_out) : '' }}</td>
 				</tr>
 			</thead>
 		</table>
