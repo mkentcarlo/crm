@@ -188,15 +188,15 @@
 			</thead>
 			<tbody>
 				<tr>
-					<td><strong>Watch Accepted By</strong>:<br> <small style="font-size: 11px !important;">On behalf of Luxe Montre/Date</small> <br> </td>
+					<td><strong>Watch Accepted By</strong>: {{ $invoice->additional_fields->watch_accepted_by ?? null }}<br> <small style="font-size: 11px !important;">On behalf of Luxe Montre/Date</small> <br> </td>
 					<td>&nbsp;</td>
-					<td><strong>Watch Accepted By</strong>:<br> <small style="font-size: 11px !important;">On behalf of Luxe Montre/Date</small> <br> </td>
+					<td><strong>Watch Sent By</strong>: {{ $invoice->additional_fields->watch_sent_by ?? null }}<br> <small style="font-size: 11px !important;">On behalf of Luxe Montre/Date</small> <br> </td>
 					<td>&nbsp;</td>
 				</tr>
 				<tr>
-					<td><strong>Watch Accepted By</strong>:<br> <small style="font-size: 11px !important;">On behalf of Luxe Montre/Date</small> <br> </td>
+					<td><strong>Watch Returned By</strong>: {{ $invoice->additional_fields->watch_returned_by ?? null }}<br> <small style="font-size: 11px !important;">On behalf of Luxe Montre/Date</small> <br> </td>
 					<td>&nbsp;</td>
-					<td><strong>Watch Accepted By</strong>:<br> <small style="font-size: 11px !important;">On behalf of Luxe Montre/Date</small> <br> </td>
+					<td><strong>Watch Collected By</strong>: {{ $invoice->additional_fields->watch_collected_by ?? null }}<br> <small style="font-size: 11px !important;">On behalf of Luxe Montre/Date</small> <br> </td>
 					<td>&nbsp;</td>
 				</tr>
 				<tr>

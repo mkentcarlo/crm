@@ -94,7 +94,52 @@
 							Cash: ${{ isset($invoice->additional_fields->cash_amount) ? number_format($invoice->additional_fields->cash_amount, 2) : '0.00' }}
 						</div>
 						<div style="margin-top: 15px;">
-							Cheque: ${{ isset($invoice->additional_fields->cheque_amount) ? number_format($invoice->additional_fields->cheque_amount, 2) : '0.00' }}
+							<p>Pay Now</p>
+							<p>Name: {{ $invoice->additional_fields->pay_now_name ?? null }}</p>
+							<p>Amount: ${{ isset($invoice->additional_fields->pay_now_amount) ? number_format($invoice->additional_fields->pay_now_amount, 2) : '0.00' }}</p>
+						</div>
+						<div style="margin-top: 15px;">
+							Bank Transfer: ${{ isset($invoice->additional_fields->bank_transfer_amount) ? number_format($invoice->additional_fields->bank_transfer_amount, 2) : '0.00' }}
+						</div>
+						<div style="margin-top: 15px;">
+							Net: ${{ isset($invoice->additional_fields->net_amount) ? number_format($invoice->additional_fields->net_amount, 2) : '0.00' }}
+						</div>
+						<div style="margin-top: 15px;">
+							<p>Others</p>
+							<p>Specify: {{ $invoice->additional_fields->others_specify ?? null }}</p>
+							<p>Amount: ${{ isset($invoice->additional_fields->others_amount) ? number_format($invoice->additional_fields->others_amount, 2) : '0.00' }}</p>
+						</div>
+						<div style="margin-top: 15px;">
+							<p>Installment</p>
+							<p>Duration: {{ $invoice->additional_fields->installment_duration ?? null }}</p>
+							<p>Amount: ${{ isset($invoice->additional_fields->installment_amount) ? number_format($invoice->additional_fields->installment_amount, 2) : '0.00' }}</p>
+						</div>
+						<div style="margin-top: 15px;">
+							<p>Credit Card</p>	
+							<table class="table table-bordered">
+								<thead>
+									<tr>
+										<th>Card Type</th>
+										<th>Bank Name</th>
+										<th>Card Holder Name</th>
+										<th>Card Number</th>
+										<th>Amount</th>
+									</tr>
+								</thead>
+								<tbody id="credit_card_holder">
+									@if(!empty($invoice->additional_fields->card_info))
+										@foreach($invoice->additional_fields->card_info as $cardInfo)
+										<tr>
+											<td>{{ ucwords($cardInfo->card_type) }}</td>
+											<td>{{ $cardInfo->bank_name ?? null }}</td>
+											<td>{{ $cardInfo->card_name ?? null }}</td>
+											<td>{{ $cardInfo->card_number ?? null }}</td>
+											<td>{{ $cardInfo->card_amount ?? null }}</td>
+										</tr>
+										@endforeach
+									@endif
+								</tbody>
+							</table>
 						</div>
 					</td>
 					<td>Date: {{ $invoice->created_at }}</td>
@@ -130,7 +175,7 @@
 				<tr>
 					<td class="noborder">&nbsp;</td>
 					<td class="noborder text-right">TOTAL</td>
-					<td>{{ number_format($total, 2) }}</td>
+					<td>${{ number_format($total, 2) }}</td>
 				</tr>
 			</tbody>
 		</table>
