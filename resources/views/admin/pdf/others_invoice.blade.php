@@ -63,7 +63,7 @@
 			<div class="col-md-12 text-right">
 				<h5 style="font-size:18px">OTHER INVOICE</h5>
 				<h6 style="font-size:10px; margin-top:-10px">UEN NO: 230215K</h6>
-				<h6 style="margin-top:25px">OI NO.: <span style="color: red; font-size: 20px !important; font-family: Arial !important"><strong>0001</strong></span></h6>
+				<h6 style="margin-top:25px">OI NO.: <span style="color: red; font-size: 20px !important; font-family: Arial !important"><strong>000{{ $invoice->id }}</strong></span></h6>
 			</div>
 		</div>
 		<table style="width: 100%" class="bordered">
@@ -82,11 +82,17 @@
 				</tr>
 			</thead>
 			<tbody>
+				@php($total=0)
+				@if(!empty($invoice->additional_fields->in_out_data))
+				@foreach($invoice->additional_fields->in_out_data as $row)
 				<tr>
-					<td class="noborder">DESCRIPTION</td>
-					<td class="noborder">100,000.00</td>
-					<td class="noborder">CASH</td>
+					<td class="noborder">{{ $row->description }}</td>
+					<td class="noborder">{{ $row->amount }}</td>
+					<td class="noborder">{{ $row->payment_mode }}</td>
 				</tr>
+				@php($total += $row->amount)
+				@endforeach
+				@endif
 				<tr>
 					<td class="noborder">&nbsp;</td>
 					<td class="noborder">&nbsp;</td>
@@ -95,7 +101,7 @@
 				<tr>
 					<td class="noborder">&nbsp;</td>
 					<td class="noborder text-right">TOTAL</td>
-					<td>100,000.00</td>
+					<td>${{ number_format($total, 2) }}</td>
 				</tr>
 			</tbody>
 		</table>
