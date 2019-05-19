@@ -85,7 +85,7 @@ class ProductService
     	
 		$this->wooService->createProductBrand($created->product->id, $productData['brand_id']);
     	
-    	$arr = ['model_reference', 'condition', 'gnder', 'case_material', 'bezel', 'case_back', 'case_diameter', 'movement', 'watch_features', 'dial_colour', 'crystal', 'braceletstrap', 'clasp_type', 'included', 'complication', 'new', 'limited_edition', 'complication', 'cost_price', 'asking_price', 'selling_price','buying_price', 'model_reference'];
+    	$arr = ['model_reference', 'condition', 'gnder', 'case_material', 'bezel', 'case_back', 'case_diameter', 'movement', 'watch_features', 'dial_colour', 'crystal', 'braceletstrap', 'clasp_type', 'included', 'complication', 'new', 'limited_edition', 'complication', 'cost_price', 'asking_price', 'selling_price','buying_price', 'model_reference','reserve'];
 
 		foreach ($formData as $key => $value) {
 			if(in_array($key, $arr)) {
@@ -114,7 +114,7 @@ class ProductService
 		if (empty($product)) {
 			return null;
 		}
-		$arr = ['model_reference', 'condition', 'gnder', 'case_material', 'bezel', 'case_back', 'case_diameter', 'movement', 'watch_features', 'dial_colour', 'crystal', 'braceletstrap', 'clasp_type', 'included', 'complication', 'new', 'limited_edition', 'complication', 'cost_price', 'asking_price', 'selling_price', 'buying_price', 'model_reference'];
+		$arr = ['model_reference', 'condition', 'gnder', 'case_material', 'bezel', 'case_back', 'case_diameter', 'movement', 'watch_features', 'dial_colour', 'crystal', 'braceletstrap', 'clasp_type', 'included', 'complication', 'new', 'limited_edition', 'complication', 'cost_price', 'asking_price', 'selling_price', 'buying_price', 'model_reference','reserve'];
 
 		foreach ($formData as $key => $value) {
 			if(in_array($key, $arr)) {

@@ -10,6 +10,7 @@ use App\Invoice;
 use App\InvoiceDetail;
 use \Carbon\Carbon;
 use PDF;
+use DB;
 
 class InvoiceController extends Controller
 {
@@ -286,6 +287,10 @@ class InvoiceController extends Controller
                         'product' => $prodData
                     ];  
                     $this->wooService->process()->put('products/'. $request->product_id[$key], $data);
+
+                    if($invoiceType == 'consign_in') {
+                        DB::insert("INSERT INTO wpla_postmeta (meta_key, meta_value,post_id) values (?, ?, ?)", ['returned', 'Yes', $request->product_id[$key]]);
+                    }
                 }   
                 $insertProducts = InvoiceDetail::insert($productData);
             }
@@ -630,6 +635,10 @@ class InvoiceController extends Controller
                         'product' => $prodData
                     ];  
                     $this->wooService->process()->put('products/'. $request->product_id[$key], $data);
+
+                    if($invoiceType == 'consign_in') {
+                        DB::insert("INSERT INTO wpla_postmeta (meta_key, meta_value,post_id) values (?, ?, ?)", ['returned', 'Yes', $request->product_id[$key]]);
+                    }
                 } 
 
                 $insertProducts = InvoiceDetail::insert($productData);

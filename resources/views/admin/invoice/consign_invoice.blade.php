@@ -12,8 +12,13 @@
 						<label class="control-label mb-10">Status:</label>
 						<select class="form-control" name="status" id="status">
 							<option value="1">Pending</option>
+							@if($invoiceType == 'consign_in')
+							<option value="4">Sold</option>
+							<option value="5">Returned</option>
+							@else 
 							<option value="2">Unpaid</option>
 							<option value="3">Paid</option>
+							@endif
 						</select>
 					</div>
 				</div>

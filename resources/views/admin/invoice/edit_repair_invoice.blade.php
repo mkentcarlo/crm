@@ -12,8 +12,8 @@
 						<label class="control-label mb-10">Status:</label>
 						<select class="form-control" name="status" id="status">
 							<option value="1" {{ $invoice->status  == 1 ? 'selected="selected"' : '' }}>Pending</option>
-							<option value="2" {{ $invoice->status  == 2 ? 'selected="selected"' : '' }}>Unpaid</option>
-							<option value="3" {{ $invoice->status  == 3 ? 'selected="selected"' : '' }}>Paid</option>
+							<option value="2" {{ $invoice->status  == 6 ? 'selected="selected"' : '' }}>Proceeded</option>
+							<option value="3" {{ $invoice->status  == 7 ? 'selected="selected"' : '' }}>Rejected</option>
 						</select>
 					</div>
 				</div>

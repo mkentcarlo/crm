@@ -96,7 +96,7 @@
 										</div>	
 									</div>
 									<!--/span-->
-									<div class="col-md-6">
+									<div class="col-md-3">
 										<div class="form-group">
 											<label class="control-label mb-10">Status</label>
 											<div class="radio-list">
@@ -122,6 +122,25 @@
 										</div>
 									</div>
 									<!--/span-->
+									<div class="col-md-3">
+										<div class="form-group">
+											<label class="control-label mb-10">Reserved</label>
+											<div class="radio-list">
+												<div class="radio-inline">
+													<div class="radio radio-info">
+														<input type="radio" name="reserve" value="Yes">
+														<label for="radio2">Yes</label>
+													</div>
+												</div>
+												<div class="radio-inline pl-0">
+													<div class="radio radio-info">
+														<input type="radio" name="reserve" value="No">
+														<label for="radio1">No</label>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
 								</div>
 								<!--/row-->
 								<div class="row">

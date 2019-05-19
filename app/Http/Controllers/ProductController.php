@@ -78,7 +78,7 @@ class ProductController extends Controller
         $product = $this->wooService->process()->get('products/'. $productId)->product;
         if ($product) {
             $acf = DB::select("SELECT * FROM wpla_postmeta where post_id =".$productId);
-            $arr = ['model_reference', 'condition', 'gnder', 'case_material', 'bezel', 'case_back', 'case_diameter', 'movement', 'watch_features', 'dial_colour', 'crystal', 'braceletstrap', 'clasp_type', 'included', 'complication', 'new', 'limited_edition', 'complication', 'cost_price', 'asking_price', 'selling_price', 'buying_price', 'model_reference'];
+            $arr = ['model_reference', 'condition', 'gnder', 'case_material', 'bezel', 'case_back', 'case_diameter', 'movement', 'watch_features', 'dial_colour', 'crystal', 'braceletstrap', 'clasp_type', 'included', 'complication', 'new', 'limited_edition', 'complication', 'cost_price', 'asking_price', 'selling_price', 'buying_price', 'model_reference','reserve'];
             foreach ($acf as $row) {
                 if (in_array($row->meta_key,  $arr)) {
                     $key = $row->meta_key;
@@ -114,7 +114,7 @@ class ProductController extends Controller
         $product->brand_id = $this->wooService->getProductBrands($productId)[0];
         if ($product) {
             $acf = DB::select("SELECT * FROM wpla_postmeta where post_id =".$productId);
-            $arr = ['model_reference', 'condition', 'gnder', 'case_material', 'bezel', 'case_back', 'case_diameter', 'movement', 'watch_features', 'dial_colour', 'crystal', 'braceletstrap', 'clasp_type', 'included', 'complication', 'new', 'limited_edition', 'complication', 'cost_price', 'asking_price', 'selling_price', 'buying_price', 'model_reference'];
+            $arr = ['model_reference', 'condition', 'gnder', 'case_material', 'bezel', 'case_back', 'case_diameter', 'movement', 'watch_features', 'dial_colour', 'crystal', 'braceletstrap', 'clasp_type', 'included', 'complication', 'new', 'limited_edition', 'complication', 'cost_price', 'asking_price', 'selling_price', 'buying_price', 'model_reference','reserve'];
             foreach ($acf as $row) {
                 if (in_array($row->meta_key,  $arr)) {
                     $key = $row->meta_key;
@@ -140,7 +140,7 @@ class ProductController extends Controller
         $product = $this->wooService->process()->get('products/'. $productId)->product;
         if ($product) {
             $acf = DB::select("SELECT * FROM wpla_postmeta where post_id =".$productId);
-            $arr = ['model_reference', 'condition', 'gnder', 'case_material', 'bezel', 'case_back', 'case_diameter', 'movement', 'watch_features', 'dial_colour', 'crystal', 'braceletstrap', 'clasp_type', 'included', 'complication', 'new', 'limited_edition', 'complication', 'cost_price', 'asking_price', 'selling_price', 'buying_price', 'model_reference'];
+            $arr = ['model_reference', 'condition', 'gnder', 'case_material', 'bezel', 'case_back', 'case_diameter', 'movement', 'watch_features', 'dial_colour', 'crystal', 'braceletstrap', 'clasp_type', 'included', 'complication', 'new', 'limited_edition', 'complication', 'cost_price', 'asking_price', 'selling_price', 'buying_price', 'model_reference','reserve'];
             foreach ($acf as $row) {
                 if (in_array($row->meta_key,  $arr)) {
                     $key = $row->meta_key;

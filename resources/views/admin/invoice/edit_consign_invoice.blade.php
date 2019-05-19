@@ -12,8 +12,14 @@
 						<label class="control-label mb-10">Status:</label>
 						<select class="form-control" name="status" id="status">
 							<option value="1" {{ $invoice->status  == 1 ? 'selected="selected"' : '' }}>Pending</option>
+							
+							@if($invoiceType == 'consign_in')
+							<option value="4" {{ $invoice->status  == 4 ? 'selected="selected"' : '' }}>Sold</option>
+							<option value="5" {{ $invoice->status  == 5 ? 'selected="selected"' : '' }}>Returned</option>
+							@else 
 							<option value="2" {{ $invoice->status  == 2 ? 'selected="selected"' : '' }}>Unpaid</option>
 							<option value="3" {{ $invoice->status  == 3 ? 'selected="selected"' : '' }}>Paid</option>
+							@endif
 						</select>
 					</div>
 				</div>
