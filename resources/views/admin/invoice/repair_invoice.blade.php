@@ -322,6 +322,34 @@
 							</div>
 						</div>	
 					</div>
+					</div>
+					<div class="row">	
+					<div class="col-md-6">
+						<div class="form-group">
+							<label class="control-label mb-10">Watch Accepted By:</label>
+							<input type="text" class="form-control" name="watch_accepted_by" value="">
+						</div>	
+					</div>
+					<div class="col-md-6">
+						<div class="form-group">
+							<label class="control-label mb-10">Watch Sent By:</label>
+							<input type="text" class="form-control" name="watch_sent_by" value="">
+						</div>	
+					</div>
+					</div>
+					<div class="row">	
+					<div class="col-md-6">
+						<div class="form-group">
+							<label class="control-label mb-10">Watch Returned By:</label>
+							<input type="text" class="form-control" name="watch_returned_by" value="">
+						</div>	
+					</div>
+					<div class="col-md-6">
+						<div class="form-group">
+							<label class="control-label mb-10">Watch Collected By:</label>
+							<input type="text" class="form-control" name="watch_collected_by" value="">
+						</div>	
+					</div>
 				</div>
 				<div class="row">
 					<div class="col-md-12 mt-30">
