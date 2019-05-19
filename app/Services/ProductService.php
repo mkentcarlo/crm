@@ -26,7 +26,7 @@ class ProductService
 	    foreach ($products as $product) {
 	    	$selling = $this->wooService->getProductSellingById($product->ID);
 			$buying = $this->wooService->getProductBuyingById($product->ID);
-			$asking = $this->wooService->getProductBuyingById($product->ID);
+			$asking = $this->wooService->getProductAskingById($product->ID);
 
 	    	$img_file = @unserialize($product->images);
 	    	$img_dir  = $product->siteurl .'wp-content/uploads';

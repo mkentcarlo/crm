@@ -134,6 +134,9 @@ class DataTableService  {
         $customers = app()->make('App\Services\CustomerService')->getCustomers();
 
         return DataTables::of($customers)
+        ->addColumn('id', function($customer) {
+            return substr(strtoupper($customer->lastname), 0, 1) .'000'.$customer->id;
+        })
         ->addColumn('name', function($customer) {
             return $customer->lastname .' '. $customer->firstname;
         })
@@ -146,7 +149,7 @@ class DataTableService  {
         ->addColumn('action', function($customer) {
             return '<a href="#" class="text-inverse pr-10 form-load edit" title="Edit" id="'.$customer->id.'"><i class="zmdi zmdi-edit txt-warning"></i></a><a href="#" class="text-inverse view" title="View" id="'.$customer->id.'"><i class="zmdi zmdi-eye txt-warning pr-10"></i></a><a href="'.url('customers/delete/'.$customer->id).'" class="text-inverse delete" title="Delete"><i class="zmdi zmdi-delete txt-danger"></i></a>';
         })
-        ->rawColumns(['name','group_name','action'])
+        ->rawColumns(['id', 'name','group_name','action'])
         ->make(true);
     }
 
