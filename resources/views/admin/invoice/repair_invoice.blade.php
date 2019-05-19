@@ -35,9 +35,9 @@
 				<div class="col-md-4">
 					<div class="form-group">
 						<label class="control-label mb-10">Select Watch:</label>
-						<select class="form-control select2 product-dropdown" name="product_id" id="product_id">
+						<select class="form-control select2 product-dropdown" id="product_id">
 							@foreach($products as $product)
-							<option value="{{ $product['id'] }}" data-title="{{ $product['name'] }}" data-desc="{{ $product['short_description'] }}" data-brand="{{ $product['brands'] }}">{{ $product['name'] }}</option>
+							<option value="{{ $product['id'] }}" data-title="{{ $product['name'] }}" data-desc="{{ $product['short_description'] }}" data-brand="{{ $product['brands'] }}" data-acf="{{$product['acf_search']}}">{{ $product['name'] }}</option>
 							@endforeach
 						</select>
 					</div>
