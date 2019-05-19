@@ -91,18 +91,10 @@
 			</thead>
 			<tbody>
 			<tr><td colspan="2" class="noborder">Included:</td></tr>
-			@if(@$invoice->additional_fields->box)
 				<tr><td colspan="2" class="noborder">Box: {{ $invoice->additional_fields->box ?? null }}</td></tr>
-			@endif
-			@if(@$invoice->additional_fields->guarantee_card)
 				<tr><td colspan="2" class="noborder">Guarantee Card: {{ $invoice->additional_fields->guarantee_card ?? null }}</td></tr>
-			@endif
-			@if(@$invoice->additional_fields->instructions)
 				<tr><td colspan="2" class="noborder">Instructions: {{ $invoice->additional_fields->instructions ?? null }}</td></tr>
-			@endif
-			@if(@$invoice->additional_fields->others)
 				<tr><td colspan="2" class="noborder">Others: {{ $invoice->additional_fields->others ?? null }}</td></tr>
-			@endif
 				<tr class="noborder">
 					<td colspan="2">Watch Condition: {{ $invoice->additional_fields->watch_condition ?? null }}</td>
 				</tr>
