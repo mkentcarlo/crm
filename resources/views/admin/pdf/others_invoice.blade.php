@@ -69,7 +69,7 @@
 		<table style="width: 100%" class="bordered">
 			<thead>
 				<tr class="noborder" colspan="2">
-					<td>Invoice Type: In</td>
+					<td>Invoice Type: {{ $invoice->additional_fields->in_out ?? null }}</td>
 				</tr>
 			</thead>
 		</table>
