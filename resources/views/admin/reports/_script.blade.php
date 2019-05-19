@@ -11,7 +11,7 @@
             var start = "{{ $start }}";
             var end = "{{ $end }}";
             $reportTable = $('#report-table').DataTable( {
-                serverSide: true,
+                //serverSide: true,
                 processing: true,
                 responsive: true,
                 ajax: {
@@ -124,7 +124,23 @@
             });
             $('.view-invoices').click(function(){
                 $('.reports-table').slideToggle();
-            })
+            });
+
+            // start export csv
+
+            $('.export-reports-csv').click(function(){
+                $('.dt-button.buttons-csv.buttons-html5').click();
+            });
+
+            // end export csv
+
+            // start print reports
+
+            $('.export-reports-print').click(function(){
+                $('.dt-button.buttons-print').click();
+            });
+
+            // end print reports
         });    
     </script>
 @endpush

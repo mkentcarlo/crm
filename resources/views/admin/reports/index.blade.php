@@ -84,7 +84,7 @@
 						</div>
 						<div class="col-md-2 pt-35">
 							<div class="btn-group">
-								<a class="btn btn-default btn-outline" role="button"><i class="fa fa-download"></i></a> <a class="btn btn-default btn-outline" role="button"><i class="fa fa-print"></i></a>
+								<a class="btn btn-default btn-outline export-reports-csv" role="button"><i class="fa fa-download"></i></a> <a class="btn btn-default btn-outline export-reports-print" role="button"><i class="fa fa-print"></i></a>
 							</div>
 						</div>
 					</div>

@@ -103,7 +103,7 @@
 
             $('#filterForm').on('submit', function (e) {
                 e.preventDefault();
-                $productsTable.search( $('#name').val() ).draw();
+                 $productsTable.columns(1).search($('#name').val()).draw();
             });
 
             $('body').on('change', '#select-brand', function (e) {

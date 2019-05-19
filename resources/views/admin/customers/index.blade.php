@@ -42,8 +42,8 @@
 										@endforeach
 									</ul>
 									
-									<a class="txt-gold create-label pl-15 pb-5" href="javascript:void(0)" data-toggle="modal" data-target="#myModal_1"><i class="fa fa-download"></i> Download CSV</a>
-									<a class="txt-gold create-label pl-15 pb-5" href="javascript:void(0)" data-toggle="modal" data-target="#myModal_1"><i class="fa fa-print"></i> Print All Customers</a>
+									<a class="txt-gold create-label pl-15 pb-5 export-customers-csv" href="javascript:void(0)" data-toggle="modal" data-target="#myModal_1"><i class="fa fa-download"></i> Download CSV</a>
+									<a class="txt-gold create-label pl-15 pb-5 export-customers-print" href="javascript:void(0)" data-toggle="modal" data-target="#myModal_1"><i class="fa fa-print"></i> Print All Customers</a>
 								</aside>
 								
 								<aside class="col-lg-9 col-md-8 pl-0">

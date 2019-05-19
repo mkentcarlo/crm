@@ -11,7 +11,8 @@
             var start = "{{ $start }}";
             var end = "{{ $end }}";
             $invoiceTable = $('#invoice-table').DataTable( {
-                serverSide: true,
+                //serverSide: true,
+                responsive: true,
                 processing: true,
                 ajax: {
                     url: "{{ route('get.invoices') }}",
@@ -167,6 +168,22 @@
                     }); 
                 });
             });
+
+            // start export csv
+
+            $('.export-invoice-csv').click(function(){
+                $('.dt-button.buttons-csv.buttons-html5').click();
+            });
+
+            // end export csv
+
+            // start print invoice
+
+            $('.export-invoice-print').click(function(){
+                $('.dt-button.buttons-print').click();
+            });
+
+            // end print invoice
         });
     </script>
 @endpush

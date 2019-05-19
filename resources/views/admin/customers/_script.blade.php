@@ -8,7 +8,8 @@
 
         $(function () {
             $customersTable = $('#customers-table').DataTable( {
-                serverSide: true,
+                //serverSide: true,
+                responsive: true,
                 processing: true,
                 ajax: "{{ route('get.customers') }}",
                 dom: 'lBfrtip',
@@ -246,6 +247,22 @@
                     }); 
                 });
             });
+
+           // start export csv
+
+            $('.export-customers-csv').click(function(){
+                $('.dt-button.buttons-csv.buttons-html5').click();
+            });
+
+        // end export csv
+
+        // start print customers
+
+        $('.export-customers-print').click(function(){
+            $('.dt-button.buttons-print').click();
+        });
+
+        // end print customers
         });    
     </script>
 @endpush

@@ -7,7 +7,7 @@
 		// start load users
 
 		$userstable = $('#users-table').DataTable( {
-		    serverSide: true,
+		    //serverSide: true,
 			responsive: true,
 		    processing: true,
 		    ajax: "{{ route('get.users') }}",
