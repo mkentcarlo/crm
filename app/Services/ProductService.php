@@ -42,7 +42,17 @@ class ProductService
 			$tmp['buying_price'] = ($buying) ? $buying[0]->meta_value : '0.00';
 			$tmp['asking_price'] = ($asking) ? $asking[0]->meta_value : '0.00';
 	        $tmp['status'] = $product->post_status == 'publish' ? 'published' : $product->post_status;
-	        $tmp['date_created'] = date('d/m/Y | h:i a', strtotime($product->post_date));
+			$tmp['date_created'] = date('d/m/Y | h:i a', strtotime($product->post_date));
+			$tmp['acf_search'] = "";
+			$acf = DB::select("SELECT * FROM wpla_postmeta where post_id =".$product->ID);
+            $arr = ['model_reference', 'condition', 'gnder', 'case_material', 'bezel', 'case_back', 'case_diameter', 'movement', 'watch_features', 'dial_colour', 'crystal', 'braceletstrap', 'clasp_type', 'included', 'complication', 'new', 'limited_edition', 'complication', 'cost_price', 'asking_price', 'selling_price', 'buying_price', 'model_reference'];
+            foreach ($acf as $row) {
+                if (in_array($row->meta_key,  $arr)) {
+                    $key = $row->meta_key;
+					$product->$key = $row->meta_value;
+					$tmp['acf_search'].="|".$row->meta_value;
+                }
+            }
 	        $data[] = $tmp;
 	    }
 	   
