@@ -12,8 +12,8 @@
 						<label class="control-label mb-10">Status:</label>
 						<select class="form-control" name="status" id="status">
 							<option value="1">Pending</option>
-							<option value="2">Unpaid</option>
-							<option value="3">Paid</option>
+							<option value="6">Proceeded</option>
+							<option value="7">Rejected</option>
 						</select>
 					</div>
 				</div>

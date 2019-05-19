@@ -130,13 +130,13 @@
 											<div class="radio-list">
 												<div class="radio-inline">
 													<div class="radio radio-info">
-														<input type="radio" name="reserve" value="Yes" {{ ($product->reserve == 'Yes') ? 'checked' : old('reserve', $product->reserve) == 'Yes' || !$product->reserve ? 'checked' : '' }}>
+														<input type="radio" name="reserve" value="Yes" {{isset($product->reserve) && $product->reserve == 'Yes' ? 'checked' : '' }}>
 														<label for="radio2">Yes</label>
 													</div>
 												</div>
 												<div class="radio-inline pl-0">
 													<div class="radio radio-info">
-														<input type="radio" name="reserve" value="No" {{ ($product->reserve == 'No') ? 'checked' : old('reserve', $product->reserve) == 'No' || !$product->reserve ? 'checked' : '' }}>
+														<input type="radio" name="reserve" value="No" {{isset($product->reserve) && $product->reserve == 'No' ? 'checked' : '' }}>
 														<label for="radio1">No</label>
 													</div>
 												</div>
