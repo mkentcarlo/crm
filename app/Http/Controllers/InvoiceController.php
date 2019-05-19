@@ -323,6 +323,10 @@ class InvoiceController extends Controller
                 if (in_array('cheque', $request->payment_method)) {
                     $data['cheque_amount'] = $request->cheque_amount;
                 }
+
+                if (in_array('bank_transfer', $request->payment_method)) {
+                    $data['bank_transfer_amount'] = $request->bank_transfer_amount;
+                }
             }
 
             $data['passport_no'] = $request->passport_no;
@@ -685,6 +689,10 @@ class InvoiceController extends Controller
 
                 if (in_array('cheque', $request->payment_method)) {
                     $data['cheque_amount'] = $request->cheque_amount;
+                }
+
+                if (in_array('bank_transfer', $request->payment_method)) {
+                    $data['bank_transfer_amount'] = $request->bank_transfer_amount;
                 }
             }
                 

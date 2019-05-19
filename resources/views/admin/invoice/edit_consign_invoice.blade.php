@@ -129,10 +129,10 @@
 							<tr>
 								<td>Included:</td>
 								<td>
-									<input type="checkbox" name="included[]" class="included" value="box" {{ ($invoice->additional_fields->included) ? (in_array('box', $invoice->additional_fields->included) ? 'checked="checked"': '') : '' }}> Box
-									<input type="checkbox" name="included[]" class="included" value="guarantee_card" {{ ($invoice->additional_fields->included) ? (in_array('guarantee_card', $invoice->additional_fields->included) ? 'checked="checked"': '') : '' }}> Guarantee Card
-									<input type="checkbox" name="included[]" class="included" value="instructions" {{ ($invoice->additional_fields->included) ? (in_array('instructions', $invoice->additional_fields->included) ? 'checked="checked"': '') : '' }}> Instructions
-									<input type="checkbox" name="included[]" class="included" value="others" {{ ($invoice->additional_fields->included) ? (in_array('others', $invoice->additional_fields->included) ? 'checked="checked"': '') : '' }}> Others
+									<input type="checkbox" name="included[]" class="included {{ ($invoice->additional_fields->included) ? (in_array('box', $invoice->additional_fields->included) ? 'checked': '') : '' }}" value="box" {{ ($invoice->additional_fields->included) ? (in_array('box', $invoice->additional_fields->included) ? 'checked="checked"': '') : '' }}> Box
+									<input type="checkbox" name="included[]" class="included {{ ($invoice->additional_fields->included) ? (in_array('guarantee_card', $invoice->additional_fields->included) ? 'checked': '') : '' }}" value="guarantee_card" {{ ($invoice->additional_fields->included) ? (in_array('guarantee_card', $invoice->additional_fields->included) ? 'checked="checked"': '') : '' }}> Guarantee Card
+									<input type="checkbox" name="included[]" class="included {{ ($invoice->additional_fields->included) ? (in_array('instructions', $invoice->additional_fields->included) ? 'checked': '') : '' }}" value="instructions" {{ ($invoice->additional_fields->included) ? (in_array('instructions', $invoice->additional_fields->included) ? 'checked="checked"': '') : '' }}> Instructions
+									<input type="checkbox" name="included[]" class="included {{ ($invoice->additional_fields->included) ? (in_array('others', $invoice->additional_fields->included) ? 'checked': '') : '' }}" value="others" {{ ($invoice->additional_fields->included) ? (in_array('others', $invoice->additional_fields->included) ? 'checked="checked"': '') : '' }}> Others
 									<div id="box" class="mt-15" {{ ($invoice->additional_fields->included) ? (in_array('box', $invoice->additional_fields->included) ? '': 'hidden') : 'hidden' }}>
 										<label>Box</label>
 										<input type="text" name="box" class="form-control" value="{{ $invoice->additional_fields->box ?? null }}">

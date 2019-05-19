@@ -100,10 +100,10 @@
 							<tr>
 								<td>Included:</td>
 								<td>
-									<input type="checkbox" name="included[]" class="included" value="box" {{ ($invoice->additional_fields->included) ? (in_array('box', $invoice->additional_fields->included) ? 'checked="checked"': '') : '' }}> Box
-									<input type="checkbox" name="included[]" class="included" value="guarantee_card" {{ ($invoice->additional_fields->included) ? (in_array('guarantee_card', $invoice->additional_fields->included) ? 'checked="checked"': '') : '' }}> Guarantee Card
-									<input type="checkbox" name="included[]" class="included" value="instructions" {{ ($invoice->additional_fields->included) ? (in_array('instructions', $invoice->additional_fields->included) ? 'checked="checked"': '') : '' }}> Instructions
-									<input type="checkbox" name="included[]" class="included" value="others" {{ ($invoice->additional_fields->included) ? (in_array('others', $invoice->additional_fields->included) ? 'checked="checked"': '') : '' }}> Others
+									<input type="checkbox" name="included[]" class="included {{ ($invoice->additional_fields->included) ? (in_array('box', $invoice->additional_fields->included) ? 'checked': '') : '' }}" value="box" {{ ($invoice->additional_fields->included) ? (in_array('box', $invoice->additional_fields->included) ? 'checked="checked"': '') : '' }}> Box
+									<input type="checkbox" name="included[]" class="included {{ ($invoice->additional_fields->included) ? (in_array('guarantee_card', $invoice->additional_fields->included) ? 'checked': '') : '' }}" value="guarantee_card" {{ ($invoice->additional_fields->included) ? (in_array('guarantee_card', $invoice->additional_fields->included) ? 'checked="checked"': '') : '' }}> Guarantee Card
+									<input type="checkbox" name="included[]" class="included {{ ($invoice->additional_fields->included) ? (in_array('instructions', $invoice->additional_fields->included) ? 'checked': '') : '' }}" value="instructions" {{ ($invoice->additional_fields->included) ? (in_array('instructions', $invoice->additional_fields->included) ? 'checked="checked"': '') : '' }}> Instructions
+									<input type="checkbox" name="included[]" class="included {{ ($invoice->additional_fields->included) ? (in_array('others', $invoice->additional_fields->included) ? 'checked': '') : '' }}" value="others" {{ ($invoice->additional_fields->included) ? (in_array('others', $invoice->additional_fields->included) ? 'checked="checked"': '') : '' }}> Others
 									<div id="box" class="mt-15" {{ ($invoice->additional_fields->included) ? (in_array('box', $invoice->additional_fields->included) ? '': 'hidden') : 'hidden' }}>
 										<label>Box</label>
 										<input type="text" name="box" class="form-control" value="{{ $invoice->additional_fields->box ?? null }}">
@@ -125,8 +125,9 @@
 							<tr>
 								<td>Payment Method:</td>
 								<td>
-									<input type="checkbox" name="payment_method[]" class="payment_method" value="cash" {{ ($invoice->additional_fields->payment_method) ? (in_array('cash', $invoice->additional_fields->payment_method) ? 'checked="checked"': '') : '' }}> Cash
-									<input type="checkbox" name="payment_method[]" class="payment_method" value="cheque" {{ ($invoice->additional_fields->payment_method) ? (in_array('cheque', $invoice->additional_fields->payment_method) ? 'checked="checked"': '') : '' }}> Cheque
+									<input type="checkbox" name="payment_method[]" class="payment_method {{ ($invoice->additional_fields->payment_method) ? (in_array('cash', $invoice->additional_fields->payment_method) ? 'checked': '') : '' }}" value="cash" {{ ($invoice->additional_fields->payment_method) ? (in_array('cash', $invoice->additional_fields->payment_method) ? 'checked="checked"': '') : '' }}> Cash
+									<input type="checkbox" name="payment_method[]" class="payment_method {{ ($invoice->additional_fields->payment_method) ? (in_array('cheque', $invoice->additional_fields->payment_method) ? 'checked': '') : '' }}" value="cheque" {{ ($invoice->additional_fields->payment_method) ? (in_array('cheque', $invoice->additional_fields->payment_method) ? 'checked="checked"': '') : '' }}> Cheque
+									<input type="checkbox" name="payment_method[]" class="payment_method {{ ($invoice->additional_fields->payment_method) ? (in_array('bank_transfer', $invoice->additional_fields->payment_method) ? 'checked': '') : '' }}" value="bank_transfer" {{ ($invoice->additional_fields->payment_method) ? (in_array('bank_transfer', $invoice->additional_fields->payment_method) ? 'checked="checked"': '') : '' }}> Bank Transfer
 									<div id="cash" class="mt-15" {{ ($invoice->additional_fields->payment_method) ? (in_array('cash', $invoice->additional_fields->payment_method) ? '': 'hidden') : 'hidden' }}>
 										<label>Cash $</label>
 										<input type="text" name="cash_amount" class="form-control" value="{{ $invoice->additional_fields->cash_amount ?? null }}">
@@ -134,6 +135,13 @@
 									<div id="cheque" class="mt-15" {{ ($invoice->additional_fields->payment_method) ? (in_array('cheque', $invoice->additional_fields->payment_method) ? '': 'hidden') : 'hidden' }}>
 										<label>Cheque $</label>
 										<input type="text" name="cheque_amount" class="form-control" value="{{ $invoice->additional_fields->cheque_amount ?? null }}">
+									</div>
+									<div id="bank_transfer" class="mt-15 row" {{ ($invoice->additional_fields->payment_method) ? (in_array('bank_transfer', $invoice->additional_fields->payment_method) ? '': 'hidden') : 'hidden' }}>
+										<div class="col-md-12">
+										<h5>Bank Transfer</h5>
+											<label>Amount</label>
+											<input type="text" name="bank_transfer_amount" class="form-control" value="{{ $invoice->additional_fields->bank_transfer_amount ?? null }}">
+										</div>
 									</div>
 								</td>
 							</tr>

@@ -55,10 +55,11 @@
                         });
                     },
                     success:    function (result) {
+                        console.log(result);
                         $('#product_name').text(result.title);
                         $('#brand_name').text(result.brand_id.name);
                         $('#category_name').text(result.category_id.name);
-                        $('#product_price').text(parseFloat((result.buying_price) ? parseFloat(result.buying_price).toFixed(2) : '0.00');
+                        $('#product_price').text((result.buying_price) ? parseFloat(result.buying_price).toFixed(2) : '0.00');
                         var img = (result.featured_src) ? result.featured_src : (result.images.length > 0 ? result.images[0]['src'] : '');
                         if (img) {
                             $('#product_image').html("<img src='"+img+"' style='width:100%;'>");
@@ -116,16 +117,16 @@
                 $('#remove_ids').val(ids);
             });
             
-            $('.payment_method').each(function () {
-                var val = $(this).val();
-                if ($(this).hasClass('checked')) {
-                    $(this).removeClass('checked');
-                    $('#' + val).hide();
-                } else {
-                    $('#' + val).show();
-                    $(this).addClass('checked');
-                }
-            });    
+            // $('.payment_method').each(function () {
+            //     var val = $(this).val();
+            //     if ($(this).hasClass('checked')) {
+            //         $(this).removeClass('checked');
+            //         $('#' + val).hide();
+            //     } else {
+            //         $('#' + val).show();
+            //         $(this).addClass('checked');
+            //     }
+            // });    
 
             $('.payment_method').on('click', function(){
                 var val = $(this).val();
@@ -137,7 +138,7 @@
                     $(this).addClass('checked');
                 }
             });
-
+            
             $('.add-more-card').on('click', function(e){
                 e.preventDefault();
 

@@ -118,6 +118,7 @@
 								<td>
 									<input type="checkbox" name="payment_method[]" class="payment_method" value="cash"> Cash
 									<input type="checkbox" name="payment_method[]" class="payment_method" value="cheque"> Cheque
+									<input type="checkbox" name="payment_method[]" class="payment_method" value="bank_transfer"> Bank Transfer
 									<div id="cash" class="mt-15" hidden>
 										<label>Cash $</label>
 										<input type="text" name="cash_amount" class="form-control">
@@ -125,6 +126,13 @@
 									<div id="cheque" class="mt-15" hidden>
 										<label>Cheque $</label>
 										<input type="text" name="cheque_amount" class="form-control">
+									</div>
+									<div id="bank_transfer" class="mt-15 row" hidden>
+										<div class="col-md-12">
+										<h5>Bank Transfer</h5>
+											<label>Amount</label>
+											<input type="text" name="bank_transfer_amount" class="form-control">
+										</div>
 									</div>
 								</td>
 							</tr>
