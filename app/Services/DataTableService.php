@@ -278,13 +278,37 @@ class DataTableService  {
             return str_replace('_', ' ', strtoupper($invoice->invoice_type));
         })
          ->addColumn('status', function($invoice) {
-            if($invoice->status == 1) {
-                return '<span class="label label-warning">pending</span>';
-            } else if($invoice->status == 2) {
-                return '<span class="label label-danger">unpaid</span>';
-            } else if($invoice->status == 3) { 
-                return '<span class="label label-success">paid</span>';
-            };    
+            if ($invoice->invoice_type == 'consign_in') {
+                if($invoice->status == 1) {
+                    return '<span class="label label-warning">Pending</span>';
+                } else if($invoice->status == 4) {
+                    return '<span class="label label-danger">Sold</span>';
+                } else if($invoice->status == 5) { 
+                    return '<span class="label label-success">Returned</span>';
+                } else if($invoice->status == 0) { 
+                    return 'N/A';
+                };    
+            } else if ($invoice->invoice_type == 'repair') {
+                if($invoice->status == 1) {
+                    return '<span class="label label-warning">Pending</span>';
+                } else if($invoice->status == 7) {
+                    return '<span class="label label-danger">Rejected</span>';
+                } else if($invoice->status == 6) { 
+                    return '<span class="label label-success">Proceeded</span>';
+                } else if($invoice->status == 0) { 
+                    return 'N/A';
+                };    
+            } else {
+                if($invoice->status == 1) {
+                    return '<span class="label label-warning">Pending</span>';
+                } else if($invoice->status == 2) {
+                    return '<span class="label label-danger">Unpaid</span>';
+                } else if($invoice->status == 3) { 
+                    return '<span class="label label-success">Paid</span>';
+                } else if($invoice->status == 0) { 
+                    return 'N/A';
+                };    
+            }    
         })
          ->addColumn('total_amount', function($invoice) {
             return ($invoice->total_amount) ? '$'.number_format($invoice->total_amount, 2) : '0.00';
@@ -311,13 +335,37 @@ class DataTableService  {
             return str_replace('_', ' ', strtoupper($invoice->invoice_type));
         })
          ->addColumn('status', function($invoice) {
-            if($invoice->status == 1) {
-                return '<span class="label label-warning">pending</span>';
-            } else if($invoice->status == 2) {
-                return '<span class="label label-danger">unpaid</span>';
-            } else if($invoice->status == 3) { 
-                return '<span class="label label-success">paid</span>';
-            };    
+            if ($invoice->invoice_type == 'consign_in') {
+                if($invoice->status == 1) {
+                    return '<span class="label label-warning">Pending</span>';
+                } else if($invoice->status == 4) {
+                    return '<span class="label label-danger">Sold</span>';
+                } else if($invoice->status == 5) { 
+                    return '<span class="label label-success">Returned</span>';
+                } else if($invoice->status == 0) { 
+                    return 'N/A';
+                };    
+            } else if ($invoice->invoice_type == 'repair') {
+                if($invoice->status == 1) {
+                    return '<span class="label label-warning">Pending</span>';
+                } else if($invoice->status == 7) {
+                    return '<span class="label label-danger">Rejected</span>';
+                } else if($invoice->status == 6) { 
+                    return '<span class="label label-success">Proceeded</span>';
+                } else if($invoice->status == 0) { 
+                    return 'N/A';
+                };    
+            } else {
+                if($invoice->status == 1) {
+                    return '<span class="label label-warning">Pending</span>';
+                } else if($invoice->status == 2) {
+                    return '<span class="label label-danger">Unpaid</span>';
+                } else if($invoice->status == 3) { 
+                    return '<span class="label label-success">Paid</span>';
+                } else if($invoice->status == 0) { 
+                    return 'N/A';
+                };    
+            }     
         })
          ->addColumn('total_amount', function($invoice) {
             return ($invoice->total_amount) ? '$'.number_format($invoice->total_amount, 2) : '0.00';
