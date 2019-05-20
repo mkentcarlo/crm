@@ -82,6 +82,7 @@
                     });
                 },
                 success:    function (result) {
+                    $('#short_description').text(result.short_description);
                     $('#product_name').text(result.title);
                     $('#p_product_name').val(result.title);
                     $('#p_brand_name').val(result.brand_id.name);
@@ -116,6 +117,7 @@
                         });
                     },
                     success:    function (result) {
+                        $('#short_description').text(result.short_description);
                         $('#product_name').text(result.title);
                         $('#p_product_name').val(result.title);
                         $('#p_brand_name').val(result.brand_id.name);

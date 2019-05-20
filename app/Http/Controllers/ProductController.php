@@ -124,6 +124,7 @@ class ProductController extends Controller
             }
             
         }
+        $product->short_description = strip_tags($product->short_description);
 
         return response()->json($product);
     } 

@@ -35,7 +35,7 @@
 				<div class="col-md-4">
 					<div class="form-group">
 						<label class="control-label mb-10">Select Watch:</label>
-						<select class="form-control select2 product-dropdown" id="product_id">
+						<select class="form-control select2 product-dropdown" id="product_id" name="product_id">
 							@foreach($products as $product)
 							<option value="{{ $product['id'] }}" data-title="{{ $product['name'] }}" data-desc="{{ $product['short_description'] }}" data-brand="{{ $product['brands'] }}" data-acf="{{$product['acf_search']}}">{{ $product['name'] }}</option>
 							@endforeach
@@ -56,7 +56,7 @@
 						</div>
 						<div class="col-md-8">
 							<h3 id="product_name">M116689</h3>
-							<small>This section only appears if there is watch selected.</small>
+							<small id="short_description">This section only appears if there is watch selected.</small>
 							<hr class="light-grey-hr mb-10">
 							<h5 id="brand_name">ROLEX</h5>
 							<h3 class="txt-gold mt-20">$<span id="product_price">20,000.00</span></h3>

@@ -12,8 +12,8 @@
 						<label class="control-label mb-10">Status:</label>
 						<select class="form-control" name="status" id="status">
 							<option value="1">Pending</option>
-							<option value="6">Proceeded</option>
-							<option value="7">Rejected</option>
+							<option value="2">Unpaid</option>
+							<option value="3">Paid</option>
 						</select>
 					</div>
 				</div>
@@ -61,7 +61,7 @@
 						</div>
 						<div class="col-md-8">
 							<h3 id="product_name">M116689</h3>
-							<small>This section only appears if there is watch selected.</small>
+							<small id="short_description">This section only appears if there is watch selected.</small>
 							<hr class="light-grey-hr mb-10">
 							<h5 id="brand_name">ROLEX</h5>
 							<h3 class="txt-gold mt-20">$<span id="product_price">20,000.00</span></h3>
