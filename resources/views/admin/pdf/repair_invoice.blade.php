@@ -68,7 +68,7 @@
 			<thead>
 				<tr class="noborder">
 					<td>Client: {{ $invoice->customer->firstname .' '.$invoice->customer->lastname }}</td>
-					<td>Phone: {{ $invoice->contact }}</td>
+					<td>Phone: {{ $invoice->customer->contact }}</td>
 				</tr>
 				<tr class="noborder">
 					<td>Address: {{ $street_address.' '.$city.' '.$country.' ,'.$state.' '.$postal_code }}</td>
