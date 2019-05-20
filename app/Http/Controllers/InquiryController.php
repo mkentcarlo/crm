@@ -25,9 +25,9 @@ class InquiryController extends Controller
     {   
         $inquireType = ['read', 'unread'];
         if ($request->inquiry && in_array($request->inquiry, $inquireType)) {
-            $inquiries = Inquiry::where('status', $request->inquiry)->paginate(2)->appends($request->all());
+            $inquiries = Inquiry::where('status', $request->inquiry)->orderBy('created_at', 'desc')->paginate(20)->appends($request->all());
         } else {
-            $inquiries = Inquiry::paginate(2);
+            $inquiries = Inquiry::orderBy('created_at', 'desc')->paginate(20);
         }
 
         return view('admin.inquiries.index')->with('inquiries', $inquiries);

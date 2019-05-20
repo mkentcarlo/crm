@@ -95,7 +95,7 @@
 														<label for="checkbox012"></label>
 													</div>
 												</td>
-												<td class="view-message dont-show" onclick='window.location.href="/inquiries/{{ $inquiry->id }}"'>{{ $inquiry->name }}</td>
+												<td class="view-message dont-show view-by-message" ino="{{ $inquiry->id }}">{{ $inquiry->name }}</td>
 												<td class="view-message ">{{ $inquiry->inquiry }}</td>
 												<td class="view-message  text-right">
 													<span class="time-chat-history inline-block">{{ date('h:i A', strtotime($inquiry->created_at)) }}</span>

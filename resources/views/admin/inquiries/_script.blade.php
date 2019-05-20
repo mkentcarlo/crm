@@ -87,7 +87,18 @@
             swal.close();
             location.href = '/inquiries';
         });
-    })
+    });
+    
+    $('body').on('click', '.view-by-message', function(e) {
+      e.preventDefault();
+      var id = $(this).attr('ino');
+      var status = 'read';
+      $.getJSON("{{ url('inquiries/action/status') }}/" + id +'?status=' + status, function (result) {
+          location.href = '/inquiries/' + id;
+          //console.log(result);
+      });
+      //alert(status);
+    });    
   });
 
 </script>
