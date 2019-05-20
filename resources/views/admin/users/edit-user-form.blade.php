@@ -68,6 +68,17 @@
         </span>
     @endif
 </div>
+<div class="form-group">
+    <label class="control-label mb-10" for="exampleInputuname_1">Password</label>
+    <!-- <div class="input-group">
+        <div class="input-group-addon"><i class="icon-user"></i></div>
+        <input type="text" class="form-control" id="exampleInputuname_1" placeholder="Username">
+    </div> -->
+    <div class="input-group">
+    <input type="text" class="form-control" name="password" id="password">
+     <div class="input-group-addon"><i class="icon-lock"></i></div>
+    </div>
+</div>
 <div class="form-group{{ $errors->has('contact') ? ' has-error' : '' }}">
     <label class="control-label mb-10" for="contact">Contact Number</label>
     <div class="input-group">

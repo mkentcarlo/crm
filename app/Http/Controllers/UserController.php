@@ -8,18 +8,19 @@ use Spatie\Permission\Models\Role;
 use DataTables;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
+use App\Services\UserService;
 
 class UserController extends Controller
 {
-
+     public $userService;
      /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(UserService $userService)
     {
-
+        $this->userService = $userService;
     }
     
     /**
@@ -70,9 +71,10 @@ class UserController extends Controller
 
         if(!$validator->fails())
         {
+            $generatePass   = str_random(8);
             $user = new User;
             $user->username = $request->input('username');
-            $user->password = bcrypt($user->username);
+            $user->password = bcrypt($generatePass);
             $user->email = $request->input('email');
             $user->firstname = $request->input('firstname');
             $user->lastname = $request->input('lastname');
@@ -80,8 +82,13 @@ class UserController extends Controller
             $user->contact = $request->input('contact');
             $user->position = $request->input('position');
             $user->assignRole($request->input('role')); 
-            $user->save();
-            return redirect('users/create')->with('msg', "Successfully added user.");
+            if ($user->save()) {
+                $data = ['name' => $request->name, 'email' => $request->email, 'password' => $generatePass];
+                $this->userService->sendEmailUser($user, (object) $data, 'New Account Information');
+                return redirect('users/create')->with('msg', "Successfully added user.");
+            }
+                
+            return redirect('users');
         }
 
         return redirect('users/create')
@@ -134,7 +141,6 @@ class UserController extends Controller
             'email' => 'required|email|unique:users,email,'.$id,
         ]);
 
-
         if(!$validator->fails())
         {
             $user = User::findOrFail($id);
@@ -145,7 +151,12 @@ class UserController extends Controller
             $user->name = $user->firstname." ".$user->lastname;
             $user->contact = $request->input('contact');
             $user->position = $request->input('position');
-            $user->roles()->sync($request->input('role'));   
+            $user->roles()->sync($request->input('role'));  
+
+            if (!empty($request->password)) {
+                $user->password = bcrypt($request->password);
+            } 
+            
             $user->save();
             return redirect('users/edit/'.$id)->with('msg', "Successfully updated user.")->withInput();
         }
