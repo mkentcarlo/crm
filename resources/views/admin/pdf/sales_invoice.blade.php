@@ -90,30 +90,42 @@
 				<tr class="noborder">	
 					<td>
 						<p>Payment Mode: </p>
+						@if(isset($invoice->additional_fields->cash_amount) && $invoice->additional_fields->cash_amount > 0)
 						<div style="margin-top: 15px;">
 							Cash: ${{ isset($invoice->additional_fields->cash_amount) ? number_format($invoice->additional_fields->cash_amount, 2) : '0.00' }}
 						</div>
+						@endif
+						@if(isset($invoice->additional_fields->pay_now_amount) && $invoice->additional_fields->pay_now_amount > 0)
 						<div style="margin-top: 15px;">
 							<p>Pay Now</p>
 							<p>Name: {{ $invoice->additional_fields->pay_now_name ?? null }}</p>
 							<p>Amount: ${{ isset($invoice->additional_fields->pay_now_amount) ? number_format($invoice->additional_fields->pay_now_amount, 2) : '0.00' }}</p>
 						</div>
+						@endif
+						@if(isset($invoice->additional_fields->bank_transfer_amount) && $invoice->additional_fields->bank_transfer_amount > 0)
 						<div style="margin-top: 15px;">
 							Bank Transfer: ${{ isset($invoice->additional_fields->bank_transfer_amount) ? number_format($invoice->additional_fields->bank_transfer_amount, 2) : '0.00' }}
 						</div>
+						@endif
+						@if(isset($invoice->additional_fields->net_amount) && $invoice->additional_fields->net_amount > 0)
 						<div style="margin-top: 15px;">
 							Net: ${{ isset($invoice->additional_fields->net_amount) ? number_format($invoice->additional_fields->net_amount, 2) : '0.00' }}
 						</div>
+						@endif
+						@if(isset($invoice->additional_fields->others_amount) && $invoice->additional_fields->others_amount > 0)
 						<div style="margin-top: 15px;">
 							<p>Others</p>
 							<p>Specify: {{ $invoice->additional_fields->others_specify ?? null }}</p>
 							<p>Amount: ${{ isset($invoice->additional_fields->others_amount) ? number_format($invoice->additional_fields->others_amount, 2) : '0.00' }}</p>
 						</div>
+						@endif
+						@if(isset($invoice->additional_fields->installment_amount) && $invoice->additional_fields->installment_amount > 0)
 						<div style="margin-top: 15px;">
 							<p>Installment</p>
 							<p>Duration: {{ $invoice->additional_fields->installment_duration ?? null }}</p>
 							<p>Amount: ${{ isset($invoice->additional_fields->installment_amount) ? number_format($invoice->additional_fields->installment_amount, 2) : '0.00' }}</p>
 						</div>
+						@endif
 						<div style="margin-top: 15px;">
 							<p>Credit Card</p>	
 							<table class="table table-bordered">
