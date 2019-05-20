@@ -234,7 +234,7 @@
 
                 $(this).parent().next().next().find('input').val($(this).val());
                 $(this).parent().next().next().find('span').text($(this).val());
-                $(this).prop('disabled', true);
+                $('#submit').prop('disabled', true);
                 var id = $(this).closest('tr').attr('id');
                 $.ajax({
                     type:       'GET',
@@ -249,7 +249,7 @@
                         $('#subtotal').text(total.toFixed(2));
                         $('.total_amount').val(total.toFixed(2));
                         $('.total_amount').text(total.toFixed(2)); 
-                        $(this).prop('disabled', false); 
+                        $('#submit').prop('disabled', false); 
                     }   
                 });  
                 }    

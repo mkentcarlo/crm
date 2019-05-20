@@ -225,7 +225,7 @@
 					</div>
 					<div class="col-md-12">
 						<div class="pull-right">
-							<button class="btn btn-gold mr-15 btn-lg" type="submit">Save</button>
+							<button class="btn btn-gold mr-15 btn-lg" type="submit" id="submit">Save</button>
 							<button class="btn btn-default btn-lg">Cancel</button>
 						</div>
 					</div>
