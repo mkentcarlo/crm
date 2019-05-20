@@ -27,7 +27,7 @@
 								<div class="container-fluid">
 									<div class="pull-left">
 										<div class="compose-btn">
-											<a class="btn btn-sm mr-10" href="#" data-toggle="modal" title="Compose"><i class="zmdi zmdi-chevron-left"></i></a>
+											<a class="btn btn-sm mr-10" href="{{ url('/inquiries') }}" data-toggle="modal" title="Compose"><i class="zmdi zmdi-chevron-left"></i></a>
 										</div>
 									</div>
 									<div class="pull-right text-right">
