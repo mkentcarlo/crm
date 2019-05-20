@@ -62,7 +62,7 @@
 			</div> -->
 			<div class="col-md-12 text-right">
 				<h5 style="font-size:18px">CONSIGNMENT INVOICE</h5>
-				<h6 style="font-size:10px; margin-top:-10px">UEN NO: 230215K</h6>
+				<h6 style="font-size:10px; margin-top:-10px">UEN NO: 201817415K</h6>
 				<h6 style="margin-top:25px">CI (OUT) NO.: <span style="color: red; font-size: 20px !important; font-family: Arial !important"><strong>000{{ $invoice->id }}</strong></span></h6>
 			</div>
 		</div>
