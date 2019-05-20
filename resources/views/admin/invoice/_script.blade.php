@@ -322,28 +322,26 @@
                     alert('price must be a number and greater than 0.');
                 } else {
 
-                //     swal({
-                //     title: 'Loading...',
-                //     imageUrl: "{{ asset('img/loader.gif') }}",
-                //     imageWidth: 400,
-                //     imageHeight: 200,
-                //     imageAlt: 'Custom image',
-                //     animation: true,
-                //     showConfirmButton: false,
-                // });
-                   $(this).parent().next().next().find('input').val($(this).val());
-                    $(this).parent().next().next().find('span').text($(this).val());
+                $(this).parent().next().next().find('input').val($(this).val());
+                $(this).parent().next().next().find('span').text($(this).val());
+                $(this).prop('disabled', true);
                 var id = $(this).closest('tr').attr('id');
-                    $.getJSON("{{ url('products') }}/modify/updateSellingPrice?id=" + id + '&price=' + $(this).val(), function (result) {
-                        var total = 0;
+                $.ajax({
+                    type:       'GET',
+                    url:        "{{ url('products') }}/modify/updateSellingPrice?id=" + id + '&price=' + $(this).val(),
+                    dataType:   'json',
+                    context: this,
+                    success:    function (result) {
+                         var total = 0;
                         $('.product-overview tbody tr').each(function() {
                             total += parseInt($(this).find('td:eq(6) input').val());
                         });
                         $('#subtotal').text(total.toFixed(2));
                         $('.total_amount').val(total.toFixed(2));
-                        $('.total_amount').text(total.toFixed(2));  
-                        // swal.close();
-                    });
+                        $('.total_amount').text(total.toFixed(2)); 
+                        $(this).prop('disabled', false); 
+                    }   
+                });  
                 }    
             });
         });    
