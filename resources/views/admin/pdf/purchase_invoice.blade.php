@@ -100,15 +100,21 @@
 					<td>Remarks: {{ $invoice->additional_fields->remarks ?? null }}</td>
 					<td>
 						<p>Payment Mode: </p>
+						@if(isset($invoice->additional_fields->cash_amount) && $invoice->additional_fields->cash_amount > 0)
 						<div style="margin-top: 15px;">
 							Cash: ${{ isset($invoice->additional_fields->cash_amount) ? number_format($invoice->additional_fields->cash_amount, 2) : '0.00' }}
 						</div>
+						@endif
+						@if(isset($invoice->additional_fields->cheque_amount) && $invoice->additional_fields->cheque_amount > 0)
 						<div style="margin-top: 15px;">
 							Cheque: ${{ isset($invoice->additional_fields->cheque_amount) ? number_format($invoice->additional_fields->cheque_amount, 2) : '0.00' }}
 						</div>
+						@endif
+						@if(isset($invoice->additional_fields->bank_transfer_amount) && $invoice->additional_fields->bank_transfer_amount > 0)
 						<div style="margin-top: 15px;">
 							Bank Transfer: ${{ isset($invoice->additional_fields->bank_transfer_amount) ? number_format($invoice->additional_fields->bank_transfer_amount, 2) : '0.00' }}
 						</div>
+						@endif
 					</td>
 				</tr>
 			</tbody>
