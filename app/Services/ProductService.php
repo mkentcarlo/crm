@@ -29,7 +29,7 @@ class ProductService
 			$asking = $this->wooService->getProductAskingById($product->ID);
 
 	    	$img_file = @unserialize($product->images);
-	    	$img_dir  = $product->siteurl .'wp-content/uploads';
+	    	$img_dir  = $product->siteurl .'/wp-content/uploads';
             $img_path = $this->wooService->get_image_path($img_dir, 'thumbnail', $img_file);
 	        $tmp['id'] = $product->ID;
 	        $tmp['name'] = $product->post_title;
