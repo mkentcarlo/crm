@@ -106,13 +106,57 @@
                  $productsTable.columns(1).search($('#name').val()).draw();
             });
 
+            $('.product-dropdown').select2({matcher: function(params, data){
+                // Always return the object if there is nothing to compare
+                if ($.trim(params.term) === '') {
+                    return data;
+                }
+
+                // Check if the data occurs
+                if ($(data.element).data('title').toLowerCase().indexOf(params.term.toLowerCase()) > -1) {
+                    return data;
+                }
+
+                if ($(data.element).data('brand').toLowerCase().indexOf(params.term.toLowerCase()) > -1) {
+                    return data;
+                }
+
+                if ($(data.element).data('desc').toLowerCase().indexOf(params.term.toLowerCase()) > -1) {
+                    return data;
+                }
+
+                if ($(data.element).data('acf').toLowerCase().indexOf(params.term.toLowerCase()) > -1) {
+                    return data;
+                }
+
+                // If it doesn't contain the term, don't return anything
+                return null;
+            } });
+
+            $('.product-dropdown').on('select2:select', function (e) {
+                $productsTable
+                .search( '' )
+                .columns().search( '' )
+                .draw();
+                $productsTable.columns(1).search(e.params.data.text).draw();
+            });
+            
+
             $('body').on('change', '#select-brand', function (e) {
                 e.preventDefault();
-                $productsTable.columns(2).search($(this).val()).draw();
+                $productsTable
+                .search( '' )
+                .columns().search( '' )
+                .draw();
+                $productsTable.columns(2).search('').search($(this).val()).draw();
             });
 
             $('body').on('change', '#select-cat', function (e) {
                 e.preventDefault();
+                $productsTable
+                .search( '' )
+                .columns().search( '' )
+                .draw();
                 $productsTable.columns(3).search($(this).val()).draw();
             });
 

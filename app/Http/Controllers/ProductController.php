@@ -40,8 +40,9 @@ class ProductController extends Controller
     {   
         $categories = $this->wooService->getCategories();
         $brands = $this->wooService->getBrands();
+        $products = $this->productService->getProducts();
 
-        return view('admin.products.index', compact('categories', 'brands'));
+        return view('admin.products.index', compact('categories', 'brands', 'products'));
     }      
 
     /**

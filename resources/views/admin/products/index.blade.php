@@ -24,10 +24,15 @@
 						<form id="filterForm" method="POST" role="form">
 							<div class="row">
 								<div class="col-md-4">
-								<div class="input-group pa-15 pr-0 pt-35"> 
-										<input type="text" id="name" name="name" class="form-control" placeholder="Search"><span class="input-group-btn">
+								<div class="pa-15 pr-0 pt-35"> 
+										<!-- <input type="text" id="name" name="name" class="form-control" placeholder="Search"><span class="input-group-btn">
 										<button type="submit" class="btn  btn-gold" id="search"><i class="fa fa-search"></i></button>
-										</span> 
+										</span>  -->
+									<select class="form-control select2 product-dropdown" id="product_id">
+										@foreach($products as $product)
+										<option value="{{ $product['id'] }}" data-title="{{ $product['name'] }}" data-desc="{{ $product['short_description'] }}" data-brand="{{ $product['brands'] }}" data-acf="{{$product['acf_search']}}">{{ $product['name'] }}</option>
+										@endforeach
+									</select>
 								</div>
 								</div>
 								<div class="col-md-3 pt-15">
