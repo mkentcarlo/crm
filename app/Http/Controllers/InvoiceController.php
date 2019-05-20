@@ -288,8 +288,12 @@ class InvoiceController extends Controller
                     ];  
                     $this->wooService->process()->put('products/'. $request->product_id[$key], $data);
 
-                    if($invoiceType == 'consign_in') {
-                        DB::insert("INSERT INTO wpla_postmeta (meta_key, meta_value,post_id) values (?, ?, ?)", ['returned', 'Yes', $request->product_id[$key]]);
+                    if($invoiceType == 'consign_in' && $status == 5) {
+                        $exist = DB::select("SELECT meta_key FROM wpla_postmeta WHERE meta_key='returned' AND post_id = '$request->product_id[$key]'");
+
+                        if (!$exist) {
+                            DB::insert("INSERT INTO wpla_postmeta (meta_key, meta_value,post_id) values (?, ?, ?)", ['returned', 'Yes', $request->product_id[$key]]);
+                        }
                     }
                 }   
                 $insertProducts = InvoiceDetail::insert($productData);
@@ -640,8 +644,12 @@ class InvoiceController extends Controller
                     ];  
                     $this->wooService->process()->put('products/'. $request->product_id[$key], $data);
 
-                    if($invoiceType == 'consign_in') {
-                        DB::insert("INSERT INTO wpla_postmeta (meta_key, meta_value,post_id) values (?, ?, ?)", ['returned', 'Yes', $request->product_id[$key]]);
+                    if($invoiceType == 'consign_in' && $status == 5) {
+                        $exist = DB::select("SELECT meta_key FROM wpla_postmeta WHERE meta_key='returned' AND post_id = '$request->product_id[$key]'");
+
+                        if (!$exist) {
+                            DB::insert("INSERT INTO wpla_postmeta (meta_key, meta_value,post_id) values (?, ?, ?)", ['returned', 'Yes', $request->product_id[$key]]);
+                        }
                     }
                 } 
 
