@@ -125,7 +125,7 @@
 			</div>
 		</div>
 		</a>
-		<a href="{{url('invoice?invoice_type=sales')}}">
+		<a href="{{url('invoice?invoice_type=purchase')}}">
 		<div class="panel panel-default card-view pa-0">
 			<div class="panel-wrapper collapse in">
 				<div class="panel-body pa-0">

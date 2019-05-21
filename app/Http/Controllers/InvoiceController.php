@@ -120,10 +120,8 @@ class InvoiceController extends Controller
         $invoiceType = $request->invoice_type;
         $customers = $this->customerService->getCustomers();
         $products = $this->productService->getProducts();
-        $productIds = InvoiceDetail::whereHas('invoice', function($q) {
-            $q->where('invoice_type', 'sales');
-        })->pluck('product_id')->toArray();
-       
+        $productIds = InvoiceDetail::join('invoice', 'invoice.id', '=', 'invoice_detail.id')->where('invoice.invoice_type', 'sales')->pluck('product_id')->toArray();
+
         if ($invoiceType == 'sales') {
             foreach ($products as $key => $value) {
                 if (in_array($value['id'], $productIds)) {
@@ -462,17 +460,15 @@ class InvoiceController extends Controller
         $customers = $this->customerService->getCustomers();
         $products = $this->productService->getProducts();
 
-        $productIds = InvoiceDetail::whereHas('invoice', function($q) {
-            $q->where('invoice_type', 'sales');
-        })->pluck('product_id')->toArray();
-       
+        $productIds = InvoiceDetail::pluck('product_id')->toArray();
+
         if ($invoiceType == 'sales') {
             foreach ($products as $key => $value) {
                 if (in_array($value['id'], $productIds)) {
                     unset($products[$key]);
                 }
             }
-        }   
+        }
         
         return view('admin.invoice.edit', compact('customers', 'products', 'invoiceType', 'invoice'));
     } 

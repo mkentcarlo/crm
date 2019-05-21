@@ -53,7 +53,7 @@
 			</div> -->
 			<div class="col-md-12 text-right">
 				<h5 style="font-size:18px">SERVICE AND REPAIR SLIP</h5>
-				<h6 style="font-size:10px; margin-top:-10px">UEN NO: 230215K</h6>
+				<h6 style="font-size:10px; margin-top:-10px">UEN NO: 201817415K</h6>
 				<h6 style="margin-top:25px">SERVICE NO.: <span style="color: red; font-size: 20px !important; font-family: Arial !important"><strong>0001</strong></span></h6>
 			</div>
 		</div>
@@ -76,7 +76,8 @@
 				</tr>
 				<tr class="noborder">
 					
-					<td>Date: {{ $invoice->created_at }}</td>
+					<td>Date: {{ date('d/m/Y H:i', strtotime($invoice->created_at)) }}</td>
+					<td>&nbsp;</td>
 				</tr>
 			</thead>
 			<thead>
@@ -175,7 +176,7 @@
 				</tr>
 				<tr class="noborder">
 					<td>Service/Repair Duration <small>(estimate)</small>: {{ $invoice->additional_fields->repair_duration ?? null }}</td>
-					<td>Date of Acceptance: {{ $invoice->additional_fields->date_of_acceptance ?? null }}</td>
+					<!-- <td>Date of Acceptance: {{ $invoice->additional_fields->date_of_acceptance ?? null }}</td> -->
 				</tr>
 			</tbody>
 			
@@ -188,16 +189,16 @@
 			</thead>
 			<tbody>
 				<tr>
-					<td><strong>Watch Accepted By</strong>: {{ $invoice->additional_fields->watch_accepted_by ?? null }}<br> <small style="font-size: 11px !important;">On behalf of Luxe Montre/Date</small> <br> </td>
-					<td>&nbsp;</td>
-					<td><strong>Watch Sent By</strong>: {{ $invoice->additional_fields->watch_sent_by ?? null }}<br> <small style="font-size: 11px !important;">On behalf of Luxe Montre/Date</small> <br> </td>
-					<td>&nbsp;</td>
+					<td><strong>Watch Accepted By</strong>: <br> <small style="font-size: 11px !important;">On behalf of Luxe Montre/Date</small> <br> </td>
+					<td>{{ $invoice->additional_fields->watch_accepted_by ?? null }}</td>
+					<td><strong>Watch Sent By</strong>: <br> <small style="font-size: 11px !important;">On behalf of Luxe Montre/Date</small> <br> </td>
+					<td>{{ $invoice->additional_fields->watch_sent_by ?? null }}</td>
 				</tr>
 				<tr>
-					<td><strong>Watch Returned By</strong>: {{ $invoice->additional_fields->watch_returned_by ?? null }}<br> <small style="font-size: 11px !important;">On behalf of Luxe Montre/Date</small> <br> </td>
-					<td>&nbsp;</td>
-					<td><strong>Watch Collected By</strong>: {{ $invoice->additional_fields->watch_collected_by ?? null }}<br> <small style="font-size: 11px !important;">On behalf of Luxe Montre/Date</small> <br> </td>
-					<td>&nbsp;</td>
+					<td><strong>Watch Returned By</strong>: <br> <small style="font-size: 11px !important;">On behalf of Luxe Montre/Date</small> <br> </td>
+					<td>{{ $invoice->additional_fields->watch_returned_by ?? null }}</td>
+					<td><strong>Watch Collected By</strong>: <br> <small style="font-size: 11px !important;">On behalf of Luxe Montre/Date</small> <br> </td>
+					<td>{{ $invoice->additional_fields->watch_collected_by ?? null }}</td>
 				</tr>
 				<tr>
 					<td style="font-size: 10px;" colspan="4">

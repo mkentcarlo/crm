@@ -128,7 +128,7 @@ class ProductService
 
 		foreach ($formData as $key => $value) {
 			if(in_array($key, $arr)) {
-				DB::update("UPDATE wpla_postmeta set meta_value = '$value' where meta_key='$key' AND post_id = '$productId'");
+				DB::update('UPDATE wpla_postmeta set meta_value = "'.$value.'" where meta_key="'.$key.'" AND post_id = "'.$productId.'"');
 			}
 		}
 
@@ -177,8 +177,8 @@ class ProductService
 		$productData['categories'] = ['id' => $productData['category_id']];
 		$productData['images'] = $product->images;
 		$productData['featured'] = true;
-		$productData['managing_stock'] = true;
-		$productData['in_stock'] = true;
+		$productData['managing_stock'] = false;
+		// $productData['in_stock'] = true;
 
         $data = [
     		'product' => $productData

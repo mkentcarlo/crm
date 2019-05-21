@@ -81,7 +81,7 @@
                     <a class="{{app('request')->input('invoice_type') == 'repair' && Route::current()->getName() == 'view.invoice' ? 'active-page' : ''}}" href="{{ url('/invoice?invoice_type=repair') }}">Repair</a>
                 </li>
                 <li>
-                    <a class="{{app('request')->input('invoice_type') == 'consign_in' && Route::current()->getName() == 'view.invoice' ? 'active-page' : ''}}" href="{{ url('/invoice?invoice_type=others') }}">Others</a>
+                    <a class="{{app('request')->input('invoice_type') == 'others' && Route::current()->getName() == 'view.invoice' ? 'active-page' : ''}}" href="{{ url('/invoice?invoice_type=others') }}">Others</a>
                 </li>
             </ul>
         </li>

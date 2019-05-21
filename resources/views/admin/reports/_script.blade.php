@@ -123,7 +123,7 @@
                 }
             });
             $('.view-invoices').click(function(){
-                $('.reports-table').slideToggle();
+                $('#report-table').slideToggle();
             });
 
             // start export csv
