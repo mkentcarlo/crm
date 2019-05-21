@@ -387,7 +387,7 @@ class InvoiceController extends Controller
                 [
                     'invoice_type' => $invoiceType,
                     'customer_id' => $customerId,
-                    'total_amount' => $totalAmt,
+                    'total_amount' => $request->price,
                     'status' => $status,
                     'additional_fields' => json_encode($data)
                 ]
@@ -778,7 +778,7 @@ class InvoiceController extends Controller
                 [
                     'invoice_type' => $invoiceType,
                     'customer_id' => $customerId,
-                    'total_amount' => $totalAmt,
+                    'total_amount' => $request->price,
                     'status' => $status,
                     'additional_fields' => json_encode($data)
                 ]

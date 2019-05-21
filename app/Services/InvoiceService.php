@@ -16,7 +16,7 @@ class InvoiceService
 					$year = $request->year ? $request->year : Carbon::now()->format('Y');
 					$month = $request->month ? $request->month : Carbon::now()->format('m');
 					$dates = $this->getDates($year, $month, '', 'week');
-					$query->whereBetween('created_at', [$dates[0], end($dates)]);
+					$query->whereBetween('created_at', [$dates[0]. ' 00:00:00', end($dates).' 23:59:59']);
 				} 
 				if($request->current == 'month') {
 					$year = $request->year ? $request->year : Carbon::now()->format('Y');
@@ -27,7 +27,7 @@ class InvoiceService
 						$query->whereMonth('created_at', $month);
 					} else {
 						$dates = $this->getDates($year, $month, $week, '');
-						$query->whereBetween('created_at', [$dates[0], end($dates)]);
+						$query->whereBetween('created_at', [$dates[0]. ' 00:00:00', end($dates).' 23:59:59']);
 					}
 					
 				} 
@@ -39,7 +39,7 @@ class InvoiceService
 						$query->whereYear('created_at', $year);
 					} else {
 						$dates = $this->getDates($year, $month, $week, '');
-						$query->whereBetween('created_at', [$dates[0], end($dates)]);
+						$query->whereBetween('created_at', [$dates[0]. ' 00:00:00', end($dates).' 23:59:59']);
 					}
 					
 				}
@@ -53,7 +53,7 @@ class InvoiceService
 				// echo $end;
 				if ($week != '' && $month != '' && $year != '') {
 					$dates = $this->getDates($year, $month, $week, '');
-					$query->whereBetween('created_at', [$dates[0], end($dates)]);
+					$query->whereBetween('created_at', [$dates[0]. ' 00:00:00', end($dates).' 23:59:59']);
 				} else {
 					if ($month != '') {
 						$query->whereMonth('created_at', $month);
@@ -81,7 +81,7 @@ class InvoiceService
 					$year = $request->year ? $request->year : Carbon::now()->format('Y');
 					$month = $request->month ? $request->month : Carbon::now()->format('m');
 					$dates = $this->getDates($year, $month, '', 'week');
-					$query->whereBetween('created_at', [$dates[0], end($dates)]);
+					$query->whereBetween('created_at', [$dates[0]. ' 00:00:00', end($dates).' 23:59:59']);
 				} 
 				if($request->current == 'month') {
 					$year = $request->year ? $request->year : Carbon::now()->format('Y');
@@ -92,7 +92,7 @@ class InvoiceService
 						$query->whereMonth('created_at', $month);
 					} else {
 						$dates = $this->getDates($year, $month, $week, '');
-						$query->whereBetween('created_at', [$dates[0], end($dates)]);
+						$query->whereBetween('created_at', [$dates[0]. ' 00:00:00', end($dates).' 23:59:59']);
 					}
 					
 				} 
@@ -104,7 +104,7 @@ class InvoiceService
 						$query->whereYear('created_at', $year);
 					} else {
 						$dates = $this->getDates($year, $month, $week, '');
-						$query->whereBetween('created_at', [$dates[0], end($dates)]);
+						$query->whereBetween('created_at', [$dates[0]. ' 00:00:00', end($dates).' 23:59:59']);
 					}
 					
 				}
@@ -116,7 +116,7 @@ class InvoiceService
 				$end = $request->date_end ? $request->date_end : '';
 				if ($week != '' && $month != '' && $year != '') {
 					$dates = $this->getDates($year, $month, $week, '');
-					$query->whereBetween('created_at', [$dates[0], end($dates)]);
+					$query->whereBetween('created_at', [$dates[0]. ' 00:00:00', end($dates).' 23:59:59']);
 				} else {
 					if ($month != '') {
 						$query->whereMonth('created_at', $month);
