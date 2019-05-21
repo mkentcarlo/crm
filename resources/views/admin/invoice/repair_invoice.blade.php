@@ -311,11 +311,22 @@
 							</div>
 						</div>	
 					</div>
-					<div class="col-md-6">
+					<div class="col-md-3">
 						<div class="form-group">
 							<label class="control-label mb-10">Date of Acceptance:</label>
 							<div class="input-group date datepicker">
 								<input type="text" class="form-control" name="date_of_acceptance">
+								<span class="input-group-addon">
+									<span class="fa fa-calendar"></span>
+								</span>
+							</div>
+						</div>	
+					</div>
+					<div class="col-md-3">
+						<div class="form-group">
+							<label class="control-label mb-10">Due Date:</label>
+							<div class="input-group date datepicker">
+								<input type="text" class="form-control" name="due_date">
 								<span class="input-group-addon">
 									<span class="fa fa-calendar"></span>
 								</span>

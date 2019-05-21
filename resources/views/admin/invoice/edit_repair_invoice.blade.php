@@ -311,11 +311,22 @@
 							</div>
 						</div>	
 					</div>
-					<div class="col-md-6">
+					<div class="col-md-3">
 						<div class="form-group">
 							<label class="control-label mb-10">Date of Acceptance:</label>
 							<div class="input-group date datepicker">
-								<input type="text" class="form-control" name="date_of_acceptance" value="{{ $invoice->additional_fields->date_of_acceptance ?? null }}">
+								<input type="text" class="form-control" name="date_of_acceptance" value="{{ $invoice->additional_fields->date_of_acceptance ? date('m/d/Y h:i A', strtotime($invoice->additional_fields->date_of_acceptance)) : '' }}">
+								<span class="input-group-addon">
+									<span class="fa fa-calendar"></span>
+								</span>
+							</div>
+						</div>	
+					</div>
+					<div class="col-md-3">
+						<div class="form-group">
+							<label class="control-label mb-10">Due Date:</label>
+							<div class="input-group date datepicker">
+								<input type="text" class="form-control" name="due_date" value="{{ $invoice->due_date ? date('m/d/Y h:i A', strtotime($invoice->due_date)) : '' }}">
 								<span class="input-group-addon">
 									<span class="fa fa-calendar"></span>
 								</span>

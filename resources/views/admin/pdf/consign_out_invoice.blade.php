@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Consign OUT Invoice</title>
+	<title>Consign OUT Invoice 0000{{ $invoice->id }}</title>
 	<!-- Custom CSS -->
 	<style>
 		.logo {

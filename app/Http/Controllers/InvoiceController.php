@@ -387,6 +387,7 @@ class InvoiceController extends Controller
                     'customer_id' => $customerId,
                     'total_amount' => $request->price,
                     'status' => $status,
+                    'due_date' => $request->due_date ?? null,
                     'additional_fields' => json_encode($data)
                 ]
             );
@@ -450,7 +451,7 @@ class InvoiceController extends Controller
         }
 
         $invoice = Invoice::where('id', $invoiceId)->where('invoice_type', $request->invoice_type)->first();
-
+        
         if ($invoice === null) {
             return redirect('/dashboard');
         }
@@ -775,6 +776,7 @@ class InvoiceController extends Controller
                     'invoice_type' => $invoiceType,
                     'customer_id' => $customerId,
                     'total_amount' => $request->price,
+                    'due_date' => $request->due_date ?? null,
                     'status' => $status,
                     'additional_fields' => json_encode($data)
                 ]

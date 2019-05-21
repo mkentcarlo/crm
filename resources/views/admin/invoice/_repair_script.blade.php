@@ -89,8 +89,8 @@
                     $('#brand_name').text(result.brand_id.name);
                     $('#category_name').text(result.category_id.name);
                     $('#p_category_name').val(result.category_id.name);
-                    $('#product_price').text((result.selling_price) ? parseFloat(result.selling_price).toFixed(2) : '0.00');
-                    $('#p_product_price').val((result.selling_price) ? parseFloat(result.selling_price).toFixed(2) : '0.00');
+                    $('#product_price').text((result.asking_price) ? parseFloat(result.asking_price).toFixed(2) : '0.00');
+                    $('#p_product_price').val((result.asking_price) ? parseFloat(result.asking_price).toFixed(2) : '0.00');
                     var img = (result.featured_src) ? result.featured_src : (result.images.length > 0 ? result.images[0]['src'] : '');
                     if (img) {
                         $('#product_image').html("<img src='"+img+"' style='width:100%;'>");
@@ -124,8 +124,8 @@
                         $('#brand_name').text(result.brand_id.name);
                         $('#category_name').text(result.category_id.name);
                         $('#p_category_name').val(result.category_id.name);
-                        $('#product_price').text((result.selling_price) ? parseFloat(result.selling_price).toFixed(2) : '0.00');
-                        $('#p_product_price').val((result.selling_price) ? parseFloat(result.selling_price).toFixed(2) : '0.00');
+                        $('#product_price').text((result.asking_price) ? parseFloat(result.asking_price).toFixed(2) : '0.00');
+                        $('#p_product_price').val((result.asking_price) ? parseFloat(result.asking_price).toFixed(2) : '0.00');
                         var img = (result.featured_src) ? result.featured_src : (result.images.length > 0 ? result.images[0]['src'] : '');
                         if (img) {
                             $('#product_image').html("<img src='"+img+"' style='width:100%;'>");
