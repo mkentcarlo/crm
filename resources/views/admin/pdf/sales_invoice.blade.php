@@ -154,7 +154,7 @@
 							</table>
 						</div>
 					</td>
-					<td>Date: {{ $invoice->created_at }}</td>
+					<td>Date: {{ date('d/m/Y H:i', strtotime($invoice->created_at)) }}</td>
 				</tr>
 			</thead>
 			

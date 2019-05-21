@@ -86,7 +86,7 @@
 				<tr class="noborder">
 					
 					<td>NIRC/PASSPORT NO: {{ $invoice->additional_fields->passport_no ?? null }}</td>
-					<td>Date: {{ $invoice->created_at }}</td>
+					<td>Date: {{ date('d/m/Y H:i', strtotime($invoice->created_at)) }}</td>
 				</tr>
 			</thead>
 			<tbody>

@@ -76,7 +76,7 @@
 				</tr>
 				<tr class="noborder">
 					
-					<td>Date: {{ $invoice->created_at }}</td>
+					<td>Date: {{ date('d/m/Y H:i', strtotime($invoice->created_at)) }}</td>
 					<td>&nbsp;</td>
 				</tr>
 			</thead>
@@ -176,7 +176,7 @@
 				</tr>
 				<tr class="noborder">
 					<td>Service/Repair Duration <small>(estimate)</small>: {{ $invoice->additional_fields->repair_duration ?? null }}</td>
-					<td>Date of Acceptance: {{ $invoice->additional_fields->date_of_acceptance ?? null }}</td>
+					<!-- <td>Date of Acceptance: {{ $invoice->additional_fields->date_of_acceptance ?? null }}</td> -->
 				</tr>
 			</tbody>
 			
