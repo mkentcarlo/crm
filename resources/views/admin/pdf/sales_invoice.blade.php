@@ -126,6 +126,7 @@
 							<p>Amount: ${{ isset($invoice->additional_fields->installment_amount) ? number_format($invoice->additional_fields->installment_amount, 2) : '0.00' }}</p>
 						</div>
 						@endif
+						@if(!empty($invoice->additional_fields->card_info))
 						<div style="margin-top: 15px;">
 							<p>Credit Card</p>	
 							<table class="table table-bordered">
@@ -139,7 +140,7 @@
 									</tr>
 								</thead>
 								<tbody id="credit_card_holder">
-									@if(!empty($invoice->additional_fields->card_info))
+									
 										@foreach($invoice->additional_fields->card_info as $cardInfo)
 										<tr>
 											<td>{{ ucwords($cardInfo->card_type) }}</td>
@@ -149,10 +150,11 @@
 											<td>{{ $cardInfo->card_amount ?? null }}</td>
 										</tr>
 										@endforeach
-									@endif
+									
 								</tbody>
 							</table>
 						</div>
+						@endif
 					</td>
 					<td>Date: {{ $invoice->created_at }}</td>
 				</tr>
@@ -183,6 +185,9 @@
 					<td class="noborder">&nbsp;</td>
 					<td class="noborder">&nbsp;</td>
 					<td class="noborder">&nbsp;</td>
+				</tr>
+				<tr >
+					<td class="noborder" colspan="3" style="text-align: center;">{{ $invoice->additional_fields->remarks ?? null }}</td>
 				</tr>
 				<tr>
 					<td class="noborder">&nbsp;</td>
