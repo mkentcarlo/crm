@@ -20,7 +20,8 @@
 				<div class="col-md-2"></div>
 				<div class="col-md-6">
 					<label class="control-label mb-10">Select Customer:</label>
-						<select class="form-control select2" name="customer_id" id="customer_id">
+						<select class="form-control select2" name="customer_id" id="customer_id" required="required">
+						<option value="">--please select--</option>	
 						@foreach($customers as $customer)
 						<option value="{{ $customer->id }}">{{ $customer->lastname .' '. $customer->firstname }}</option>
 						@endforeach
@@ -35,7 +36,8 @@
 				<div class="col-md-4">
 					<div class="form-group">
 						<label class="control-label mb-10">Select Watch:</label>
-						<select class="form-control select2 product-dropdown" id="product_id">
+						<select class="form-control select2 product-dropdown" id="product_id" required="required">
+							<option value="">--please select--</option>	
 							@foreach($products as $product)
 							<option value="{{ $product['id'] }}" data-title="{{ $product['name'] }}" data-desc="{{ $product['short_description'] }}" data-brand="{{ $product['brands'] }}" data-acf="{{$product['acf_search']}}">{{ $product['name'] }}</option>
 							@endforeach
