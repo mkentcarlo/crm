@@ -20,7 +20,8 @@
 				<div class="col-md-2"></div>
 				<div class="col-md-6">
 					<label class="control-label mb-10">Select Customer:</label>
-						<select class="form-control customer-dropdown" name="customer_id" id="customer_id">
+						<select class="form-control customer-dropdown" name="customer_id" id="customer_id" required="required">
+						<option value="">--select--</option>	
 						@foreach($customers as $customer)
 						<option value="{{ $customer->id }}" data-email="{{ $customer->email }}" data-contact="{{ $customer->contact }}">{{ $customer->lastname .' '. $customer->firstname }}</option>
 						@endforeach
