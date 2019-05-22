@@ -128,13 +128,13 @@
 											<div class="radio-list">
 												<div class="radio-inline">
 													<div class="radio radio-info">
-														<input type="radio" name="reserve" value="Yes" checked="checked">
+														<input type="radio" name="reserve" value="Yes">
 														<label for="radio2">Yes</label>
 													</div>
 												</div>
 												<div class="radio-inline pl-0">
 													<div class="radio radio-info">
-														<input type="radio" name="reserve" value="No">
+														<input type="radio" name="reserve" value="No" checked="checked">
 														<label for="radio1">No</label>
 													</div>
 												</div>
@@ -311,7 +311,7 @@
 											</label>
 										</div>
 										<div class="radio radio-default">
-											<input type="radio" name="new" id="radionewno" value="No">
+											<input type="radio" name="new" id="radionewno" value="No" checked="checked">
 											<label for="radionewno">
 												NO
 											</label>
@@ -326,7 +326,7 @@
 											</label>
 										</div>
 										<div class="radio radio-default">
-											<input type="radio" name="limited_edition" id="limited_editionno" value="No">
+											<input type="radio" name="limited_edition" id="limited_editionno" value="No" checked="checked">
 											<label for="limited_editionno">
 												NO
 											</label>
