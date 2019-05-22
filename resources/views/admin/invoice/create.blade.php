@@ -26,7 +26,7 @@
 					@include('admin.invoice._script')
 				@elseif($invoiceType == 'consign_in' || $invoiceType == 'consign_out')
 					@include('admin.invoice.consign_invoice')
-					@include('admin.invoice._script')
+					@include('admin.invoice._consign_script')
 				@elseif($invoiceType == 'purchase')
 					@include('admin.invoice.purchase_invoice')
 					@include('admin.invoice._purchase_script')
