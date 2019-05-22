@@ -36,6 +36,6 @@ class HomeController extends Controller
         $purchase = app()->make('App\Services\InvoiceService')->getInvoiceByInvoiceTypes(['purchase']);
         $repair = app()->make('App\Services\InvoiceService')->getInvoiceByInvoiceTypes(['repair']);
         $inquiries = Inquiry::all();
-        return view('admin.dashboard', compact('brands', 'watches', 'customers', 'sales', 'consign_in', , 'consign_out', 'purchase', 'repair', 'inquiries'));
+        return view('admin.dashboard', compact('brands', 'watches', 'customers', 'sales', 'consign_in', 'consign_out', 'purchase', 'repair', 'inquiries'));
     }  
 }
