@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Sales Invoice 0000{{ $invoice->id }}</title>
+	<title>Sales Invoice 000{{ $invoice->id }}</title>
 	<!-- Custom CSS -->
 	<style>
 		@font-face {
