@@ -230,6 +230,8 @@ class ProductController extends Controller
 
     public function cloneProduct($productId) 
     {
-        return $this->wooService->getProductById($productId);
+        // return $this->wooService->getProductById($productId);
+        $clone_product_id = file_get_contents("https://singaporewebdevelopment.com/client/luxemontre/wp-admin/admin-ajax.php?action=duplicate_post&post_id=".$productId);
+        return redirect('products/edit/'.$clone_product_id);
     }
 }
