@@ -345,7 +345,7 @@
                 });
        
                 total = (!isNaN(total) || total > 0) ? total : 0;
-                overall = parseFloat(cash_amount) + parseFloat(pay_now_amount) + parseFloat(bank_transfer_amount) parseFloat(net_amount) + parseFloat(others_amount) + parseFloat(installment_amount) + total;
+                overall = parseFloat(cash_amount) + parseFloat(pay_now_amount) + parseFloat(bank_transfer_amount) + parseFloat(net_amount) + parseFloat(others_amount) + parseFloat(installment_amount) + total;
     
 
                 if (isNaN($('.total_amount').val()) || $('.total_amount').val() < 1) {
