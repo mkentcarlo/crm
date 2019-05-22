@@ -385,7 +385,7 @@ class InvoiceController extends Controller
                 [
                     'invoice_type' => $invoiceType,
                     'customer_id' => $customerId,
-                    'total_amount' => $data['repair_cost'],
+                    'total_amount' => isset($data['repair_cost']) ? $data['repair_cost'] : 0,
                     'status' => $status,
                     'due_date' => $request->due_date ?? null,
                     'additional_fields' => json_encode($data)
@@ -775,7 +775,7 @@ class InvoiceController extends Controller
                 [
                     'invoice_type' => $invoiceType,
                     'customer_id' => $customerId,
-                    'total_amount' => $data['repair_cost'],
+                    'total_amount' => isset($data['repair_cost']) ? $data['repair_cost'] : 0,
                     'due_date' => $request->due_date ?? null,
                     'status' => $status,
                     'additional_fields' => json_encode($data)
