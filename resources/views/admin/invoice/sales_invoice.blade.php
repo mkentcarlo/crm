@@ -111,7 +111,7 @@
 										<hr>
 										<h5>Cash</h5>
 										<label>Amount</label>
-										<input type="text" name="cash_amount" class="form-control">
+										<input type="text" name="cash_amount" class="form-control" id="cash_amount">
 									</div>
 									<div id="pay_now" class="mt-15 row" hidden>
 									<hr>
@@ -125,7 +125,7 @@
 										</div>
 										<div class="col-md-6">
 											<label>Amount</label>
-											<input type="text" name="pay_now_amount" class="form-control">
+											<input type="text" name="pay_now_amount" class="form-control" id="pay_now_amount">
 										</div>
 									</div>
 									<div id="bank_transfer" class="mt-15 row" hidden>
@@ -207,7 +207,7 @@
 													<td><input type="text" name="bank_name[]" class="form-control"></td>
 													<td><input type="text" name="card_name[]" class="form-control"></td>
 													<td><input type="text" name="card_number[]" class="form-control"></td>
-													<td><input type="text" name="card_amount[]" class="form-control"></td>
+													<td><input type="text" name="card_amount[]" class="form-control" class="card_amount"></td>
 													<td><button type="button" class="remove-card btn btn-danger btn-xs"><i class="fa fa-times"></i></button> <button type="button" class="add-more-card btn btn-default btn-xs"><i class="fa fa-plus"></i></button></td>
 												</tr>
 											</tbody>

@@ -154,6 +154,9 @@
                 var sub_total = parseFloat(product_price) * quantity;
                 
            
+                if (product_id == '') {
+                    alert('Must select product');
+                } else {
                     if ($('.product-overview tbody').find('tr#'+product_id).length > 0) {
                        var currentQty = $('.product-overview tbody').find('tr#'+product_id+' td:eq(5)').text();
                        var totalQty = parseInt(currentQty)+ parseInt(quantity);
@@ -175,6 +178,7 @@
                     $('#subtotal').text(total.toFixed(2));
                     $('.total_amount').val(total.toFixed(2));
                     $('.total_amount').text(total.toFixed(2));                
+                }  
             }); 
             
             var ids = [];
