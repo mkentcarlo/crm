@@ -154,6 +154,9 @@
                 var sub_total = parseFloat(product_price) * quantity;
                 
            
+                if (product_id == '') {
+                    alert('Must select product');
+                } else {
                     if ($('.product-overview tbody').find('tr#'+product_id).length > 0) {
                        var currentQty = $('.product-overview tbody').find('tr#'+product_id+' td:eq(5)').text();
                        var totalQty = parseInt(currentQty)+ parseInt(quantity);
@@ -175,6 +178,7 @@
                     $('#subtotal').text(total.toFixed(2));
                     $('.total_amount').val(total.toFixed(2));
                     $('.total_amount').text(total.toFixed(2));                
+                }  
             }); 
             
             var ids = [];
@@ -325,13 +329,34 @@
                 return null;
             } });
 
-            $('#invoice-form').submit(function(e) {            
-                if(isNaN($('.total_amount').val()) || $('.total_amount').val() < 1) {
+            $('#invoice-form').submit(function(e) {         
+ 
+                var overall = 0;
+                var cash_amount = isNaN($('#cash_amount').val()) || $('#cash_amount').val() == '' || $('#cash_amount').val() == null ? 0 : $('#cash_amount').val();
+
+                var pay_now_amount = isNaN($('#pay_now_amount').val()) || $('#pay_now_amount').val() == '' || $('#pay_now_amount').val() == null ? 0 : $('#pay_now_amount').val();
+                var bank_transfer_amount = isNaN($('#bank_transfer_amount').val()) || $('#bank_transfer_amount').val() == '' || $('#bank_transfer_amount').val() == null ? 0 : $('#bank_transfer_amount').val();
+                var net_amount = isNaN($('#net_amount').val()) || $('#net_amount').val() == '' || $('#net_amount').val() == null ? 0 : $('#net_amount').val();
+                var others_amount = isNaN($('#others_amount').val()) || $('#others_amount').val() == '' || $('#others_amount').val() == null ? 0 : $('#others_amount').val();
+                var installment_amount = isNaN($('#installment_amount').val()) || $('#installment_amount').val() == '' || $('#installment_amount').val() == null ? 0 : $('#installment_amount').val();
+                var total = 0;
+                $('.card_amount').each(function() {
+                    total += parseFloat($(this).val());
+                });
+       
+                total = (!isNaN(total) || total > 0) ? total : 0;
+                overall = parseFloat(cash_amount) + parseFloat(pay_now_amount) + parseFloat(bank_transfer_amount) parseFloat(net_amount) + parseFloat(others_amount) + parseFloat(installment_amount) + total;
+    
+
+                if (isNaN($('.total_amount').val()) || $('.total_amount').val() < 1) {
                     alert('total amount must have valid value, need to update product price');
                     e.preventDefault();
-                } else {
-                    $(this).submit();
+                } 
+                if (overall.toFixed(2) != $('.total_amount').val()) {
+                    alert('Payment mode amount must be equal to the total amount');
+                    e.preventDefault();
                 }
+                
             });
 
             $('body').on('keyup', '.in-product-price', function(e){

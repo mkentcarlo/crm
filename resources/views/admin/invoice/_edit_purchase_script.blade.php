@@ -84,28 +84,31 @@
                 var product_id = $('#product_id').val();
                 var sub_total = parseFloat(product_price) * quantity;
                 
-           
-                    if ($('.product-overview tbody').find('tr#'+product_id).length > 0) {
-                       var currentQty = $('.product-overview tbody').find('tr#'+product_id+' td:eq(5)').text();
-                       var totalQty = parseInt(currentQty)+ parseInt(quantity);
-                       var productPrice = $('.product-overview tbody').find('tr#'+product_id+' td:eq(4)').text();
-                       var currentSubTotal = $('.product-overview tbody').find('tr#'+product_id+' td:eq(6) input').val();
-                       var subTotal = parseInt(productPrice) * parseInt(totalQty);
-                       $('.product-overview tbody').find('tr#'+product_id+' td:eq(5) span').text(totalQty);
-                       $('.product-overview tbody').find('tr#'+product_id+' td:eq(5) input').val(totalQty);
-                       $('.product-overview tbody').find('tr#'+product_id+' td:eq(6) input').val(subTotal.toFixed(2));
-                       $('.product-overview tbody').find('tr#'+product_id+' td:eq(6) input').val(subTotal.toFixed(2));
+                    if (product_id == '') {
+                        alert('Must select product');
                     } else {
-                        $('.product-overview tbody').append("<tr id="+product_id+"><td><input type='hidden' name='product_id[]' value="+product_id+"><input type='hidden' name='featured_src[]' value="+img_src+"><img src='"+img_src+"' width='80'></td><td><input type='hidden' name='product_name[]' value="+product_name+">"+product_name+"</td><td><input type='hidden' name='brand_name[]' value="+brand_name+">"+brand_name+"</td><td><input type='hidden' name='category_name[]' value="+category_name+">"+category_name+"</td><td><input type='text' name='product_price[]' class='in-product-price' value="+product_price+"></td><td class='quantity'><input type='hidden' name='quantity[]' value="+quantity+">"+quantity+"</td><td class='subtotal'><input type='hidden' name='sub_total_amount[]' value="+sub_total.toFixed(2)+">$<span>"+sub_total.toFixed(2)+"</span></td><td><a href='javascript:void(0)' class='delete-product-invoice' title=' data-toggle='tooltip' data-original-title='Delete'><i class='zmdi zmdi-delete txt-warning'></i></a></td></tr>");
-                    }
+                        if ($('.product-overview tbody').find('tr#'+product_id).length > 0) {
+                           var currentQty = $('.product-overview tbody').find('tr#'+product_id+' td:eq(5)').text();
+                           var totalQty = parseInt(currentQty)+ parseInt(quantity);
+                           var productPrice = $('.product-overview tbody').find('tr#'+product_id+' td:eq(4)').text();
+                           var currentSubTotal = $('.product-overview tbody').find('tr#'+product_id+' td:eq(6) input').val();
+                           var subTotal = parseInt(productPrice) * parseInt(totalQty);
+                           $('.product-overview tbody').find('tr#'+product_id+' td:eq(5) span').text(totalQty);
+                           $('.product-overview tbody').find('tr#'+product_id+' td:eq(5) input').val(totalQty);
+                           $('.product-overview tbody').find('tr#'+product_id+' td:eq(6) input').val(subTotal.toFixed(2));
+                           $('.product-overview tbody').find('tr#'+product_id+' td:eq(6) input').val(subTotal.toFixed(2));
+                        } else {
+                            $('.product-overview tbody').append("<tr id="+product_id+"><td><input type='hidden' name='product_id[]' value="+product_id+"><input type='hidden' name='featured_src[]' value="+img_src+"><img src='"+img_src+"' width='80'></td><td><input type='hidden' name='product_name[]' value="+product_name+">"+product_name+"</td><td><input type='hidden' name='brand_name[]' value="+brand_name+">"+brand_name+"</td><td><input type='hidden' name='category_name[]' value="+category_name+">"+category_name+"</td><td><input type='text' name='product_price[]' class='in-product-price' value="+product_price+"></td><td class='quantity'><input type='hidden' name='quantity[]' value="+quantity+">"+quantity+"</td><td class='subtotal'><input type='hidden' name='sub_total_amount[]' value="+sub_total.toFixed(2)+">$<span>"+sub_total.toFixed(2)+"</span></td><td><a href='javascript:void(0)' class='delete-product-invoice' title=' data-toggle='tooltip' data-original-title='Delete'><i class='zmdi zmdi-delete txt-warning'></i></a></td></tr>");
+                        }
 
-                    var total = 0;
-                    $('.product-overview tbody tr').each(function() {
-                        total += parseInt($(this).find('td:eq(6) input').val());
-                    });
-                    $('#subtotal').text(total.toFixed(2));
-                    $('.total_amount').val(total.toFixed(2));
-                    $('.total_amount').text(total.toFixed(2));                
+                        var total = 0;
+                        $('.product-overview tbody tr').each(function() {
+                            total += parseInt($(this).find('td:eq(6) input').val());
+                        });
+                        $('#subtotal').text(total.toFixed(2));
+                        $('.total_amount').val(total.toFixed(2));
+                        $('.total_amount').text(total.toFixed(2));    
+                    }                
             }); 
             
             var ids = [];
@@ -179,13 +182,26 @@
                 }
             });
 
-            $('#invoice-form').submit(function(e) { 
-                if(isNaN($('.total_amount').val()) || $('.total_amount').val() < 1) {
+            $('#invoice-form').submit(function(e) {         
+ 
+                var overall = 0;
+                var cash_amount = isNaN($('#cash_amount').val()) || $('#cash_amount').val() == '' || $('#cash_amount').val() == null ? 0 : $('#cash_amount').val();
+
+                var cheque_amount = isNaN($('#cheque_amount').val()) || $('#cheque_amount').val() == '' || $('#cheque_amount').val() == null ? 0 : $('#cheque_amount').val();
+                var bank_transfer_amount = isNaN($('#bank_transfer_amount').val()) || $('#bank_transfer_amount').val() == '' || $('#bank_transfer_amount').val() == null ? 0 : $('#bank_transfer_amount').val();
+                
+                overall = parseFloat(cash_amount) + parseFloat(cheque_amount) + parseFloat(bank_transfer_amount);
+    
+
+                if (isNaN($('.total_amount').val()) || $('.total_amount').val() < 1) {
                     alert('total amount must have valid value, need to update product price');
                     e.preventDefault();
-                } else {
-                    $(this).submit();
+                } 
+                if (overall.toFixed(2) != $('.total_amount').val()) {
+                    alert('Payment mode amount must be equal to the total amount');
+                    e.preventDefault();
                 }
+                
             });
 
             $('.customer-dropdown').select2({matcher: function(params, data){
