@@ -162,6 +162,7 @@
                         $transactionTable = $('#transaction-table').DataTable( {
                             serverSide: true,
                             processing: true,
+                            "bDestroy": true,
                             ajax: {
                                 url: "/customers/transactions/" + id
                             },
