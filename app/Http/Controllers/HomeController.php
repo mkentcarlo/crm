@@ -31,7 +31,8 @@ class HomeController extends Controller
         $watches = app()->make('App\Services\ProductService')->getProducts();
         $customers = app()->make('App\Services\CustomerService')->getCustomers();
         $sales = app()->make('App\Services\InvoiceService')->getInvoiceByInvoiceTypes(['sales']);
-        $consignments = app()->make('App\Services\InvoiceService')->getInvoiceByInvoiceTypes(['consign_in', 'consign_out']);
+        $consign_in = app()->make('App\Services\InvoiceService')->getInvoiceByInvoiceTypes(['consign_in']);
+        $consign_out = app()->make('App\Services\InvoiceService')->getInvoiceByInvoiceTypes(['consign_out']);
         $purchase = app()->make('App\Services\InvoiceService')->getInvoiceByInvoiceTypes(['purchase']);
         $repair = app()->make('App\Services\InvoiceService')->getInvoiceByInvoiceTypes(['repair']);
         $inquiries = Inquiry::all();
