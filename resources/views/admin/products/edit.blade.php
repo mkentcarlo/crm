@@ -331,7 +331,7 @@
 											</label>
 										</div>
 										<div class="radio radio-default">
-											<input type="radio" name="new" value="No" {{ isset($product->new) && $product->new == 'No' && $product->new != 'Yes' ? 'checked="checked"' : '' }}>
+											<input type="radio" name="new" value="No" {{ isset($product->new) && $product->new == 'No' && $product->newx != 'Yes' ? 'checked="checked"' : '' }}>
 											<label for="limited_editionno">
 												NO
 											</label>
