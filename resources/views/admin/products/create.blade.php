@@ -128,7 +128,7 @@
 											<div class="radio-list">
 												<div class="radio-inline">
 													<div class="radio radio-info">
-														<input type="radio" name="reserve" value="Yes">
+														<input type="radio" name="reserve" value="Yes" checked="checked">
 														<label for="radio2">Yes</label>
 													</div>
 												</div>
