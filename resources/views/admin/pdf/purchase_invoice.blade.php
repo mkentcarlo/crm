@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Purchase Invoice 000{{ $invoice->id }}</title>
+	<title>Purchase Invoice {{ str_pad( $invoice->id, 4, "0", STR_PAD_LEFT ) }}</title>
 	<!-- Custom CSS -->
 	<style>
 		.logo {
@@ -63,7 +63,7 @@
 			<div class="col-md-12 text-right">
 				<h5 style="font-size:18px">PURCHASE INVOICE</h5>
 				<h6 style="font-size:10px; margin-top:-10px">UEN NO: 201817415K</h6>
-				<h6 style="margin-top:25px">PI NO.: <span style="color: red; font-size: 20px !important; font-family: Arial !important"><strong>000{{ $invoice->id }}</strong></span></h6>
+				<h6 style="margin-top:25px">PI NO.: <span style="color: red; font-size: 20px !important; font-family: Arial !important"><strong>{{ str_pad( $invoice->id, 4, "0", STR_PAD_LEFT ) }}</strong></span></h6>
 			</div>
 		</div>
 		<table style="width: 100%" class="bordered">
@@ -140,7 +140,7 @@
 					<tr>
 						@php($res = \DB::select("SELECT post_excerpt FROM wpla_posts WHERE ID = '$detail->product_id'"))
 						<td class="noborder">{{ $detail->product_name }}</td>
-						<td class="noborder">{{ ($res) ? $res[0]->post_excerpt : '' }}</td>
+						<td class="noborder">{{ $detail->brand_name }} - {{ $detail->category_name }}<br>{{ ($res) ? $res[0]->post_excerpt : '' }}</td>
 						<td class="noborder text-center">{{ $detail->total_amount }}</td>
 					</tr>
 					@php($total += $detail->total_amount)
