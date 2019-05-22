@@ -26,10 +26,12 @@
 						<option value="{{ $customer->id }}" data-email="{{ $customer->email }}" data-contact="{{ $customer->contact }}" {{ $invoice->customer->id == $customer->id ? 'selected="selected"' : '' }}>{{ $customer->lastname .' '. $customer->firstname }}</option>
 						@endforeach
 						</select>
-					<p class="mt-20" id="street_address">795 Folsom Ave, Suite 600</p>
-					<p id="code_state_country">San Francisco, CA 94107</p>
-					<p id="phone">P:(133) 456-7890</p>
-					<p id="email">jsmith@email.com</p>
+					<div id="customer-info" style="display: none;">
+						<p class="mt-20" id="street_address">795 Folsom Ave, Suite 600</p>
+						<p id="code_state_country">San Francisco, CA 94107</p>
+						<p id="phone">P:(133) 456-7890</p>
+						<p id="email">jsmith@email.com</p>
+					</div>
 				</div>
 				<div class="clearfix"></div>
 				<hr class="light-grey-hr mt-30">
@@ -57,7 +59,7 @@
 				<div class="col-md-2"></div>
 				<div class="col-md-6">
 					<p hidden id="category_name"></p>
-					<div class="row">
+					<div class="row" id="product-info" style="display: none;">
 						<div class="col-md-4 bg-dark" id="product_image">
 							<img style="width: 100%" src="https://www.luxemontre.sg/wp-content/uploads/2019/01/Rolex-Yacht-Master-II-in-18K-White-Gold-M116689-Standing-2-500x493.png" alt="">
 						</div>

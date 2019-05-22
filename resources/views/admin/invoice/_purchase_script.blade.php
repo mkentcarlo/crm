@@ -24,6 +24,7 @@
                         });
                     },
                     success:    function (result) {
+                        $('#customer-info').css('display','block');
                         var street_address = (result.street_address != null) ? result.street_address : '';
                         var city = (result.city != null) ? ' ,' + result.city : '';
                         var country = (result.country != null) ? result.country : '';
@@ -36,6 +37,8 @@
                         swal.close();
                     }   
                 });     
+            } else {
+                $('#customer-info').css('display','none');
             }
 
 
@@ -57,6 +60,7 @@
                             });
                         },
                         success:    function (result) {
+                            $('#customer-info').css('display','block');
                             var street_address = (result.street_address != null) ? result.street_address : '';
                             var city = (result.city != null) ? ' ,' + result.city : '';
                             var country = (result.country != null) ? result.country : '';
@@ -69,6 +73,8 @@
                             swal.close();
                         }   
                     });     
+                } else {
+                    $('#customer-info').css('display','none');
                 }
                 
             });
@@ -90,6 +96,7 @@
                         });
                     },
                     success:    function (result) {
+                        $('#product-info').css('display','block');
                         $('#product_name').text(result.title);
                         $('#brand_name').text(result.brand_id.name);
                         $('#category_name').text(result.category_id.name);
@@ -101,6 +108,8 @@
                         swal.close();
                     }   
                 });     
+            } else {
+                $('#product-info').css('display','none');
             }
             
 
@@ -122,7 +131,7 @@
                             });
                         },
                         success:    function (result) {
-                            console.log(result);
+                            $('#product-info').css('display','block');
                             $('#product_name').text(result.title);
                             $('#brand_name').text(result.brand_id.name);
                             $('#category_name').text(result.category_id.name);
@@ -134,7 +143,9 @@
                             swal.close();
                         }   
                     });         
-                } 
+                } else {
+                    $('#product-info').css('display','none');
+                }
             });
             var total = 0;
             $('.product-overview tbody tr').each(function() {
