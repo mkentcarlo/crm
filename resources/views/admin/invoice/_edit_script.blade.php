@@ -8,65 +8,70 @@
 
         $(function () {
             $('#customer_id').on('change', function(){
-                $.ajax({
-                    type:       'GET',
-                    url:        "{{ url('customers') }}/"+ $(this).val(),
-                    dataType:   'json',
-                    beforeSend: function () {
-                        swal({
-                            title: 'Loading...',
-                            imageUrl: "{{ asset('img/loader.gif') }}",
-                            imageWidth: 400,
-                            imageHeight: 200,
-                            imageAlt: 'Custom image',
-                            animation: true,
-                            showConfirmButton: false,
-                        });
-                    },
-                    success:    function (result) {
-                         var street_address = (result.street_address != null) ? result.street_address : '';
-                        var city = (result.city != null) ? ' ,' + result.city : '';
-                        var country = (result.country != null) ? result.country : '';
-                        var state = (result.state != null) ? ' ,'+result.state : '';
-                        var postal_code = (result.postal_code != null) ? ' '+result.postal_code : '';
-                        $('#street_address').text(street_address + city);
-                        $('#code_state_country').text(country + state + postal_code);
-                        $('#phone').text('P:' + result.contact);
-                        $('#email').text(result.email);
-                        swal.close();
-                    }   
-                });     
+                if ($(this).val() != '') {
+                     $.ajax({
+                        type:       'GET',
+                        url:        "{{ url('customers') }}/"+ $(this).val(),
+                        dataType:   'json',
+                        beforeSend: function () {
+                            swal({
+                                title: 'Loading...',
+                                imageUrl: "{{ asset('img/loader.gif') }}",
+                                imageWidth: 400,
+                                imageHeight: 200,
+                                imageAlt: 'Custom image',
+                                animation: true,
+                                showConfirmButton: false,
+                            });
+                        },
+                        success:    function (result) {
+                             var street_address = (result.street_address != null) ? result.street_address : '';
+                            var city = (result.city != null) ? ' ,' + result.city : '';
+                            var country = (result.country != null) ? result.country : '';
+                            var state = (result.state != null) ? ' ,'+result.state : '';
+                            var postal_code = (result.postal_code != null) ? ' '+result.postal_code : '';
+                            $('#street_address').text(street_address + city);
+                            $('#code_state_country').text(country + state + postal_code);
+                            $('#phone').text('P:' + result.contact);
+                            $('#email').text(result.email);
+                            swal.close();
+                        }   
+                    });     
+                }
+               
             });
 
             $('#product_id').on('change', function(){
-                $.ajax({
-                    type:       'GET',
-                    url:        "{{ url('products') }}/"+ $(this).val(),
-                    dataType:   'json',
-                    beforeSend: function () {
-                        swal({
-                            title: 'Loading...',
-                            imageUrl: "{{ asset('img/loader.gif') }}",
-                            imageWidth: 400,
-                            imageHeight: 200,
-                            imageAlt: 'Custom image',
-                            animation: true,
-                            showConfirmButton: false,
-                        });
-                    },
-                    success:    function (result) {
-                        $('#short_description').text(result.short_description);
-                        $('#product_name').text(result.title);
-                        $('#brand_name').text(result.brand_id.name);
-                        $('#category_name').text(result.category_id.name);
-                        $('#product_price').text(parseFloat((result.asking_price) ? parseFloat(result.asking_price).toFixed(2) : '0.00');
-                        var img = (result.featured_src) ? result.featured_src : (result.images.length > 0 ? result.images[0]['src'] : '');
-                        if (img) {
-                            $('#product_image').html("<img src='"+img+"' style='width:100%;'>");
-                        }
-                        swal.close();
-                    }   
-                });     
+                if ($(this).val() != '') {
+                    $.ajax({
+                        type:       'GET',
+                        url:        "{{ url('products') }}/"+ $(this).val(),
+                        dataType:   'json',
+                        beforeSend: function () {
+                            swal({
+                                title: 'Loading...',
+                                imageUrl: "{{ asset('img/loader.gif') }}",
+                                imageWidth: 400,
+                                imageHeight: 200,
+                                imageAlt: 'Custom image',
+                                animation: true,
+                                showConfirmButton: false,
+                            });
+                        },
+                        success:    function (result) {
+                            $('#short_description').text(result.short_description);
+                            $('#product_name').text(result.title);
+                            $('#brand_name').text(result.brand_id.name);
+                            $('#category_name').text(result.category_id.name);
+                            $('#product_price').text(parseFloat((result.asking_price) ? parseFloat(result.asking_price).toFixed(2) : '0.00');
+                            var img = (result.featured_src) ? result.featured_src : (result.images.length > 0 ? result.images[0]['src'] : '');
+                            if (img) {
+                                $('#product_image').html("<img src='"+img+"' style='width:100%;'>");
+                            }
+                            swal.close();
+                        }   
+                    });   
+                }     
             });
 
             $('#add_quantity').on('click', function(e){
