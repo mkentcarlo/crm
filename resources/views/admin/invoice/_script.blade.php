@@ -281,11 +281,11 @@
                 }
 
                 // Check if the data occurs
-                if ($(data.element).data('email').toString().indexOf(params.term) > -1) {
+                if ($(data.element).attr('data-email').toString().indexOf(params.term) > -1) {
                     return data;
                 }
 
-                if ($(data.element).data('contact').toString().indexOf(params.term) > -1) {
+                if ($(data.element).attr('data-contact').toString().indexOf(params.term) > -1) {
                     return data;
                 }
 
@@ -300,20 +300,29 @@
                 }
 
                 // Check if the data occurs
-                if ($(data.element).data('title').toLowerCase().indexOf(params.term.toLowerCase()) > -1) {
-                    return data;
+                if($(data.element).attr('data-title')){
+                    if ($(data.element).attr('data-title').toLowerCase().indexOf(params.term.toLowerCase()) > -1) {
+                        return data;
+                    }
+                }
+                
+                if($(data.element).attr('data-brand')){
+                    if ($(data.element).attr('data-brand').toLowerCase().indexOf(params.term.toLowerCase()) > -1) {
+                        return data;
+                    }
                 }
 
-                if ($(data.element).data('brand').toLowerCase().indexOf(params.term.toLowerCase()) > -1) {
-                    return data;
+                if($(data.element).attr('data-desc')){
+                    if ($(data.element).attr('data-desc').toLowerCase().indexOf(params.term.toLowerCase()) > -1) {
+                        return data;
+                    }
                 }
 
-                if ($(data.element).data('desc').toLowerCase().indexOf(params.term.toLowerCase()) > -1) {
-                    return data;
-                }
-
-                if ($(data.element).data('acf').toLowerCase().indexOf(params.term.toLowerCase()) > -1) {
-                    return data;
+                
+                if($(data.element).attr('data-acf')){
+                    if ($(data.element).attr('data-acf').toLowerCase().indexOf(params.term.toLowerCase()) > -1) {
+                        return data;
+                    }
                 }
 
                 // If it doesn't contain the term, don't return anything

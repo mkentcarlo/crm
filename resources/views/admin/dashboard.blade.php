@@ -52,7 +52,7 @@
 		</a>
 	</div>
 	<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-		<a href="javascript:;">
+		<a href="{{url('inquiries')}}">
 		<div class="panel panel-default card-view pa-0 bg-gold">
 			<div class="panel-wrapper collapse in">
 				<div class="panel-body pa-0">
