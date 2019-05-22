@@ -32,7 +32,7 @@ class RolePermissionController extends Controller
      */
     public function index()
     {
-        return view('admin.roles.index', compact('roles'));
+        return view('admin.roles.index');
     }
 
     public function store(RoleFormRequest $request)
