@@ -132,17 +132,17 @@
 									<input type="checkbox" name="payment_method[]" class="payment_method {{ ($invoice->additional_fields->payment_method) ? (in_array('bank_transfer', $invoice->additional_fields->payment_method) ? 'checked': '') : '' }}" value="bank_transfer" {{ ($invoice->additional_fields->payment_method) ? (in_array('bank_transfer', $invoice->additional_fields->payment_method) ? 'checked="checked"': '') : '' }}> Bank Transfer
 									<div id="cash" class="mt-15" {{ ($invoice->additional_fields->payment_method) ? (in_array('cash', $invoice->additional_fields->payment_method) ? '': 'hidden') : 'hidden' }}>
 										<label>Cash $</label>
-										<input type="text" name="cash_amount" class="form-control" value="{{ $invoice->additional_fields->cash_amount ?? null }}">
+										<input type="text" name="cash_amount" class="form-control" value="{{ $invoice->additional_fields->cash_amount ?? null }}" id="cash_amount">
 									</div>
 									<div id="cheque" class="mt-15" {{ ($invoice->additional_fields->payment_method) ? (in_array('cheque', $invoice->additional_fields->payment_method) ? '': 'hidden') : 'hidden' }}>
 										<label>Cheque $</label>
-										<input type="text" name="cheque_amount" class="form-control" value="{{ $invoice->additional_fields->cheque_amount ?? null }}">
+										<input type="text" name="cheque_amount" class="form-control" value="{{ $invoice->additional_fields->cheque_amount ?? null }}" id="cheque_amount">
 									</div>
 									<div id="bank_transfer" class="mt-15 row" {{ ($invoice->additional_fields->payment_method) ? (in_array('bank_transfer', $invoice->additional_fields->payment_method) ? '': 'hidden') : 'hidden' }}>
 										<div class="col-md-12">
 										<h5>Bank Transfer</h5>
 											<label>Amount</label>
-											<input type="text" name="bank_transfer_amount" class="form-control" value="{{ $invoice->additional_fields->bank_transfer_amount ?? null }}">
+											<input type="text" name="bank_transfer_amount" class="form-control" value="{{ $invoice->additional_fields->bank_transfer_amount ?? null }}" id="bank_transfer_amount">
 										</div>
 									</div>
 								</td>

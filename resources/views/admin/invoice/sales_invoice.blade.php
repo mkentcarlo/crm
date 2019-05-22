@@ -134,7 +134,7 @@
 										<div class="col-md-12">
 										<h5>Bank Transfer</h5>
 											<label>Amount</label>
-											<input type="text" name="bank_transfer_amount" class="form-control">
+											<input type="text" name="bank_transfer_amount" class="form-control" id="bank_transfer_amount">
 										</div>
 									</div>
 									<div id="net" class="mt-15 row" hidden>
@@ -143,7 +143,7 @@
 										<div class="col-md-12">
 										<h5>Net</h5>
 											<label>Amount</label>
-											<input type="text" name="net_amount" class="form-control">
+											<input type="text" name="net_amount" class="form-control" id="net_amount">
 										</div>
 									</div>
 									<div id="others" class="mt-15 row" hidden>
@@ -158,7 +158,7 @@
 										</div>
 										<div class="col-md-6">
 											<label>Amount</label>
-											<input type="text" name="others_amount" class="form-control">
+											<input type="text" name="others_amount" class="form-control" id="others_amount">
 										</div>
 									</div>
 									<div id="installment" class="mt-15 row" hidden>
@@ -169,7 +169,7 @@
 										</div>
 										<div class="col-md-12 form-group">
 											<label>Amount</label>
-											<input type="text" name="installment_amount" class="form-control">
+											<input type="text" name="installment_amount" class="form-control" id="installment_amount">
 										</div>
 										<div class="col-md-12 form-group">
 											<label>Duration</label> <br>
@@ -207,7 +207,7 @@
 													<td><input type="text" name="bank_name[]" class="form-control"></td>
 													<td><input type="text" name="card_name[]" class="form-control"></td>
 													<td><input type="text" name="card_number[]" class="form-control"></td>
-													<td><input type="text" name="card_amount[]" class="form-control" class="card_amount"></td>
+													<td><input type="text" name="card_amount[]" class="form-control card_amount"></td>
 													<td><button type="button" class="remove-card btn btn-danger btn-xs"><i class="fa fa-times"></i></button> <button type="button" class="add-more-card btn btn-default btn-xs"><i class="fa fa-plus"></i></button></td>
 												</tr>
 											</tbody>

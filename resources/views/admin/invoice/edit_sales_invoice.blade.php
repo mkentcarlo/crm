@@ -120,7 +120,7 @@
 										<hr>
 										<h5>Cash</h5>
 										<label>Amount</label>
-										<input type="text" name="cash_amount" class="form-control" value="{{ $invoice->additional_fields->cash_amount ?? null }}">
+										<input type="text" name="cash_amount" class="form-control" value="{{ $invoice->additional_fields->cash_amount ?? null }}" id="cash_amount">
 									</div>
 									<div id="pay_now" class="mt-15 row" {{ ($invoice->additional_fields->payment_method) ? (in_array('pay_now', $invoice->additional_fields->payment_method) ? '': 'hidden') : 'hidden' }}>
 									<hr>
@@ -134,7 +134,7 @@
 										</div>
 										<div class="col-md-6">
 											<label>Amount</label>
-											<input type="text" name="pay_now_amount" class="form-control" value="{{ $invoice->additional_fields->pay_now_amount ?? null }}">
+											<input type="text" name="pay_now_amount" class="form-control" value="{{ $invoice->additional_fields->pay_now_amount ?? null }}" id="pay_now_amount">
 										</div>
 									</div>
 									<div id="bank_transfer" class="mt-15 row" {{ ($invoice->additional_fields->payment_method) ? (in_array('bank_transfer', $invoice->additional_fields->payment_method) ? '': 'hidden') : 'hidden' }}>
@@ -143,7 +143,7 @@
 										<div class="col-md-12">
 										<h5>Bank Transfer</h5>
 											<label>Amount</label>
-											<input type="text" name="bank_transfer_amount" class="form-control" value="{{ $invoice->additional_fields->bank_transfer_amount ?? null }}">
+											<input type="text" name="bank_transfer_amount" class="form-control" value="{{ $invoice->additional_fields->bank_transfer_amount ?? null }}" id="bank_transfer_amount">
 										</div>
 									</div>
 									<div id="net" class="mt-15 row" {{ ($invoice->additional_fields->payment_method) ? (in_array('net', $invoice->additional_fields->payment_method) ? '': 'hidden') : 'hidden' }}>
@@ -152,7 +152,7 @@
 										<div class="col-md-12">
 										<h5>Net</h5>
 											<label>Amount</label>
-											<input type="text" name="net_amount" class="form-control" value="{{ $invoice->additional_fields->net_amount ?? null }}">
+											<input type="text" name="net_amount" class="form-control" value="{{ $invoice->additional_fields->net_amount ?? null }}" id="net_amount">
 										</div>
 									</div>
 									<div id="others" class="mt-15 row" {{ ($invoice->additional_fields->payment_method) ? (in_array('others', $invoice->additional_fields->payment_method) ? '': 'hidden') : 'hidden' }}>
@@ -167,7 +167,7 @@
 										</div>
 										<div class="col-md-6">
 											<label>Amount</label>
-											<input type="text" name="others_amount" class="form-control" value="{{ $invoice->additional_fields->others_amount ?? null }}">
+											<input type="text" name="others_amount" class="form-control" value="{{ $invoice->additional_fields->others_amount ?? null }}" id="others_amount">
 										</div>
 									</div>
 									<div id="installment" class="mt-15 row" {{ ($invoice->additional_fields->payment_method) ? (in_array('installment', $invoice->additional_fields->payment_method) ? '': 'hidden') : 'hidden' }}>
@@ -178,7 +178,7 @@
 										</div>
 										<div class="col-md-12 form-group">
 											<label>Amount</label>
-											<input type="text" name="installment_amount" class="form-control" value="{{ $invoice->additional_fields->installment_amount ?? null }}">
+											<input type="text" name="installment_amount" class="form-control" value="{{ $invoice->additional_fields->installment_amount ?? null }}" id="installment_amount">
 										</div>
 										<div class="col-md-12 form-group">
 											<label>Duration</label> <br>
@@ -216,7 +216,7 @@
 														<td><input type="text" name="bank_name[]" class="form-control" value="{{ $cardInfo->bank_name }}"></td>
 														<td><input type="text" name="card_name[]" class="form-control" value="{{ $cardInfo->card_name }}"></td>
 														<td><input type="text" name="card_number[]" class="form-control" value="{{ $cardInfo->card_number }}"></td>
-														<td><input type="text" name="card_amount[]" class="form-control" value="{{ $cardInfo->card_amount }}"></td>
+														<td><input type="text" name="card_amount[]" class="form-control card_amount" value="{{ $cardInfo->card_amount }}"></td>
 														<td><button type="button" class="remove-card btn btn-danger btn-xs"><i class="fa fa-times"></i></button></td>
 													</tr>
 													@endforeach

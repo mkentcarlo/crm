@@ -123,17 +123,17 @@
 									<input type="checkbox" name="payment_method[]" class="payment_method" value="bank_transfer"> Bank Transfer
 									<div id="cash" class="mt-15" hidden>
 										<label>Cash $</label>
-										<input type="text" name="cash_amount" class="form-control">
+										<input type="text" name="cash_amount" class="form-control" id="cash_amount">
 									</div>
 									<div id="cheque" class="mt-15" hidden>
 										<label>Cheque $</label>
-										<input type="text" name="cheque_amount" class="form-control">
+										<input type="text" name="cheque_amount" class="form-control" id="cheque_amount">
 									</div>
 									<div id="bank_transfer" class="mt-15 row" hidden>
 										<div class="col-md-12">
 										<h5>Bank Transfer</h5>
 											<label>Amount</label>
-											<input type="text" name="bank_transfer_amount" class="form-control">
+											<input type="text" name="bank_transfer_amount" class="form-control" id="bank_transfer_amount">
 										</div>
 									</div>
 								</td>

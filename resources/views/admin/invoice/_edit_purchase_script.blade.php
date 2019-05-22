@@ -182,13 +182,26 @@
                 }
             });
 
-            $('#invoice-form').submit(function(e) { 
-                if(isNaN($('.total_amount').val()) || $('.total_amount').val() < 1) {
+            $('#invoice-form').submit(function(e) {         
+ 
+                var overall = 0;
+                var cash_amount = isNaN($('#cash_amount').val()) || $('#cash_amount').val() == '' || $('#cash_amount').val() == null ? 0 : $('#cash_amount').val();
+
+                var cheque_amount = isNaN($('#cheque_amount').val()) || $('#cheque_amount').val() == '' || $('#cheque_amount').val() == null ? 0 : $('#cheque_amount').val();
+                var bank_transfer_amount = isNaN($('#bank_transfer_amount').val()) || $('#bank_transfer_amount').val() == '' || $('#bank_transfer_amount').val() == null ? 0 : $('#bank_transfer_amount').val();
+                
+                overall = parseFloat(cash_amount) + parseFloat(cheque_amount) + parseFloat(bank_transfer_amount);
+    
+
+                if (isNaN($('.total_amount').val()) || $('.total_amount').val() < 1) {
                     alert('total amount must have valid value, need to update product price');
                     e.preventDefault();
-                } else {
-                    $(this).submit();
+                } 
+                if (overall.toFixed(2) != $('.total_amount').val()) {
+                    alert('Payment mode amount must be equal to the total amount');
+                    e.preventDefault();
                 }
+                
             });
 
             $('.customer-dropdown').select2({matcher: function(params, data){
