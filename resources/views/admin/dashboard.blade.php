@@ -52,7 +52,7 @@
 		</a>
 	</div>
 	<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-		<a href="javascript:;">
+		<a href="{{url('inquiries')}}">
 		<div class="panel panel-default card-view pa-0 bg-gold">
 			<div class="panel-wrapper collapse in">
 				<div class="panel-body pa-0">
@@ -154,7 +154,7 @@
 						<div class="container-fluid">
 							<div class="row">
 								<div class="col-xs-6 text-center pl-0 pr-0 data-wrap-left">
-									<span class="block counter"><span class="counter-anim">{{ count($$consign_in) }}</span></span>
+									<span class="block counter"><span class="counter-anim">{{ count($consign_in) }}</span></span>
 									<span class="weight-500 uppercase-font block">Consignments In</span>
 								</div>
 								<div class="col-xs-6 text-center  pl-0 pr-0 data-wrap-right">
@@ -175,7 +175,7 @@
 						<div class="container-fluid">
 							<div class="row">
 								<div class="col-xs-6 text-center pl-0 pr-0 data-wrap-left">
-									<span class="block counter"><span class="counter-anim">{{ count($$consign_out) }}</span></span>
+									<span class="block counter"><span class="counter-anim">{{ count($consign_out) }}</span></span>
 									<span class="weight-500 uppercase-font block">Consignments Out</span>
 								</div>
 								<div class="col-xs-6 text-center  pl-0 pr-0 data-wrap-right">

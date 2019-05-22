@@ -385,7 +385,7 @@ class InvoiceController extends Controller
                 [
                     'invoice_type' => $invoiceType,
                     'customer_id' => $customerId,
-                    'total_amount' => $request->price,
+                    'total_amount' => $data['repair_cost'],
                     'status' => $status,
                     'due_date' => $request->due_date ?? null,
                     'additional_fields' => json_encode($data)
@@ -775,7 +775,7 @@ class InvoiceController extends Controller
                 [
                     'invoice_type' => $invoiceType,
                     'customer_id' => $customerId,
-                    'total_amount' => $request->price,
+                    'total_amount' => $data['repair_cost'],
                     'due_date' => $request->due_date ?? null,
                     'status' => $status,
                     'additional_fields' => json_encode($data)
@@ -845,28 +845,28 @@ class InvoiceController extends Controller
         {
             $pdf = PDF::loadView('admin.pdf.sales_invoice', compact('invoice'));
       
-            return $pdf->stream('sales_invoice.pdf');
+            return $pdf->stream('sales_invoice-'.str_pad( $invoice->id, 4, "0", STR_PAD_LEFT ).'.pdf');
         }
 
         else if($invoice->invoice_type == 'consign_in') 
         {
             $pdf = PDF::loadView('admin.pdf.consign_in_invoice', compact('invoice'));
       
-            return $pdf->stream('consign_in_invoice.pdf');
+            return $pdf->stream('consign_in_invoice-'.str_pad( $invoice->id, 4, "0", STR_PAD_LEFT ).'.pdf');
         }
 
         else if($invoice->invoice_type == 'consign_out') 
         {
             $pdf = PDF::loadView('admin.pdf.consign_out_invoice',  compact('invoice'));
       
-            return $pdf->stream('consign_out_invoice.pdf');
+            return $pdf->stream('consign_out_invoice-'.str_pad( $invoice->id, 4, "0", STR_PAD_LEFT ).'.pdf');
         }
 
         else if($invoice->invoice_type == 'purchase') 
         {
             $pdf = PDF::loadView('admin.pdf.purchase_invoice', compact('invoice'));
       
-            return $pdf->stream('purchase_invoice.pdf');
+            return $pdf->stream('purchase_invoice-'.str_pad( $invoice->id, 4, "0", STR_PAD_LEFT ).'.pdf');
         }
 
         else if($invoice->invoice_type == 'repair') 
@@ -879,7 +879,7 @@ class InvoiceController extends Controller
         {
             $pdf = PDF::loadView('admin.pdf.others_invoice', compact('invoice'));
       
-            return $pdf->stream('others_invoice.pdf');
+            return $pdf->stream('others_invoice-'.str_pad( $invoice->id, 4, "0", STR_PAD_LEFT ).'.pdf');
         }
         else {
             return redirect('/invoice?invoice_type='.$invoice->invoice_type);
