@@ -197,11 +197,11 @@
 												<tr>
 													<td>
 													<select type="text" name="card_type[]" class="form-control">
-														<option value="amex">amex</option>
-														<option value="visa">visa</option>
-														<option value="master">master</option>
-														<option value="jcb">jcb</option>
-														<option value="china unionpay">china unionpay</option>
+														<option value="amex">Amex</option>
+														<option value="visa">Visa</option>
+														<option value="master">Master</option>
+														<option value="jcb">JCB</option>
+														<option value="china unionpay">China Unionpay</option>
 													</select>
 													</td>
 													<td><input type="text" name="bank_name[]" class="form-control"></td>

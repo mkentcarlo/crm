@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Repair Invoice 000{{ $invoice->id }}</title>
+	<title>Repair Invoice {{ str_pad( $invoice->id, 4, "0", STR_PAD_LEFT ) }}</title>
 	<!-- Custom CSS -->
 	<style>
 		.logo {
@@ -54,7 +54,7 @@
 			<div class="col-md-12 text-right">
 				<h5 style="font-size:18px">SERVICE AND REPAIR SLIP</h5>
 				<h6 style="font-size:10px; margin-top:-10px">UEN NO: 201817415K</h6>
-				<h6 style="margin-top:25px">SERVICE NO.: <span style="color: red; font-size: 20px !important; font-family: Arial !important"><strong>0001</strong></span></h6>
+				<h6 style="margin-top:25px">SERVICE NO.: <span style="color: red; font-size: 20px !important; font-family: Arial !important"><strong>{{ str_pad( $invoice->id, 4, "0", STR_PAD_LEFT ) }}</strong></span></h6>
 			</div>
 		</div>
 		<table style="width: 100%">

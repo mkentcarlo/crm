@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Sales Invoice 000{{ $invoice->id }}</title>
+	<title>Sales Invoice {{ str_pad( $invoice->id, 4, "0", STR_PAD_LEFT ) }}</title>
 	<!-- Custom CSS -->
 	<style>
 		@font-face {
@@ -67,7 +67,7 @@
 			<div class="col-md-12 text-right">
 				<h5 style="font-size:18px">SALES INVOICE</h5>
 				<h6 style="font-size:10px; margin-top:-10px">UEN NO: 201817415K</h6>
-				<h6 style="margin-top:25px">SI NO.: <span style="color: red; font-size: 20px !important; font-family: Arial !important"><strong>0000{{ $invoice->id }}</strong></span></h6>
+				<h6 style="margin-top:25px">SI NO.: <span style="color: red; font-size: 20px !important; font-family: Arial !important"><strong>{{ str_pad( $invoice->id, 4, "0", STR_PAD_LEFT ) }}</strong></span></h6>
 			</div>
 		</div>
 		<table style="width: 100%" class="bordered">
@@ -81,53 +81,56 @@
 			<thead>
 				<tr class="noborder">
 					<td>Client: {{ $invoice->customer->firstname .' '.$invoice->customer->lastname }}</td>
-					<td>Phone: {{ $invoice->contact }}</td>
+					<td>Phone: {{ $invoice->customer->contact }}</td>
 				</tr>
 				<tr class="noborder">
 					<td>Address: {{ $street_address.' '.$city.' '.$country.' ,'.$state.' '.$postal_code }}</td>
 					<td>Email: {{ $invoice->customer->email }}</td>
 				</tr>
-				<tr class="noborder">	
-					<td>
-						<p>Payment Mode: </p>
-						@if(isset($invoice->additional_fields->cash_amount) && $invoice->additional_fields->cash_amount > 0)
-						<div style="margin-top: 15px;">
+				<tr>	
+					<td class="noborder">Payment Mode:</td>
+					<td class="noborder">Date: {{ date('d/m/Y H:i', strtotime($invoice->created_at)) }}</td>
+				</tr>
+				<tr class="noborder">
+					<td colspan="2">
+					@if(isset($invoice->additional_fields->cash_amount) && $invoice->additional_fields->cash_amount > 0)
+						<div style="margin-bottom: 5px;">
 							Cash: ${{ isset($invoice->additional_fields->cash_amount) ? number_format($invoice->additional_fields->cash_amount, 2) : '0.00' }}
 						</div>
 						@endif
 						@if(isset($invoice->additional_fields->pay_now_amount) && $invoice->additional_fields->pay_now_amount > 0)
-						<div style="margin-top: 15px;">
+						<div style="margin-bottom: 5px;">
 							<p>Pay Now</p>
 							<p>Name: {{ $invoice->additional_fields->pay_now_name ?? null }}</p>
 							<p>Amount: ${{ isset($invoice->additional_fields->pay_now_amount) ? number_format($invoice->additional_fields->pay_now_amount, 2) : '0.00' }}</p>
 						</div>
 						@endif
 						@if(isset($invoice->additional_fields->bank_transfer_amount) && $invoice->additional_fields->bank_transfer_amount > 0)
-						<div style="margin-top: 15px;">
+						<div style="margin-bottom: 5px;">
 							Bank Transfer: ${{ isset($invoice->additional_fields->bank_transfer_amount) ? number_format($invoice->additional_fields->bank_transfer_amount, 2) : '0.00' }}
 						</div>
 						@endif
 						@if(isset($invoice->additional_fields->net_amount) && $invoice->additional_fields->net_amount > 0)
-						<div style="margin-top: 15px;">
+						<div style="margin-bottom: 5px;">
 							Net: ${{ isset($invoice->additional_fields->net_amount) ? number_format($invoice->additional_fields->net_amount, 2) : '0.00' }}
 						</div>
 						@endif
 						@if(isset($invoice->additional_fields->others_amount) && $invoice->additional_fields->others_amount > 0)
-						<div style="margin-top: 15px;">
+						<div style="margin-bottom: 5px;">
 							<p>Others</p>
 							<p>Specify: {{ $invoice->additional_fields->others_specify ?? null }}</p>
 							<p>Amount: ${{ isset($invoice->additional_fields->others_amount) ? number_format($invoice->additional_fields->others_amount, 2) : '0.00' }}</p>
 						</div>
 						@endif
 						@if(isset($invoice->additional_fields->installment_amount) && $invoice->additional_fields->installment_amount > 0)
-						<div style="margin-top: 15px;">
+						<div style="margin-bottom: 5px;">
 							<p>Installment</p>
 							<p>Duration: {{ $invoice->additional_fields->installment_duration ?? null }}</p>
 							<p>Amount: ${{ isset($invoice->additional_fields->installment_amount) ? number_format($invoice->additional_fields->installment_amount, 2) : '0.00' }}</p>
 						</div>
 						@endif
 						@if(!empty($invoice->additional_fields->card_info))
-						<div style="margin-top: 15px;">
+						<div style="margin-bottom: 5px;">
 							<p>Credit Card</p>	
 							<table class="table table-bordered">
 								<thead>
@@ -156,7 +159,6 @@
 						</div>
 						@endif
 					</td>
-					<td>Date: {{ date('d/m/Y H:i', strtotime($invoice->created_at)) }}</td>
 				</tr>
 			</thead>
 			
@@ -174,9 +176,10 @@
 				@if($invoice->invoice_detail)
 					@foreach($invoice->invoice_detail as $detail)
 					<tr>
+						@php($res = \DB::select("SELECT post_excerpt FROM wpla_posts WHERE ID = '$detail->product_id'"))
 						<td class="noborder">{{ $detail->product_name }}</td>
-						<td class="noborder">{{ $detail->brand_name }} - {{ $detail->category_name }}</td>
-						<td class="noborder">{{ $detail->total_amount }}</td>
+						<td class="noborder">{{ $detail->brand_name }} - {{ $detail->category_name }}<br>{{ ($res) ? $res[0]->post_excerpt : '' }}</td>
+						<td class="noborder text-center">{{ $detail->total_amount }}</td>
 					</tr>
 					@php($total += $detail->total_amount)
 					@endforeach
@@ -187,12 +190,12 @@
 					<td class="noborder">&nbsp;</td>
 				</tr>
 				<tr >
-					<td class="noborder" colspan="3" style="text-align: center;">{{ $invoice->additional_fields->remarks ?? null }}</td>
+					<td class="noborder" colspan="3">Remarks: <strong>{{ $invoice->additional_fields->remarks ?? null }}</strong></td>
 				</tr>
 				<tr>
 					<td class="noborder">&nbsp;</td>
 					<td class="noborder text-right">TOTAL</td>
-					<td>${{ number_format($total, 2) }}</td>
+					<td class="text-center">${{ number_format($total, 2) }}</td>
 				</tr>
 			</tbody>
 		</table>

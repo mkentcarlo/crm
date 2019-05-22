@@ -239,7 +239,7 @@
 					<h6 class="panel-title txt-dark">Recent Transactions</h6>
 				</div>
 				<div class="pull-right">
-					<a class="btn btn-sm txt-light bg-gold" href="{{ route('view.invoice') }}">View All</a>
+					<a class="btn btn-sm txt-light bg-gold" href="{{ route('view.invoice') }}?invoice_type=sales">View All</a>
 				</div>
 				<div class="clearfix"></div>
 			</div>

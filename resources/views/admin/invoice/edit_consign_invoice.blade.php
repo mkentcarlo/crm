@@ -42,7 +42,7 @@
 				<div class="col-md-4">
 					<div class="form-group">
 						<label class="control-label mb-10">Select Watch:</label>
-						<select class="form-control select2 product-dropdown" id="product_id" required="required">
+						<select class="form-control select2 product-dropdown" id="product_id">
 							<option value="">--please select--</option>	
 							@foreach($products as $product)
 							<option value="{{ $product['id'] }}" data-title="{{ $product['name'] }}" data-desc="{{ $product['short_description'] }}" data-brand="{{ $product['brands'] }}" data-acf="{{$product['acf_search']}}">{{ $product['name'] }}</option>
