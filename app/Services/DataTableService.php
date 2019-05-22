@@ -33,7 +33,7 @@ class DataTableService  {
             $action = '<a href="'.url('products/detail/'.$product['id']).'" class="text-inverse view" title="View"><i class="zmdi zmdi-eye txt-warning pr-10"></i></a> '. $stats;
         } else {
             //<a href="javascript:;" ino="'.$product['id'].'" class="text-inverse pr-10 form-load clone-product" title="Clone"><i class="zmdi zmdi-copy txt-warning"></i></a>
-            $action = '<a href="'.url('products/edit/'.$product['id']).'" class="text-inverse pr-10 form-load" title="Edit"><i class="zmdi zmdi-edit txt-warning"></i></a><a href="'.url('products/detail/'.$product['id']).'" class="text-inverse view" title="View"><i class="zmdi zmdi-eye txt-warning pr-10"></i></a><a href="'.url('products/delete/'.$product['id']).'" class="text-inverse delete" title="Delete"><i class="zmdi zmdi-delete txt-danger"></i></a> <a href="'.url('/products/clone/product/'.$product['id']).'"><i class="zdmi zdmi-copy"></i></a>';
+            $action = '<a href="'.url('products/edit/'.$product['id']).'" class="text-inverse pr-10 form-load" title="Edit"><i class="zmdi zmdi-edit txt-warning"></i></a><a href="'.url('products/detail/'.$product['id']).'" class="text-inverse view" title="View"><i class="zmdi zmdi-eye txt-warning pr-10"></i></a><a href="'.url('products/delete/'.$product['id']).'" class="text-inverse delete" title="Delete"><i class="zmdi zmdi-delete txt-danger"></i></a> <a class="pl-10 text-inverse" href="'.url('/products/clone/product/'.$product['id']).'"><i class="zdmi zdmi-copy text-warning"></i></a>';
         }
         return $action;
         })
