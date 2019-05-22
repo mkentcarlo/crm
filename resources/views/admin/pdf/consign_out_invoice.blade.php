@@ -77,16 +77,15 @@
 			<thead>
 				<tr class="noborder">
 					<td>Consignor: {{ $invoice->customer->firstname .' '.$invoice->customer->lastname }}</td>
-					<td>Phone: {{ $invoice->contact }}</td>
+					<td>Phone: {{ $invoice->customer->contact }}</td>
 				</tr>
 				<tr class="noborder">
 					<td>Address: {{ $street_address.' '.$city.' '.$country.' ,'.$state.' '.$postal_code }}</td>
 					<td>Email: {{ $invoice->customer->email }}</td>
 				</tr>
 				<tr class="noborder">
-					
 					<td>NIRC/PASSPORT NO: {{ $invoice->additional_fields->passport_no ?? null }}</td>
-					<td>Date: {{ date('d/m/Y H:i', strtotime($invoice->created_at)) }}</td>
+					<td>Date: {{ date('d/m/Y', strtotime($invoice->created_at)) }}</td>
 				</tr>
 			</thead>
 			<tbody>
@@ -112,7 +111,7 @@
 			<thead>
 				<tr>
 					<td class="text-center">ITEM</td>
-					<td class="text-center">DDSCRIPTION (MODEL & SERIAL NO.)</td>
+					<td class="text-center">DESCRIPTION (MODEL & SERIAL NO.)</td>
 					<td class="text-center">AMOUNT (SGD)</td>
 				</tr>
 			</thead>
@@ -121,9 +120,10 @@
 				@if($invoice->invoice_detail)
 					@foreach($invoice->invoice_detail as $detail)
 					<tr>
+						@php($res = \DB::select("SELECT post_excerpt FROM wpla_posts WHERE ID = '$detail->product_id'"))
 						<td class="noborder">{{ $detail->product_name }}</td>
-						<td class="noborder">{{ $detail->brand_name }} - {{ $detail->category_name }}</td>
-						<td class="noborder">{{ $detail->total_amount }}</td>
+						<td class="noborder">{{ ($res) ? $res[0]->post_excerpt : '' }}</td>
+						<td class="noborder text-center">{{ $detail->total_amount }}</td>
 					</tr>
 					@php($total += $detail->total_amount)
 					@endforeach
@@ -134,9 +134,12 @@
 					<td class="noborder">&nbsp;</td>
 				</tr>
 				<tr>
+					<td colspan="3" class="noborder">Remarks: <strong>{{ $invoice->additional_fields->remarks ?? null }}</strong></td>
+				</tr>
+				<tr>
 					<td class="noborder">&nbsp;</td>
 					<td class="noborder text-right">TOTAL</td>
-					<td>${{ number_format($total, 2) }}</td>
+					<td class="text-center">${{ number_format($total, 2) }}</td>
 				</tr>
 			</tbody>
 		</table>

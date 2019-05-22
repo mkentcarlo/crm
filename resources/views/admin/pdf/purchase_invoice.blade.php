@@ -77,7 +77,7 @@
 			<thead>
 				<tr class="noborder">
 					<td>Client: {{ $invoice->customer->firstname .' '.$invoice->customer->lastname }}</td>
-					<td>Phone: {{ $invoice->contact }}</td>
+					<td>Phone: {{ $invoice->customer->contact }}</td>
 				</tr>
 				<tr class="noborder">
 					<td>Address: {{ $street_address.' '.$city.' '.$country.' ,'.$state.' '.$postal_code }}</td>
@@ -91,27 +91,33 @@
 			</thead>
 			<tbody>
 				<tr><td colspan="2" class="noborder">Included:</td></tr>
-					<tr><td colspan="2" class="noborder">Box: {{ $invoice->additional_fields->box ?? null }}</td></tr>
-					<tr><td colspan="2" class="noborder">Guarantee Card: {{ $invoice->additional_fields->guarantee_card ?? null }}</td></tr>
-					<tr><td colspan="2" class="noborder">Instructions: {{ $invoice->additional_fields->instructions ?? null }}</td></tr>
-					<tr><td colspan="2" class="noborder">Others: {{ $invoice->additional_fields->others ?? null }}</td></tr>
-		
+					@if(@$invoice->additional_fields->box)
+						<tr><td colspan="2" class="noborder">Box: {{ $invoice->additional_fields->box ?? null }}</td></tr>
+					@endif
+					@if(@$invoice->additional_fields->guarantee_card)
+						<tr><td colspan="2" class="noborder">Guarantee Card: {{ $invoice->additional_fields->guarantee_card ?? null }}</td></tr>
+					@endif
+					@if(@$invoice->additional_fields->instructions)
+						<tr><td colspan="2" class="noborder">Instructions: {{ $invoice->additional_fields->instructions ?? null }}</td></tr>
+					@endif
+					@if(@$invoice->additional_fields->others)
+						<tr><td colspan="2" class="noborder">Others: {{ $invoice->additional_fields->others ?? null }}</td></tr>
+					@endif
 				<tr class="noborder">
-					<td>Remarks: {{ $invoice->additional_fields->remarks ?? null }}</td>
-					<td>
+					<td colspan="2">
 						<p>Payment Mode: </p>
 						@if(isset($invoice->additional_fields->cash_amount) && $invoice->additional_fields->cash_amount > 0)
-						<div style="margin-top: 15px;">
+						<div style="margin-bottom: 5px;">
 							Cash: ${{ isset($invoice->additional_fields->cash_amount) ? number_format($invoice->additional_fields->cash_amount, 2) : '0.00' }}
 						</div>
 						@endif
 						@if(isset($invoice->additional_fields->cheque_amount) && $invoice->additional_fields->cheque_amount > 0)
-						<div style="margin-top: 15px;">
+						<div style="margin-bottom: 5px;">
 							Cheque: ${{ isset($invoice->additional_fields->cheque_amount) ? number_format($invoice->additional_fields->cheque_amount, 2) : '0.00' }}
 						</div>
 						@endif
 						@if(isset($invoice->additional_fields->bank_transfer_amount) && $invoice->additional_fields->bank_transfer_amount > 0)
-						<div style="margin-top: 15px;">
+						<div style="margin-bottom: 5px;">
 							Bank Transfer: ${{ isset($invoice->additional_fields->bank_transfer_amount) ? number_format($invoice->additional_fields->bank_transfer_amount, 2) : '0.00' }}
 						</div>
 						@endif
@@ -132,9 +138,10 @@
 				@if($invoice->invoice_detail)
 					@foreach($invoice->invoice_detail as $detail)
 					<tr>
+						@php($res = \DB::select("SELECT post_excerpt FROM wpla_posts WHERE ID = '$detail->product_id'"))
 						<td class="noborder">{{ $detail->product_name }}</td>
-						<td class="noborder">{{ $detail->brand_name }} - {{ $detail->category_name }}</td>
-						<td class="noborder">{{ $detail->total_amount }}</td>
+						<td class="noborder">{{ ($res) ? $res[0]->post_excerpt : '' }}</td>
+						<td class="noborder text-center">{{ $detail->total_amount }}</td>
 					</tr>
 					@php($total += $detail->total_amount)
 					@endforeach
@@ -145,9 +152,12 @@
 					<td class="noborder">&nbsp;</td>
 				</tr>
 				<tr>
+					<td colspan="3" class="noborder">Remarks: <strong>{{ $invoice->additional_fields->remarks ?? null }}</strong></td>
+				</tr>
+				<tr>
 					<td class="noborder">&nbsp;</td>
 					<td class="noborder text-right">TOTAL</td>
-					<td>${{ number_format($total, 2) }}</td>
+					<td class="text-center">${{ number_format($total, 2) }}</td>
 				</tr>
 			</tbody>
 		</table>
