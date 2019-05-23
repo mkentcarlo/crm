@@ -49,7 +49,7 @@
 				<div class="col-md-2"></div>
 				<div class="col-md-6 mb-30">
 					<p hidden id="category_name"></p>
-					<div class="row" id="product-info" style="display: none;">
+					<div class="row" id="product-info" style="visibility: hidden;">
 						<input type="hidden" name="product_name" id="p_product_name">
 						<input type="hidden" name="brand_name" id="p_brand_name">
 						<input type="hidden" name="category_name" id="p_category_name">
@@ -315,7 +315,7 @@
 							</div>
 						</div>	
 					</div>
-					<div class="col-md-3">
+					<!-- <div class="col-md-3">
 						<div class="form-group">
 							<label class="control-label mb-10">Date of Acceptance:</label>
 							<div class="input-group date datepicker">
@@ -325,8 +325,8 @@
 								</span>
 							</div>
 						</div>	
-					</div>
-					<div class="col-md-3">
+					</div> -->
+					<div class="col-md-6">
 						<div class="form-group">
 							<label class="control-label mb-10">Due Date:</label>
 							<div class="input-group date datepicker">

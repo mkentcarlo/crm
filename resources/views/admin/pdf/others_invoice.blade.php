@@ -61,7 +61,7 @@
 				<img class="logo" src="https://singaporewebdevelopment.com/client/luxemontre/wp-content/uploads/2018/12/LM.png" alt="">
 			</div> -->
 			<div class="col-md-12 text-right">
-				<h5 style="font-size:18px">OTHER INVOICE</h5>
+				<h5><strong style="font-size:18px">OTHER INVOICE</strong></h5>
 				<h6 style="font-size:10px; margin-top:-10px">UEN NO: 201817415K</h6>
 				<h6 style="margin-top:25px">OI NO.: <span style="color: red; font-size: 20px !important; font-family: Arial !important"><strong>{{ str_pad( $invoice->id, 4, "0", STR_PAD_LEFT ) }}</strong></span></h6>
 			</div>
@@ -77,8 +77,8 @@
 			<thead>
 				<tr>
 					<td class="text-center">DESCRIPTION</td>
-					<td class="text-center">AMOUNT (SGD)</td>
 					<td class="text-center">PAYMENT MODE</td>
+					<td class="text-center">AMOUNT (SGD)</td>
 				</tr>
 			</thead>
 			<tbody>
@@ -87,8 +87,8 @@
 				@foreach($invoice->additional_fields->in_out_data as $row)
 				<tr>
 					<td class="noborder">{{ $row->description }}</td>
-					<td class="noborder">{{ $row->amount }}</td>
 					<td class="noborder">{{ $row->payment_mode }}</td>
+					<td class="noborder text-center">${{ number_format($row->amount, 2) }}</td>
 				</tr>
 				@php($total += $row->amount)
 				@endforeach
@@ -101,7 +101,7 @@
 				<tr>
 					<td class="noborder">&nbsp;</td>
 					<td class="noborder text-right">TOTAL</td>
-					<td>${{ number_format($total, 2) }}</td>
+					<td class="text-center">${{ number_format($total, 2) }}</td>
 				</tr>
 			</tbody>
 		</table>

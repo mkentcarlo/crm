@@ -92,7 +92,7 @@
                         });
                     },
                     success:    function (result) {
-                        $('#product-info').css('display','block');
+                        $('#product-info').css('visibility','visible');
                         $('#short_description').text(result.short_description);
                         $('#product_name').text(result.title);
                         $('#p_product_name').val(result.title);
@@ -111,7 +111,7 @@
                     }   
                 });     
             } else {
-                $('#product-info').css('display','none');
+                $('#product-info').css('visibility','hidden');
             }
             
 
@@ -134,7 +134,7 @@
                             });
                         },
                         success:    function (result) {
-                            $('#product-info').css('display','block');
+                            $('#product-info').css('visibility','visible');
                             $('#short_description').text(result.short_description);
                             $('#product_name').text(result.title);
                             $('#p_product_name').val(result.title);
@@ -153,7 +153,7 @@
                         }   
                     });     
                 } else {
-                    $('#product-info').css('display','none');
+                    $('#product-info').css('visibility','hidden');
                 }
             });
 
@@ -189,16 +189,29 @@
                 }
 
                 // Check if the data occurs
-                if ($(data.element).data('title').toString().indexOf(params.term) > -1) {
-                    return data;
+                if($(data.element).attr('data-title')){
+                    if ($(data.element).attr('data-title').toLowerCase().indexOf(params.term.toLowerCase()) > -1) {
+                        return data;
+                    }
+                }
+                
+                if($(data.element).attr('data-brand')){
+                    if ($(data.element).attr('data-brand').toLowerCase().indexOf(params.term.toLowerCase()) > -1) {
+                        return data;
+                    }
                 }
 
-                if ($(data.element).data('brand').toString().indexOf(params.term) > -1) {
-                    return data;
+                if($(data.element).attr('data-desc')){
+                    if ($(data.element).attr('data-desc').toLowerCase().indexOf(params.term.toLowerCase()) > -1) {
+                        return data;
+                    }
                 }
 
-                if ($(data.element).data('desc').toString().indexOf(params.term) > -1) {
-                    return data;
+                
+                if($(data.element).attr('data-acf')){
+                    if ($(data.element).attr('data-acf').toLowerCase().indexOf(params.term.toLowerCase()) > -1) {
+                        return data;
+                    }
                 }
 
                 // If it doesn't contain the term, don't return anything

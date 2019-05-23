@@ -61,7 +61,7 @@
 				<img class="logo" src="https://singaporewebdevelopment.com/client/luxemontre/wp-content/uploads/2018/12/LM.png" alt="">
 			</div> -->
 			<div class="col-md-12 text-right">
-				<h5 style="font-size:18px">CONSIGNMENT INVOICE</h5>
+				<h5><strong style="font-size:18px">CONSIGNMENT INVOICE</strong></h5>
 				<h6 style="font-size:10px; margin-top:-10px">UEN NO: 201817415K</h6>
 				<h6 style="margin-top:25px">CI (OUT) NO.: <span style="color: red; font-size: 20px !important; font-family: Arial !important"><strong>{{ str_pad( $invoice->id, 4, "0", STR_PAD_LEFT ) }}</strong></span></h6>
 			</div>
@@ -128,9 +128,11 @@
 					<td class="noborder">&nbsp;</td>
 					<td class="noborder">&nbsp;</td>
 				</tr>
+				@if(@$invoice->additional_fields->remarks)
 				<tr>
 					<td colspan="3" class="noborder">Remarks: <strong>{{ $invoice->additional_fields->remarks ?? null }}</strong></td>
 				</tr>
+				@endif
 				<tr>
 					<td class="noborder">&nbsp;</td>
 					<td class="noborder text-right">TOTAL</td>

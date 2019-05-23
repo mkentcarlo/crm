@@ -115,7 +115,7 @@
 									<input type="checkbox" name="payment_method[]" class="payment_method {{ ($invoice->additional_fields->payment_method) ? (in_array('credit_card', $invoice->additional_fields->payment_method) ? 'checked': '') : '' }}" value="credit_card" {{ ($invoice->additional_fields->payment_method) ? (in_array('credit_card', $invoice->additional_fields->payment_method) ? 'checked="checked"': '') : '' }}> Credit Card
 									<input type="checkbox" name="payment_method[]" class="payment_method {{ ($invoice->additional_fields->payment_method) ? (in_array('bank_transfer', $invoice->additional_fields->payment_method) ? 'checked': '') : '' }}" value="bank_transfer" {{ ($invoice->additional_fields->payment_method) ? (in_array('bank_transfer', $invoice->additional_fields->payment_method) ? 'checked="checked"': '') : '' }}> Bank Transfer
 									<input type="checkbox" name="payment_method[]" class="payment_method {{ ($invoice->additional_fields->payment_method) ? (in_array('pay_now', $invoice->additional_fields->payment_method) ? 'checked': '') : '' }}" value="pay_now" {{ ($invoice->additional_fields->payment_method) ? (in_array('pay_now', $invoice->additional_fields->payment_method) ? 'checked="checked"': '') : '' }}> Pay Now
-									<input type="checkbox" name="payment_method[]" class="payment_method {{ ($invoice->additional_fields->payment_method) ? (in_array('net', $invoice->additional_fields->payment_method) ? 'checked': '') : '' }}" value="net" {{ ($invoice->additional_fields->payment_method) ? (in_array('net', $invoice->additional_fields->payment_method) ? 'checked="checked"': '') : '' }}> Net
+									<input type="checkbox" name="payment_method[]" class="payment_method {{ ($invoice->additional_fields->payment_method) ? (in_array('net', $invoice->additional_fields->payment_method) ? 'checked': '') : '' }}" value="net" {{ ($invoice->additional_fields->payment_method) ? (in_array('net', $invoice->additional_fields->payment_method) ? 'checked="checked"': '') : '' }}> Nets
 									<input type="checkbox" name="payment_method[]" class="payment_method {{ ($invoice->additional_fields->payment_method) ? (in_array('others', $invoice->additional_fields->payment_method) ? 'checked': '') : '' }}" value="others" {{ ($invoice->additional_fields->payment_method) ? (in_array('others', $invoice->additional_fields->payment_method) ? 'checked="checked"': '') : '' }}> Others
 									<input type="checkbox" name="payment_method[]" class="payment_method {{ ($invoice->additional_fields->payment_method) ? (in_array('installment', $invoice->additional_fields->payment_method) ? 'checked': '') : '' }}" value="installment" {{ ($invoice->additional_fields->payment_method) ? (in_array('installment', $invoice->additional_fields->payment_method) ? 'checked="checked"': '') : '' }}> Installment 
 									<div id="cash" class="mt-15" {{ ($invoice->additional_fields->payment_method) ? (in_array('cash', $invoice->additional_fields->payment_method) ? '': 'hidden') : 'hidden' }}>
@@ -201,7 +201,7 @@
 													<th>Card Holder Name</th>
 													<th>Card Number</th>
 													<th>Amount</th>
-													<th><button type="button" class="add-more-card btn btn-default btn-xs"><i class="fa fa-plus"></i></button></th>
+													<th>Action</th>
 												</tr>
 											</thead>
 											<tbody id="credit_card_holder">
@@ -209,27 +209,27 @@
 													@foreach($invoice->additional_fields->card_info as $cardInfo)
 													<tr>
 														<td><select type="text" name="card_type[]" class="form-control">
-														<option value="amex" {{ $cardInfo->card_type == 'amex' ? 'selected="selected"' : '' }}>amex</option>
-														<option value="visa" {{ $cardInfo->card_type == 'visa' ? 'selected="selected"' : '' }}>visa</option>
+														<option value="amex" {{ $cardInfo->card_type == 'amex' ? 'selected="selected"' : '' }}>Amex</option>
+														<option value="visa" {{ $cardInfo->card_type == 'visa' ? 'selected="selected"' : '' }}>Visa</option>
 														<option value="master" {{ $cardInfo->card_type == 'master' ? 'selected="selected"' : '' }}>master</option>
-														<option value="jcb" {{ $cardInfo->card_type == 'jcb' ? 'selected="selected"' : '' }}>jcb</option>
-														<option value="china unionpay" {{ $cardInfo->card_type == 'china unionpay' ? 'selected="selected"' : '' }}>china unionpay</option>
+														<option value="jcb" {{ $cardInfo->card_type == 'jcb' ? 'selected="selected"' : '' }}>JCB</option>
+														<option value="china unionpay" {{ $cardInfo->card_type == 'china unionpay' ? 'selected="selected"' : '' }}>China Unionpay</option>
 													</select></td>
 														<td><input type="text" name="bank_name[]" class="form-control" value="{{ $cardInfo->bank_name }}"></td>
 														<td><input type="text" name="card_name[]" class="form-control" value="{{ $cardInfo->card_name }}"></td>
 														<td><input type="text" name="card_number[]" class="form-control" value="{{ $cardInfo->card_number }}"></td>
 														<td><input type="text" name="card_amount[]" class="form-control card_amount" value="{{ $cardInfo->card_amount }}"></td>
-														<td><button type="button" class="remove-card btn btn-danger btn-xs"><i class="fa fa-times"></i></button></td>
+														<td><button type="button" class="remove-card btn btn-danger btn-xs"><i class="fa fa-times"></i></button> <button type="button" class="add-more-card btn btn-default btn-xs"><i class="fa fa-plus"></i></button></td>
 													</tr>
 													@endforeach
 												@else
 												<tr>
 													<td><select type="text" name="card_type[]" class="form-control">
-														<option value="amex">amex</option>
-														<option value="visa">visa</option>
-														<option value="master">master</option>
-														<option value="jcb">jcb</option>
-														<option value="china unionpay">china unionpay</option>
+														<option value="amex">Amex</option>
+														<option value="visa">Visa</option>
+														<option value="master">Master</option>
+														<option value="jcb">JCB</option>
+														<option value="china unionpay">China Unionpay</option>
 													</select></td>
 													<td><input type="text" name="bank_name[]" class="form-control"></td>
 													<td><input type="text" name="card_name[]" class="form-control"></td>
@@ -245,7 +245,7 @@
 							</tr>
 							<tr>
 								<td>Overall Total:</td>
-								<td><h5 class="txt-gold"><input type="hidden" name="total_amount" value="{{ $invoice->total_amount ?? null }}" class="total_amount">$<span class="total_amount">{{ $invoice->total_amount ?  $invoice->total_amount: '0.00' }}</span></h5></td>
+								<td><h5 class="txt-gold"><input type="hidden" name="total_amount" value="{{ $invoice->total_amount ?? null }}" class="total_amount">$<span class="total_amount">{{ number_format($invoice->total_amount, 2) ?? null }}</span></h5></td>
 							</tr>
 							<tr>
 								<td>Remarks:</td>
