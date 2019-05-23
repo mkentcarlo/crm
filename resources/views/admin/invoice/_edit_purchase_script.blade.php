@@ -130,27 +130,24 @@
                 $('#remove_ids').val(ids);
             });
             
-            // $('.payment_method').each(function () {
-            //     var val = $(this).val();
-            //     if ($(this).hasClass('checked')) {
-            //         $(this).removeClass('checked');
-            //         $('#' + val).hide();
-            //     } else {
-            //         $('#' + val).show();
-            //         $(this).addClass('checked');
-            //     }
-            // });    
-
             $('.payment_method').on('click', function(){
                 var val = $(this).val();
                 if ($(this).hasClass('checked')) {
                     $(this).removeClass('checked');
+                    if (val == 'cash') {
+                        $('#cash_amount').val('');
+                    } else if (val == 'bank_transfer') {
+                        $('#bank_transfer_amount').val('');
+                    } else if (val == 'cheque') {
+                        $('#cheque_amount').val('');
+                    } 
+                    
                     $('#' + val).hide();
                 } else {
                     $('#' + val).show();
                     $(this).addClass('checked');
                 }
-            });
+            }); 
             
             $('.add-more-card').on('click', function(e){
                 e.preventDefault();
