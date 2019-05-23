@@ -26,7 +26,7 @@
 						<option value="{{ $customer->id }}">{{ $customer->lastname .' '. $customer->firstname }}</option>
 						@endforeach
 						</select>
-					<div class="customer-info" style="display: none;">
+					<div id="customer-info" style="display: none;">
 						<p class="mt-20" id="street_address">795 Folsom Ave, Suite 600</p>
 						<p id="code_state_country">San Francisco, CA 94107</p>
 						<p id="phone">P:(133) 456-7890</p>

@@ -6,7 +6,7 @@
 					<div class="form-group">
 						<label class="control-label mb-10">Invoice Type:</label>
 						<input type="hidden" name="invoice_type" value="{{ $invoiceType }}">
-						<input type="radio" name="in_out" value="in" {{ $invoice->additional_fields->in_out == 'in' ? 'checked="checked"' : '' }}> In <input type="radio" name="in_out" value="out" {{ $invoice->additional_fields->in_out == 'out' ? 'checked="checked"' : '' }}> Out
+						<input type="radio" name="in_out" value="in" {{ $invoice->additional_fields->in_out == 'in' ? 'checked="checked"' : '' }}> In <input type="radio" name="in_out" value="out" {{(isset($invoice->additional_fields->in_out) && $invoice->additional_fields->in_out == 'out') || (!isset($invoice->additional_fields->in_out)) ? 'checked' : '' }}> Out
 					</div>
 				</div>
 				<div class="clearfix"></div>
