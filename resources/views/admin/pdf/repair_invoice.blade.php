@@ -171,12 +171,13 @@
 			</thead>
 			<tbody>
 				<tr class="noborder">
-					<td>Service/Repair Cost: {{ $invoice->additional_fields->repair_cost ?? null }}</td>
+					<td>Service/Repair Cost: ${{ number_format($invoice->additional_fields->repair_cost, 2) ?? null }}</td>
 					<td>Service/Repair Accepted: {{ $invoice->additional_fields->repair_accepted == 'Yes' ? 'Yes' : 'No' }}</td>
 				</tr>
 				<tr class="noborder">
 					<td>Service/Repair Duration <small>(estimate)</small>: {{ $invoice->additional_fields->repair_duration ?? null }}</td>
 					<!-- <td>Date of Acceptance: {{ $invoice->additional_fields->date_of_acceptance ?? null }}</td> -->
+					<td></td>
 				</tr>
 			</tbody>
 			

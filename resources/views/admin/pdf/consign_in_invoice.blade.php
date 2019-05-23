@@ -91,15 +91,10 @@
 			</thead>
 			<tbody>
 			<tr><td colspan="2" class="noborder">Included:</td></tr>
-				<tr><td colspan="2" class="noborder">Box: {{ $invoice->additional_fields->box ?? null }}</td></tr>
-				<tr><td colspan="2" class="noborder">Guarantee Card: {{ $invoice->additional_fields->guarantee_card ?? null }}</td></tr>
-				<tr><td colspan="2" class="noborder">Instructions: {{ $invoice->additional_fields->instructions ?? null }}</td></tr>
-				<tr><td colspan="2" class="noborder">Others: {{ $invoice->additional_fields->others ?? null }}</td></tr>
-				<tr class="noborder">
-					<td colspan="2">Watch Condition: {{ $invoice->additional_fields->watch_condition ?? null }}</td>
+					<tr class="noborder"><td colspan="2" style="padding-top: 0px">Box: {{ $invoice->additional_fields->box ?? null }}, Guarantee Card: {{ $invoice->additional_fields->guarantee_card ?? null }}, Others: {{ $invoice->additional_fields->others ?? null }}</td>
 				</tr>
 				<tr class="noborder">
-					<td>Remarks: {{ $invoice->additional_fields->remarks ?? null }}</td>
+					<td>Watch Condition: {{ $invoice->additional_fields->watch_condition ?? null }}</td>
 					<td>Bracelet Conditions/Links: {{ $invoice->additional_fields->bracelet_condition ?? null }}</td>
 				</tr>
 				<tr class="noborder">
@@ -123,8 +118,8 @@
 					<tr>
 						@php($res = \DB::select("SELECT post_excerpt FROM wpla_posts WHERE ID = '$detail->product_id'"))
 						<td class="noborder">{{ $detail->product_name }}</td>
-						<td class="noborder">{{ $detail->brand_name }} - {{ $detail->category_name }}<br>{{ ($res) ? $res[0]->post_excerpt : '' }}</td>
-						<td class="noborder text-center">${{ number_format($detail->total_amount) }}</td>
+						<td class="noborder">{{ $detail->brand_name }} - {{ $detail->category_name }} Collection<br>{{ ($res) ? $res[0]->post_excerpt : '' }}</td>
+						<td class="noborder text-center">${{ number_format($detail->total_amount, 2) }}</td>
 					</tr>
 					@php($total += $detail->total_amount)
 					@endforeach

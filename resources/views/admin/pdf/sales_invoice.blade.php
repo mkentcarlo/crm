@@ -93,45 +93,39 @@
 				</tr>
 				<tr class="noborder">
 					<td colspan="2">
-					@if(isset($invoice->additional_fields->cash_amount) && $invoice->additional_fields->cash_amount > 0)
-						<div style="margin-bottom: 5px;">
+						@if(isset($invoice->additional_fields->cash_amount) && $invoice->additional_fields->cash_amount > 0)
+						<div style="margin-bottom: 0px;">
 							Cash: ${{ isset($invoice->additional_fields->cash_amount) ? number_format($invoice->additional_fields->cash_amount, 2) : '0.00' }}
 						</div>
 						@endif
 						@if(isset($invoice->additional_fields->pay_now_amount) && $invoice->additional_fields->pay_now_amount > 0)
-						<div style="margin-bottom: 5px;">
-							<p>Pay Now</p>
-							<p>Name: {{ $invoice->additional_fields->pay_now_name ?? null }}</p>
-							<p>Amount: ${{ isset($invoice->additional_fields->pay_now_amount) ? number_format($invoice->additional_fields->pay_now_amount, 2) : '0.00' }}</p>
+						<div style="margin-bottom: 0px;">
+							Pay Now: ${{ isset($invoice->additional_fields->pay_now_amount) ? number_format($invoice->additional_fields->pay_now_amount, 2) : '0.00' }} ({{ $invoice->additional_fields->pay_now_name ?? null }})
 						</div>
 						@endif
 						@if(isset($invoice->additional_fields->bank_transfer_amount) && $invoice->additional_fields->bank_transfer_amount > 0)
-						<div style="margin-bottom: 5px;">
+						<div style="margin-bottom: 0px;">
 							Bank Transfer: ${{ isset($invoice->additional_fields->bank_transfer_amount) ? number_format($invoice->additional_fields->bank_transfer_amount, 2) : '0.00' }}
 						</div>
 						@endif
 						@if(isset($invoice->additional_fields->net_amount) && $invoice->additional_fields->net_amount > 0)
-						<div style="margin-bottom: 5px;">
-							Net: ${{ isset($invoice->additional_fields->net_amount) ? number_format($invoice->additional_fields->net_amount, 2) : '0.00' }}
+						<div style="margin-bottom: 0px;">
+							Nets: ${{ isset($invoice->additional_fields->net_amount) ? number_format($invoice->additional_fields->net_amount, 2) : '0.00' }}
 						</div>
 						@endif
 						@if(isset($invoice->additional_fields->others_amount) && $invoice->additional_fields->others_amount > 0)
-						<div style="margin-bottom: 5px;">
-							<p>Others</p>
-							<p>Specify: {{ $invoice->additional_fields->others_specify ?? null }}</p>
-							<p>Amount: ${{ isset($invoice->additional_fields->others_amount) ? number_format($invoice->additional_fields->others_amount, 2) : '0.00' }}</p>
+						<div style="margin-bottom: 0px;">
+							Others: ${{ isset($invoice->additional_fields->others_amount) ? number_format($invoice->additional_fields->others_amount, 2) : '0.00' }} ({{ $invoice->additional_fields->others_specify ?? null }})
 						</div>
 						@endif
 						@if(isset($invoice->additional_fields->installment_amount) && $invoice->additional_fields->installment_amount > 0)
-						<div style="margin-bottom: 5px;">
-							<p>Installment</p>
-							<p>Duration: {{ $invoice->additional_fields->installment_duration ?? null }}</p>
-							<p>Amount: ${{ isset($invoice->additional_fields->installment_amount) ? number_format($invoice->additional_fields->installment_amount, 2) : '0.00' }}</p>
+						<div style="margin-bottom: 0px;">
+							Installment: ${{ isset($invoice->additional_fields->installment_amount) ? number_format($invoice->additional_fields->installment_amount, 2) : '0.00' }} ({{ $invoice->additional_fields->installment_duration ?? null }})
 						</div>
 						@endif
 						@if(!empty($invoice->additional_fields->card_info))
-						<div style="margin-bottom: 5px;">
-							<p>Credit Card</p>	
+						<div style="margin-bottom: 0px;">
+							Credit Card
 							<table class="table table-bordered">
 								<thead>
 									<tr>
@@ -150,7 +144,7 @@
 											<td>{{ $cardInfo->bank_name ?? null }}</td>
 											<td>{{ $cardInfo->card_name ?? null }}</td>
 											<td>{{ $cardInfo->card_number ?? null }}</td>
-											<td>{{ $cardInfo->card_amount ?? null }}</td>
+											<td>${{ number_format($cardInfo->card_amount, 2) ?? null }}</td>
 										</tr>
 										@endforeach
 									
@@ -178,17 +172,12 @@
 					<tr>
 						@php($res = \DB::select("SELECT post_excerpt FROM wpla_posts WHERE ID = '$detail->product_id'"))
 						<td class="noborder">{{ $detail->product_name }}</td>
-						<td class="noborder">{{ $detail->brand_name }} - {{ $detail->category_name }}<br>{{ ($res) ? $res[0]->post_excerpt : '' }}</td>
-						<td class="noborder text-center">{{ $detail->total_amount }}</td>
+						<td class="noborder">{{ $detail->brand_name }} - {{ $detail->category_name }} Collection<br>{{ ($res) ? $res[0]->post_excerpt : '' }}</td>
+						<td class="noborder text-center">${{ number_format($detail->total_amount, 2) }}</td>
 					</tr>
 					@php($total += $detail->total_amount)
 					@endforeach
 				@endif
-				<tr >
-					<td class="noborder">&nbsp;</td>
-					<td class="noborder">&nbsp;</td>
-					<td class="noborder">&nbsp;</td>
-				</tr>
 				<tr >
 					<td class="noborder" colspan="3">Remarks: <strong>{{ $invoice->additional_fields->remarks ?? null }}</strong></td>
 				</tr>
