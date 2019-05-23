@@ -103,7 +103,7 @@
 								<input type="radio" name="within_warranty_period" value="Yes" {{ $invoice->additional_fields->within_warranty_period == 'Yes' ? 'checked="checked"' : '' }}> <label>Yes</label>
 							</div>
 							<div class="radio radio-info">
-								<input type="radio" name="within_warranty_period" value="No" {{ $invoice->additional_fields->within_warranty_period == 'No' ? 'checked="checked"' : '' }}> <label>No</label>	
+								<input type="radio" name="within_warranty_period" value="No" {{(isset($invoice->additional_fields->within_warranty_period) && $invoice->additional_fields->within_warranty_period == 'No') || (!isset($invoice->additional_fields->within_warranty_period)) ? 'checked' : '' }}> <label>No</label>	
 							</div>
 						</div>
 					</div>
@@ -114,7 +114,7 @@
 								<input type="radio" name="warranty_attached" value="Yes" {{ $invoice->additional_fields->warranty_attached == 'Yes' ? 'checked="checked"' : '' }}> <label>Yes</label>
 							</div>
 							<div class="radio radio-info">
-								<input type="radio" name="warranty_attached" value="No" {{ $invoice->additional_fields->warranty_attached == 'No' ? 'checked="checked"' : '' }}> <label>No</label>	
+								<input type="radio" name="warranty_attached" value="No" {{(isset($invoice->additional_fields->warranty_attached) && $invoice->additional_fields->warranty_attached == 'No') || (!isset($invoice->additional_fields->warranty_attached)) ? 'checked' : '' }}> <label>No</label>	
 							</div>
 						</div>
 					</div>
@@ -311,7 +311,7 @@
 								<input type="radio" name="repair_accepted" value="Yes" {{ $invoice->additional_fields->repair_accepted == 'Yes' ? 'checked="checked"' : '' }}> <label>Yes</label>
 							</div>
 							<div class="radio radio-info">
-								<input type="radio" name="repair_accepted" value="No" {{ $invoice->additional_fields->repair_accepted == 'No' ? 'checked="checked"' : '' }}> <label>No</label>	
+								<input type="radio" name="repair_accepted" value="No" {{(isset($invoice->additional_fields->repair_accepted) && $invoice->additional_fields->repair_accepted == 'No') || (!isset($invoice->additional_fields->repair_accepted)) ? 'checked' : '' }}> <label>No</label>	
 							</div>
 						</div>	
 					</div>

@@ -100,10 +100,10 @@
 						<div class="form-group">
 							<label class="control-label mb-10 d-block">Within Warranty Period:</label>
 							<div class="radio radio-info">
-								<input type="radio" name="within_warranty_period" value="Yes" checked> <label>Yes</label>
+								<input type="radio" name="within_warranty_period" value="Yes"> <label>Yes</label>
 							</div>
 							<div class="radio radio-info">
-								<input type="radio" name="within_warranty_period" value="No"> <label>No</label>	
+								<input type="radio" name="within_warranty_period" value="No" checked> <label>No</label>	
 							</div>
 						</div>
 					</div>
@@ -111,10 +111,10 @@
 						<div class="form-group">
 							<label class="control-label mb-10 d-block">Warranty Attached:</label>
 							<div class="radio radio-info">
-								<input type="radio" name="warranty_attached" value="Yes" checked> <label>Yes</label>
+								<input type="radio" name="warranty_attached" value="Yes"> <label>Yes</label>
 							</div>
 							<div class="radio radio-info">
-								<input type="radio" name="warranty_attached" value="No"> <label>No</label>	
+								<input type="radio" name="warranty_attached" value="No" checked> <label>No</label>	
 							</div>
 						</div>
 					</div>
@@ -308,10 +308,10 @@
 						<div class="form-group">
 							<label class="control-label mb-10 d-block">Service/Repair Accepted:</label>
 							<div class="radio radio-info">
-								<input type="radio" name="repair_accepted" value="Yes" checked> <label>Yes</label>
+								<input type="radio" name="repair_accepted" value="Yes"> <label>Yes</label>
 							</div>
 							<div class="radio radio-info">
-								<input type="radio" name="repair_accepted" value="No"> <label>No</label>	
+								<input type="radio" name="repair_accepted" value="No" checked> <label>No</label>	
 							</div>
 						</div>	
 					</div>
