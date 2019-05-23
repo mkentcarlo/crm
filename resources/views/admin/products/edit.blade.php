@@ -136,7 +136,7 @@
 												</div>
 												<div class="radio-inline pl-0">
 													<div class="radio radio-info">
-														<input type="radio" name="reserve" value="No" {{isset($product->reserve) && $product->reserve == 'No' && $product->reserve != 'Yes' ? 'checked' : '' }}>
+														<input type="radio" name="reserve" value="No" {{(isset($product->reserve) && $product->reserve == 'No') || (!isset($product->reserve)) ? 'checked' : '' }}>
 														<label for="radio1">No</label>
 													</div>
 												</div>
@@ -331,7 +331,7 @@
 											</label>
 										</div>
 										<div class="radio radio-default">
-											<input type="radio" name="new" value="No" {{ isset($product->new) && $product->new == 'No' && $product->new != 'Yes' ? 'checked="checked"' : '' }}>
+											<input type="radio" name="new" value="No" {{(isset($product->new) && $product->new == 'No') || (!isset($product->new)) ? 'checked' : '' }}> 
 											<label for="limited_editionno">
 												NO
 											</label>
@@ -347,7 +347,7 @@
 											</label>
 										</div>
 										<div class="radio radio-default">
-											<input type="radio" name="limited_edition" value="No" {{ isset($product->limited_edition) && $product->limited_edition == 'No' && $product->limited_edition != 'Yes' ? 'checked="checked"' : '' }}>
+											<input type="radio" name="limited_edition" value="No" {{(isset($product->limited_edition) && $product->limited_edition == 'No') || (!isset($product->limited_edition)) ? 'checked' : '' }}>
 											<label for="limited_editionyes">
 												NO
 											</label>
