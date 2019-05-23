@@ -131,27 +131,34 @@
                 $('#remove_ids').val(ids);
             });
             
-            $('.payment_method').each(function () {
-                var val = $(this).val();
-                if ($(this).hasClass('checked')) {
-                    $(this).removeClass('checked');
-                    $('#' + val).hide();
-                } else {
-                    $('#' + val).show();
-                    $(this).addClass('checked');
-                }
-            });    
-
             $('.payment_method').on('click', function(){
                 var val = $(this).val();
                 if ($(this).hasClass('checked')) {
                     $(this).removeClass('checked');
+                    if (val == 'cash') {
+                        $('#cash_amount').val('');
+                    } else if (val == 'bank_transfer') {
+                        $('#bank_transfer_amount').val('');
+                    } else if (val == 'pay_now') {
+                        $('#pay_now_amount').val('');
+                    } else if (val == 'net') {
+                        $('#net_amount').val('');
+                    } else if (val == 'others') {
+                        $('#others_amount').val('');
+                    } else if (val == 'installment') {
+                        $('#installment_amount').val('');
+                    } else if (val == 'credit_card') {
+                        $('.card_amount').each(function() {
+                            $(this).val('');
+                        });
+                    }
+
                     $('#' + val).hide();
                 } else {
                     $('#' + val).show();
                     $(this).addClass('checked');
                 }
-            });
+            }); 
 
             $('.add-more-card').on('click', function(e){
                 e.preventDefault();
