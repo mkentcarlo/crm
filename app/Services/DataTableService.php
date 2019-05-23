@@ -10,7 +10,7 @@ class DataTableService  {
 
 	public function renderProductsDataTable() 
     {
-		$products = app()->make('App\Services\ProductService')->getProducts();
+		$products = app()->make('App\Services\ProductService')->getProducts2();
 
 		return DataTables::of($products)
 		->addColumn('categories', function($product) {

@@ -59,6 +59,46 @@ class ProductService
 	    return $data;
 	}
 	
+	public function getProducts2() 
+	{
+		$products = $this->wooService->getProducts2();
+        $data = [];
+	    foreach ($products as $product) {
+	    	$selling = $this->wooService->getProductSellingById($product->ID);
+			$buying = $this->wooService->getProductBuyingById($product->ID);
+			$asking = $this->wooService->getProductAskingById($product->ID);
+
+	    	$img_file = @unserialize($product->images);
+	    	$img_dir  = $product->siteurl .'/wp-content/uploads';
+            $img_path = $this->wooService->get_image_path($img_dir, 'thumbnail', $img_file);
+	        $tmp['id'] = $product->ID;
+	        $tmp['name'] = $product->post_title;
+	        $tmp['short_description'] = $product->post_excerpt;
+	        $tmp['img_path'] = $img_path;
+	        $tmp['categories'] = implode('', array_column($this->wooService->getProductCategories($product->ID), 'name'));
+	        $tmp['brands'] = implode('', array_column($this->wooService->getProductBrands($product->ID), 'name'));
+	        $tmp['price'] = $product->price;
+	        $tmp['selling_price'] = ($selling) ? $selling[0]->meta_value : '0.00';
+			$tmp['buying_price'] = ($buying) ? $buying[0]->meta_value : '0.00';
+			$tmp['asking_price'] = ($asking) ? $asking[0]->meta_value : '0.00';
+	        $tmp['status'] = $product->post_status == 'publish' ? 'published' : $product->post_status;
+			$tmp['date_created'] = date('d/m/Y | h:i a', strtotime($product->post_date));
+			$tmp['acf_search'] = "";
+			$acf = DB::select("SELECT * FROM wpla_postmeta where post_id =".$product->ID);
+            $arr = ['model_reference', 'condition', 'gnder', 'case_material', 'bezel', 'case_back', 'case_diameter', 'movement', 'watch_features', 'dial_colour', 'crystal', 'braceletstrap', 'clasp_type', 'included', 'complication', 'new', 'limited_edition', 'complication', 'cost_price', 'asking_price', 'selling_price', 'buying_price', 'model_reference'];
+            foreach ($acf as $row) {
+                if (in_array($row->meta_key,  $arr)) {
+                    $key = $row->meta_key;
+					$product->$key = $row->meta_value;
+					$tmp['acf_search'].="|".$row->meta_value;
+                }
+            }
+	        $data[] = $tmp;
+	    }
+	   
+	    return $data;
+	}
+
 	public function create($formData) 
 	{
 		$productImages = [];
