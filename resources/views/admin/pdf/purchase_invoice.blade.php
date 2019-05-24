@@ -61,7 +61,7 @@
 				<img class="logo" src="https://singaporewebdevelopment.com/client/luxemontre/wp-content/uploads/2018/12/LM.png" alt="">
 			</div> -->
 			<div class="col-md-12 text-right">
-				<h5 style="font-size:18px">PURCHASE INVOICE</h5>
+				<h5><strong style="font-size:18px">PURCHASE INVOICE</strong></h5>
 				<h6 style="font-size:10px; margin-top:-10px">UEN NO: 201817415K</h6>
 				<h6 style="margin-top:25px">PI NO.: <span style="color: red; font-size: 20px !important; font-family: Arial !important"><strong>{{ str_pad( $invoice->id, 4, "0", STR_PAD_LEFT ) }}</strong></span></h6>
 			</div>
@@ -90,34 +90,25 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr><td colspan="2" class="noborder">Included:</td></tr>
+				<tr><td colspan="2" class="noborder" style="padding-bottom: 0px;">Included:</td></tr>
 					@if(@$invoice->additional_fields->box)
-						<tr><td colspan="2" class="noborder">Box: {{ $invoice->additional_fields->box ?? null }}</td></tr>
-					@endif
-					@if(@$invoice->additional_fields->guarantee_card)
-						<tr><td colspan="2" class="noborder">Guarantee Card: {{ $invoice->additional_fields->guarantee_card ?? null }}</td></tr>
-					@endif
-					@if(@$invoice->additional_fields->instructions)
-						<tr><td colspan="2" class="noborder">Instructions: {{ $invoice->additional_fields->instructions ?? null }}</td></tr>
-					@endif
-					@if(@$invoice->additional_fields->others)
-						<tr><td colspan="2" class="noborder">Others: {{ $invoice->additional_fields->others ?? null }}</td></tr>
+						<tr><td colspan="2" style="padding-top: 0px;" class="noborder">Box: {{ $invoice->additional_fields->box ?? null }}, Guarantee Card: {{ $invoice->additional_fields->guarantee_card ?? null }}, Instructions: {{ $invoice->additional_fields->instructions ?? null }}, Others: {{ $invoice->additional_fields->others ?? null }}</td></tr>
 					@endif
 				<tr class="noborder">
 					<td colspan="2">
-						<p>Payment Mode: </p>
+						Payment Mode: <br>
 						@if(isset($invoice->additional_fields->cash_amount) && $invoice->additional_fields->cash_amount > 0)
-						<div style="margin-bottom: 5px;">
+						<div style="margin-bottom: 0px;">
 							Cash: ${{ isset($invoice->additional_fields->cash_amount) ? number_format($invoice->additional_fields->cash_amount, 2) : '0.00' }}
 						</div>
 						@endif
 						@if(isset($invoice->additional_fields->cheque_amount) && $invoice->additional_fields->cheque_amount > 0)
-						<div style="margin-bottom: 5px;">
+						<div style="margin-bottom: 0px;">
 							Cheque: ${{ isset($invoice->additional_fields->cheque_amount) ? number_format($invoice->additional_fields->cheque_amount, 2) : '0.00' }}
 						</div>
 						@endif
 						@if(isset($invoice->additional_fields->bank_transfer_amount) && $invoice->additional_fields->bank_transfer_amount > 0)
-						<div style="margin-bottom: 5px;">
+						<div style="margin-bottom: 0px;">
 							Bank Transfer: ${{ isset($invoice->additional_fields->bank_transfer_amount) ? number_format($invoice->additional_fields->bank_transfer_amount, 2) : '0.00' }}
 						</div>
 						@endif
@@ -140,8 +131,8 @@
 					<tr>
 						@php($res = \DB::select("SELECT post_excerpt FROM wpla_posts WHERE ID = '$detail->product_id'"))
 						<td class="noborder">{{ $detail->product_name }}</td>
-						<td class="noborder">{{ $detail->brand_name }} - {{ $detail->category_name }}<br>{{ ($res) ? $res[0]->post_excerpt : '' }}</td>
-						<td class="noborder text-center">{{ $detail->total_amount }}</td>
+						<td class="noborder">{{ $detail->brand_name }} - {{ $detail->category_name }} Collection<br>{{ ($res) ? $res[0]->post_excerpt : '' }}</td>
+						<td class="noborder text-center">${{ number_format($detail->total_amount, 2) }}</td>
 					</tr>
 					@php($total += $detail->total_amount)
 					@endforeach
@@ -151,9 +142,11 @@
 					<td class="noborder">&nbsp;</td>
 					<td class="noborder">&nbsp;</td>
 				</tr>
+				@if(@$invoice->additional_fields->remarks)
 				<tr>
 					<td colspan="3" class="noborder">Remarks: <strong>{{ $invoice->additional_fields->remarks ?? null }}</strong></td>
 				</tr>
+				@endif
 				<tr>
 					<td class="noborder">&nbsp;</td>
 					<td class="noborder text-right">TOTAL</td>

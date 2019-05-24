@@ -98,67 +98,94 @@
 										$<span class="counter-anim">{{number_format($invoiceType != 'others' ? $total->sum('total_amount') : $total_overall , 2)}}</span>
 									</div>
 									@if ($invoiceType != 'others')
+									@if ($invoiceType == 'purchase')
 									<hr class="light-grey-hr row mt-10 mb-15">
-									<div class="row">
-										<div class="col-md-3 text-center">
-											<div class="">
-												<span class="clabels clabels-lg inline-block bg-blue mr-10"></span>
-												<span class="clabels-text font-12 inline-block txt-dark capitalize-font"><span class="block font-20 weight-500 mb-5">$<span class="counter-anim">{{number_format($cash_total, 2)}}</span></span><span class="block txt-grey">Cash</span></span>
-												<div class="clearfix"></div>
+										<div class="row">
+											<div class="col-md-4 text-center">
+												<div class="">
+													<span class="clabels clabels-lg inline-block bg-blue mr-10"></span>
+													<span class="clabels-text font-12 inline-block txt-dark capitalize-font"><span class="block font-20 weight-500 mb-5">$<span class="counter-anim">{{number_format($cash_total, 2)}}</span></span><span class="block txt-grey">Cash</span></span>
+													<div class="clearfix"></div>
+												</div>
+											</div>
+											<div class="col-md-4 text-center">
+												<div class="">
+													<span class="clabels clabels-lg inline-block bg-blue mr-10"></span>
+													<span class="clabels-text font-12 inline-block txt-dark capitalize-font"><span class="block font-20 weight-500 mb-5">$<span class="counter-anim">{{number_format($bank_transfer_total, 2)}}</span></span><span class="block txt-grey">Bank Transfer</span></span>
+													<div class="clearfix"></div>
+												</div>
+											</div>
+											<div class="col-md-4 text-center">
+												<div class="">
+													<span class="clabels clabels-lg inline-block bg-blue mr-10"></span>
+													<span class="clabels-text font-12 inline-block txt-dark capitalize-font"><span class="block font-20 weight-500 mb-5">$<span class="counter-anim">{{number_format($cheque_total, 2)}}</span></span><span class="block txt-grey">Cheque</span></span>
+													<div class="clearfix"></div>
+												</div>
 											</div>
 										</div>
-										<div class="col-md-3 text-center">
-											<div class="">
-												<span class="clabels clabels-lg inline-block bg-blue mr-10"></span>
-												<span class="clabels-text font-12 inline-block txt-dark capitalize-font"><span class="block font-20 weight-500 mb-5">$<span class="counter-anim">{{number_format($card_total, 2)}}</span></span><span class="block txt-grey">Credit Card</span></span>
-												<div class="clearfix"></div>
+									@else
+										<hr class="light-grey-hr row mt-10 mb-15">
+										<div class="row">
+											<div class="col-md-3 text-center">
+												<div class="">
+													<span class="clabels clabels-lg inline-block bg-blue mr-10"></span>
+													<span class="clabels-text font-12 inline-block txt-dark capitalize-font"><span class="block font-20 weight-500 mb-5">$<span class="counter-anim">{{number_format($cash_total, 2)}}</span></span><span class="block txt-grey">Cash</span></span>
+													<div class="clearfix"></div>
+												</div>
+											</div>
+											<div class="col-md-3 text-center">
+												<div class="">
+													<span class="clabels clabels-lg inline-block bg-blue mr-10"></span>
+													<span class="clabels-text font-12 inline-block txt-dark capitalize-font"><span class="block font-20 weight-500 mb-5">$<span class="counter-anim">{{number_format($card_total, 2)}}</span></span><span class="block txt-grey">Credit Card</span></span>
+													<div class="clearfix"></div>
+												</div>
+											</div>
+											<div class="col-md-3 text-center">
+												<div class="">
+													<span class="clabels clabels-lg inline-block bg-blue mr-10"></span>
+													<span class="clabels-text font-12 inline-block txt-dark capitalize-font"><span class="block font-20 weight-500 mb-5">$<span class="counter-anim">{{number_format($paynow_total, 2)}}</span></span><span class="block txt-grey">Pay Now</span></span>
+													<div class="clearfix"></div>
+												</div>
+											</div>
+											<div class="col-md-3 text-center">
+												<div class="">
+													<span class="clabels clabels-lg inline-block bg-blue mr-10"></span>
+													<span class="clabels-text font-12 inline-block txt-dark capitalize-font"><span class="block font-20 weight-500 mb-5">$<span class="counter-anim">{{number_format($bank_transfer_total, 2)}}</span></span><span class="block txt-grey">Bank Transfer</span></span>
+													<div class="clearfix"></div>
+												</div>
 											</div>
 										</div>
-										<div class="col-md-3 text-center">
-											<div class="">
-												<span class="clabels clabels-lg inline-block bg-blue mr-10"></span>
-												<span class="clabels-text font-12 inline-block txt-dark capitalize-font"><span class="block font-20 weight-500 mb-5">$<span class="counter-anim">{{number_format($paynow_total, 2)}}</span></span><span class="block txt-grey">Pay Now</span></span>
-												<div class="clearfix"></div>
+										<hr class="light-grey-hr row mt-10 mb-15">
+										<div class="row">
+											<div class="col-md-4 text-center">
+												<div class="">
+													<span class="clabels clabels-lg inline-block bg-blue mr-10"></span>
+													<span class="clabels-text font-12 inline-block txt-dark capitalize-font"><span class="block font-20 weight-500 mb-5">$<span class="counter-anim">{{number_format($net_total, 2)}}</span></span><span class="block txt-grey">Nets</span></span>
+													<div class="clearfix"></div>
+												</div>
+											</div>
+											<div class="col-md-4 text-center">
+												<div class="">
+													<span class="clabels clabels-lg inline-block bg-blue mr-10"></span>
+													<span class="clabels-text font-12 inline-block txt-dark capitalize-font"><span class="block font-20 weight-500 mb-5">$<span class="counter-anim">{{number_format($installment_total, 2)}}</span></span><span class="block txt-grey">Installments</span></span>
+													<div class="clearfix"></div>
+												</div>
+											</div>
+											<div class="col-md-4 text-center">
+												<div class="">
+													<span class="clabels clabels-lg inline-block bg-blue mr-10"></span>
+													<span class="clabels-text font-12 inline-block txt-dark capitalize-font"><span class="block font-20 weight-500 mb-5">$<span class="counter-anim">{{number_format($others_total, 2)}}</span></span><span class="block txt-grey">Others</span></span>
+													<div class="clearfix"></div>
+												</div>
 											</div>
 										</div>
-										<div class="col-md-3 text-center">
-											<div class="">
-												<span class="clabels clabels-lg inline-block bg-blue mr-10"></span>
-												<span class="clabels-text font-12 inline-block txt-dark capitalize-font"><span class="block font-20 weight-500 mb-5">$<span class="counter-anim">{{number_format($bank_transfer_total, 2)}}</span></span><span class="block txt-grey">Bank Transfer</span></span>
-												<div class="clearfix"></div>
+										<hr class="light-grey-hr row mt-10 mb-15">
+										<div class="row">
+											<div class="col-md-12 text-center">
+												<button class="btn btn-gold view-invoices">View Invoices</button>
 											</div>
 										</div>
-									</div>
-									<hr class="light-grey-hr row mt-10 mb-15">
-									<div class="row">
-										<div class="col-md-4 text-center">
-											<div class="">
-												<span class="clabels clabels-lg inline-block bg-blue mr-10"></span>
-												<span class="clabels-text font-12 inline-block txt-dark capitalize-font"><span class="block font-20 weight-500 mb-5">$<span class="counter-anim">{{number_format($net_total, 2)}}</span></span><span class="block txt-grey">Net</span></span>
-												<div class="clearfix"></div>
-											</div>
-										</div>
-										<div class="col-md-4 text-center">
-											<div class="">
-												<span class="clabels clabels-lg inline-block bg-blue mr-10"></span>
-												<span class="clabels-text font-12 inline-block txt-dark capitalize-font"><span class="block font-20 weight-500 mb-5">$<span class="counter-anim">{{number_format($installment_total, 2)}}</span></span><span class="block txt-grey">Installments</span></span>
-												<div class="clearfix"></div>
-											</div>
-										</div>
-										<div class="col-md-4 text-center">
-											<div class="">
-												<span class="clabels clabels-lg inline-block bg-blue mr-10"></span>
-												<span class="clabels-text font-12 inline-block txt-dark capitalize-font"><span class="block font-20 weight-500 mb-5">$<span class="counter-anim">{{number_format($others_total, 2)}}</span></span><span class="block txt-grey">Others</span></span>
-												<div class="clearfix"></div>
-											</div>
-										</div>
-									</div>
-									<hr class="light-grey-hr row mt-10 mb-15">
-									<div class="row">
-										<div class="col-md-12 text-center">
-											<button class="btn btn-gold view-invoices">View Invoices</button>
-										</div>
-									</div>
+									@endif
 									<div id="reports-table-container" style="display: none">
 										<table class="table display nowrap mb-30" id="report-table" role="grid" style="width: 100% !important">
 											<thead>

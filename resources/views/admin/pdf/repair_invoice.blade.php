@@ -52,7 +52,7 @@
 				<img class="logo" src="https://singaporewebdevelopment.com/client/luxemontre/wp-content/uploads/2018/12/LM.png" alt="">
 			</div> -->
 			<div class="col-md-12 text-right">
-				<h5 style="font-size:18px">SERVICE AND REPAIR SLIP</h5>
+				<h5><strong style="font-size:18px">SERVICE AND REPAIR SLIP</strong></h5>
 				<h6 style="font-size:10px; margin-top:-10px">UEN NO: 201817415K</h6>
 				<h6 style="margin-top:25px">SERVICE NO.: <span style="color: red; font-size: 20px !important; font-family: Arial !important"><strong>{{ str_pad( $invoice->id, 4, "0", STR_PAD_LEFT ) }}</strong></span></h6>
 			</div>
@@ -96,11 +96,11 @@
 				</tr>
 				<tr class="noborder">
 					<td>Serial No.:  {{ $invoice->additional_fields->serial_no ?? null }}</td>
-					<td>Within Warranty Period: </td>
+					<td>Within Warranty Period: {{ $invoice->additional_fields->within_warranty_period ?? null }}</td>
 				</tr>
 				<tr class="noborder">
 					<td>Movement: {{ $invoice->additional_fields->movement ?? null }}</td>
-					<td>Warranty Attached: </td>
+					<td>Warranty Attached: {{ $invoice->additional_fields->warranty_attached ?? null }}</td>
 				</tr>
 				<tr class="noborder">
 					<td>Functions: {{ $invoice->additional_fields->functions ?? null }}</td>
@@ -171,12 +171,14 @@
 			</thead>
 			<tbody>
 				<tr class="noborder">
-					<td>Service/Repair Cost: {{ $invoice->additional_fields->repair_cost ?? null }}</td>
+					<td>Service/Repair Cost: ${{ number_format($invoice->additional_fields->repair_cost, 2) ?? null }}</td>
 					<td>Service/Repair Accepted: {{ $invoice->additional_fields->repair_accepted == 'Yes' ? 'Yes' : 'No' }}</td>
 				</tr>
 				<tr class="noborder">
 					<td>Service/Repair Duration <small>(estimate)</small>: {{ $invoice->additional_fields->repair_duration ?? null }}</td>
 					<!-- <td>Date of Acceptance: {{ $invoice->additional_fields->date_of_acceptance ?? null }}</td> -->
+					<td>Due Date: {{ $invoice->additional_fields->due_date ?? null }}</td>
+					<td></td>
 				</tr>
 			</tbody>
 			

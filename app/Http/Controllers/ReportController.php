@@ -79,6 +79,7 @@ class ReportController extends Controller
         $bank_transfer_total = app()->make('App\Services\InvoiceService')->getInvoiceAmountsByPaymentMode($total, 'bank_transfer_amount');
         $net_total = app()->make('App\Services\InvoiceService')->getInvoiceAmountsByPaymentMode($total, 'net_amount');
         $installment_total = app()->make('App\Services\InvoiceService')->getInvoiceAmountsByPaymentMode($total, 'installment_amount');
+        $cheque_total = app()->make('App\Services\InvoiceService')->getInvoiceAmountsByPaymentMode($total, 'cheque_amount');
         $others_total = app()->make('App\Services\InvoiceService')->getInvoiceAmountsByPaymentMode($total, 'others_amount');
         
         if(isset($request->date_end) && isset($request->date_start)){
@@ -108,7 +109,7 @@ class ReportController extends Controller
         }
 
 
-        return view('admin.reports.index', compact('week','month','year','current', 'invoiceType', 'total', 'cash_total', 'card_total', 'paynow_total', 'bank_transfer_total', 'net_total', 'installment_total', 'others_total', 'date_string', 'start', 'end'));
+        return view('admin.reports.index', compact('week','month','year','current', 'invoiceType', 'total', 'cash_total', 'card_total', 'paynow_total', 'bank_transfer_total', 'net_total', 'installment_total', 'others_total', 'date_string', 'start', 'end', 'cheque_total'));
     }  
 
     public function viewPdf($id)

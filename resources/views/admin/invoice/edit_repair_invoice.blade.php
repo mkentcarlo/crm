@@ -315,7 +315,7 @@
 							</div>
 						</div>	
 					</div>
-					<div class="col-md-3">
+					<!-- <div class="col-md-3">
 						<div class="form-group">
 							<label class="control-label mb-10">Date of Acceptance:</label>
 							<div class="input-group date datepicker">
@@ -325,8 +325,8 @@
 								</span>
 							</div>
 						</div>	
-					</div>
-					<div class="col-md-3">
+					</div> -->
+					<div class="col-md-6">
 						<div class="form-group">
 							<label class="control-label mb-10">Due Date:</label>
 							<div class="input-group date datepicker">

@@ -106,7 +106,7 @@
 									<input type="checkbox" name="payment_method[]" class="payment_method" value="credit_card"> Credit Card
 									<input type="checkbox" name="payment_method[]" class="payment_method" value="bank_transfer"> Bank Transfer
 									<input type="checkbox" name="payment_method[]" class="payment_method" value="pay_now"> Pay Now
-									<input type="checkbox" name="payment_method[]" class="payment_method" value="net"> Net
+									<input type="checkbox" name="payment_method[]" class="payment_method" value="net"> Nets
 									<input type="checkbox" name="payment_method[]" class="payment_method" value="others"> Others
 									<input type="checkbox" name="payment_method[]" class="payment_method" value="installment"> Installment
 									<div id="cash" class="mt-15" hidden>

@@ -151,7 +151,7 @@
 							</tr>
 							<tr>
 								<td>Overall Total:</td>
-								<td><h5 class="txt-gold"><input type="hidden" name="total_amount" class="total_amount" value="{{ $invoice->total_amount ?? null }}">$<span class="total_amount">0.00</span></h5></td>
+								<td><h5 class="txt-gold"><input type="hidden" name="total_amount" class="total_amount" value="{{ $invoice->total_amount ?? null }}">$<span class="total_amount">{{ number_format($invoice->total_amount, 2) ?? null }}</span></h5></td>
 							</tr>
 							<tr>
 								<td>Remarks:</td>

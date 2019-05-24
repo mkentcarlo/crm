@@ -178,7 +178,7 @@
                            $('.product-overview tbody').find('tr#'+product_id+' td:eq(6) span').text(subTotal.toFixed(2));
                            $('.product-overview tbody').find('tr#'+product_id+' td:eq(6) input').val(subTotal.toFixed(2));
                         } else {
-                            $('.product-overview tbody').append("<tr id="+product_id+"><td><input type='hidden' name='product_id[]' value="+product_id+"><input type='hidden' name='featured_src[]' value="+img_src+"><img src='"+img_src+"' width='80'></td><td><input type='hidden' name='product_name[]' value="+product_name+">"+product_name+"</td><td><input type='hidden' name='brand_name[]' value="+brand_name+">"+brand_name+"</td><td><input type='hidden' name='category_name[]' value="+category_name+">"+category_name+"</td><td><input type='text' name='product_price[]' class='in-product-price' value="+product_price+"></td><td class='quantity'><input type='hidden' name='quantity[]' value="+quantity+">"+quantity+"</td><td class='subtotal'><input type='hidden' name='sub_total_amount[]' value="+sub_total.toFixed(2)+">$<span>"+sub_total.toFixed(2)+"</span></td><td><a href='javascript:void(0)' class='delete-product-invoice' title=' data-toggle='tooltip' data-original-title='Delete'><i class='zmdi zmdi-delete txt-warning'></i></a></td></tr>");
+                            $('.product-overview tbody').append("<tr id="+product_id+"><td><input type='hidden' name='product_id[]' value="+product_id+"><input type='hidden' name='featured_src[]' value="+img_src+"><img src='"+img_src+"' width='80'></td><td><input type='hidden' name='product_name[]' value='"+product_name+"'>"+product_name+"</td><td><input type='hidden' name='brand_name[]' value='"+brand_name+"'>"+brand_name+"</td><td><input type='hidden' name='category_name[]' value="+category_name+">"+category_name+"</td><td><input type='text' name='product_price[]' class='in-product-price' value="+product_price+"></td><td class='quantity'><input type='hidden' name='quantity[]' value="+quantity+">"+quantity+"</td><td class='subtotal'><input type='hidden' name='sub_total_amount[]' value="+sub_total.toFixed(2)+">$<span>"+sub_total.toFixed(2)+"</span></td><td><a href='javascript:void(0)' class='delete-product-invoice' title=' data-toggle='tooltip' data-original-title='Delete'><i class='zmdi zmdi-delete txt-warning'></i></a></td></tr>");
                         }
 
                         var total = 0;
@@ -318,16 +318,29 @@
                 }
 
                 // Check if the data occurs
-                if ($(data.element).data('title').toString().indexOf(params.term) > -1) {
-                    return data;
+                if($(data.element).attr('data-title')){
+                    if ($(data.element).attr('data-title').toLowerCase().indexOf(params.term.toLowerCase()) > -1) {
+                        return data;
+                    }
+                }
+                
+                if($(data.element).attr('data-brand')){
+                    if ($(data.element).attr('data-brand').toLowerCase().indexOf(params.term.toLowerCase()) > -1) {
+                        return data;
+                    }
                 }
 
-                if ($(data.element).data('brand').toString().indexOf(params.term) > -1) {
-                    return data;
+                if($(data.element).attr('data-desc')){
+                    if ($(data.element).attr('data-desc').toLowerCase().indexOf(params.term.toLowerCase()) > -1) {
+                        return data;
+                    }
                 }
 
-                if ($(data.element).data('desc').toString().indexOf(params.term) > -1) {
-                    return data;
+                
+                if($(data.element).attr('data-acf')){
+                    if ($(data.element).attr('data-acf').toLowerCase().indexOf(params.term.toLowerCase()) > -1) {
+                        return data;
+                    }
                 }
 
                 // If it doesn't contain the term, don't return anything
