@@ -51,7 +51,7 @@
 										<label class="control-label mb-10">Select Brand</label>
 										<select class="selectpicker" name="brand_id" data-style="form-control btn-default btn-outline" tabindex="-98">
 											@foreach($brands as $brand)
-												<option value="{{ $brand->term_id }}" {{ $product->brands[0]->term_id == $brand->term_id ? 'selected="selected"' : '' }}>{{ $brand->name }}</option>
+												<option value="{{ $brand->term_id }}" {{ isset($product->brands[0]->term_id) && $product->brands[0]->term_id == $brand->term_id ? 'selected="selected"' : '' }}>{{ $brand->name }}</option>
 											@endforeach
 										</select>
 									</div>

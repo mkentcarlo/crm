@@ -7,6 +7,7 @@ use App\Customer;
 use Illuminate\Http\Request;
 use FaimMedia;
 use App\CustomerGroup;
+use App\Http\Requests\CustomerFormRequest;
 
 class CustomerController extends Controller
 {
@@ -49,7 +50,7 @@ class CustomerController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function store(Request $request)
+    public function store(CustomerFormRequest $request)
     {
         $groupId = CustomerGroup::find($request->group_id)->first()->list_id;
         $list = $this->mailchimp->lists()->getById($groupId);
@@ -127,7 +128,7 @@ class CustomerController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function update(Request $request, $id)
+    public function update(CustomerFormRequest $request, $id)
     {
         $customer = Customer::find($id);
         $groupId = CustomerGroup::find($request->group_id)->first()->list_id;
