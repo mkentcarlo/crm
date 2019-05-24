@@ -197,7 +197,7 @@ class UserController extends Controller
        ->addColumn('action', '<a href="#modalUserInfo" class="text-inverse pr-10 form-load" data-form-url="'.url('users/edit').'/{{$id}}" title="Edit" data-toggle="modal"><i class="zmdi zmdi-edit txt-warning"></i></a>
        <a href="'.url('users/delete').'/{{$id}}" class="text-inverse delete-user" title="Delete"><i class="zmdi zmdi-delete txt-danger"></i></a>')
        ->editColumn('role', function($user){
-            return ($user->roles) ? ucfirst($user->roles[0]->name) : '';
+            return isset($user->roles[0]->name) ? ucfirst($user->roles[0]->name) : '';
        })
        ->editColumn('status', function($user){
             return $user->status == 1 ? "<span class='label label-success'>Active</span>" : "<span class='label label-danger'>Inactive</span>";
